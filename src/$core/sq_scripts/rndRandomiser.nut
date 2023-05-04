@@ -8,6 +8,8 @@ class rndRandomiser extends rndBase
 	autoInputs = null;
 	maxItems = null;
 	
+	currentInputIndex = null;
+	
 	//Default allowed inputItemLists.
 	//We can replace this
 	//Randomisers AND outputItemLists have input filters
@@ -39,6 +41,7 @@ class rndRandomiser extends rndBase
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
 		maxItems = getParam("maxItems",999);
+		currentInputIndex = 0;
 	
 		print (self + " has AutoInputs set to: " + autoInputs);
 	
@@ -57,18 +60,18 @@ class rndRandomiser extends rndBase
 		print ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
 		foreach (output in outputs)
 		{
-			print ("   -> " + output[0] + " " + output[1]);
+			print ("   -> " + output);
 		}
 		//================
 		
 		//We need a slightl delay here, otherwise Squirrel explodes
-		SetOneShotTimer("InitTimer",1.05);
+		SetOneShotTimer("InitTimer",0.05);
 	}
 	
 	function OnTimer()
 	{
 		SetOutputMetaprops();
-		Randomise();
+		SignalReady();
 	}
 
 	//Allow any outputs to function
@@ -76,44 +79,32 @@ class rndRandomiser extends rndBase
 	{
 		foreach(output in outputs)
 		{
-			if (output[1] == true)
-			{
-				if (!Object.HasMetaProperty(output[0],"Object Randomiser - Container"))
-					Object.AddMetaProperty(output[0],"Object Randomiser - Container");
-			}
+			local isContainer = isArchetype(output,-379) || isArchetype(output,-118);
+		
+			if (isContainer && !Object.HasMetaProperty(output,"Object Randomiser - Container"))
+				Object.AddMetaProperty(output,"Object Randomiser - Container");
 		}
 	}
 	
-	function Randomise()
-	{		
-		//print ("inputs len: " + inputs.len());
-		
-		local remaining = inputs.len();
-		
-		if (outputs.len() == 0 || inputs.len() == 0)
-			return;
-		
-		while (remaining > 0 && maxItems > 0)
+	function SignalReady()
+	{
+		foreach (output in outputs)
 		{
-			foreach(index,output in outputs)
-			{
-				if (remaining > 0 && maxItems > 0)
-				{
-					//print ("remaining " + remaining);
-					SendMessage(output[0],"ReceiveItem",inputs[remaining - 1]);
-					print (self + " PROCESSING INPUT " + (remaining - 1) + ": " + inputs[remaining - 1]);
-					//inputs.remove(remaining - 1);
-					if (output[1] == true)
-					{
-						//print ("removing index " + index);
-						outputs.remove(index);
-					}
-					remaining--;
-					maxItems--;
-				}
-				else
-					break;
-			}
+			SendMessage(output,"ReadyForOutput",inputs.len(),outputs.len());
+		}
+	}
+	
+	//Send an item to an output
+	function OnGetItem()
+	{
+		print (self + " received GetItem from " + message().from);
+	
+		if (currentInputIndex < inputs.len() && currentInputIndex < maxItems)
+		{
+			print (self + " sending ReceiveItem to " + message().from);
+			SendMessage(message().from,"ReceiveItem",inputs[currentInputIndex]);
+			currentInputIndex++;
+			maxItems--;
 		}
 	}
 	
@@ -170,7 +161,7 @@ class rndRandomiser extends rndBase
 		local isMarker = ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
 	
 		if (isContainer || isMarker)
-			outputs.append([obj,isMarker]);
+			outputs.append(obj);
 	}
 
 	//Inputs will be either items or containers directly, or item lists
@@ -187,7 +178,7 @@ class rndRandomiser extends rndBase
 		if (isContainer || isMarker) 
 		{
 			if (autoOutputs == true)
-				outputs.append([input,isMarker]);
+				outputs.append(input);
 		}
 		
 		if (autoInputs == true)

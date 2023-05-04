@@ -1,22 +1,60 @@
 class rndOutput extends rndBase
 {
-	item = null;
+	randomisers = null;
+	highPriority = null;
+	blocked = null;
+	
+	function Init()
+	{
+		randomisers = [];
+		highPriority = getParam("highPriority",false);
+		blocked = false;
+	}
 
-	//We need to take a little time to allow things to actually load in first
 	function OnReceiveItem()
 	{
-		item = message().data;
+		if (blocked)
+			return;
+	
+		local item = message().data;
 		print ("output " + self + " received " + item);
-		SetOneShotTimer("GameplayTimer",0.1);
+		ProcessItem(item);
+		Delay();
+	}
+	
+	//override this
+	function ProcessItem(item)
+	{
+	}
+	
+	function Delay()
+	{
+		local timer;
+		if (highPriority)
+			timer = 0.025;
+		else
+			timer = Data.RandFlt0to1() * 0.4;
+		SetOneShotTimer("WaitTimer",timer);
 	}
 	
 	function OnTimer()
 	{
-		ProcessItem();		
+		if (blocked)
+			return;
+		
+		if (randomisers.len() > 0)
+		{
+			local randomiser = randomisers[Data.RandInt(0,randomisers.len() - 1)];
+			print ("Sending GetItem to Randomiser " + randomiser);
+			SendMessage(randomiser,"GetItem");
+		}
+		//Delay();
 	}
 	
-	//override this
-	function ProcessItem()
+	function OnReadyForOutput()
 	{
+		print (self + " received ReadyForOutput from " + message().from);
+		randomisers.append(message().from);
+		Delay();
 	}
 }

@@ -17,11 +17,20 @@ class rndOutputMarker extends rndOutput
 		return item;
 	}
 
-	function ProcessItem()
+	//Sometimes objects get stuck in the air
+	function FixPhysics(item)
 	{
-		local item = CloneContainedItem(item);
+		Physics.Activate(item);
+		Physics.SetVelocity(item, vector(0.0,0.0,-1.0));
+	}
+
+	function ProcessItem(item)
+	{
+		item = CloneContainedItem(item);
+		FixPhysics(item);
 		print ("output " + self + " moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
+		blocked = true;
 		Object.Destroy(self);
 	}
 }

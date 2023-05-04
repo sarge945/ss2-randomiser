@@ -1,6 +1,6 @@
 class rndOutputContainer extends rndOutput
 {
-	function ProcessItem()
+	function ProcessItem(item)
 	{
 		print ("output " + self + " adding " + item + " to inventory");
 		
