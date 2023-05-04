@@ -199,7 +199,6 @@ class Output
 		isMarker = rndUtil.isMarker(cObj);
 		seed = cSeed;
 		debugger = cDebugger;
-		GetOutputLocations();
 	}
 	
 	//Get all the possible locations this output can redirect to
@@ -315,6 +314,8 @@ class Output
 	{
 		//Link to Randomiser			
 		Link.Create(-LINK_SWITCHLINK,obj,randomiser);
+		
+		GetOutputLocations();
 	
 		foreach(location in outputLocations)
 			location.Setup(randomiser);
