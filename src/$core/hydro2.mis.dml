@@ -418,7 +418,50 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
+//Nanites in secret area through vent above observation area
++MetaProp 407 "Object Randomiser - No Auto Output"
++Link 407 "rndSectorBObjects" "Target"
+{
+}
+
+//Maintenance tool in secret area through vent above observation area
++MetaProp 1048 "Object Randomiser - No Auto Output"
++Link 1048 "rndSectorBObjects" "Target"
+{
+}
+
 ////Markers and other spawn points
+
+//Replace the 2 secret objects above observation area in sector B with markers, since large objects won't fit
+//Replacing 1048 and 407
+Create "rndOutputMarker" "rndSectorB407Replacer"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-78.2, 37.5, 8.63462"
+		"Heading" c800
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorB407Replacer" "Object Randomiser - High Priority Output"
++Link "rndSectorB407Replacer" "rndSectorBObjects" "Target"
+{
+}
+Create "rndOutputMarker" "rndSectorB1048Replacer"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-78.3, 39.5, 8.29868"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorB1048Replacer" "Object Randomiser - High Priority Output"
++Link "rndSectorB1048Replacer" "rndSectorBObjects" "Target"
+{
+}
 
 //inside the empty room
 Create "rndOutputMarker" "rndSectorBEmptyCloset"
