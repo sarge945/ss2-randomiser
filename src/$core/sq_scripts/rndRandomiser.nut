@@ -34,19 +34,38 @@ class rndRandomiser extends rndBase
 		ProcessLinks();
 		
 		Array_Shuffle(outputs);
+		Array_Shuffle(inputs);
 		
-		//We need a small delay because lel
+		//DEBUG CODE
+		//================
+		print ("ALL INPUTS FOR " + self);
+		foreach (input in inputs)
+		{
+			print ("   <- " + input);
+		}
+		print ("ALL OUTPUTS FOR " + self);
+		foreach (obj in outputs)
+		{
+			print ("   -> " + obj);
+		}
+		//================
+		
+		//We need a small delay because Squirrel is weird and doesn't like to attach metaprops during the first frame or so
 		SetOneShotTimer("start timer", 0.02);
 	}
 	
 	//This has to be done in a timer or Squirrel breaks horribly
 	function OnTimer()
 	{
+		//if container or corpse, we need to add a metaprop to allow it to work as an output
+		//if it's a marker, it should already have the script applied directly as part of it's DML spec
 		foreach (obj in outputs)
 		{
-			//local obj = sLink(outLink).dest;
-			if (!Object.HasMetaProperty(obj,"Object Randomiser - Container"))
+			if (isArchetype(obj,-379) || isArchetype(obj,-118))
+			{
+				if (!Object.HasMetaProperty(obj,"Object Randomiser - Container"))
 					Object.AddMetaProperty(obj,"Object Randomiser - Container");
+			}
 		}
 		SignalReady();
 	}
@@ -54,32 +73,22 @@ class rndRandomiser extends rndBase
 	//Turns all target links and their inventories into usable input and output links
 	function ProcessLinks()
 	{
+		//All ~Target Links are outputs, which may be of multiple types
 		foreach (outLink in Link.GetAll(linkkind("~Target"),self))
 		{
 			local obj = sLink(outLink).dest;
 			ProcessOutput(obj);
 		}
+		
+		//All Target Links are inputs, which may be of multiple types
 		foreach (inLink in Link.GetAll(linkkind("Target"),self))
 		{
 			local obj = sLink(inLink).dest;
 			ProcessInput(obj,inLink);
 		}
-
-		print ("ALL INPUTS FOR " + self);
-		foreach (inLink in Link.GetAll(linkkind("Target"),self))
-		{
-			local obj = sLink(inLink).dest;
-			print ("   <- " + obj);
-		}
-		print ("ALL OUTPUTS FOR " + self);
-		//foreach (outLink in Link.GetAll(linkkind("~Target"),self))
-		foreach (obj in outputs)
-		{
-			//local obj = sLink(outLink).dest;
-			print ("   -> " + obj);
-		}
 	}
 	
+	//returns true if an item is in the valid items table, false otherwise
 	function IsInputValid(input)
 	{
 		foreach (archetype in allowedInputs)
@@ -96,63 +105,43 @@ class rndRandomiser extends rndBase
 		//If item list, get all it's ~targets
 		foreach (targetLink in Link.GetAll(linkkind("~Target"),input))
 		{
+			//Add it's targets to the inputs
 			local target = sLink(targetLink).dest;
 			if (IsInputValid(target))
-				Link.Create(linkkind("Target"),self,target);
+				inputs.append(target);
 			
+			//Also get the contents of it's inventory and add them as well
 			foreach (containsLink in Link.GetAll(linkkind("Contains"),target))
 			{
-				local contained = sLink(containsLink).dest;
-				print ("blah: " + contained);
-			
+				local contained = sLink(containsLink).dest;			
 				if (IsInputValid(contained))
-					Link.Create(linkkind("Target"),self,contained);
+					inputs.append(contained);
 			}
 		}
 		
-		if (!IsInputValid(input))
-			Link.Destroy(inLink);
+		//we have been given a valid input item directly, like an item from the floor
+		if (IsInputValid(input))
+			inputs.append(input);
 	}
 	
 	function ProcessOutput(output)
 	{
-
 		//If item list, get all it's targets
 		foreach (targetLink in Link.GetAll(linkkind("~Target"),output))
 		{
-			
 			local obj = sLink(targetLink).dest;
-			
 			if (obj == self || output == self)
 				return;
 			
-			print ("item collection " + output + " has output " + obj);
-		
-			if (isArchetype(obj,-379) || isArchetype(obj,-118)) //container or corpse
-			{
-				/*
-				if (!Object.HasMetaProperty(obj,"Object Randomiser - Container"))
-					Object.AddMetaProperty(obj,"Object Randomiser - Container");
-				*/
-				
-				print ("applying metaprop to " + obj);
-				
-				//Link.Create(linkkind("~Target"),self,obj);
-				outputs.append(obj);
-			}
+			print ("item collection " + output + " has output " + obj);	
+			outputs.append(obj);
 		}
-		
-		if (isArchetype(output,-379) || isArchetype(output,-118)) //container or corpse
-		{
-			print ("applying metaprop to " + output);
-			if (!Object.HasMetaProperty(output,"Object Randomiser - Container"))
-					Object.AddMetaProperty(output,"Object Randomiser - Container");
-		}
-		
+
+		//in case we were given a container directly as a link, add it to the outputs
 		outputs.append(output);
 	}
 	
-	//Signal to our first output that we are ready to dole out items
+	//Continually give out items until we have none left
 	function SignalReady()
 	{
 		foreach(obj in outputs)
@@ -163,17 +152,18 @@ class rndRandomiser extends rndBase
 		}
 	}
 	
+	//We have been asked for an ite, give out a random one
+	//Array was shuffled so no need to randomise here
 	function OnOutputItemRequest()
 	{
 		print (message().data + " asked for an item");
 		
-		local itemLink = Link.GetOne(linkkind("Target"),self);
-		if (itemLink)
+		if (inputs.len() > 0)
 		{
-			local item = sLink(itemLink).dest;
-			Link.Destroy(itemLink);
-		
+			local index = Data.RandInt(0,inputs.len() - 1);
+			local item = inputs[index];
 			SendMessage(message().data, "ReceiveItem", item);
+			inputs.remove(index);
 		}
 	}
 }

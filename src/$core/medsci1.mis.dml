@@ -143,7 +143,7 @@ Create "rndObjectCollection" "SargeMedSciMaintenanceObjects"
 ////Markers and other spawn points
 
 //inside the smashable glass section
-Create "Marker" "SargeRandomCryoSmashableMarker"
+Create "rndOutputMarker" "SargeRandomCryoSmashableMarker"
 {
 	+ObjProp "Position"
 	{
@@ -152,13 +152,15 @@ Create "Marker" "SargeRandomCryoSmashableMarker"
 		"Pitch" 0
 		"Bank" 0
 	}
+	
+	+ObjProp "DesignNoteSS" = "highPriority=true;"
 }
 +Link "SargeRandomCryoSmashableMarker" "rndCryoAfterAirlock" "Target"
 {
 }
 
 //Where the floor hypo used to be (the room with the ramp and the exploding computer)
-Create "Marker" "SargeRandomCryoFloorSpot"
+Create "rndOutputMarker" "SargeRandomCryoFloorSpot"
 {
 	+ObjProp "Position"
 	{

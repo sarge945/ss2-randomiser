@@ -5,7 +5,6 @@ class rndBase extends SqRootScript
 	//making inventory manipulation impossible.
 	function OnBeginScript()
 	{
-		print ("why is this running multiple times for " + self);
 		if (!GetData("Started"))
 		{
 			Init();
