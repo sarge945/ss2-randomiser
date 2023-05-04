@@ -18,16 +18,23 @@ CreateArch "Misc Metaprops" "Object Randomiser Output"
 	}
 }
 
+//Shorthand for an output designed to go in a small nook or under stuff, etc
+//Only allows small objects (hypos, softs, implants, CMs etc)
+CreateArch "Misc Metaprops" "Object Randomiser - Nook Output"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;allowedTypes1=-320;allowedTypes2=-99;allowedTypes3=-938;"
+}
+
 //Shorthand for a Body Bag output
 CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;allowedTypes8=-85"
 }
 
 //Shorthand for a Hypo Only
 CreateArch "Misc Metaprops" "Object Randomiser - Hypo Output"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;"
 }
 
 //Acts as an output

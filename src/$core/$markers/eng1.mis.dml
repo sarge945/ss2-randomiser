@@ -1,0 +1,20 @@
+// ================================================================================
+// 								Extra Markers
+// ================================================================================
+
+//In the little alcoves in the airlocks going between coolant tubes and the main engineering area
+Create "rndOutputMarker" "rnd_marker_airlock1"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-4.99721, -259.974, -38.6351"
+        "Heading" 58ec
+        "Pitch" 0
+        "Bank" cc18
+    }
+}
++MetaProp "rnd_marker_airlock1" "Object Randomiser - Nook Output"
++Link "rnd_marker_airlock1" "rndTubeObjects" "Target"
+{
+}
+

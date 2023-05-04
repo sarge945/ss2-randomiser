@@ -130,11 +130,32 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Cyber Modules near the power recharger
-//+MetaProp 969 "Object Randomiser - No Auto Output"
-+MetaProp 969 "Object Randomiser - Output Self Only"
+//Can't make this work in a way that's visible,
+//So we have to use a custom marker
+/*
++MetaProp 969 "Object Randomiser - No Auto Output"
+//+MetaProp 969 "Object Randomiser - Nook Output"
+//+MetaProp 969 "Object Randomiser - High Priority Output"
 +Link 969 "rndHydro1Objects" "Target"
 {
 }
+
+Create "rndOutputMarker" "rnd_marker_nook1"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-59.8499, 140.623, 9.60623"
+        "Heading" 1800
+        "Pitch" 4000
+        "Bank" 0
+    }
+}
++MetaProp "rnd_marker_nook1" "Object Randomiser - Nook Output"
++MetaProp "rnd_marker_nook1" "Object Randomiser - High Priority Output"
++Link "rnd_marker_nook1" "rndHydro1Objects" "Target"
+{
+}
+*/
 
 //Floor mug near replicator
 +Link 1093 "rndHydro1Objects" "Target"
