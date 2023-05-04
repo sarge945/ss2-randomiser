@@ -236,7 +236,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-
+//Rad Hypo on pipes near Biopsy Lab
++MetaProp 1221 "Object Randomiser - Secret"
++Link 1421 "rndMedicalObjects" "Target"
+{
+}
 
 ////Markers and other spawn points
 
@@ -251,6 +255,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Corpses
 
 //Corpse in Dark roof area near Watt's office
++MetaProp 641 "Object Randomiser - High Priority Output"
 +Link 641 "rndCrewObjects" "Target"
 {
 }
