@@ -30,33 +30,13 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 +Link "rndCrewObjects" "rndMedicalRandomiser" "~SwitchLink"
 {
 }
++Link "rndCrewObjectsKitchen" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjectsBar" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
 
-
-//Create a randomiser for the Medical and Crew Quarters kitchen and bar items (chips, drinks etc)
-Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=1; variedOutput=0; minTimes=18;"
-}
-//Inputs
-+Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjectsBar" "rndMedicalKitchenRandomiser" "SwitchLink"
-{
-}
-+Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "~SwitchLink"
-{
-}
-+Link "rndCrewObjectsBar" "rndMedicalKitchenRandomiser" "~SwitchLink"
-{
-}
 
 //Create a randomiser for the First Irradiated Area
 Create "rndComplexRandomiser" "rndIrradiated1Randomiser"

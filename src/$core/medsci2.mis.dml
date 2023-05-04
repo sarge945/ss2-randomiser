@@ -367,16 +367,21 @@ Create "rndObjectCollection" "rndHackableObjects"
 }
 
 //Cafeteria Storage chips
++MetaProp 1609 "Object Randomiser - Junk Only"
++MetaProp 1609 "Object Randomiser - High Priority Output"
 +Link 1609 "rndCrewObjectsKitchen" "Target"
 {
 }
 
 //Cafeteria Storage chips
++MetaProp 1611 "Object Randomiser - Junk Only"
 +Link 1611 "rndCrewObjectsKitchen" "Target"
 {
 }
 
 //Cafeteria Storage chips
++MetaProp 1607 "Object Randomiser - Junk Only"
++MetaProp 1607 "Object Randomiser - High Priority Output"
 +Link 1607 "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -475,67 +480,80 @@ Create "rndOutputMarker" "rndArmouryAccess"
 ////Containers
 
 //Crate in Cafeteria Storage
++MetaProp 1587 "Object Randomiser - Junk Only"
 +Link 1587 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1587 "rndCrewObjectsBar" "Target"
 {
 }
 
 //Small Crate in Cafeteria Storage
++MetaProp 776 "Object Randomiser - Junk Only"
 +Link 776 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 776 "rndCrewObjectsBar" "Target"
 {
 }
 
 ////Loose Items
 
 //Magazine on Bar
++MetaProp 1411 "Object Randomiser - Junk Only"
++MetaProp 1411 "Object Randomiser - High Priority Output"
 +Link 1411 "rndCrewObjectsBar" "Target"
 {
 }
 
 //Plant on Windowsill
++MetaProp 1030 "Object Randomiser - Junk Only"
 +Link 1030 "rndCrewObjectsBar" "Target"
 {
 }
 //Plant on Bar
++MetaProp 630 "Object Randomiser - Junk Only"
 +Link 630 "rndCrewObjects" "Target"
 {
 }
 //Plant on Bar
++MetaProp 715 "Object Randomiser - Junk Only"
 +Link 715 "rndCrewObjectsBar" "Target"
 {
 }
 //Second Plant on Bar
++MetaProp 716 "Object Randomiser - Junk Only"
 +Link 716 "rndCrewObjectsBar" "Target"
 {
 }
 
 //Cigarettes
++MetaProp 1410 "Object Randomiser - Junk Only"
++MetaProp 1410 "Object Randomiser - High Priority Output"
 +Link 1410 "rndCrewObjectsBar" "Target"
 {
 }
 //Champagne
++MetaProp 680 "Object Randomiser - High Priority Output"
++MetaProp 680 "Object Randomiser - Junk Only"
 +Link 680 "rndCrewObjectsBar" "Target"
 {
 }
++MetaProp 684 "Object Randomiser - High Priority Output"
++MetaProp 684 "Object Randomiser - Junk Only"
 +Link 684 "rndCrewObjectsBar" "Target"
 {
 }
++MetaProp 691 "Object Randomiser - Junk Only"
 +Link 691 "rndCrewObjectsBar" "Target"
 {
 }
++MetaProp 689 "Object Randomiser - Junk Only"
 +Link 689 "rndCrewObjectsBar" "Target"
 {
 }
 //Vodka
++MetaProp 686 "Object Randomiser - High Priority Output"
++MetaProp 686 "Object Randomiser - Junk Only"
 +Link 686 "rndCrewObjectsBar" "Target"
 {
 }
 //Juice
++MetaProp 687 "Object Randomiser - Junk Only"
 +Link 687 "rndCrewObjectsBar" "Target"
 {
 }
@@ -546,9 +564,12 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1027 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 950 "Object Randomiser - Junk Only"
 +Link 950 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 953 "Object Randomiser - High Priority Output"
++MetaProp 953 "Object Randomiser - Junk Only"
 +Link 953 "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -556,27 +577,44 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1022 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1023 "Object Randomiser - Junk Only"
 +Link 1023 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1024 "Object Randomiser - High Priority Output"
++MetaProp 1024 "Object Randomiser - Junk Only"
 +Link 1024 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Chips
++MetaProp 1448 "Object Randomiser - High Priority Output"
++MetaProp 1048 "Object Randomiser - Junk Only"
 +Link 1048 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1050 "Object Randomiser - High Priority Output"
++MetaProp 1050 "Object Randomiser - Junk Only"
 +Link 1050 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Vodka
++MetaProp 1041 "Object Randomiser - Junk Only"
 +Link 1041 "rndCrewObjectsKitchen" "Target"
 {
 }
+//Vodka
++MetaProp 1044 "Object Randomiser - High Priority Output"
++MetaProp 1044 "Object Randomiser - Junk Only"
++Link 1044 "rndCrewObjectsKitchen" "Target"
+{
+}
 //Liquour
++MetaProp 1037 "Object Randomiser - High Priority Output"
++MetaProp 1037 "Object Randomiser - Junk Only"
 +Link 1037 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1029 "Object Randomiser - Junk Only"
 +Link 1029 "rndCrewObjectsKitchen" "Target"
 {
 }

@@ -254,6 +254,10 @@ class Output
 			//don't allow junk
 			if (location.noJunk && input.isJunk)
 				continue;
+				
+			//only allow junk
+			if (location.onlyJunk && !input.isJunk)
+				continue;
 		
 			//don't allow secrets
 			if (location.secret && noSecret)
@@ -333,12 +337,14 @@ class LocationBase
 
 	secret = null;
 	noJunk = null;
+	onlyJunk = null;
 
 	constructor(cObj,forceNoJunk)
 	{
 		obj = cObj;
 		secret = Object.HasMetaProperty(cObj,"Object Randomiser - Secret");
-		noJunk = Object.HasMetaProperty(cObj,"Object Randomiser - No Junk") || secret || forceNoJunk;
+		onlyJunk = Object.HasMetaProperty(cObj,"Object Randomiser - Junk Only") && !secret;
+		noJunk = (Object.HasMetaProperty(cObj,"Object Randomiser - No Junk") || secret || forceNoJunk) && !onlyJunk;
 	}
 	
 	//Overwrite this

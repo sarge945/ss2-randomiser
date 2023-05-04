@@ -57,6 +57,7 @@ Create "rndOutputMarker" "rnd_marker_84"
         "Bank" 0
     }
 }
++MetaProp "rnd_marker_84" "Object Randomiser - Junk Only"
 +Link "rnd_marker_84" "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -72,6 +73,7 @@ Create "rndOutputMarker" "rnd_marker_83"
         "Bank" 0
     }
 }
++MetaProp "rnd_marker_83" "Object Randomiser - Junk Only"
 +Link "rnd_marker_83" "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -87,6 +89,7 @@ Create "rndOutputMarker" "rnd_marker_80"
         "Bank" 0
     }
 }
++MetaProp "rnd_marker_80" "Object Randomiser - Junk Only"
 +Link "rnd_marker_80" "rndCrewObjectsBar" "Target"
 {
 }
@@ -103,6 +106,7 @@ Create "rndOutputMarker" "rnd_marker_78"
         "Bank" 0
     }
 }
++MetaProp "rnd_marker_78" "Object Randomiser - Junk Only"
 +Link "rnd_marker_78" "rndCrewObjectsBar" "Target"
 {
 }
