@@ -17,11 +17,6 @@ Create "rndObjectCollection" "rndTubeStorage5Objects"
 {
 }
 
-//Create an object collection for the Engineering Hardware Override Cards
-Create "rndObjectCollection" "rndTubeStorage5Cards"
-{
-}
-
 //Create an object collection for the Engineering Control Lobby
 Create "rndObjectCollection" "rndControlLobbyObjects"
 {
@@ -213,40 +208,6 @@ Create "rndOutputMarker" "rndStartingCabinShelf"
 
 //Desk in back room
 +Link 1011 "rndTubeStorage5Objects" "Target"
-{
-}
-
-//Hardware Override Cards
-+Link 1708 "rndTubeStorage5Cards" "Target"
-{
-}
-//45m/dEX
-+Link 705 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 1710 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 995 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 998 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 999 "rndTubeStorage5Cards" "Target"
-{
-}
-//Other shelf
-+Link 994 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 536 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 1007 "rndTubeStorage5Cards" "Target"
-{
-}
-+Link 1711 "rndTubeStorage5Cards" "Target"
 {
 }
 

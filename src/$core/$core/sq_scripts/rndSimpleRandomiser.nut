@@ -25,16 +25,23 @@ class rndSimpleRandomiser extends rndBase
 		
 		foreach (ilink in Link.GetAll(linkkind("~Target"),self))
 		{
-			inputs.append(sLink(ilink).dest);
+			local inp = sLink(ilink).dest;
+			inputs.append([inp,Object.Position(inp),Object.Facing(inp)]);
 		}
 		
 		foreach (olink in Link.GetAll(linkkind("Target"),self))
 		{
-			outputs.append(sLink(olink).dest);
+			local out = sLink(olink).dest;
+			outputs.append([out,Object.Position(out),Object.Facing(out)]);
 		}
 		
+		//If only inputs are defined, use the same outputs
+		//and vice versa. For convenience
+		PopulateEmptyArrays();
+		
+		//Shuffle Arrays
 		inputs = Shuffle(inputs,seed);
-		outputs = Shuffle(outputs,seed);
+		outputs = Shuffle(outputs,-seed);
 		
 		//Show startup message
 		PrintDebug("Simple Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + " inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
@@ -43,16 +50,41 @@ class rndSimpleRandomiser extends rndBase
 		Object.Destroy(self);
 	}
 	
+	//Foreach is required here, otherwise both arrays will point to each other and always randomise to themselves
+	function PopulateEmptyArrays()
+	{
+		if (outputs.len() == 0 && inputs.len() > 0)
+			foreach (input in inputs)
+				outputs.append(input)
+		else if (inputs.len() == 0 && outputs.len() > 0)
+			foreach (output in outputs)
+				inputs.append(output);
+	}
+	
 	function Randomise()
 	{		
-		foreach(input in inputs)
-		{
-			if (outputs.len() == 0)
-				return;
-		
+		local rolls = 0;
+		local totalInputs = inputs.len();
+	
+		while (inputs.len() > 0)
+		{				
 			local output = outputs[0];
-			Object.Teleport(input,Object.Position(output),Object.Facing(output));
-			outputs.remove(0);
+			local input = inputs[0];
+			
+			PrintDebug("Randomising " + ShockGame.GetArchetypeName(input[0]) + " to " + ShockGame.GetArchetypeName(output[0]),1);
+			
+			//Swap objects
+			Object.Teleport(input[0],output[1],output[2]);
+			Object.Teleport(output[0],input[1],input[2]);
+			
+			//Update object, so that when we swap, we swap correctly
+			output[0] = input[0];
+			
+			inputs.remove(0);
+			
+			rolls++;
 		}
+		
+		PrintDebug("Simple Randomiser Completed. Swapped " + rolls + " items");
 	}
 }

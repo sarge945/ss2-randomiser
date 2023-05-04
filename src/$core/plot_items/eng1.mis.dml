@@ -3,17 +3,40 @@
 // ================================================================================
 
 //Create a Randomiser for the Hardware Override Cards
-Create "rndComplexRandomiser" "rndHardwareOverrideRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-1461; allowedTypes1=-1455"
-}
-
-//Inputs
-+Link "rndTubeStorage5Cards" "rndHardwareOverrideRandomiser" "SwitchLink"
+Create "rndSimpleRandomiser" "rndHardwareOverrideRandomiser"
 {
 }
 
-//Outputs
-+Link "rndTubeStorage5Cards" "rndHardwareOverrideRandomiser" "~SwitchLink"
+//Hardware Override Cards
++Link 1708 "rndHardwareOverrideRandomiser" "Target"
+{
+}
+//45m/dEX
++Link 705 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 1710 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 995 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 998 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 999 "rndHardwareOverrideRandomiser" "Target"
+{
+}
+//Other shelf
++Link 994 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 536 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 1007 "rndHardwareOverrideRandomiser" "Target"
+{
+}
++Link 1711 "rndHardwareOverrideRandomiser" "Target"
 {
 }

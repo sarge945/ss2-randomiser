@@ -33,11 +33,6 @@ Create "rndObjectCollection" "rndAthleticsObjects"
 {
 }
 
-//Create an object collection for the Art Terminals.
-Create "rndObjectCollection" "rndArtObjects"
-{
-}
-
 //Create an object collection for the Security Crates
 Create "rndObjectCollection" "rndSecurityCrates"
 {
@@ -521,28 +516,6 @@ Create "rndOutputMarker" "rndReplace1443"
 
 //Liquor
 +Link 770 "rndCrewObjects" "Target"
-{
-}
-
-/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
-
-//Main athletics lobby - 10
-+Link 79 "rndArtObjects" "Target"
-{
-}
-
-//Crew Quarters Apartment - 6]
-+Link 78 "rndArtObjects" "Target"
-{
-}
-
-//Crew Quarters Apartment
-+Link 689 "rndArtObjects" "Target"
-{
-}
-
-//Crew Quarters Apartment
-+Link 835 "rndArtObjects" "Target"
 {
 }
 

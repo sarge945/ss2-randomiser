@@ -183,15 +183,15 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		//with the high priority ones at the start
 		if (ignorePriority)
 		{
-			outputs = Shuffle(outputs,seed);
+			outputs = Shuffle(outputs,-seed);
 		}
 		else
 		{
 			local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
 			local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
 			
-			lowPrio = Shuffle(lowPrio,seed);
-			highPrio = Shuffle(highPrio,seed);
+			lowPrio = Shuffle(lowPrio,-seed);
+			highPrio = Shuffle(highPrio,-seed);
 			
 			if (noHighPriority)
 				outputs = lowPrio;

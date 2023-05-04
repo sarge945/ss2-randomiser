@@ -47,11 +47,24 @@ Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
 }
 
-//Inputs
-+Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+////Link all the art terminals to it
+
+//Main athletics lobby - 10
++Link 79 "rndArtRandomiser" "Target"
 {
 }
-//Outputs
-+Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+
+//Crew Quarters Apartment - 6]
++Link 78 "rndArtRandomiser" "Target"
+{
+}
+
+//Crew Quarters Apartment
++Link 689 "rndArtRandomiser" "Target"
+{
+}
+
+//Crew Quarters Apartment
++Link 835 "rndArtRandomiser" "Target"
 {
 }
