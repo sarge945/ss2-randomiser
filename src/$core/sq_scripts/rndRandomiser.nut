@@ -105,14 +105,15 @@ class rndRandomiser extends rndBase
 	
 		if (inputs.len() == 0 || outputs.len() == 0)
 			return;
-		
-		/*
-		if (Object.IsTransient(outputs[currentOutputIndex]))
+			
+		while (Object.IsTransient(outputs[currentOutputIndex]))
 		{
-			print ("output is transient, removing");
+			print (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>output is transient, removing..");
 			outputs.remove(currentOutputIndex);
 		}
-		*/
+		
+		if (currentOutputIndex == outputs.len() - 1)
+				currentOutputIndex = 0;
 		
 		DebugPrint(self + " Signalling ready for " + outputs[currentOutputIndex]);
 		SendMessage(outputs[currentOutputIndex],"ReadyForOutput",inputs.len(),outputs.len());
@@ -141,7 +142,9 @@ class rndRandomiser extends rndBase
 				//SignalReady();
 			}
 			
-			if (message().data2 == true)
+			currentOutputIndex++;
+			
+			if (message().data2 == true && false)
 			{
 				DebugPrint("removing at " + currentOutputIndex);
 				outputs.remove(currentOutputIndex);
@@ -154,6 +157,9 @@ class rndRandomiser extends rndBase
 				else
 					currentOutputIndex++;
 			}
+			
+			if (currentOutputIndex == outputs.len() - 1)
+					currentOutputIndex = 0;
 			
 			//This is required otherwise we get a stack overflow
 			SetOneShotTimer("StandardTimer",0.01);

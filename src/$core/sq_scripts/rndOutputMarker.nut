@@ -1,9 +1,10 @@
 class rndOutputMarker extends rndOutput
 {
+	linkedItem = null;
+	
 	//If an item has a contains link, it should be cloned so that it actually works when placed in the world
 	function CloneContainedItem(item)
 	{
-		
 		//If item is contained, we need to clone it and delete the old one
 		if (Link.AnyExist(linkkind("~Contains"),item))
 		{
@@ -15,21 +16,27 @@ class rndOutputMarker extends rndOutput
 		return item;
 	}
 
-	//Sometimes objects get stuck in the air
-	function FixPhysics(item)
+	function OnTimer()
 	{
-		Physics.Activate(item);
-		Physics.SetVelocity(item, vector(0.0,0.0,-1.0));
+		FixPhysics();
+	}
+
+	//Sometimes objects get stuck in the air
+	function FixPhysics()
+	{
+		Physics.Activate(linkedItem);
+		Physics.SetVelocity(linkedItem, vector(0.0,0.0,-1.0));
 	}
 
 	function ProcessItem(item)
 	{
-		item = CloneContainedItem(item);
-		FixPhysics(item);
-		DebugPrint ("output " + self + " moving item " + item + " to position " + Object.Position(self));
-		Object.Teleport(item, Object.Position(self), Object.Facing(self));
-		Object.Destroy(self);
+		linkedItem = CloneContainedItem(item);
+		
+		DebugPrint ("output " + self + " moving item " + linkedItem + " to position " + Object.Position(self));
+		Object.Teleport(linkedItem, Object.Position(self), Object.Facing(self));
+		//Object.Destroy(self);
 		Object.SetTransience(self,true);
+		SetOneShotTimer("StandardTimer",0.01);
 	}
 	
 	function Init()
