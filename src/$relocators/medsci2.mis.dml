@@ -914,6 +914,7 @@ Create "rndOutputMarker" "rndICUStorageTopShelf"
         "Bank" 0
     }
 }
++MetaProp "rndICUStorageTopShelf" "Object Randomiser - Secret"
 +Link "rndICUStorageTopShelf" "rndICUStorageRelocator" "Target"
 {
 }
