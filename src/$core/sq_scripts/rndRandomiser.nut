@@ -178,9 +178,9 @@ class rndRandomiser extends rndBase
 		Array_Shuffle(inputs);
 		Array_Shuffle(outputs);
 		
-		//Get each output. Add the first valid input then remove the input from the array.
-		//If we don't have a valid input, remove the output from the array
-		//Keep going until we run out of inputs or outputs
+		//Get each output. Find the first valid input then randomise it, invalidating the input.
+		//If we don't have a valid input, invalidate the output
+		//Keep going until we run out of inputs or outputs, then we're stuck and cannot continue.
 		local curInput = 0;
 		local curOutput = 0;
 		
@@ -199,22 +199,31 @@ class rndRandomiser extends rndBase
 			local input = inputs[curInput];
 			local output = outputs[curOutput];
 			
-			if (input.valid && output.valid && LinkInputToOutput(input,output))
+			if (!output.valid)
+			{
+				print ("invalid output " + curOutput);
+				curOutput++;
+				badOutputs++;
+			}
+			else if (!input.valid)
+			{
+				print ("invalid input " + curInput);
+				curInput++;
+				badInputs++;
+			}
+			else if (LinkInputToOutput(input,output))
 			{
 				curOutput++;
 				curInput++;
 				badInputs = 0;
 				badOutputs = 0;
-			}
-			else
-			{
-				curInput++;
-				badInputs++;
+				print ("valid");
 			}
 					
 			//We have tried all inputs, move to next output
 			if (badInputs >= inputs.len() && badOutputs < outputs.len())
 			{
+				//output.valid = false;
 				badInputs = 0;
 				badOutputs++;
 				curOutput++;
