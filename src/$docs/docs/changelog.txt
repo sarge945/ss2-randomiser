@@ -1,0 +1,89 @@
+Beta 1
+
+- Initial Version
+
+Beta 2
+
+- Fixed the issue where loading an autosave would prevent randomisation.
+- Autosaves still happen before randomisation occurs, allowing rerolls. Not sure if I should consider this a bug or a feature.
+- No longer set objects transient
+
+Beta 3
+
+- Autosaving now works as intended - You can no longer reroll by loading an autosave.
+
+Beta 4
+
+- Increased initial delay from 0.01 to 0.04 because some maps were causing crashes with a lot of mods
+- Added Hydro.
+
+Beta 5:
+
+- Fixed medsci1 crash when loading other script-heavy mods like RSD
+- Fixed a case where it wasn't perfectly deterministic in some cases, resulting in autosave rerolling on some maps (like medsci2) for some randomisers.
+- Added some Hydro items that were missed.
+
+Beta 6:
+
+- medsci2:
+    - Added medbed key to randomiser.
+    - Removed dead monkey on medbed from randomiser, it will no longer receive items, since this made for some silly combinations (monkey with a psi amp, for instance).
+- eng2:
+    - French-Epstein device in Cargo Bay 2 made to not randomise as it is a reward for completing the cargo bays.
+- hydro2:
+    - Added medbed key to randomiser.
+    - Laser Pistol, Laser Rapier and Grenade Launcher can no longer appear in the secret area above the egg observation rooms, only in their respective areas.
+    - The LabAssistant implant will now always be found in the offices/labs, never in Sector B or C, to aid progression for people who want to use it to research Toxin A.
+    - Added a missing anti-radiation hypo.
+- hydro1:
+    - Added Cyber Modules back to the small nook near the start of the level, they are no longer randomised. It's difficult to put items up there due to physics limitations, so they are left for now - better to have the same item than a little nook with nothing in it.
+    - Assault Rifle no longer randomised, as it's somewhat special (especially with RSD where it's the first Assault Rifle in the game). I may change this.
+
+Beta 7:
+- MedSci2 shotgun is no longer randomised, as it's likely the first proper shotgun most players will acquire.
+- Added support for Ops maps.
+- High Priority outputs no longer get junk items
+    - High Priority outputs are used for various situations where guaranteeing loot makes sense, such as various corpses that release worms when interacted with, and for particularly hazardous encounters. These are now guaranteed to give at least one useful item, rather than having the possibility of giving items like chips, a magazine, etc.
+- Various tweaks to earlier levels.
+- Weapons and key items should now be a lot more evenly distributed with their placements, as they ignore various spawn conditions and can appear almost anywhere.
+
+Beta 8:
+- Physics-Controlled objects will remember their state if swapping with an item of a similar archetype
+    - Similar is defined as "anything with a similar shape", so for instance vodka, champagne and liquor
+    - This realistically means that it should now be possible to see standing-up bottles, even when swapped. This makes the medsci2 bar look much better
+- Fixed some bugs including a severe bug where objects could appear on top of or inside each other
+- Minor changes to some map randomisation
+    - The turret corridoor in medsci1 is no longer guaranteed to contain an item. I might change this.
+    - MedSci2 closet where the 2 shotgun hybrids ambush the player is now high priority, so the box in that room should always contain something worthwhile.
+- For objects in tricky spots (such as the gun on the roof section in medsci2), instead of disabling item output entirely, those objects can still appear in their original locations occasionally.
+    - This realistically means the pistol will appear in it's normal spot sometimes. The rest of the time the spot will be empty. Other items in some spots are also affected.
+- The mod now spits out seeds for all randomisers to the log file. This should make reporting bugs much easier, as the exact setup can be replicated in the editor.
+
+Beta 9:
+- Major rewrite. Massively simplified everything. Should make development much quicker/easier going forward and result in a lot less bugs.
+- Randomised various quest items
+    - Science Sector Card (medsci1, still limited to Cryo Recovery B)
+    - R&D Card (medsci2, still limited to Dr Watts room)
+    - Hardware Override chips (eng1, still limited to Auxillary Storage 5)
+- Other minor tweaks to some randomisations.
+
+Beta 10:
+- Added Recreation Deck.
+- Fixed numerous bugs.
+
+Beta 11:
+- Added Command Deck.
+- Fixed a critical bug where Weapons and other "specific" items would only ever spawn in containers or on markers (would not replace existing items).
+
+Beta 12:
+- Added Rickenbacker maps.
+- Bodybags can now contain Nanites as well as Hypos, since in vanilla the medsci ones only contained hypos and the rick ones only contained nanites. This may be changed in the future.
+
+Beta 13:
+- Added Body of the Many and Shodan maps
+- Added RSD Powercells to randomisers (where possible). Adding all of them will require a new version of RSD.
+- Objects tagged "allow self only" now allow other, similar items.
+    - This means that item spawns will be more dynamic in a few cases where items originally had weird orientations or characteristics (see the readme for more information)
+- Fixed an issue where objects tagged with "containers only" would invalidate the "allow self only" tag. Now thet can appear either in a random container, or their original position.
+- Fixed a strange edge case where some randomisers wouldn't run correctly, resulting in items appearing inside each other and inconsistent values when using the same seed.
+- Other minor tweaks, addition of some missed items, and small bugfixes
