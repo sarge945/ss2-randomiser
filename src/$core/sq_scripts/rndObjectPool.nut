@@ -135,6 +135,8 @@ class rndObjectPool extends rndBase
 		Array_Shuffle(inputs);
 		//Array_Shuffle(outputs);
 		
+		DebugPrint("Setting Timer...");
+		
 		SetOneShotTimer("ProcessTimer",0.01);
 	}
 	
@@ -145,6 +147,8 @@ class rndObjectPool extends rndBase
 	
 	function ProcessRandomisers()
 	{
+		DebugPrint("Processing Randomisers...");
+	
 		//Process each linked randomiser
 		foreach (ilink in Link.GetAll(linkkind("SwitchLink"),self))
 		{
@@ -319,7 +323,7 @@ class rndObjectPool extends rndBase
 			//outputs.append(output);
 			
 			//Add a little variation to the output, otherwise each container gets exactly 1 item
-			local min = Max(outputs.len() - 4,0);
+			local min = Max(outputs.len() - 3,0);
 			outputs.insert(Data.RandInt(min,outputs.len()),output);
 		}
 		

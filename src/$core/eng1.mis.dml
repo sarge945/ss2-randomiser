@@ -53,6 +53,11 @@ Create "rndObjectCollection" "rndEngineObjects"
 {
 }
 
+//Create an object collection for the Engineering Engine Area Cabin Drinks Stand
+Create "rndObjectCollection" "rndEngineObjectsCabin"
+{
+}
+
 //Create an object collection for the Engineering Armoury Area
 Create "rndObjectCollection" "rndArmouryObjects"
 {
@@ -272,10 +277,17 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Pistol below fluidics control area
++Link 1630 "rndControlLobbyObjects" "Target"
+{
+}
+
+/*
 //Shotgun outside fluidics control door
 +Link 1061 "rndControlLobbyObjects" "Target"
 {
 }
+*/
 
 /////////////////=====	Engineering Control =====\\\\\\\\\\\\\\\\\
 
@@ -317,14 +329,42 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 */
 
-/////////////////=====	Engine Room (aka Core Control)	=====\\\\\\\\\\\\\\\\\
+/////////////////=====	Engine Room Cabin	=====\\\\\\\\\\\\\\\\\
 
 ////Containers
 
 //Desk in cabin
-+Link 69 "rndEngineObjects" "Target"
++Link 69 "rndEngineObjectsCabin" "Target"
 {
 }
+
+////Loose Objects
+
+//Cabin Drinks
++Link 592 "rndEngineObjectsCabin" "Target"
+{
+}
++Link 593 "rndEngineObjectsCabin" "Target"
+{
+}
++Link 595 "rndEngineObjectsCabin" "Target"
+{
+}
+
+//Cabin Desk Items
+//Ciggies
++Link 594 "rndEngineObjectsCabin" "Target"
+{
+}
+//Mug
++MetaProp 588 "Object Randomiser - No Auto Output"
++Link 588 "rndEngineObjectsCabin" "Target"
+{
+}
+
+/////////////////=====	Engine Room (aka Core Control)	=====\\\\\\\\\\\\\\\\\
+
+////Containers
 
 //Starboard Nacelle Small Crate
 +Link 1158 "rndEngineObjects" "Target"
@@ -332,27 +372,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 ////Loose Objects
-
-//Cabin Drinks
-+Link 592 "rndEngineObjects" "Target"
-{
-}
-+Link 593 "rndEngineObjects" "Target"
-{
-}
-+Link 595 "rndEngineObjects" "Target"
-{
-}
-
-//Cabin Desk Items
-//Ciggies
-+Link 594 "rndEngineObjects" "Target"
-{
-}
-//Mug
-+Link 588 "rndEngineObjects" "Target"
-{
-}
 
 
 //Shotgun in Starboard Nacelle

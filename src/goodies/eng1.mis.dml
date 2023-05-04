@@ -27,6 +27,9 @@ Create "rndComplexRandomiser" "rndEngineeringRandomiser"
 +Link "rndControlObjects" "rndEngineeringRandomiser" "SwitchLink"
 {
 }
++Link "rndEngineObjectsCabin" "rndEngineeringRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndTubeObjects" "rndEngineeringRandomiser" "~SwitchLink"
@@ -47,64 +50,6 @@ Create "rndComplexRandomiser" "rndEngineeringRandomiser"
 +Link "rndArmouryObjects" "rndEngineeringRandomiser" "~SwitchLink"
 {
 }
-
-/*
-//Limit the Armoury to only having 3-6 items in it, since it tends to fill up otherwise
-//And make sure it always contains SOMETHING
-Create "rndComplexRandomiser" "rndEngineeringArmouryRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "maxTimes=4; minTimes=2;"
-}
-
-//Inputs
-+Link "rndTubeObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
++Link "rndEngineObjectsCabin" "rndEngineeringRandomiser" "~SwitchLink"
 {
 }
-+Link "rndControlLobbyObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
-{
-}
-+Link "rndArmouryObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
-{
-}
-+Link "rndEngineObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
-{
-}
-+Link "rndServiceTunnelObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
-{
-}
-+Link "rndControlObjects" "rndEngineeringArmouryRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndArmouryObjects" "rndEngineeringArmouryRandomiser" "~SwitchLink"
-{
-}
-*/
-
-/*
-//Create a randomiser for Engineering objects from Engine Room area onwards
-//This will cover everything in Core Control, the Nacelles, and the service tube area
-Create "rndComplexRandomiser" "rndEngineCoreRandomiser"
-{
-}
-//Inputs
-+Link "rndEngineObjects" "rndEngineCoreRandomiser" "SwitchLink"
-{
-}
-+Link "rndServiceTunnelObjects" "rndEngineCoreRandomiser" "SwitchLink"
-{
-}
-+Link "rndControlObjects" "rndEngineCoreRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndEngineObjects" "rndEngineCoreRandomiser" "~SwitchLink"
-{
-}
-+Link "rndServiceTunnelObjects" "rndEngineCoreRandomiser" "~SwitchLink"
-{
-}
-+Link "rndControlObjects" "rndEngineCoreRandomiser" "~SwitchLink"
-{
-}
-*/

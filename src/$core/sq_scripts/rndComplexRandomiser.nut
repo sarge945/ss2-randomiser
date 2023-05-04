@@ -14,7 +14,6 @@ class rndComplexRandomiser extends rndBase
 	function Init()
 	{
 		DebugPrint ("Randomiser Init");
-	
 		maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
 		minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
 		allowedTypes1 = getParam("allowedTypes0",null); //Our first allowed type. Leave null to allow the usual
@@ -48,7 +47,7 @@ class rndComplexRandomiser extends rndBase
 		DebugPrint("OnPoolReady Received! " + message().from + " - " + message().data + " - " + message().data2);
 		total_pools--;
 		DebugPrint("total_pools is now " + total_pools);
-				
+		
 		if (message().data2 == 1)
 		{
 			output_roller.Add(message().from, message().data);
@@ -64,8 +63,21 @@ class rndComplexRandomiser extends rndBase
 			DebugPrint ("Ready!");
 			DebugPrint ("total inputs: " + total_inputs);
 			DebugPrint ("total outputs: " + total_outputs);
-			Randomize();
+			
+			local delay = getParam("priority",0) * 0.02;
+			
+			print ("delay is " + delay);
+			
+			if (delay > 0)
+				SetOneShotTimer("RandomiseTimer",delay);
+			else
+				Randomize();
 		}
+	}
+	
+	function OnTimer()
+	{
+		Randomize();
 	}
 	
 	//Rolls a dice once for each input

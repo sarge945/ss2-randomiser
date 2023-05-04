@@ -1,0 +1,63 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Pre-Engine core weapons
+//This will cover everything before Core Control, the Nacelles, and the service tube area
+Create "rndComplexRandomiser" "rndPreCoreWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+//Inputs
++Link "rndTubeObjects" "rndPreCoreWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndControlLobbyObjects" "rndPreCoreWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndPreCoreWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndTubeObjects" "rndPreCoreWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndControlLobbyObjects" "rndPreCoreWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndPreCoreWeaponRandomiser" "~SwitchLink"
+{
+}
+
+
+
+
+//Create a randomiser for the Post-Engine core weapons
+//This will cover everything from Core Control, the Nacelles, and the service tube area
+Create "rndComplexRandomiser" "rndCoreWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+
+//Inputs
++Link "rndEngineObjects" "rndCoreWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndServiceTunnelObjects" "rndCoreWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndControlObjects" "rndCoreWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndEngineObjects" "rndCoreWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndServiceTunnelObjects" "rndCoreWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndControlObjects" "rndCoreWeaponRandomiser" "~SwitchLink"
+{
+}
