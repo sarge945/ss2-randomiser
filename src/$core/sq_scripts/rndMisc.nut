@@ -43,38 +43,10 @@ class IOManager
 				ProcessOutput(target,prioritizeWorldObjects);
 			}
 		}
-	
-		/*
-		foreach(input in inputs)
-		{
-			print ("I---------------- " + input.item);
-		}
-		foreach(output in outputs)
-		{
-			print ("O---------------- " + output.output);
-		}
-		foreach(output in outputsLow)
-		{
-			print ("OL--------------- " + output.output);
-		}
-		*/
 		
 		srand(seed);
 		inputs = Array_Shuffle(inputs);
 		outputs = GetOutputsArray();
-		
-		/*
-		print ("------------AFTER SORT::");
-		
-		foreach(input in inputs)
-		{
-			print ("IS--------------- " + input.item);
-		}
-		foreach(output in outputs)
-		{
-			print ("OS--------------- " + output.output);
-		}
-		*/
 	}
 	
 	function RefreshOutput(currentOutput, fuzzy)

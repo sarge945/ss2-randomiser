@@ -71,7 +71,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.01);
+		SetOneShotTimer("RandomizeTimer",0.1); //DO NOT change this timer value, otherwise things start to break
 	}
 	
 	function ConfigureAllowedTypes()
