@@ -243,8 +243,12 @@ class Output
 				continue;
 				
 			//If it's not a container, and we have container only set, don't allow it
+			//BUT still allow it if it's itself and we allow self only
 			if (!rndUtil.isContainer(location.obj) && input.containerOnly)
-				continue;
+			{
+				if (!IsSelf(input) || !selfOnly)
+					continue;
+			}
 		
 			//don't allow junk
 			if (location.noJunk && input.isJunk && !noRespectJunk)
@@ -263,6 +267,12 @@ class Output
 		return null;
 	}
 	
+	//If an input the same as it's output
+	function IsSelf(input)
+	{
+		return rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj;
+	}
+	
 	function CanMove(input,noSecret,noRespectJunk,allowOriginalLocation,debug = false)
 	{
 		//Check if the input is already moved
@@ -274,8 +284,7 @@ class Output
 			return false;
 	
 		//Ensure that if self only is enabled, we only allow ourself
-		if (selfOnly && !(rndUtil.SameItemType(input,obj) || input.originalContainer == obj))
-		//if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
+		if (selfOnly && !IsSelf(input))
 			return false;
 	
 		currentOutputLocation = GetValidOutputLocation(noSecret,noRespectJunk,input);

@@ -81,7 +81,7 @@ class rndComplexRandomiser extends rndBase
 	function GetRandomiseTimer()
 	{
 		local priority = rndUtil.Min(getParam("priority",0),MAX_PRIORITY);
-		return (MAX_PRIORITY - priority) * 0.1;
+		return GetStartTimer() + (MAX_PRIORITY - priority) * 0.1;
 	}
 
 	function Init()

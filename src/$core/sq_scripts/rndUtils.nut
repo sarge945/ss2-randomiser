@@ -55,6 +55,9 @@ class rndUtil
 		[-1256, -1257, -1258, -1259, -1260, -1261], //This Month in Ping-Pong, Rolling Monthly, Cigar Lover, DJ Lover, Kangaroo Quarterly, Vita Men's Monthly
 		[-1455, -1485], //Circuit Board, RadKey Card
 		[-1277, -2936], //Art Terminal, Code Art
+		[-307, -32, -31], //AP Clip, HE Clip, Standard Ammo
+		[-42, -43], //Pellets, Slugs
+		[-42, -37, -38, -39, -40], //Timed Grenade, EMP Grenade, Incend Grenade, Prox Grenade, Toxin Grenade
 	];
 	
 	static function SameItemType(input,obj)
