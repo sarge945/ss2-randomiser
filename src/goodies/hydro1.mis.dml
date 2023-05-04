@@ -1,0 +1,34 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Everywhere
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndHydro1Randomiser"
+{
+}
+
+//Inputs
++Link "rndHydro1Objects" "rndHydro1Randomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndHydro1Objects" "rndHydro1Randomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

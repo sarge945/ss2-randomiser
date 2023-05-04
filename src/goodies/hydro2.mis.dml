@@ -1,0 +1,92 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Everywhere
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndHydroRandomiser"
+{
+}
+
+//Inputs
++Link "rndAdminObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndHydroRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndHydroRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndAdminObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Medical sector beds (only allow hypos)
+Create "rndComplexRandomiser" "rndMedicalRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-52; allowedTypes1=-53; allowedTypes2=-54; allowedTypes3=-56; allowedTypes4=-57; allowedTypes5=-58; allowedTypes6=-59; allowedTypes7=-61; maxTimes=3; minTimes=1; priority=1;"
+}
+
+//Inputs
++Link "rndAdminObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndMedicalRandomiser" "SwitchLink"
+{
+}
+
+//Output only to the medical area
++Link "rndSectorBMedical" "rndMedicalRandomiser" "~SwitchLink"
+{
+}

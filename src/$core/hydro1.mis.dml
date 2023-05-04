@@ -1,0 +1,315 @@
+DML1
+
+FINGERPRINT
+{
+   1155 [-114 121 -12]
+   1154 [-121 121 -12]
+   144 [-73 -175.5 20]
+   569 [-67 -179.5 20]
+   76 [-60.5 -182 20]
+   140 [-60.5 -179.5 20]
+   1101 [-60.5 -177 20]
+   75 [-63 -175.5 20]
+   74 [-65 -175.5 15]
+   73 [-67 -175.5 10]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//We only need one, this is a small map
+Create "rndObjectCollection" "rndHydro1Objects"
+{
+}
+
+//Swap our Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+////Containers
+
+//Box in the hallway next to the supply closet
++Link 1241 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the hallway next to the supply closet
++Link 1245 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1246 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1247 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1248 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1249 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1250 "rndHydro1Objects" "Target"
+{
+}
+
+//Box in the supply closet
++Link 1251 "rndHydro1Objects" "Target"
+{
+}
+
+//Garbage Bin
++Link 306 "rndHydro1Objects" "Target"
+{
+}
+
+//Crate in the non-flooded cultivation cell
++Link 1146 "rndHydro1Objects" "Target"
+{
+}
+
+//Crate in the non-flooded cultivation cell
++Link 1147 "rndHydro1Objects" "Target"
+{
+}
+
+//Garbage Bin near the entrance
++Link 369 "rndHydro1Objects" "Target"
+{
+}
+
+////Corpses
+
+//Woman near the replicator
++Link 466 "rndHydro1Objects" "Target"
+{
+}
+
+//Man near the replicator
++Link 465 "rndHydro1Objects" "Target"
+{
+}
+
+//Woman in supply closet
++Link 98 "rndHydro1Objects" "Target"
+{
+}
+
+//Man in supply closet
++Link 103 "rndHydro1Objects" "Target"
+{
+}
+
+//Man in main hallway
++Link 471 "rndHydro1Objects" "Target"
+{
+}
+
+//Man in main hallway
++Link 482 "rndHydro1Objects" "Target"
+{
+}
+
+//Man in main hallway on bin
++Link 473 "rndHydro1Objects" "Target"
+{
+}
+
+//Woman in hallway
++Link 472 "rndHydro1Objects" "Target"
+{
+}
+
+////Loose Items
+
+//Cyber Modules near the power recharger
++MetaProp 969 "Object Randomiser - No Auto Output"
++Link 969 "rndHydro1Objects" "Target"
+{
+}
+
+//Floor mug near replicator
++Link 1093 "rndHydro1Objects" "Target"
+{
+}
+
+//Wrench in supply closet
++Link 77 "rndHydro1Objects" "Target"
+{
+}
+
+//Cyber Modules in the supply closet
++MetaProp 85 "Object Randomiser - No Auto Output"
++Link 85 "rndHydro1Objects" "Target"
+{
+}
+
+//Nanites in the plant hallway
++Link 976 "rndHydro1Objects" "Target"
+{
+}
+
+//Pistol in the plant hallway
++Link 545 "rndHydro1Objects" "Target"
+{
+}
+
+//Second Pistol in the plant hallway
++Link 544 "rndHydro1Objects" "Target"
+{
+}
+
+//Assault Rifle
++Link 961 "rndHydro1Objects" "Target"
+{
+}
+
+//Slugs in left cultivation cell
++Link 1086 "rndHydro1Objects" "Target"
+{
+}
+
+//Anti-Pers bullets in left cultivation cell
++Link 1142 "rndHydro1Objects" "Target"
+{
+}
+
+//Radiation Hypo in the flooded cultivation cell
++Link 1141 "rndHydro1Objects" "Target"
+{
+}
+
+//PSI Booster in the flooded cultivation cell
++Link 490 "rndHydro1Objects" "Target"
+{
+}
+
+//Maintenance Tool in the flooded cultivation cell
++Link 1055 "rndHydro1Objects" "Target"
+{
+}
+
+//Nanites in the flooded cultivation cell
++Link 994 "rndHydro1Objects" "Target"
+{
+}
+
+//Cyber Modules in the non-flooded cultivation cell
++Link 90 "rndHydro1Objects" "Target"
+{
+}
+
+//Radiation Hypo in the non-flooded cultivation cell
++Link 1144 "rndHydro1Objects" "Target"
+{
+}
+
+////Extra Markers
+
+//In the hybrid cultivation cell that usually contains nothing
+Create "rndOutputMarker" "rndHydro1CultivationCell"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-98.7855, -29.951, 7.78482"
+		"Heading" 488
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndHydro1CultivationCell" "rndHydro1Objects" "Target"
+{
+}
+
+//In the pool area with the robots that usually doesn't contain anything of value
+Create "rndOutputMarker" "rndHydro1Pool"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-72.2144, -213.267, -0.7"
+		"Heading" 69c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndHydro1Pool" "Object Randomiser - High Priority Output"
++Link "rndHydro1Pool" "rndHydro1Objects" "Target"
+{
+}
+
+//Near the generator next to the door to the cultivation cells
+Create "rndOutputMarker" "rndHydro1Generator"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-105.645, 6.04622, 0.714661"
+		"Heading" 3e8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndHydro1Generator" "rndHydro1Objects" "Target"
+{
+}
+
+//In the storage room
+Create "rndOutputMarker" "rndHydro1StorageRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-101.504, 122.798, 3.71466"
+		"Heading" 1d8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndHydro1StorageRoom" "rndHydro1Objects" "Target"
+{
+}
+
+/*
+//At the start where the Cyber Module cubbyhole normally is
+//If we use the CM's as an output, items fall through the world
+Create "rndOutputMarker" "rndHydro1Nook"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-60.8849, 141.369, 10.2"
+		"Heading" 774
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndHydro1Nook" "rndHydro1Objects" "Target"
+{
+}
+*/
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Supply Closet
++Link 325 "rndSecurityCrates" "Target"
+{
+}
+
+//Hallway
++Link 1233 "rndSecurityCrates" "Target"
+{
+}

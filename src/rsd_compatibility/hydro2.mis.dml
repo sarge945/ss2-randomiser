@@ -1,0 +1,6 @@
+// ================================================================================
+// 								RSD Compatibility
+// ================================================================================
+
+//RSD already adds items to the closet
++MetaProp "rndSectorBEmptyCloset" "Object Randomiser - No Auto Output"

@@ -23,8 +23,18 @@ FINGERPRINT
 // 								Object Collections
 // ================================================================================
 
-//Create an object collection for the Main area (offices, security etc)
-Create "rndObjectCollection" "rndMainObjects"
+//Create an object collection for the Administrative Offices area
+Create "rndObjectCollection" "rndAdminObjects"
+{
+}
+
+//Create an object collection for the Security area
+Create "rndObjectCollection" "rndSecurityObjects"
+{
+}
+
+//Create an object collection for the Biological Survey Admin area
+Create "rndObjectCollection" "rndSurveyObjects"
 {
 }
 
@@ -33,13 +43,8 @@ Create "rndObjectCollection" "rndSectorBObjects"
 {
 }
 
-//Create an object collection for the Sector B Biological Survey Labs
-Create "rndObjectCollection" "rndBiologicalSurveyLabs"
-{
-}
-
 //Create an object collection for the Sector B Biological Survey Labs Medbeds (for hypos only)
-Create "rndObjectCollection" "rndBiologicalSurveyLabsMedical"
+Create "rndObjectCollection" "rndSectorBMedical"
 {
 }
 
@@ -48,7 +53,510 @@ Create "rndObjectCollection" "rndSectorBStoreroom"
 {
 }
 
+//Create an object collection for the Sector C area
+Create "rndObjectCollection" "rndSectorCObjects"
+{
+}
+
+//Create an object collection for the Sector D area (just one set of EMP grenades)
+Create "rndObjectCollection" "rndSectorDObjects"
+{
+}
+
 //Create an object collection for the Eggs in the level
 Create "rndObjectCollection" "rndEggs"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Security	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in Turret room
++Link 139 "rndSecurityObjects" "Target"
+{
+}
+
+//Second Desk in Turret room
++Link 138 "rndSecurityObjects" "Target"
+{
+}
+
+//Crate in room overlooking turrets
++Link 210 "rndSecurityObjects" "Target"
+{
+}
+
+//Second Crate in room overlooking turrets
++Link 311 "rndSecurityObjects" "Target"
+{
+}
+
+//Small Crate in room overlooking turrets
++Link 1229 "rndSecurityObjects" "Target"
+{
+}
+
+//Second Small Crate in room overlooking turrets
++Link 1215 "rndSecurityObjects" "Target"
+{
+}
+
+//Third Small Crate in room overlooking turrets
++Link 1230 "rndSecurityObjects" "Target"
+{
+}
+
+////Corpses
+
+//Dead guy in room overlooking turrets
++Link 143 "rndSecurityObjects" "Target"
+{
+}
+
+////Loose Items
+
+//3 Magazines on the table overlooking the turrets
++MetaProp 282 "Object Randomiser - No Auto Output"
++Link 282 "rndSecurityObjects" "Target"
+{
+}
++MetaProp 450 "Object Randomiser - No Auto Output"
++Link 450 "rndSecurityObjects" "Target"
+{
+}
+//+MetaProp 448 "Object Randomiser - No Auto Output"
++Link 448 "rndSecurityObjects" "Target"
+{
+}
+
+//Mug on the table overlooking the turrets
+//+MetaProp 275 "Object Randomiser - No Auto Output"
++Link 275 "rndSecurityObjects" "Target"
+{
+}
+
+//Ciggies on the table overlooking the turrets
++Link 280 "rndSecurityObjects" "Target"
+{
+}
+
+//Chips on the table overlooking the turrets
++Link 144 "rndSecurityObjects" "Target"
+{
+}
+
+//Medical Kit on the floor in turret room
++Link 1588 "rndSecurityObjects" "Target"
+{
+}
+
+//A Pistol near the Turret room
++Link 1013 "rndSecurityObjects" "Target"
+{
+}
+
+/////////////////=====	Administrative Offices	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in lonely room at the end of the hallway
++Link 598 "rndAdminObjects" "Target"
+{
+}
+
+//Desk in Toxin-A room down the long hallway
++Link 626 "rndAdminObjects" "Target"
+{
+}
+
+//Second Desk in Toxin-A room down the long hallway
++Link 116 "rndAdminObjects" "Target"
+{
+}
+
+//Third Desk in Toxin-A room down the long hallway
++Link 117 "rndAdminObjects" "Target"
+{
+}
+
+//Desk near entrance to Sector A
++Link 2063 "rndAdminObjects" "Target"
+{
+}
+
+/////////////////=====	Biological Survey Admin	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in office with broken door
++Link 675 "rndSurveyObjects" "Target"
+{
+}
+
+//Second Desk in office with broken door
++Link 713 "rndSurveyObjects" "Target"
+{
+}
+
+//Desk in big office looking out into space
++Link 695 "rndSurveyObjects" "Target"
+{
+}
+
+//Second Desk in big office looking out into space
++Link 483 "rndSurveyObjects" "Target"
+{
+}
+
+//Desk in small office looking out into space
++Link 744 "rndSurveyObjects" "Target"
+{
+}
+
+//Crate
++Link 1238 "rndAdminObjects" "Target"
+{
+}
+
+//Crate
++Link 1239 "rndAdminObjects" "Target"
+{
+}
+
+//Waste Barrel
++Link 2072 "rndAdminObjects" "Target"
+{
+}
+
+////Corpses
+
+//Guy in big office looking out into space
++Link 619 "rndAdminObjects" "Target"
+{
+}
+
+//Second Guy in big office looking out into space
++Link 629 "rndAdminObjects" "Target"
+{
+}
+
+//Corpse near Garbage Bin
++Link 751 "rndAdminObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Floor Nanites in glass window room
++Link 861 "rndSurveyObjects" "Target"
+{
+}
+
+//Floor Vodka in glass window room
++Link 201 "rndSurveyObjects" "Target"
+{
+}
+
+//Floor Shells in glass window room
++Link 1025 "rndSurveyObjects" "Target"
+{
+}
+
+//Floor Chips in glass window room
++Link 194 "rndSurveyObjects" "Target"
+{
+}
+
+//Mug in glass window room
++Link 189 "rndSurveyObjects" "Target"
+{
+}
+
+//LabAssist on Desk 675
++Link 1064 "rndSurveyObjects" "Target"
+{
+}
+
+//Research Soft on Desk 744
++Link 1063 "rndSurveyObjects" "Target"
+{
+}
+
+//Beaker on Desk 713
++Link 1036 "rndSurveyObjects" "Target"
+{
+}
+
+//Medbed Key under Desk 695
++Link 1112 "rndSurveyObjects" "Target"
+{
+}
+
+/////////////////=====	Sector B =====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in infirmary
++Link 429 "rndSectorBObjects" "Target"
+{
+}
+
+//Crate just outside of Chemical Storeroom
++Link 1253 "rndSectorBObjects" "Target"
+{
+}
+
+//Second Crate just outside of Chemical Storeroom
++Link 1252 "rndSectorBObjects" "Target"
+{
+}
+
+//Third Crate just outside of Chemical Storeroom
++Link 1254 "rndSectorBObjects" "Target"
+{
+}
+
+//Locker in Water Storage
++Link 2143 "rndSectorBObjects" "Target"
+{
+}
+
+//Second Locker in Water Storage
++Link 2078 "rndSectorBObjects" "Target"
+{
+}
+
+////Corpses
+
+//Guy in main area
++Link 754 "rndSectorBObjects" "Target"
+{
+}
+
+//Guy on top of observation area
++Link 1413 "rndSectorBObjects" "Target"
+{
+}
+
+//Dead guy inside Observation Area
++Link 1270 "rndSecurityObjects" "Target"
+{
+}
+
+//Dead guy in infirmary
++Link 1294 "rndSectorBObjects" "Target"
+{
+}
+
+//Dead guy in snowy egg room
++Link 1298 "rndSectorBObjects" "Target"
+{
+}
+
+//Dead woman in snowy egg room
++Link 1297 "rndSectorBObjects" "Target"
+{
+}
+
+//Another Dead guy in snowy egg room
++Link 935 "rndSectorBObjects" "Target"
+{
+}
+//Another another Dead guy in snowy egg room
++Link 936 "rndSectorBObjects" "Target"
+{
+}
+
+//Woman in water storage
++Link 1296 "rndSectorBObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Electro Shock in Infirmary
++Link 1011 "rndSectorBObjects" "Target"
+{
+}
+
+//Laser Pistol in Observation Area
++Link 1014 "rndSectorBObjects" "Target"
+{
+}
+
+//Grenade Launcher in hallway
++Link 1012 "rndSectorBObjects" "Target"
+{
+}
+
+//Grenade Ammo in hallway
++Link 1037 "rndSectorBObjects" "Target"
+{
+}
+
+//More Grenade Ammo in hallway
++Link 1038 "rndSectorBObjects" "Target"
+{
+}
+
+//Cyber Modules in the water
++Link 634 "rndSectorBObjects" "Target"
+{
+}
+
+//Cyber Modules in snowy egg room
++Link 269 "rndSectorBObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//inside the empty room
+Create "rndOutputMarker" "rndSectorBEmptyCloset"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-167.588, 3.89796, -13.7894"
+		"Heading" 974
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorBEmptyCloset" "Object Randomiser - High Priority Output"
++Link "rndSectorBEmptyCloset" "rndSectorBObjects" "Target"
+{
+}
+
+/////////////////=====	Sector B Medical Beds	=====\\\\\\\\\\\\\\\\\
+
+////Loose Items
+
+//Toxin Hypo
++Link 1154 "rndSectorBMedical" "Target"
+{
+}
+
+//Med Hypo
++Link 2079 "rndSectorBMedical" "Target"
+{
+}
+
+//Med Hypo
++Link 1207 "rndSectorBMedical" "Target"
+{
+}
+
+/////////////////=====	Sector B Chemical Storeroom	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in Chemical Storeroom
++Link 325 "rndSectorBStoreroom" "Target"
+{
+}
+
+//Desk in "Bloome Roome"
++Link 354 "rndSectorBStoreroom" "Target"
+{
+}
+
+//Waste Barrel
++Link 1596 "rndSectorBStoreroom" "Target"
+{
+}
+
+////Loose Items
+
+//Medical Kit on Chemical shelf
++Link 1377 "rndSectorBStoreroom" "Target"
+{
+}
+
+/////////////////=====	Sector C =====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in observation room with Camera
++Link 89 "rndSectorCObjects" "Target"
+{
+}
+
+//Second Desk in observation room with Camera
++Link 314 "rndSectorCObjects" "Target"
+{
+}
+
+//Small Crate in observation room with camera
++Link 1237 "rndSectorCObjects" "Target"
+{
+}
+
+//Crate in Environmental Regulator room
++Link 1236 "rndSectorCObjects" "Target"
+{
+}
+
+//Small Crate in Environmental Regulator room
++Link 1235 "rndSectorCObjects" "Target"
+{
+}
+
+////Corpses
+
+//Dead guy in maintenance area
++Link 806 "rndSectorCObjects" "Target"
+{
+}
+
+//Second Dead guy in maintenance area
++Link 722 "rndSectorCObjects" "Target"
+{
+}
+
+//Third Dead guy in maintenance area
++Link 355 "rndSectorCObjects" "Target"
+{
+}
+
+//Dead guy in obesrvation room with camera
++Link 338 "rndSectorCObjects" "Target"
+{
+}
+
+//Corpse in Environmental Regulator room
++Link 406 "rndSectorCObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Wrench near Xerxes hun
++Link 140 "rndSectorCObjects" "Target"
+{
+}
+
+//Soda on Desk 89
++Link 359 "rndSectorCObjects" "Target"
+{
+}
+
+//Mug on Windowsill
++Link 337 "rndSectorCObjects" "Target"
+{
+}
+
+/////////////////=====	Sector D =====\\\\\\\\\\\\\\\\\
+
+////Loose Items
+
+//EMP Grenades on ground
++Link 1034 "rndSectorDObjects" "Target"
 {
 }

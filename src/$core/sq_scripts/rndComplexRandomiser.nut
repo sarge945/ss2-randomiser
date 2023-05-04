@@ -39,7 +39,7 @@ class rndComplexRandomiser extends rndBase
 		local seed = Data.RandInt(0,10000);		
 		DebugPrint ("Randomiser Init (seed: " + seed + ")");
 		SetData("Seed",seed);
-		SetOneShotTimer("StartTimer",0.01);
+		SetOneShotTimer("StartTimer",0.04);
 		
 	}
 	

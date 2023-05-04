@@ -1,0 +1,20 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Everywhere
+//For now, just put everything together.
+//This map is so small that with varied output we get huge item stacks because there are so few containers
+Create "rndComplexRandomiser" "rndHydro3Randomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndHydro3Objects" "rndHydro3Randomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndHydro3Objects" "rndHydro3Randomiser" "~SwitchLink"
+{
+}

@@ -1,0 +1,111 @@
+DML1
+
+FINGERPRINT
+{
+   244 [-97 -103.5 50]
+   158 [-97 -109.5 50]
+   147 [-97 -112.5 50]
+   152 [-100 -112.5 50]
+   383 [-108 -109.5 50]
+   153 [-100 -106.5 40]
+   154 [-102 -106.5 30]
+   384 [-104 -109.5 20]
+   155 [-104 -106.5 20]
+   248 [-108 -106.5 20]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//We only need one, this is a small map
+Create "rndObjectCollection" "rndHydro3Objects"
+{
+}
+
+//Create one for the eggs
+Create "rndObjectCollection" "rndHydro3Eggs"
+{
+}
+
+////Corpses
+
+//Man immediately at the start of the map
++Link 190 "rndHydro3Objects" "Target"
+{
+}
+
+//Power armour woman
++Link 191 "rndHydro3Objects" "Target"
+{
+}
+
+//Corpses Downstairs
++Link 189 "rndHydro3Objects" "Target"
+{
+}
++Link 207 "rndHydro3Objects" "Target"
+{
+}
++Link 192 "rndHydro3Objects" "Target"
+{
+}
+
+
+////Containers
+
+//Desk near the start of the map
++Link 2116 "rndHydro3Objects" "Target"
+{
+}
+
+//Crate
++Link 212 "rndHydro3Objects" "Target"
+{
+}
+
+//Crate
++Link 214 "rndHydro3Objects" "Target"
+{
+}
+
+
+////Loose Items
+
+/*
+//Wrench at the start of the map
++Link 103 "rndHydro3Objects" "Target"
+{
+}
+*/
+
+//EMP Rifle
++Link 101 "rndHydro3Objects" "Target"
+{
+}
+
+//Cyber Modules hidden behind box
++MetaProp 119 "Object Randomiser - No Auto Output"
++Link 119 "rndHydro3Objects" "Target"
+{
+}
+
+//Cyber Modules in pit downstairs
++Link 118 "rndHydro3Objects" "Target"
+{
+}
+
+//Pistol downstairs
++Link 261 "rndHydro3Objects" "Target"
+{
+}
+
+//Laser Rapier downstairs
++Link 102 "rndHydro3Objects" "Target"
+{
+}
