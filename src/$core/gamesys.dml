@@ -45,17 +45,19 @@ CreateArch "Marker" "rndObjectCollection"
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
 
-//Prevent an object inside a container from being added automatically
+//Prevent an object or the objects inside a container from being added automatically
 CreateArch "Misc Metaprops" "Object Randomiser - No Auto Input"
 {
 }
 
 //Prevent an item from being created at a marker, it can only be added to containers
+//If it has Output Self Only, it can still appear at it's original location.
 CreateArch "Misc Metaprops" "Object Randomiser - Container Only"
 {
 }
 
 //Prevent a world-object from automatically creating a marker
+//This means that the object will not be replaced. It will appear somewhere else only.
 CreateArch "Misc Metaprops" "Object Randomiser - No Auto Output"
 {
 }
@@ -68,6 +70,13 @@ CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 
 //Set a particular output to reset the facing of an object. This prevents items looking weird
 CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
+{
+}
+
+//Set a physical output to only accept itself as an input. This is used for objects which have been placed in specific places.
+//Gives them a chance to be there or not. Either the original object will be where it was, or nothing will be there.
+//Implies No Auto Output
+CreateArch "Misc Metaprops" "Object Randomiser - Output Self Only"
 {
 }
 

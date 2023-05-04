@@ -1,5 +1,22 @@
 // ================================================================================
-// 								Add Power Cells to Randomisers
+// 								Add Keycard to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Cryo Access Card
+Create "rndComplexRandomiser" "rndCryoKeycardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
+}
+
++Link "rndCryoObjectsAfterAirlock" "rndCryoKeycardRandomiser" "SwitchLink"
+{
+}
++Link "rndCryoObjectsAfterAirlock" "rndCryoKeycardRandomiser" "~SwitchLink"
+{
+}
+
+// ================================================================================
+// 								Add Power Cell to Randomisers
 // ================================================================================
 
 //Create a randomiser for the Science Sector Power Cell

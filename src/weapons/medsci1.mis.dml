@@ -14,13 +14,19 @@ Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
 +Link "rndCryoObjectsAfterAirlock" "rndCryoWeaponRandomiser" "SwitchLink"
 {
 }
-//Link the Cryo Items to it as Input
+//Inputs
 +Link "rndCryoObjects" "rndCryoWeaponRandomiser" "SwitchLink"
 {
 }
-
-//Link the Cryo Items to it as Output
++Link "rndCryoObjectsPowerRoom" "rndCryoWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
 +Link "rndCryoObjectsAfterAirlock" "rndCryoWeaponRandomiser" "~SwitchLink"
+{
+}
+//Outputs
++Link "rndCryoObjectsPowerRoom" "rndCryoWeaponRandomiser" "~SwitchLink"
 {
 }
 

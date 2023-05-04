@@ -412,14 +412,16 @@ Create "rndOutputMarker" "rndRadiationShelves"
 {
 }
 
-//Bullets in first apartment
+//Bullets in first apartment in little alcove
+//Alcove looks weird with nothing in it
++MetaProp 291 "Object Randomiser - High Priority Output"
 +Link 291 "rndCrewObjects" "Target"
 {
 }
 
 //Pistol on the ramp at the top of the room near the camera
 //Output disabled due to weirdness with items falling into the water
-+MetaProp 1431 "Object Randomiser - No Auto Output"
++MetaProp 1431 "Object Randomiser - Output Self Only"
 +Link 1431 "rndCrewObjects" "Target"
 {
 }

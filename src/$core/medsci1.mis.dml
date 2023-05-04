@@ -28,6 +28,11 @@ Create "rndObjectCollection" "rndCryoObjects"
 {
 }
 
+//Create an object collection for the Cryo Sector Power Room
+Create "rndObjectCollection" "rndCryoObjectsPowerRoom"
+{
+}
+
 //Create an object collection for the Cryo Sector (After Airlock)
 Create "rndObjectCollection" "rndCryoObjectsAfterAirlock"
 {
@@ -83,9 +88,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Loose Items
 
 //Wrench in Power Recharge room
-+MetaProp 1707 "Object Randomiser - No Auto Output"
++MetaProp 1707 "Object Randomiser - Output Self Only"
 +MetaProp 1707 "Object Randomiser - Container Only"
 +Link 1707 "rndCryoObjects" "Target"
+{
+}
++Link 1707 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
@@ -168,6 +176,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 */
+
+//Cryo Keycard
++Link 338 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
 
 ////Markers and other spawn points
 

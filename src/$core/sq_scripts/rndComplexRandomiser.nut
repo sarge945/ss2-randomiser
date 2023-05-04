@@ -39,11 +39,13 @@ class rndComplexRandomiser extends rndBase
 		if (minTimes > maxTimes)
 			minTimes = maxTimes;
 		SetData("Times",Data.RandInt(minTimes,maxTimes));
-		local seed = Data.RandInt(0,10000);
+		local seed = getParam("forceSeed",-1);
+		if (seed == -1)
+			seed = Data.RandInt(0,10000);
 		SetData("Seed",seed);
 		
 		//Add a delay to the timer to put less stress on the game when loading new areas
-		local startDelay = (self % 1000) * 0.0001;
+		local startDelay = (seed % 1000) * 0.0001;
 		SetData("StartDelay",startDelay);
 		
 		//Set up priority
@@ -51,9 +53,9 @@ class rndComplexRandomiser extends rndBase
 		SetData("Priority",priority);
 		
 		//Initial print
-		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + startDelay + ", Priority: " + priority + "]");
+		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + (startDelay + (priority * 0.1)) + ", Priority: " + priority + "]");
 		
-		SetOneShotTimer("StartTimer",0.1 + startDelay);
+		SetOneShotTimer("StartTimer",0.05 + startDelay);
 	}
 	
 	function Setup()
@@ -86,7 +88,12 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.1 + startDelay + (priority * 0.1)); //DO NOT change this timer value, otherwise things start to break
+		if (manager.inputs.len() == 0)
+			print("WARNING: Randomiser " + Object.GetName(self) + " (" + self + ") has no inputs!");
+		else if (manager.outputs.len() == 0)
+			print("WARNING: Randomiser " + Object.GetName(self) + " (" + self + ") has no outputs!");
+		else
+			SetOneShotTimer("RandomizeTimer",0.1 + startDelay + (priority * 0.1)); //DO NOT change this timer value, otherwise things start to break
 	}
 	
 	function ConfigureAllowedTypes()

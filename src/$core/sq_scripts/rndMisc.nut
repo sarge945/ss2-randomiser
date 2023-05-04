@@ -187,7 +187,7 @@ class IOManager
 	
 	static function isArchetype(obj,type)
 	{
-		return obj == type || Object.Archetype(obj) == type || Object.InheritsFrom(obj,type);
+		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 	
 	function GetOutputsArray()
@@ -336,6 +336,7 @@ class PhysicalOutput extends Output
 	position = null;
 	noFacing = null;
 	physicsControls = null;
+	selfOnly = null;
 	
 	constructor(cOutput, cRandomiser)
 	{
@@ -344,6 +345,7 @@ class PhysicalOutput extends Output
 		position = Object.Position(cOutput);
 		noFacing = Object.HasMetaProperty(cOutput,"Object Randomiser - No Facing");
 		physicsControls = Property.Get(cOutput, "PhysControl", "Controls Active");
+		selfOnly = Object.HasMetaProperty(cOutput,"Object Randomiser - Output Self Only");
 	}
 	
 	function checkHandleMove(input,nosecret)
@@ -352,17 +354,18 @@ class PhysicalOutput extends Output
 		
 		if (!check)
 			return false;
-			
-		if (input.containerOnly)
+		
+		if (input.item != output && selfOnly)
+			return false;
+		
+		if (input.containerOnly && (input.item != output || !selfOnly))
 			return false;
 			
 		if (!Link.AnyExist(LINK_TARGET,0,output))
 			return false;
 		
-		/* Broken currently - do not use!
 		if (!Physics.HasPhysics(input.item))
 			return false;
-		*/
 		
 		return true;
 	}
@@ -445,9 +448,10 @@ class PhysicalOutput extends Output
 	static fixArchetypes = [
 		[-938,0,0,-1], //Cyber Modules
 		[-85,0,0,-1], //Nanites
-		[-1396,4000,0,-1], //Ciggies
-		[-99,-1,0,4500], //Implants
-		[-320,0,0,-1], //Softs
+		[-1396,90,0,-1], //Ciggies
+		[-99,-1,0,-1], //Implants
+		[-91,0,-1,-1], //Cola
+		[-51,-1,0,-1], //Hypos
 		//[-964,-1,-1,-1], //Vodka
 	];
 	
@@ -472,10 +476,9 @@ class PhysicalOutput extends Output
 					z = facing.z;
 				
 				return vector(x, y, z);
-				//return vector(archetype[1], archetype[2], archetype[3]);
-				//return vector(facing.x + archetype[1], 0, facing.z + archetype[3]);
 			}
 		}
-		return facing;
+		//return facing;
+		return vector(0,0,facing.z);
 	}
 }
