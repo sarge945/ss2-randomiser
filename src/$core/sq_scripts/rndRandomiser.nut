@@ -101,16 +101,20 @@ class rndRandomiser extends rndBase
 	
 	function SignalReady()
 	{
-		DebugPrint(self + " has remaining items: " + inputs.len());
+		DebugPrint(self + " has remaining items: " + inputs.len() + " with currentOutputIndex of " + currentOutputIndex);
 	
-		if (outputs.len() == 0 || inputs.len() == 0)
+		if (inputs.len() == 0 || outputs.len() == 0)
 			return;
-	
-		if (currentOutputIndex >= outputs.len())
-			currentOutputIndex == 0;
-			
-		DebugPrint(self + " Signalling ready for " + outputs[currentOutputIndex]);
 		
+		/*
+		if (Object.IsTransient(outputs[currentOutputIndex]))
+		{
+			print ("output is transient, removing");
+			outputs.remove(currentOutputIndex);
+		}
+		*/
+		
+		DebugPrint(self + " Signalling ready for " + outputs[currentOutputIndex]);
 		SendMessage(outputs[currentOutputIndex],"ReadyForOutput",inputs.len(),outputs.len());
 	}
 	
@@ -119,7 +123,7 @@ class rndRandomiser extends rndBase
 	{
 		DebugPrint (self + " received GetItem from " + message().from + " (maxitems: " + maxItems + ")");
 	
-		if (inputs.len() > 0 && maxItems > 0)
+		if (inputs.len() > 0 && maxItems > 0 && outputs.len() > 0)
 		{
 			local index = 0;
 			if (message().data)
@@ -134,15 +138,24 @@ class rndRandomiser extends rndBase
 				maxItems--;
 				inputs.remove(index);
 				
-				//This is required otherwise we get a stack overflow
 				//SignalReady();
 			}
 			
 			if (message().data2 == true)
+			{
+				DebugPrint("removing at " + currentOutputIndex);
 				outputs.remove(currentOutputIndex);
+			}
 			else
-				currentOutputIndex++;
+			{
+				DebugPrint("incrementing current index " + currentOutputIndex);
+				if (currentOutputIndex == outputs.len() - 1)
+					currentOutputIndex = 0;
+				else
+					currentOutputIndex++;
+			}
 			
+			//This is required otherwise we get a stack overflow
 			SetOneShotTimer("StandardTimer",0.01);
 		}
 			

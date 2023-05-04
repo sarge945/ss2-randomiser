@@ -50,12 +50,12 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 ////Corpses
 
 //Cryo Code guy (12451)
-+Link 1680 "rndCryoObjects" "~Target"
++Link 1680 "rndCryoObjects" "Target"
 {
 }
 
 //Wrench Guy at the start of the game
-+Link 1177 "rndCryoObjects" "~Target"
++Link 1177 "rndCryoObjects" "Target"
 {
 }
 

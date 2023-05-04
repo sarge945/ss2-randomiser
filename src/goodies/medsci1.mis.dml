@@ -7,7 +7,7 @@ Create "rndRandomiser" "rndCryoRandomiser"
 {
 }
 //Link the Cryo Items to it
-+Link "rndScienceObjects" "rndCryoRandomiser" "SwitchLink"
++Link "rndCryoObjects" "rndCryoRandomiser" "SwitchLink"
 {
 }
 
