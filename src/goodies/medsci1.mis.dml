@@ -2,15 +2,63 @@
 // 								Add Goodies to Randomisers
 // ================================================================================
 
-//Create a randomiser for the Cryo Sector
-Create "rndRandomiser" "rndCryoRandomiser"
+//Create a randomiser for MedSci1
+Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 {
 	+ObjProp "DesignNoteSS" = "debug=true;"
 }
-//Link the Cryo Items to it
-+Link "rndCryoObjects" "rndCryoRandomiser" "SwitchLink"
+//Inputs
++Link "rndCryoObjects" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
+/*
++Link "rndScienceObjects" "rndMedSci1Randomiser" "SwitchLink"
+{
+}
++Link "rndRNDObjects" "rndMedSci1Randomiser" "SwitchLink"
+{
+}
++Link "rndBodybags" "rndMedSci1Randomiser" "SwitchLink"
+{
+}
+*/
+//Outputs
++Link "rndCryoObjects" "rndMedSci1Randomiser" "~SwitchLink"
+{
+}
+/*
++Link "rndScienceObjects" "rndMedSci1Randomiser" "~SwitchLink"
+{
+}
++Link "rndRNDObjects" "rndMedSci1Randomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Body Bags (only allow hypos)
+Create "rndComplexRandomiser" "rndBodybagRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "debug=true; allowedTypes0=-51; maxTimes=3; minTimes=1"
+}
+//Inputs
++Link "rndCryoObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndScienceObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndRNDObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndBodybags" "rndBodybagRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndBodybags" "rndBodybagRandomiser" "~SwitchLink"
+{
+}
+*/
+
+
 
 /*
 

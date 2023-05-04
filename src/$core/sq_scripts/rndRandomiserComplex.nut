@@ -1,0 +1,3 @@
+class rndComplexRandomiser extends rndRandomiser
+{
+}

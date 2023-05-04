@@ -10,6 +10,16 @@ CreateArch "Marker" "rndRandomiser"
 	}
 }
 
+//Same as standard Randomiser, but uses SwitchLinks to add ObjectCollections as inputs and outputs
+CreateArch "Marker" "rndComplexRandomiser"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndComplexRandomiser"
+		"Don't inherit" false
+	}
+}
+
 //Acts as an output
 CreateArch "Marker" "rndOutputMarker"
 {
@@ -20,54 +30,59 @@ CreateArch "Marker" "rndOutputMarker"
 	}
 }
 
-//SwitchLink to a Randomiser to have all linked Targets added as inputs and outputs
-//Controlled by autoInput and autoOutput to allow using as purely inputs or outputs
+//SwitchLink to a Randomiser to have all linked Targets added as inputs
+//~SwitchLink to a Randomiser to have all linked Targets added as outputs
 CreateArch "Marker" "rndObjectCollection"
 {
 }
 
-//Attach to a container to make it act as an output. Similar to the output Marker above
-//This is usually auto-attached, so shouldn't need to be added to anything
-CreateArch "Misc Metaprops" "Object Randomiser - Container"
-{
-	+ObjProp "Scripts"
-	{
-		"Script 0" "rndOutputContainer"
-		"Don't inherit" false
-	}
-}
-
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
 
-//Prevent automatically generated world markers from applying the "z fix" (adding 0.5 to their z position value)
-CreateArch "Misc Metaprops" "Object Randomiser - No Z Fix"
+//Prevent a world-object from automatically creating a marker
+CreateArch "Misc Metaprops" "Object Randomiser - No Auto Output"
 {
 }
 
-//Prevent a world-object from automatically creating a marker
-CreateArch "Misc Metaprops" "Object Randomiser - No Auto Create Marker"
+//Set a particular output to be "high priority" - it will be filled with items first
+CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 {
 }
 
 /*
-//Prevent a container from having more than 1 of a certain item (used for wrench guy at the start of the game)
-CreateArch "Misc Metaprops" "Object Randomiser - No Duplicates"
+//FakePhysics
+CreateArch "Misc Metaprops" "Object Randomiser - Add Physics"
 {
-}
+	+ObjProp "PhysType"
+	{
+		"Type" "Sphere"
+		"# Submodels" 1
+		"Remove on Sleep" FALSE
+		"Special" FALSE
+	}
+	
+	+ObjProp "PhysAttr"
+	{
+		"Gravity %" 100.00
+		"Mass" 30.00
+		"Density" 1.00
+		"Elasticity" 1.00
+		"Base Friction" 0.00
+		"COG Offset" 0.00, 0.00, 0.00
+		"Climbable Sides" "[None]"
+		"Flags" "[None]"
+		"Rotation Axes" "X Axis, Y Axis, Z Axis"
+		"Rest Axes" "+Y Axis, -Y Axis"
+	}
 
-//Disable physics on an output
-CreateArch "Misc Metaprops" "Object Randomiser - Disable Physics"
-{
-}
-
-//Create a Marker at the location of an input when adding it to a randomiser
-CreateArch "Misc Metaprops" "Object Randomiser - Create Marker"
-{
-}
-
-
-//Item won't be stripped from any inventories under any circumstances. Used for plot items, various logs, etc.
-CreateArch "Misc Metaprops" "Object Randomiser - Dont Strip"
-{
+	+ObjProp "PhysDims"
+	{
+		"Size" 0.00, 0.00, 0.00
+		"Radius 1" 0.14
+		"Radius 2" 0.00
+		"Offset 1" 0.00, 0.00, 0.00
+		"Offset 2" 0.00, 0.00, 0.00
+		"Point vs Terrain" FALSE
+		"Point vs Not Special" FALSE
+	}
 }
 */

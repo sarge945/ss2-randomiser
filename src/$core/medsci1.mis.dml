@@ -42,6 +42,11 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 {
 }
 
+//Create an object collection for the Body Bags
+Create "rndObjectCollection" "rndBodybags"
+{
+}
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -119,7 +124,7 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 ////Loose Items
 
 //Med hypo in the upper level
-+MetaProp 234 "Object Randomiser - No Auto Create Marker"
++MetaProp 234 "Object Randomiser - No Auto Output"
 +Link 234 "rndCryoObjects" "Target"
 {
 }
@@ -131,17 +136,16 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 
 //Add the 2 items from the computer station smashable glass area
 //Shotgun Ammo
-+MetaProp 607 "Object Randomiser - No Auto Create Marker"
++MetaProp 607 "Object Randomiser - No Auto Output"
 +Link 607 "rndCryoObjects" "Target"
 {
 }
 //Psi Hypo
-+MetaProp 599 "Object Randomiser - No Auto Create Marker"
++MetaProp 599 "Object Randomiser - No Auto Output"
 +Link 599 "rndCryoObjects" "Target"
 {
 }
 
-/*
 ////Markers and other spawn points
 
 //inside the smashable glass section
@@ -149,18 +153,18 @@ Create "rndOutputMarker" "rndCryoGlassChamber"
 {
 	+ObjProp "Position"
 	{
-		"Location" "42.7551, -163.693, 5.39923"
+		"Location" "42.7551, -163.693, 4.19923"
 		"Heading" d134
 		"Pitch" 0
 		"Bank" 0
 	}
-	
-	+ObjProp "DesignNoteSS" = "highPriority=true;"
 }
++MetaProp "rndCryoGlassChamber" "Object Randomiser - High Priority Output"
 +Link "rndCryoGlassChamber" "rndCryoObjects" "Target"
 {
 }
 
+/*
 //Where the floor hypo used to be (the room with the ramp and the exploding computer)
 Create "rndOutputMarker" "rndCryoFloorSpot"
 {
@@ -230,28 +234,24 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Body Bag
-+Link 794 "rndScienceObjects" "Target"
++Link 794 "rndBodybags" "Target"
 {
 }
-+ObjProp 794 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
-+Link 798 "rndScienceObjects" "Target"
++Link 798 "rndBodybags" "Target"
 {
 }
-+ObjProp 798 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
-+Link 828 "rndScienceObjects" "Target"
++Link 828 "rndBodybags" "Target"
 {
 }
-+ObjProp 828 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
-+Link 684 "rndScienceObjects" "Target"
++Link 684 "rndBodybags" "Target"
 {
 }
-+ObjProp 684 "DesignNoteSS" = "limitType=-51;"
 
 //Corpse near Power Recharger
 +Link 1182 "rndScienceObjects" "Target"
@@ -317,7 +317,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A bag of chips in the Security Closet
-+MetaProp 551 "Object Randomiser - No Auto Create Marker"
++MetaProp 551 "Object Randomiser - No Auto Output"
 +Link 551 "rndScienceObjects" "Target"
 {
 }
@@ -343,7 +343,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Rad Patch in nook near Medical Lobby Desk
-+MetaProp 835 "Object Randomiser - No Auto Create Marker"
++MetaProp 835 "Object Randomiser - No Auto Output"
 +Link 835 "rndScienceObjects" "Target"
 {
 }
@@ -354,7 +354,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Some AP Ammo in the Turret Ramp room
-+MetaProp 225 "Object Randomiser - No Auto Create Marker"
++MetaProp 225 "Object Randomiser - No Auto Output"
 +Link 225 "rndScienceObjects" "Target"
 {
 }
@@ -370,7 +370,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Med Hypo under a piece of Debris in a Computer Room near the R and D Entrance
-+MetaProp 1113 "Object Randomiser - No Auto Create Marker"
++MetaProp 1113 "Object Randomiser - No Auto Output"
 +Link 1113 "rndScienceObjects" "Target"
 {
 }
@@ -658,7 +658,7 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 }
 
 //A Med Hypo
-+MetaProp 114 "Object Randomiser - No Auto Create Marker"
++MetaProp 114 "Object Randomiser - No Auto Output"
 +Link 114 "rndRNDObjects" "Target"
 {
 }
@@ -679,7 +679,7 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 }
 
 //AP Clip on the Bench in the Power Cell Room
-+MetaProp 1345 "Object Randomiser - No Auto Create Marker"
++MetaProp 1345 "Object Randomiser - No Auto Output"
 +Link 1345 "rndRNDObjects" "Target"
 {
 }

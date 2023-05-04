@@ -362,7 +362,7 @@ Create "rndObjectCollection" "rndArmouryObjects"
 }
 
 //Chips floating in water in dark room near Watts office
-+MetaProp 83 "Object Randomiser - No Auto Create Marker"
++MetaProp 83 "Object Randomiser - No Auto Output"
 +Link 83 "rndCrewObjects" "Target"
 {
 }
