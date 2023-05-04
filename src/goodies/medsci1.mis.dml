@@ -7,7 +7,6 @@
 //This is so we always have enough CMs, hypos etc to prepare before the game actually starts by entering Science sector
 Create "rndComplexRandomiser" "rndCryoRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true;"
 }
 
 //Inputs
@@ -32,13 +31,12 @@ Create "rndComplexRandomiser" "rndCryoRandomiser"
 //Shuffle up to 2 objects from Science sector into Cryo, for variety
 Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "maxTimes=2; minTimes=0; debug=true;"
+	+ObjProp "DesignNoteSS" = "maxTimes=2; minTimes=0"
 }
 
 //Inputs
 +Link "rndScienceObjects" "rndCryoExtraRandomiser" "SwitchLink"
 {
-	+ObjProp "DesignNoteSS" = "debug=true;"
 }
 
 //Outputs
@@ -51,7 +49,6 @@ Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
 //Science and R&D Items can be mixed together
 Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true;"
 }
 
 //Inputs
@@ -85,7 +82,7 @@ Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 //Create a randomiser for the Body Bags (only allow hypos)
 Create "rndComplexRandomiser" "rndBodybagRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=4; minTimes=2; priority=1; debug=true;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=4; minTimes=2; priority=1;"
 }
 //Inputs
 +Link "rndScienceObjects" "rndBodybagRandomiser" "SwitchLink"
@@ -105,7 +102,6 @@ Create "rndComplexRandomiser" "rndBodybagRandomiser"
 //Create a Randomiser for the Security Crates
 Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true;"
 }
 
 //Inputs

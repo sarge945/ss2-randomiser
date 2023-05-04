@@ -3,6 +3,7 @@ class rndComplexRandomiser extends rndBase
 	allowedTypes = null;
 	
 	manager = null;
+	delay = null;
 	
 	static allowedTypesDefault = [
 		//-49, //Goodies
@@ -31,13 +32,17 @@ class rndComplexRandomiser extends rndBase
 		DebugPrint ("Randomiser Init");
 		
 		manager = IOManager();
+		delay = getParam("priority",0) * 0.02;
+		//delay += (Data.RandInt(0,1) * 0.01); //add some randomness so that randomisers go in a non-deterministic order
 		
 		ConfigureAllowedTypes()
-
-		local delay = getParam("priority",0) * 0.02;
-		//delay += (Data.RandInt(0,1) * 0.01); //add some randomness so that randomisers go in a non-deterministic order
-		DebugPrint ("delay is " + delay);
 		
+		SetOneShotTimer("StartTimer",0.1);
+
+	}
+	
+	function Setup()
+	{		
 		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
 		
 		if (debug)
@@ -54,7 +59,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.01 + delay);
+		SetOneShotTimer("RandomizeTimer",0.1 + delay);
 	}
 	
 	function ConfigureAllowedTypes()
@@ -76,7 +81,10 @@ class rndComplexRandomiser extends rndBase
 	
 	function OnTimer()
 	{
-		Randomize();
+		if (message().name == "StartTimer")
+			Setup();
+		else
+			Randomize();
 	}
 	
 	function Randomize()
