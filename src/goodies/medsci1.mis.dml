@@ -45,8 +45,6 @@ Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
 }
 */
 
-
-
 //Create a randomiser for the rest of MedSci1
 //Science and R&D Items can be mixed together
 Create "rndComplexRandomiser" "rndMedSci1Randomiser"

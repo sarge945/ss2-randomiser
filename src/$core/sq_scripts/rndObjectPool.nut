@@ -66,7 +66,7 @@ class rndObjectPool extends rndBase
 		ProcessLinks();
 		
 		Array_Shuffle(inputs);
-		Array_Shuffle(outputs);
+		//Array_Shuffle(outputs);
 		
 		currentOutput = 0;
 		ProcessRandomisers();
@@ -78,7 +78,7 @@ class rndObjectPool extends rndBase
 		foreach (ilink in Link.GetAll(linkkind("SwitchLink"),self))
 		{
 			local randomiser = sLink(ilink).dest;
-			print (self + " sending PoolReady message to " + randomiser);
+			DebugPrint (self + " sending PoolReady message to " + randomiser);
 			SendMessage(randomiser,"PoolReady",inputs.len(),false);
 			Link.Destroy(ilink);
 		}
@@ -86,7 +86,7 @@ class rndObjectPool extends rndBase
 		foreach (olink in Link.GetAll(linkkind("~SwitchLink"),self))
 		{
 			local randomiser2 = sLink(olink).dest;
-			print (self + " sending PoolReady message to " + randomiser2);
+			DebugPrint (self + " sending PoolReady message to " + randomiser2);
 			SendMessage(randomiser2,"PoolReady",outputs.len(),true);
 			Link.Destroy(olink);
 		}
@@ -101,6 +101,7 @@ class rndObjectPool extends rndBase
 		{
 			local target = sLink(link).dest;
 			ProcessTarget(target);
+			Link.Destroy(link);
 		}
 	}
 	
@@ -197,6 +198,7 @@ class rndObjectPool extends rndBase
 			SendMessage(message().data,"RandomiseItem",item);
 		}
 		
+		ProcessLinks();
 		ProcessRandomisers();
 	}
 	
@@ -212,18 +214,23 @@ class rndObjectPool extends rndBase
 		
 		DebugPrint("Moving " + item + " to " + output.item);
 		
-		local handled = false;
-		do
-		{
-			handled = HandleItemMove(item,output,currentOutput);
-			currentOutput++;
-			
-			//Loop around
-			if (currentOutput >= outputs.len())
-				currentOutput = 0;
-		}
-		while (handled = false);
+		local handled = HandleItemMove(item,output,currentOutput);
+		local tempOutput = 0;
 		
+		while (handled == false && tempIndex < outputs.len())
+		{
+			output = outputs[tempOutput];
+			handled = HandleItemMove(item,output,tempOutput);
+			tempOutput++;
+		}
+		
+		currentOutput++;
+			
+		//Loop around
+		if (currentOutput >= outputs.len())
+			currentOutput = 0;
+		
+		ProcessLinks();
 		ProcessRandomisers();
 	}
 	

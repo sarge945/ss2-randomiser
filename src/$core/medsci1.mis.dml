@@ -178,7 +178,6 @@ Create "rndOutputMarker" "rndCryoGlassChamber"
 {
 }
 
-/*
 //Where the floor hypo used to be (the room with the ramp and the exploding computer)
 Create "rndOutputMarker" "rndCryoFloorSpot"
 {
@@ -193,7 +192,6 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 +Link "rndCryoFloorSpot" "rndCryoObjectsAfterAirlock" "Target"
 {
 }
-*/
 
 /////////////////=====	Science Sector	=====\\\\\\\\\\\\\\\\\
 
