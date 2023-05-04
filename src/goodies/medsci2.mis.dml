@@ -15,12 +15,14 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 +Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
+/*
 +Link "rndCrewObjectsKitchen" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjectsBar" "rndMedicalRandomiser" "SwitchLink"
 {
 }
+*/
 //Outputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "~SwitchLink"
 {
@@ -33,15 +35,17 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 //Create a randomiser for the Medical and Crew Quarters kitchen and bar items (chips, drinks etc)
 Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; maxTimes=25; minTimes=20; priority=1; variedOutput=0; prioritizeWorldObjects=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=1; variedOutput=0; prioritizeWorldObjects=1;"
 }
 //Inputs
+/*
 +Link "rndMedicalObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
 {
 }
+*/
 +Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "SwitchLink"
 {
 }

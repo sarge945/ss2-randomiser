@@ -117,14 +117,22 @@ class IOManager
 
 	function AddOutput(item,prioritize)
 	{
-		//local highPriority = (prioritize && Data.RandInt(0,5) == 0)
-		//	|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
-		local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		local highPriority = (prioritize && Data.RandInt(0,2) == 0)
+			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		//local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		
+		print ("prioritize: " + prioritize);
 		
 		if (highPriority)
+		{
+			print (item.output + " was high priority");
 			outputs.append(item);
+		}
 		else
+		{
+			print (item.output + " was low priority");
 			outputsLow.append(item);
+		}
 	}
 	
 	function isArchetype(obj,type)

@@ -47,12 +47,12 @@ class rndComplexRandomiser extends rndBase
 		
 		if (debug)
 		{
-			DebugPrint("Inputs for " + self + ":")
+			DebugPrint(manager.inputs.len() + " inputs for " + self + ":")
 			foreach(input in manager.inputs)
 			{
 				DebugPrint(" -> " + input.item);
 			}
-			DebugPrint("Outputs for " + self + ":")
+			DebugPrint(manager.outputs.len() + " outputs for " + self + ":")
 			foreach(output in manager.outputs)
 			{
 				DebugPrint(" -> " + output.output);
