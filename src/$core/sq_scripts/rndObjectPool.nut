@@ -108,7 +108,8 @@ class rndObjectPool extends rndBase
 						if (!Object.HasMetaProperty(contained,"Object Randomiser - No Auto Input"))
 							inputs.append(contained);
 					}
-				}
+					inputs.append(object);
+				}				
 				if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Output"))
 					outputs.append(object);
 			}

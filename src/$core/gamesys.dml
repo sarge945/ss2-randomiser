@@ -89,6 +89,11 @@ CreateArch "Marker" "rndReplacerRandomiser"
 
 //Randomiser Types (for convenience)
 
+CreateArch "rndComplexRandomiser" "rndCorpseRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-503; variedOutput=0;"
+}
+
 CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "ignorePriority=1; variedOutput=0;"

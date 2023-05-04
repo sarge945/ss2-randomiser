@@ -14,3 +14,19 @@ Create "rndCardRandomiser" "rndWattsKeycardRandomiser"
 +Link "rndWattsRoomObjects" "rndWattsKeycardRandomiser" "~SwitchLink"
 {
 }
+
+// ================================================================================
+// 								Move Grassi's Body
+// ================================================================================
+
+Create "rndCorpseRandomiser" "rndGrassiRandomiser"
+{
+}
+//Inputs
++Link "rndGrassiLocations" "rndGrassiRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndGrassiLocations" "rndGrassiRandomiser" "~SwitchLink"
+{
+}

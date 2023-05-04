@@ -175,7 +175,7 @@ class rndOutput extends rndBase
 	function Place(input,output)
 	{
 		Container.Remove(input);
-		if (isContainer(output))
+		if (isContainer(output) && !isContainer(input))
 		{
 			PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",2);
 			PlaceInContainer(input,output);
@@ -209,6 +209,11 @@ class rndOutput extends rndBase
 		//Just remain in place.
 		if (input == output)
 		{
+		}
+		//If we are placing a container (usually a corpse), just place it without moving it up or enabling physics
+		else if (isContainer(input))
+		{
+			Object.Teleport(input, position, facing);
 		}
 		//If we are the same archetype, "lock" into position and adopt physics controls
 		else if (SameItemType(input,output))
