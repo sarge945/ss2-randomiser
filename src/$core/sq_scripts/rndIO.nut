@@ -274,12 +274,20 @@ class PhysicalOutput extends Output
 		local location = Location(obj);
 		locations = [location];
 		
-		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
-		{
-			local location = Location(sLink(ilink).dest);
-			locations.append(location);
-		}
+		GetLocationsForObject(obj);
+		
 		locations = rndFilterShuffle(locations,seed).results;
+	}
+	
+	function GetLocationsForObject(ob)
+	{
+		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,ob))
+		{
+			local id = sLink(ilink).dest;
+			local location = Location(id);
+			locations.append(location);
+			GetLocationsForObject(id);
+		}
 	}
 	
 	function OutputEnabled()

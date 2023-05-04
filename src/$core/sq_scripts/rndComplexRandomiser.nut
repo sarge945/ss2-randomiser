@@ -30,8 +30,6 @@ class rndComplexRandomiser extends rndBase
 	inputs = null;
 	outputs = null;
 	
-	startDelay = null;
-	priority = null;
 	fuzzy = null;
 	seed = null;
 	rolls = null;
@@ -39,27 +37,39 @@ class rndComplexRandomiser extends rndBase
 	prioritizeWorld = null;
 	noSecret = null;
 	allowOriginalLocations = null;
-	randomiseDelay = null;
 
 	function SetSeed()
 	{
 		seed = getParam("forceSeed",-1);
 		if (seed == -1)
-			seed = Data.RandInt(0,99999);
+			seed = Data.RandInt(0,999999);
 		SetData("Seed",seed);
 	}
 	
-	function SetRolls()
+	function GetTimes()
 	{
 		local maxTimes = getParam("maxTimes",99);
 		local minTimes = getParam("minTimes",99);
 		
-		if (minTimes > maxTimes)
-			minTimes = maxTimes;
+		local times = rndUtil.RandBetween(seed + minTimes + maxTimes,minTimes,maxTimes);
 		
-		local times = Data.RandInt(minTimes,maxTimes);
+		if (times > inputs.len())
+			times = inputs.len();
 		
-		SetData("Times",times);
+		return times;
+	}
+	
+	static MAX_PRIORITY = 2;
+	
+	function GetStartTimer()
+	{
+		return 0.1 + (seed % 999 * 0.0001);
+	}
+	
+	function GetRandomiseTimer()
+	{
+		local priority = rndUtil.Min(getParam("priority",0),MAX_PRIORITY);
+		return (MAX_PRIORITY - priority) * 0.1;
 	}
 
 	function Init()
@@ -70,15 +80,12 @@ class rndComplexRandomiser extends rndBase
 		//Set our random seed
 		SetSeed();
 		
-		//Set our number of rolls
-		SetRolls();
+		//testing
+		local totalTime = GetStartTimer() + GetRandomiseTimer();
 		
 		//We need to delay right at the start to give everything time to properly init,
-		//plus the game has a tendency to crash on loading otherwise
-		local startDelay = 0.1 + (seed % 1000 * 0.0001);
-		SetData("StartDelay",startDelay);
-		
-		SetOneShotTimer("StartTimer",startDelay);
+		//plus the game has a tendency to crash on loading otherwise	
+		SetOneShotTimer("StartTimer",GetStartTimer());
 	}
 
 	function OnTimer()
@@ -86,7 +93,6 @@ class rndComplexRandomiser extends rndBase
 		if (message().name == "StartTimer")
 		{
 			Setup();
-			SetOneShotTimer("Randomise",randomiseDelay);
 		}
 		else if (message().name == "Randomise")
 		{
@@ -108,17 +114,12 @@ class rndComplexRandomiser extends rndBase
 		//Get our basic settings
 		fuzzy = getParam("variedOutput",true);
 		seed = GetData("Seed");
-		startDelay = GetData("StartDelay");
-		priority = rndUtil.Min(getParam("priority",0),3);
 		ignorePriority = getParam("ignorePriority",false);
 		prioritizeWorld = getParam("prioritizeWorldObjects",false);
 		noSecret = getParam("noSecret",false);
 		allowOriginalLocations = getParam("allowOriginalLocations",false);
-		randomiseDelay = startDelay + (3 - priority) * 0.1;
 		SetAllowedTypes();
-		
-		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", randomiseDelay: " + randomiseDelay + ", seed: " + seed + ")");
-	
+			
 		local IOcollection = rndIOCollection(self,seed);
 		
 		//Shuffle and filter inputs by type
@@ -148,7 +149,7 @@ class rndComplexRandomiser extends rndBase
 		inputs = rndFilterRemoveDuplicates(inputs).results;
 		outputs = rndFilterRemoveDuplicates(outputs).results;
 		
-		if (debugger.debugLevel > 0)
+		if (debugger.debugLevel >= 4)
 		{
 			debugger.Log("Inputs: ");
 			foreach (input in inputs)
@@ -158,9 +159,26 @@ class rndComplexRandomiser extends rndBase
 			foreach (output in outputs)
 				debugger.Log(" -> " + output.obj);
 		}
-			
-		debugger.Log("Total Inputs: " + inputs.len());
-		debugger.Log("Total Outputs: " + outputs.len());
+		
+		if (inputs.len() == 0)
+			debugger.LogWarning(name + " has no inputs defined!");
+		else if (outputs.len() == 0)
+			debugger.LogWarning(name + " has no outputs defined!");
+		else
+		{
+			debugger.Log(name + " total Inputs: " + inputs.len());
+			debugger.Log(name + " total Outputs: " + outputs.len());
+		}
+		
+		//This was a REALLY long line, so I broke it up a bit
+		local nameString = name + " Init";
+		local startTimerString = "startTimer: " + GetStartTimer();
+		local randomTimerString = "randomiseTimer: " + (GetStartTimer()+GetRandomiseTimer());
+		local seedString = "seed: " + seed;
+		local timeString = "times: " + GetTimes();
+		debugger.LogAlways(nameString + " [" + startTimerString + ", " + randomTimerString + ", " + seedString + ", " + timeString + "]");
+		
+		SetOneShotTimer("Randomise",GetRandomiseTimer());
 	}
 	
 	//Move an input to the end after it's used
@@ -170,12 +188,10 @@ class rndComplexRandomiser extends rndBase
 	//rather than always at the end
 	function ReplaceOutput(index,output)
 	{
-		if (fuzzy && output.IsContainer)
+		if (fuzzy && output.isContainer)
 		{
-			srand(seed + output.obj);
 			local min = outputs.len() * 0.35;
-			local range = outputs.len() - min;
-			local insertIndex = rand() % range + min;
+			local insertIndex = rndUtil.RandBetween(seed + output.obj,min,outputs.len() - 1);
 			outputs.remove(index);
 			outputs.insert(insertIndex,output);
 		}
@@ -189,11 +205,13 @@ class rndComplexRandomiser extends rndBase
 	function Randomise()
 	{
 		local count = 0;
-		local total = GetData("Times");
+		local times = GetTimes();
+		
+		debugger.Log("Randomising: Rolling " + times + " times");
 	
 		foreach (input in inputs)
 		{
-			if (count >= total)
+			if (count >= times)
 				return;
 			
 			foreach(index, output in outputs)
@@ -204,8 +222,7 @@ class rndComplexRandomiser extends rndBase
 					output.HandleMove(input);
 					ReplaceOutput(index,output);
 					count++;
-					debugger.Log(count + ") Moving input " + input.obj + " to output " + output.obj);
-					debugger.Log(count + ") Replacing output: " + output.obj + " at index " + index);
+					debugger.Log(count + " --> Moving input " + input.obj + " to output " + output.obj + " at index " + index);
 					break;
 				}
 			}

@@ -99,7 +99,37 @@ Create "rndOutputMarker" "rnd_marker_106"
         "Bank" 0
     }
 }
-+Link "rnd_marker_106" "rndCrewObjects" "Target"
++Link "rnd_marker_106" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_106" 852 "SwitchLink"
 {
 }
 
@@ -114,7 +144,37 @@ Create "rndOutputMarker" "rnd_marker_105"
         "Bank" 0
     }
 }
-+Link "rnd_marker_105" "rndCrewObjects" "Target"
++Link "rnd_marker_105" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_105" 852 "SwitchLink"
 {
 }
 
@@ -129,7 +189,37 @@ Create "rndOutputMarker" "rnd_marker_99"
         "Bank" 0
     }
 }
-+Link "rnd_marker_99" "rndCrewObjects" "Target"
++Link "rnd_marker_99" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_99" 852 "SwitchLink"
 {
 }
 
@@ -168,7 +258,7 @@ Create "rndOutputMarker" "rnd_marker_96"
 {
     +ObjProp "Position"
     {
-        "Location" "-86.67, 91.22, -11.19"
+        "Location" "-86.97, 91.22, -11.19"
         "Heading" 6619
         "Pitch" 0
         "Bank" 0
@@ -190,7 +280,37 @@ Create "rndOutputMarker" "rnd_marker_94"
     }
 }
 +MetaProp "rnd_marker_94" "Object Randomiser - No Junk"
-+Link "rnd_marker_94" "rndCrewObjects" "Target"
++Link "rnd_marker_94" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_94" 852 "SwitchLink"
 {
 }
 
@@ -205,7 +325,37 @@ Create "rndOutputMarker" "rnd_marker_93"
         "Bank" 0
     }
 }
-+Link "rnd_marker_93" "rndCrewObjects" "Target"
++Link "rnd_marker_93" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_93" 852 "SwitchLink"
 {
 }
 
@@ -221,16 +371,37 @@ Create "rndOutputMarker" "rnd_marker_91"
         "Bank" 0
     }
 }
++Link "rnd_marker_91" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 1844 "SwitchLink"
+{
+}
 +Link "rnd_marker_91" 1839 "SwitchLink"
 {
 }
 +Link "rnd_marker_91" 1840 "SwitchLink"
 {
 }
-+Link "rnd_marker_91" 1844 "SwitchLink"
++Link "rnd_marker_91" 1843 "SwitchLink"
 {
 }
-+Link "rnd_marker_91" 1843 "SwitchLink"
++Link "rnd_marker_91" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 852 "SwitchLink"
 {
 }
 
@@ -246,16 +417,37 @@ Create "rndOutputMarker" "rnd_marker_89"
         "Bank" 0
     }
 }
++Link "rnd_marker_89" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 1844 "SwitchLink"
+{
+}
 +Link "rnd_marker_89" 1839 "SwitchLink"
 {
 }
 +Link "rnd_marker_89" 1840 "SwitchLink"
 {
 }
-+Link "rnd_marker_89" 1844 "SwitchLink"
++Link "rnd_marker_89" 1843 "SwitchLink"
 {
 }
-+Link "rnd_marker_89" 1843 "SwitchLink"
++Link "rnd_marker_89" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 852 "SwitchLink"
 {
 }
 
@@ -346,7 +538,37 @@ Create "rndOutputMarker" "rnd_marker_72"
         "Bank" 0
     }
 }
-+Link "rnd_marker_72" "rndCrewObjects" "Target"
++Link "rnd_marker_72" 163 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 1431 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 1843 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 83 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 949 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 564 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 847 "SwitchLink"
+{
+}
++Link "rnd_marker_72" 852 "SwitchLink"
 {
 }
 
@@ -393,7 +615,7 @@ Create "rndOutputMarker" "rnd_marker_61"
         "Bank" 0
     }
 }
-+Link "rnd_marker_61" "rndTurretNearMonkeys" "SwitchLink"
++Link "rnd_marker_61" 1569 "SwitchLink"
 {
 }
 
@@ -423,8 +645,7 @@ Create "rndOutputMarker" "rnd_marker_56"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_56" "Object Randomiser - No Junk"
-+Link "rnd_marker_56" "rndMedicalObjects" "Target"
++Link "rnd_marker_56" "rnd_marker_59" "SwitchLink"
 {
 }
 
@@ -446,7 +667,6 @@ Create "rndOutputMarker" "rnd_marker_52"
 {
 }
 
-/*
 //In front of Turret. I had the same idea but this might be a better location
 Create "rndOutputMarker" "rnd_marker_47"
 {
@@ -458,11 +678,9 @@ Create "rndOutputMarker" "rnd_marker_47"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_47" "Object Randomiser - No Junk"
-+Link "rnd_marker_47" "rndMedicalObjects" "Target"
++Link "rnd_marker_47" "rndTurretNearMonkeys" "SwitchLink"
 {
 }
-*/
 
 //Near Window in Vivisection Lab
 Create "rndOutputMarker" "rnd_marker_46"
@@ -493,8 +711,7 @@ Create "rndOutputMarker" "rnd_marker_45"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_45" "Object Randomiser - No Junk"
-+Link "rnd_marker_45" "rndMedicalObjects" "Target"
++Link "rnd_marker_45" "rnd_marker_59" "SwitchLink"
 {
 }
 
@@ -509,7 +726,6 @@ Create "rndOutputMarker" "rnd_marker_44"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_44" "Object Randomiser - Secret"
 +Link "rnd_marker_44" 1221 "SwitchLink"
 {
 }
@@ -642,7 +858,7 @@ Create "rndOutputMarker" "rnd_marker_30"
         "Bank" 0
     }
 }
-+Link "rnd_marker_30" "rndMedicalObjects" "Target"
++Link "rnd_marker_30" 1516 "SwitchLink"
 {
 }
 
@@ -792,7 +1008,6 @@ Create "rndOutputMarker" "rnd_marker_16"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_16" "Object Randomiser - No Junk"
 +Link "rnd_marker_16" "rndMedicalObjects" "Target"
 {
 }
@@ -945,7 +1160,7 @@ Create "rndOutputMarker" "rnd_marker_2"
         "Bank" 0
     }
 }
-+Link "rnd_marker_2" "rndMedicalObjects" "Target"
++Link "rnd_marker_2" "rndQBRTable" "SwitchLink"
 {
 }
 

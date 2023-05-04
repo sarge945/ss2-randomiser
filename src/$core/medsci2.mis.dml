@@ -258,22 +258,6 @@ Create "rndObjectCollection" "rndHackableObjects"
 
 ////Markers and other spawn points
 
-//On top of crates in Radiation Lab Storage
-Create "rndOutputMarker" "rndRadiationLabStorageCrates"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-23.1994, -196.6, 7.04943"
-		"Heading" 8898
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndRadiationLabStorageCrates" "Object Randomiser - Secret"
-+Link "rndRadiationLabStorageCrates" "rndRadiationShelves" "SwitchLink"
-{
-}
-
 //In front of the turret near the Monkeys that smash glass
 Create "rndOutputMarker" "rndTurretNearMonkeys"
 {
@@ -353,6 +337,22 @@ Create "rndOutputMarker" "rndRadiationShelves"
 	}
 }
 +Link "rndRadiationShelves" "rndMedicalObjects" "Target"
+{
+}
+
+//On top of crates in Radiation Lab Storage
+Create "rndOutputMarker" "rndRadiationLabStorageCrates"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-23.1994, -196.6, 7.04943"
+		"Heading" 8898
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndRadiationLabStorageCrates" "Object Randomiser - Secret"
++Link "rndRadiationLabStorageCrates" "rndRadiationShelves" "SwitchLink"
 {
 }
 
@@ -587,11 +587,6 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1587 "rndCrewObjectsBar" "Target"
 {
 }
-/*
-+Link 1587 "rndCrewObjects" "Target"
-{
-}
-*/
 
 //Small Crate in Cafeteria Storage
 +Link 776 "rndCrewObjectsKitchen" "Target"
@@ -600,11 +595,6 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 776 "rndCrewObjectsBar" "Target"
 {
 }
-/*
-+Link 776 "rndCrewObjects" "Target"
-{
-}
-*/
 
 ////Loose Items
 
@@ -672,7 +662,6 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1022 "rndCrewObjectsKitchen" "Target"
 {
 }
-+MetaProp 1023 "Object Randomiser - No Auto Output"
 +Link 1023 "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -686,14 +675,8 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1050 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1050 "rndCrewObjectsKitchen" "Target"
-{
-}
 //Vodka
 +Link 1041 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1044 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Liquour

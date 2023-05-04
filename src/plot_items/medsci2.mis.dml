@@ -5,7 +5,7 @@
 //Create a randomiser for the Dr Watts Keycard (only in his room)
 Create "rndComplexRandomiser" "rndWattsKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; allowMultipleMarkerOutput"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1"
 }
 //Inputs
 +Link "rndWattsRoomObjects" "rndWattsKeycardRandomiser" "SwitchLink"

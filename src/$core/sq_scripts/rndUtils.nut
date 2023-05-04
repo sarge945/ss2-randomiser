@@ -11,6 +11,26 @@ class rndUtil
 			return val2;
 		return val1;
 	}
+	
+	static function Max(val1,val2)
+	{
+		if (val1 < val2)
+			return val2;
+		return val1;
+	}
+	
+	//rand() % sucks because it's annoying to define a range
+	//Meanwhile, we are using a seed, so we can't use Data.RandInt();
+	static function RandBetween(seed,min,max)
+	{	
+		if (min > max)
+			min = max;
+		
+		local range = max - min + 1;
+		
+		srand(seed);
+		return (rand() % range) + min;
+	}
 }
 
 class rndDebugger

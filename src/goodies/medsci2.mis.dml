@@ -17,14 +17,12 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 +Link "rndWattsRoomObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
-/*
 +Link "rndCrewObjectsKitchen" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjectsBar" "rndMedicalRandomiser" "SwitchLink"
 {
 }
-*/
 //Outputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "~SwitchLink"
 {
@@ -37,13 +35,19 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 //Create a randomiser for the Medical and Crew Quarters kitchen and bar items (chips, drinks etc)
 Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=1; variedOutput=0; prioritizeWorldObjects=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=1; variedOutput=0; minTimes=18;"
 }
 //Inputs
 +Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjectsBar" "rndMedicalKitchenRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 //Outputs
@@ -68,8 +72,10 @@ Create "rndComplexRandomiser" "rndIrradiated1Randomiser"
 }
 
 //Create a randomiser for the Second Irradiated Area
+//Initially contains nothing (only items are a log)
 Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
 {
+	+ObjProp "DesignNoteSS" = "debug=0;"
 }
 //Inputs
 +Link "rndMedicalRadiation2Objects" "rndIrradiated2Randomiser" "SwitchLink"
@@ -80,16 +86,19 @@ Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
 {
 }
 
-//Allow up to 2 kitchen items in Watts room
+//Allow up to 2 items in Watts room
 Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=2; variedOutput=0; maxTimes=2;"
+	+ObjProp "DesignNoteSS" = "priority=1; variedOutput=0; maxTimes=2; minTimes=0;"
 }
 //Inputs
 +Link "rndCrewObjectsKitchen" "rndWattsRoomRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjectsBar" "rndWattsRoomRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndWattsRoomRandomiser" "SwitchLink"
 {
 }
 //Outputs
