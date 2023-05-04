@@ -41,11 +41,11 @@ class rndComplexRandomiser extends rndBase
 		SetData("Times",Data.RandInt(minTimes,maxTimes));
 		local seed = getParam("forceSeed",-1);
 		if (seed == -1)
-			seed = Data.RandInt(0,999);
+			seed = Data.RandInt(0,9999);
 		SetData("Seed",seed);
 		
 		//Add a delay to the timer to put less stress on the game when loading new areas
-		local startDelay = seed * 0.0001;
+		local startDelay = (seed % 1000) * 0.0001;
 		SetData("StartDelay",startDelay);
 		
 		//Set up priority

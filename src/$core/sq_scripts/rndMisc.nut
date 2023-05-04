@@ -364,8 +364,11 @@ class PhysicalOutput extends Output
 		if (!Link.AnyExist(LINK_TARGET,0,output))
 			return false;
 		
+		/*
+		//Disable - this is causing issues
 		if (!Physics.HasPhysics(input.item))
 			return false;
+		*/
 		
 		return true;
 	}
@@ -408,7 +411,7 @@ class PhysicalOutput extends Output
 	}
 	
 	function HandleMove(input, nosecret)
-	{	
+	{
 		if (!checkHandleMove(input,nosecret))
 			return false;
 		
@@ -427,8 +430,8 @@ class PhysicalOutput extends Output
 		//and give it the same physics controls, so that it looks the same
 		if (SameItemType(input))
 		{
-			Object.Teleport(input.item, position, facing);
 			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
+			Object.Teleport(input.item, position, facing);
 		}
 		else
 		{

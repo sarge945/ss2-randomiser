@@ -145,14 +145,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-/*
-//Removed due to needing SOMETHING up there, and other objects cause issues
 //Cyber Modules near the power recharger
-+MetaProp 969 "Object Randomiser - No Auto Output"
+//+MetaProp 969 "Object Randomiser - No Auto Output"
++MetaProp 969 "Object Randomiser - Output Self Only"
 +Link 969 "rndHydro1Objects" "Target"
 {
 }
-*/
 
 //Floor mug near replicator
 +Link 1093 "rndHydro1Objects" "Target"

@@ -53,8 +53,13 @@ Create "rndObjectCollection" "rndEngineObjects"
 {
 }
 
-//Create an object collection for the Engineering Engine Area Cabin Drinks Stand
+//Create an object collection for the Engineering Engine Area Cabin
 Create "rndObjectCollection" "rndEngineObjectsCabin"
+{
+}
+
+//Create an object collection for the Engineering Engine Area Cabin Drinks Stand
+Create "rndObjectCollection" "rndEngineObjectsCabinShelf"
 {
 }
 
@@ -341,13 +346,16 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Loose Objects
 
 //Cabin Drinks
-+Link 592 "rndEngineObjectsCabin" "Target"
++Link 592 "rndEngineObjectsCabinShelf" "Target"
 {
 }
-+Link 593 "rndEngineObjectsCabin" "Target"
+
+//Liquor
++Link 593 "rndEngineObjectsCabinShelf" "Target"
 {
 }
-+Link 595 "rndEngineObjectsCabin" "Target"
+//Juice
++Link 595 "rndEngineObjectsCabinShelf" "Target"
 {
 }
 
