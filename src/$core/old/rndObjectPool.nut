@@ -1,104 +1,13 @@
-class Input
-{
-	valid = null;
-	item = null;
-	name = null;
-	
-	constructor(cItem)
-	{
-		item = cItem;
-		name = ShockGame.GetArchetypeName(cItem);
-		valid = true;
-	}
-}
-
-class Output
-{
-	output = null;
-	name = null;
-	valid = null;
-	
-	constructor(cOutput)
-	{
-		output = cOutput;
-		name = ShockGame.GetArchetypeName(cOutput);
-		valid = true;
-	}
-	
-	function HandleMove(item)
-	{
-		if (!valid)
-			return false;
-	
-		Container.Remove(item);
-		Link.Create(10,output,item); //Contains. We can't use linkkind in on SqRootScript classes
-		Property.SetSimple(item, "HasRefs", FALSE);
-		return true;
-	}
-}
-
-class PhysicalOutput extends Output
-{
-	facing = null;
-	position = null;
-	
-	constructor(cOutput)
-	{
-		output = cOutput;
-		facing = Object.Facing(cOutput);
-		position = Object.Position(cOutput);
-		name = ShockGame.GetArchetypeName(cOutput);
-		valid = true;
-	}
-	
-	function HandleMove(item)
-	{
-		if (!valid || Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
-			return false;
-		
-		if (!Physics.HasPhysics(item))
-			return false;
-	
-		//GenerateOutput(item);
-		Container.Remove(item);
-		local position_up = vector(position.x, position.y, position.z + 0.2)
-		Object.Teleport(item, position_up, FixItemFacing(item));
-		Physics.DeregisterModel(item); //Fixes issues with "controlled" models
-		Property.Set(item, "PhysAttr", "Flags", "[None]"); //Ditto
-		Property.SetSimple(item, "HasRefs", TRUE);
-		Physics.Activate(item);
-		Physics.SetVelocity(item,vector(0,0,10));
-		valid = false;
-		return true;
-	}
-	
-	//Items with these archetypes will have their X and Z facing set to the specified value
-	static fixArchetypes = [
-		[-938,0,0], //Cyber Modules
-		[-85,0,0], //Nanites
-		[-1396,3000,0], //Ciggies
-		//[-964,0,0], //Vodka
-	];
-	
-	function FixItemFacing(item)
-	{
-		if (Object.HasMetaProperty(output,"Object Randomiser - No Facing"))
-			return vector(0, facing.y, 0);
-	
-		foreach (archetype in fixArchetypes)
-		{
-			local type = archetype[0];
-			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
-			{
-				return vector(archetype[1], facing.y, archetype[2]);
-			}
-		}
-		return facing;
-	}
-}
-
+/*
 class rndObjectPool extends rndBase
 {
+	function Init()
+	{
+		//print ("linkkind SwitchLink: " + linkkind("SwitchLink"));
+		//print ("linkkind ~SwitchLink: " + linkkind("~SwitchLink"));
+		//print ("linkkind Target: " + linkkind("Target"));
+		//print ("linkkind ~Target: " + linkkind("~Target"));
+	}
 	static allowedTypesDefault = [
 		//-49, //Goodies
 		//-12, //Weapons
@@ -121,15 +30,8 @@ class rndObjectPool extends rndBase
 		//-69, //potted plants
 	];
 
-
-	inputs = null;
-	outputs = null;
-
 	function Init()
 	{
-		inputs = [];
-		outputs = [];
-
 		ProcessLinks();
 		
 		Array_Shuffle(inputs);
@@ -349,3 +251,4 @@ class rndObjectPool extends rndBase
 		return -1;
 	}
 }
+*/

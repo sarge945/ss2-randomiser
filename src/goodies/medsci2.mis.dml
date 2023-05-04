@@ -3,9 +3,10 @@
 // ================================================================================
 
 //Create a randomiser for the Medical and Crew Quarters sections
+//Prioritize world objects, since the map seems pretty barren and empty otherwise
 Create "rndComplexRandomiser" "rndMedicalRandomiser"
 {
-	//+ObjProp "DesignNoteSS" = "debug=true;"
+	+ObjProp "DesignNoteSS" = "debug=true; prioritizeWorldObjects=true"
 }
 //Inputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
@@ -14,14 +15,12 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 +Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
-/*
 +Link "rndCrewObjectsKitchen" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjectsBar" "rndMedicalRandomiser" "SwitchLink"
 {
 }
-*/
 //Outputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "~SwitchLink"
 {
@@ -34,7 +33,7 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 //Create a randomiser for the Medical and Crew Quarters kitchen and bar items (chips, drinks etc)
 Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true; allowedTypes0=-90; maxtimes=15; //allowedTypes1=-51;"
+	+ObjProp "DesignNoteSS" = "debug=true; allowedTypes0=-90; maxTimes=25; minTimes=20; priority=1;"
 }
 //Inputs
 +Link "rndMedicalObjects" "rndMedicalKitchenRandomiser" "SwitchLink"

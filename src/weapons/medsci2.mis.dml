@@ -1,0 +1,35 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Medical Sector Weapons
+Create "rndComplexRandomiser" "rndMedicalWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+}
+
+//Inputs
++Link "rndMedicalObjects" "rndMedicalWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMedicalObjects" "rndMedicalWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Crew Sector Weapons
+Create "rndComplexRandomiser" "rndCrewWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+}
+
+//Inputs
++Link "rndCrewObjects" "rndCrewWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndCrewObjects" "rndCrewWeaponRandomiser" "~SwitchLink"
+{
+}

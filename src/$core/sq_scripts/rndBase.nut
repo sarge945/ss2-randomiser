@@ -20,7 +20,7 @@ class rndBase extends SqRootScript
 	function DebugPrint(msg)
 	{
 		if (debug)
-			print(">" + self + ": " + msg);
+			print(self + ">: " + msg);
 	}
 
 	//override this
@@ -80,20 +80,5 @@ class rndBase extends SqRootScript
 		if (value1 < value2)
 			return value1;
 		return value2;
-	}
-	
-	//Shuffles an array
-	//https://en.wikipedia.org/wiki/Knuth_shuffle
-	function Array_Shuffle(shuffle = [])
-	{
-		for (local position = shuffle.len() - 1;position >= 0;position--)
-		{
-			local val = Data.RandInt(0, position);
-			local temp = shuffle[position];
-			shuffle[position] = shuffle[val];
-			shuffle[val] = temp;
-		}		
-				
-		return shuffle;
 	}
 }

@@ -34,11 +34,13 @@ CreateArch "Marker" "rndOutputMarker"
 //~SwitchLink to a Randomiser to have all linked Targets added as outputs
 CreateArch "Marker" "rndObjectCollection"
 {
+	/*
 	+ObjProp "Scripts"
 	{
 		"Script 0" "rndObjectPool"
 		"Don't inherit" false
 	}
+	*/
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
@@ -69,40 +71,8 @@ CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
 }
 
 /*
-//FakePhysics
-CreateArch "Misc Metaprops" "Object Randomiser - Add Physics"
+//Set a particular output to freeze any items and not give them velocity. This means items can be frozen in specific spots without flying around
+CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
 {
-	+ObjProp "PhysType"
-	{
-		"Type" "Sphere"
-		"# Submodels" 1
-		"Remove on Sleep" FALSE
-		"Special" FALSE
-	}
-	
-	+ObjProp "PhysAttr"
-	{
-		"Gravity %" 100.00
-		"Mass" 30.00
-		"Density" 1.00
-		"Elasticity" 1.00
-		"Base Friction" 0.00
-		"COG Offset" 0.00, 0.00, 0.00
-		"Climbable Sides" "[None]"
-		"Flags" "[None]"
-		"Rotation Axes" "X Axis, Y Axis, Z Axis"
-		"Rest Axes" "+Y Axis, -Y Axis"
-	}
-
-	+ObjProp "PhysDims"
-	{
-		"Size" 0.00, 0.00, 0.00
-		"Radius 1" 0.14
-		"Radius 2" 0.00
-		"Offset 1" 0.00, 0.00, 0.00
-		"Offset 2" 0.00, 0.00, 0.00
-		"Point vs Terrain" FALSE
-		"Point vs Not Special" FALSE
-	}
 }
 */

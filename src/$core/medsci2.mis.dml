@@ -93,6 +93,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 }
 
 //Rad Hypo on bench
++MetaProp 1495 "Object Randomiser - High Priority Output"
 +Link 1495 "rndMedicalRadiation1Objects" "Target"
 {
 }
@@ -183,8 +184,6 @@ Create "rndObjectCollection" "rndHackableObjects"
 
 ////Corpses
 
-
-
 //Guy in Store Room with Bed
 +Link 497 "rndMedicalObjects" "Target"
 {
@@ -270,6 +269,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 ////Loose Items
 
 //Wine Bottle in Store Room with Bed
++MetaProp 1516 "Object Randomiser - No Auto Output"
 +Link 1516 "rndMedicalObjects" "Target"
 {
 }
@@ -463,7 +463,19 @@ Create "rndOutputMarker" "rndRadiationShelves"
 
 ////Loose Items
 
+//Magazine in first apartment
++Link 163 "rndCrewObjects" "Target"
+{
+}
+
+//Bullets in first apartment
++Link 291 "rndCrewObjects" "Target"
+{
+}
+
 //Pistol on the ramp at the top of the room near the camera
+//Output disabled due to weirdness with items falling into the water
++MetaProp 1431 "Object Randomiser - No Auto Output"
 +Link 1431 "rndCrewObjects" "Target"
 {
 }
@@ -559,11 +571,13 @@ Create "rndOutputMarker" "rndRadiationShelves"
 }
 
 //Nanites at top of dark room near Watts office
++MetaProp 949 "Object Randomiser - High Priority Output"
 +Link 949 "rndCrewObjects" "Target"
 {
 }
 
 //Shotgun at top of dark room near Watts office
++MetaProp 607 "Object Randomiser - No Auto Output"
 +Link 607 "rndCrewObjects" "Target"
 {
 }
