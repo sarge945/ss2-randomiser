@@ -66,6 +66,22 @@ class rndBase extends SqRootScript
 		return obj == type || Object.Archetype(obj) == type || Object.InheritsFrom(obj,type);
 	}
 	
+	//Returns the max of 2 values
+	function Max(value1, value2)
+	{
+		if (value1 > value2)
+			return value1;
+		return value2;
+	}
+	
+	//Returns the min of 2 values
+	function Min(value1, value2)
+	{
+		if (value1 < value2)
+			return value1;
+		return value2;
+	}
+	
 	//Shuffles an array
 	//https://en.wikipedia.org/wiki/Knuth_shuffle
 	function Array_Shuffle(shuffle = [])

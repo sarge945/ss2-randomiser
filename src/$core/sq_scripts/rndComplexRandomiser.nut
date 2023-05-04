@@ -73,8 +73,9 @@ class rndComplexRandomiser extends rndBase
 	function Randomize()
 	{
 		local times = Data.RandInt(minTimes,maxTimes);
+		DebugPrint("Randomize: Rolling " + times + " times");
 
-		while (times >= 0)
+		while (times > 0)
 		{	
 			local selectedInput = input_roller.Roll();
 			local selectedOutput = output_roller.Roll();

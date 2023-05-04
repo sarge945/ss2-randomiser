@@ -1,0 +1,413 @@
+DML1
+
+FINGERPRINT
+{
+   852 [119.58 -610.71 -27.35]
+   857 [121.51 -604.94 -27.35]
+   861 [124.51 -594.94 -27.35]
+   856 [131.63 -599.69 -27.35]
+   858 [131.72 -589.75 -27.35]
+   862 [125.51 -581.94 -27.35]
+   859 [127.68 -576.44 -27.35]
+   864 [121.51 -569.94 -27.35]
+   865 [118.51 -560.94 -27.35]
+   860 [126.45 -560.13 -28.35]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Engineering Tubes
+Create "rndObjectCollection" "rndTubeObjects"
+{
+}
+
+//Create an object collection for the Engineering Tubes Storage Room 4
+Create "rndObjectCollection" "rndTubeStorage4Objects"
+{
+}
+
+//Create an object collection for the Engineering Tubes Storage Room 5 (where 5EM-dEX is stored)
+Create "rndObjectCollection" "rndTubeStorage5Objects"
+{
+}
+
+//Create an object collection for the Engineering Control Lobby
+Create "rndObjectCollection" "rndControlLobbyObjects"
+{
+}
+
+//Create an object collection for the Engineering Control Area (unlocked after Cargo Bays)
+Create "rndObjectCollection" "rndControlObjects"
+{
+}
+
+//Create an object collection for the Engineering Engine Area (lobby and both nacelles)
+Create "rndObjectCollection" "rndEngineObjects"
+{
+}
+
+//Create an object collection for the Engineering Armoury Area
+Create "rndObjectCollection" "rndArmouryObjects"
+{
+}
+
+//Create an object collection for the Engineering Service Tunnel
+Create "rndObjectCollection" "rndServiceTunnelObjects"
+{
+}
+
+//Create an object collection for the Security Crate objects
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Coolant Tubes	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in cabin near start of level
++Link 545 "rndTubeObjects" "Target"
+{
+}
+
+//Small Crates in Broken Storage Room
++Link 1507 "rndTubeObjects" "Target"
+{
+}
++Link 1551 "rndTubeObjects" "Target"
+{
+}
++Link 1552 "rndTubeObjects" "Target"
+{
+}
+
+////Corpses
+
++Link 1164 "rndTubeObjects" "Target"
+{
+}
+
++Link 1063 "rndTubeObjects" "Target"
+{
+}
+
++Link 840 "rndTubeObjects" "Target"
+{
+}
+
+//Guy up against door of Storage Room 5
++Link 819 "rndTubeObjects" "Target"
+{
+}
+
++Link 1175 "rndTubeObjects" "Target"
+{
+}
+
++Link 1177 "rndTubeObjects" "Target"
+{
+}
+
++Link 1580 "rndTubeObjects" "Target"
+{
+}
+
+//Broken storage room
++Link 1499 "rndTubeObjects" "Target"
+{
+}
+
+////Loose Objects
+
+/*
+//Radiation Hypo near start of map
++Link 1482 "rndTubeObjects" "Target"
+{
+}
+
+//Vodka near start of map
++Link 681 "rndTubeObjects" "Target"
+{
+}
+
+//Mug near start of map
++Link 560 "rndTubeObjects" "Target"
+{
+}
+*/
+
+//AP Bullets in central section (near alarm panel)
++Link 988 "rndTubeObjects" "Target"
+{
+}
+
+//Ciggies near engine area door
++Link 839 "rndTubeObjects" "Target"
+{
+}
+
+//Wrench in Tube area near corpse
++Link 1576 "rndTubeObjects" "Target"
+{
+}
+
+//Pistol near bottom door (near room 4)
++Link 1495 "rndTubeObjects" "Target"
+{
+}
+
+/////////////////=====	Storage Room 4	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Small Crate
++Link 1440 "rndTubeStorage4Objects" "Target"
+{
+}
++Link 1438 "rndTubeStorage4Objects" "Target"
+{
+}
++Link 1439 "rndTubeStorage4Objects" "Target"
+{
+}
++Link 1420 "rndTubeStorage4Objects" "Target"
+{
+}
++Link 1422 "rndTubeStorage4Objects" "Target"
+{
+}
+
+/////////////////=====	Storage Room 5	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in cabin near start of level
++Link 1011 "rndTubeStorage5Objects" "Target"
+{
+}
+
+/////////////////=====	Engineering Control Lobby Area	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Barriacde in Turret Room
++Link 915 "rndControlLobbyObjects" "Target"
+{
+}
++Link 1121 "rndControlLobbyObjects" "Target"
+{
+}
++Link 1120 "rndControlLobbyObjects" "Target"
+{
+}
++Link 1118 "rndControlLobbyObjects" "Target"
+{
+}
+
+////Corpses
+
+//Bottom of shaft near Security Station
++Link 874 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Headless corpse near Replicator
++Link 521 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Hallway Corpse
++Link 1801 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Hallway Corpse
++Link 1667 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Hallway Corpse
++Link 1643 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Near Armoury
++Link 1331 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Xerxes Area
++Link 1594 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Xerxes Area
++Link 1600 "rndControlLobbyObjects" "Target"
+{
+}
+
+////Loose Objects
+
+//Wrench
++Link 1618 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Med Hypo near fluidics control under a grate
++Link 1418 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Shotgun outside fluidics control door
++Link 1061 "rndControlLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Engineering Control =====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
++Link 1169 "rndControlObjects" "Target"
+{
+}
+
+/////////////////=====	Armoury	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Locker
++Link 894 "rndArmouryObjects" "Target"
+{
+}
++Link 854 "rndArmouryObjects" "Target"
+{
+}
+
+////Corpses
+
++Link 1042 "rndArmouryObjects" "Target"
+{
+}
+
+////Loose Objects
+
+//Annelid Healing Gland
++Link 165 "rndArmouryObjects" "Target"
+{
+}
+
+/*
+//Light Armour
++Link 1352 "rndArmouryObjects" "Target"
+{
+}
+*/
+
+/////////////////=====	Engine Room (aka Core Control)	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Desk in cabin
++Link 69 "rndEngineObjects" "Target"
+{
+}
+
+//Starboard Nacelle Small Crate
++Link 1158 "rndEngineObjects" "Target"
+{
+}
+
+////Loose Objects
+
+//Cabin Drinks
++Link 592 "rndEngineObjects" "Target"
+{
+}
++Link 593 "rndEngineObjects" "Target"
+{
+}
++Link 595 "rndEngineObjects" "Target"
+{
+}
+
+//Cabin Desk Items
+//Ciggies
++Link 594 "rndEngineObjects" "Target"
+{
+}
+//Mug
++Link 588 "rndEngineObjects" "Target"
+{
+}
+
+
+//Shotgun in Starboard Nacelle
++Link 1570 "rndEngineObjects" "Target"
+{
+}
+
+////Corpses
+
++Link 1203 "rndEngineObjects" "Target"
+{
+}
+
+//Starboard Nacelle
++Link 959 "rndEngineObjects" "Target"
+{
+}
+
+//Starboard Nacelle
++Link 1515 "rndEngineObjects" "Target"
+{
+}
+
+//Port Nacelle
++Link 925 "rndEngineObjects" "Target"
+{
+}
+
+//Lobby
++Link 1454 "rndEngineObjects" "Target"
+{
+}
+
+/////////////////=====	Service Tunnel	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
++Link 1159 "rndServiceTunnelObjects" "Target"
+{
+}
+
++Link 906 "rndServiceTunnelObjects" "Target"
+{
+}
+
++Link 1180 "rndServiceTunnelObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
++Link 851 "rndSecurityCrates" "Target"
+{
+}
+
++Link 823 "rndSecurityCrates" "Target"
+{
+}

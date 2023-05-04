@@ -116,6 +116,7 @@ class rndObjectPool extends rndBase
 		-3863, //GamePig Games
 		-90, //Decorative items like mugs etc
 		-1255, //magazines
+		-4105, //Annelid Healing Gland
 		//-68, //potted plants
 		//-69, //potted plants
 	];
@@ -123,8 +124,6 @@ class rndObjectPool extends rndBase
 
 	inputs = null;
 	outputs = null;
-	
-	currentOutput = null;
 
 	function Init()
 	{
@@ -136,7 +135,6 @@ class rndObjectPool extends rndBase
 		Array_Shuffle(inputs);
 		//Array_Shuffle(outputs);
 		
-		currentOutput = 0;
 		SetOneShotTimer("ProcessTimer",0.01);
 	}
 	
@@ -185,17 +183,20 @@ class rndObjectPool extends rndBase
 	}
 	
 	function AddOutput(output, forceHighPriority = false)
-	{
+	{	
 		if (forceHighPriority || Object.HasMetaProperty(output.output,"Object Randomiser - High Priority Output"))
 		{
-			if (outputs.find(output) == null)
-				outputs.insert(0,output);
+			outputs.insert(0,output);
 		}
 		else
 		{
-			if (outputs.find(output) == null)
-				outputs.append(output);
+			outputs.append(output);
 		}
+		
+		//Test, hide all outputs so we make sure we got them all
+		if (getParam("debugOutputs",false))
+			Property.SetSimple(output.output, "HasRefs", FALSE);
+		
 	}
 	
 	function ProcessTarget(target)
@@ -301,21 +302,27 @@ class rndObjectPool extends rndBase
 		
 		local success;
 		local output;
-		local tries = 0;
+		
+		local currentOutput = 0;
 		
 		do
 		{
-			DebugPrint("currentOutput is " + currentOutput);
 			output = outputs[currentOutput];
 			success = output.HandleMove(item);
 			currentOutput++;
-			tries++;
-			
-			//Loop around if needed
-			if (currentOutput >= outputs.len())
-				currentOutput = 0;
 		}
-		while (!success && tries < outputs.len());		
+		while (!success && currentOutput < outputs.len());
+
+		if (success)
+		{
+			outputs.remove(currentOutput - 1);
+			//outputs.append(output);
+			
+			//Add a little variation to the output, otherwise each container gets exactly 1 item
+			local min = Max(outputs.len() - 4,0);
+			outputs.insert(Data.RandInt(min,outputs.len()),output);
+		}
+		
 		DebugPrint("Moving " + item + " to " + output.output + " (currentOutput: " + currentOutput + ")");
 		
 		ProcessRandomisers();
