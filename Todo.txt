@@ -1,0 +1,33 @@
+Things to do before release:
+
+1. Implement the "simple" randomiser, which simply sends input items (target linked) to an object collection (output only). This will be needed later.
+	- Ignore all variations, metaprops, etc.
+	- Don't do any collision fixing or anything like that, just basic, barebones moves.
+	- Switch over Art terminals and 5em-dEx randomisers to be simple
+2. Fix Logs. Use the simple randomiser to move plot-relevant logs to specific places (like a given room) but keep them mostly in-line when needed.
+	2a) assign "Auto Ignore Input" to all plot-relevant logs
+	2b) randomise "lore" logs by adding them to the correct object pools and creating generic log randomisers
+	2c) create simple randomisers for all the plot logs, outputting them to locations not too far from their vanilla locations
+3. Fix weapons/armour
+	3a) Add the rest of the weapon randomisers to the rest of the maps. Determine a consistent rule for weapon randomisation.
+	3b) Add armour randomisers to all the maps
+4. Check everything in every file. Perhaps check out files to make it easier. Rules should be consistent across the whole game, with some exceptions.
+5. Randomise eggs
+	5a) Create an "egg" randomiser, which will replace eggs with another type of egg
+6. Randomise security terminals/stations
+7. Write documentation on how to make mods compatible with the randomiser
+8. Add markers to all levels
+9. Devise a new system for keeping object placements even without needing to have an intricate web of markers.
+10. Search for all TODOs in the DML files
+11. Investigate Delacroix log in medsci1 (the one on the gurney near R&D) as it seems to have physics issues, may be caused by physics fix done in logs/gamesys.dml
+12. Switch over Eggs, Art and Hardware Override randomisers to be simple randomisers
+
+
+Known Bugs:
+- Watts can get logs
+- Alcove near watts quarters shouldn't contain junk (make it high prio)
+- Fix Many bodybag
+
+Possible Item Updates:
+- Cyber Modules (1351) in ops3 should also allow hypos, softs and other tiny items
+- Chips in water at end of medsci2 should allow self only as well, plus softs etc
