@@ -279,7 +279,8 @@ class Output
 			return false;
 	
 		//Ensure that if self only is enabled, we only allow ourself
-		if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
+		if (selfOnly && !(rndUtil.SameItemType(input,obj) || input.originalContainer == obj))
+		//if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
 			return false;
 	
 		currentOutputLocation = GetValidOutputLocation(noSecret,input);
@@ -437,7 +438,7 @@ class ObjectPlacer
 		{
 		}
 		//If we are the same archetype, "lock" into position
-		else if (SameItemType(input))
+		else if (rndUtil.SameItemType(input,obj))
 		{
 			Object.Teleport(input.obj, position, facing);
 		}
@@ -489,36 +490,5 @@ class ObjectPlacer
 			}
 		}
 		return vector(0,0,facing.z);
-	}
-	
-	//Items in this table will be considered the same archetype for the SameItemType function
-	static similarArchetypes = [
-		[-964, -965, -967], //Vodka, Champagne, Liquor
-		[-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
-		[-1256, -1257, -1258, -1259, -1260, -1261], //This Month in Ping-Pong, Rolling Monthly, Cigar Lover, DJ Lover, Kangaroo Quarterly, Vita Men's Monthly
-		[-1455, -1485], //Circuit Board, RadKey Card
-		[-1277, -2936], //Art Terminal, Code Art
-	];
-	
-	function SameItemType(input)
-	{		
-		if (rndUtil.isArchetype(input.obj,obj))
-			return true;
-					
-		//Similar Archetypes count for the same
-		foreach (archList in similarArchetypes)
-		{
-			local iValid = false;
-			local oValid = false;
-			foreach (arch in archList)
-			{
-				if (rndUtil.isArchetype(input.obj,arch))
-					iValid = true;
-				if (rndUtil.isArchetype(obj,arch))
-					oValid = true;
-			}
-			if (iValid && oValid)
-				return true;
-		}
 	}
 }
