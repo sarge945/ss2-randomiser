@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Cryo Access Card
-Create "rndComplexRandomiser" "rndCryoKeycardRandomiser"
+Create "rndCardRandomiser" "rndCryoKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
 }
 
 +Link "rndCryoObjectsAfterAirlock" "rndCryoKeycardRandomiser" "SwitchLink"
@@ -20,9 +19,8 @@ Create "rndComplexRandomiser" "rndCryoKeycardRandomiser"
 // ================================================================================
 
 //Create a randomiser for the Science Sector Power Cell
-Create "rndComplexRandomiser" "rndSciencePowercellRandomiser"
+Create "rndPowercellRandomiser" "rndSciencePowercellRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Science Items to it as Input
@@ -34,3 +32,11 @@ Create "rndComplexRandomiser" "rndSciencePowercellRandomiser"
 +Link "rndScienceObjects" "rndSciencePowercellRandomiser" "~SwitchLink"
 {
 }
+
+// ================================================================================
+// 								Kill Power Cell Email
+//					We need to kill the email about the second power cell,
+//					Since it's position may be randomised in a given playthrough
+// ================================================================================
+
+-ObjProp "em 0217" "Logs2"

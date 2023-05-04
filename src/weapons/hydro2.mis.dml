@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Weapons for Admin, Security and any area that doesn't require a keycard
-Create "rndComplexRandomiser" "rndWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndAdminObjects" "rndWeaponRandomiser" "SwitchLink"
@@ -30,9 +29,8 @@ Create "rndComplexRandomiser" "rndWeaponRandomiser"
 }
 
 //Create a randomiser for the Weapons for Sector B
-Create "rndComplexRandomiser" "rndWeaponSectorBRandomiser"
+Create "rndWeaponRandomiser" "rndWeaponSectorBRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndSectorBObjects" "rndWeaponSectorBRandomiser" "SwitchLink"
@@ -50,9 +48,8 @@ Create "rndComplexRandomiser" "rndWeaponSectorBRandomiser"
 }
 
 //Create a randomiser for the Weapons for Sector C
-Create "rndComplexRandomiser" "rndWeaponSectorCRandomiser"
+Create "rndWeaponRandomiser" "rndWeaponSectorCRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndSectorCObjects" "rndWeaponSectorCRandomiser" "SwitchLink"

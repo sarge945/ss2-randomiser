@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs in the map
+Create "rndAudioLogRandomiser" "rndLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndMedicalObjects" "rndLogRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalRadiation1Objects" "rndLogRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalRadiation2Objects" "rndLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMedicalObjects" "rndLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndMedicalRadiation1Objects" "rndLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndMedicalRadiation2Objects" "rndLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndLogRandomiser" "~SwitchLink"
+{
+}

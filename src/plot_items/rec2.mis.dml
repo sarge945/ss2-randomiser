@@ -4,9 +4,8 @@
 
 //Create a randomiser for the Crew Quarters keycard
 //It should aonly appear in the Garden Trapped area
-Create "rndComplexRandomiser" "rndKeycardRandomiser"
+Create "rndCardRandomiser" "rndKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs
@@ -21,9 +20,8 @@ Create "rndComplexRandomiser" "rndKeycardRandomiser"
 /////////////////////////////////////////////////
 
 //Create a randomiser for the Art Terminals
-Create "rndComplexRandomiser" "rndArtRandomiser"
+Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
 }
 
 //Inputs

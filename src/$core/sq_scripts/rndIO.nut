@@ -8,9 +8,6 @@ class rndIOCollection
 
 	inputs = null;
 	outputs = null;
-	outputsContainers = null;
-	outputsMarkers = null;
-	outputsItems = null;
 	randomiser = null;
 	seed = null;
 	debugger = null;
@@ -20,9 +17,6 @@ class rndIOCollection
 		randomiser = cRandomiser;
 		inputs = [];
 		outputs = [];
-		outputsContainers = [];
-		outputsMarkers = [];
-		outputsItems = [];
 		seed = cSeed;
 		debugger = cDebugger;
 		GetInputsAndOutputsForRandomiser();
@@ -84,13 +78,6 @@ class rndIOCollection
 		
 		local output = Output(obj,seed,debugger);
 		outputs.append(output);
-	
-		if (rndUtil.isContainer(obj))
-			outputsContainers.append(output);
-		else if (output.isMarker)
-			outputsMarkers.append(output);
-		else
-			outputsItems.append(output);
 	}
 	
 	//Note: This is checked for both items AND containers.
@@ -99,6 +86,7 @@ class rndIOCollection
 	{
 		if (Object.HasMetaProperty(obj,"Object Randomiser - No Auto Input"))
 			return false;
+		
 		return true;
 	}
 	
@@ -128,6 +116,7 @@ class Input
 		-4286, //Basketball
 		
 		//Controversial Ones, might remove
+		-76, //Audio Log
 		-91, //Soda
 		-92, //Chips
 		-964, //Vodka
@@ -154,6 +143,7 @@ class Input
 	isJunk = null;
 	containerOnly = null;
 	originalContainer = null;
+	fromCorpse = null;
 
 	constructor(cObj,cOriginalContainer = null)
 	{
@@ -161,6 +151,7 @@ class Input
 		isJunk = GetIsJunk();
 		containerOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Container Only");
 		originalContainer = cOriginalContainer;
+		fromCorpse = originalContainer != null && rndUtil.isCorpse(originalContainer);
 	}
 	
 	function SetInvalid(randomiser)
@@ -185,6 +176,7 @@ class Output
 	highPriority = null;
 	isMarker = null;
 	isContainer = null;
+	isCorpse = null;
 	selfOnly = null;
 	seed = null;
 	outputLocations = null;
@@ -196,6 +188,7 @@ class Output
 		highPriority = Object.HasMetaProperty(cObj,"Object Randomiser - High Priority Output");
 		selfOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Output Self Only");
 		isContainer = rndUtil.isContainer(cObj);
+		isCorpse = rndUtil.isCorpse(cObj);
 		isMarker = rndUtil.isMarker(cObj);
 		seed = cSeed;
 		debugger = cDebugger;
@@ -245,8 +238,12 @@ class Output
 	function GetValidOutputLocation(noSecret,noRespectJunk,input)
 	{
 		foreach(location in outputLocations)
-		{		
+		{	
 			if (!location.IsValid())
+				continue;
+				
+			//If it's not a container, and we have container only set, don't allow it
+			if (!rndUtil.isContainer(location.obj) && input.containerOnly)
 				continue;
 		
 			//don't allow junk

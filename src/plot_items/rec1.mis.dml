@@ -4,9 +4,8 @@
 
 //Create a randomiser for the Athletics Keycard
 //It should aonly appear in the Crew Quarters
-Create "rndComplexRandomiser" "rndKeycardRandomiser"
+Create "rndCardRandomiser" "rndKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs
@@ -22,9 +21,8 @@ Create "rndComplexRandomiser" "rndKeycardRandomiser"
 /////////////////////////////////////////////////
 
 //Create a randomiser for the Power Cell
-Create "rndComplexRandomiser" "rndPowercellRandomiser"
+Create "rndPowercellRandomiser" "rndPowercellRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs
@@ -45,9 +43,8 @@ Create "rndComplexRandomiser" "rndPowercellRandomiser"
 /////////////////////////////////////////////////
 
 //Create a randomiser for the Art Terminals
-Create "rndComplexRandomiser" "rndArtRandomiser"
+Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
 }
 
 //Inputs

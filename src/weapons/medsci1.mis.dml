@@ -5,9 +5,8 @@
 //Create a randomiser for the Cryo Sector Weapons (only PsiAmp and a Wrench)
 //priority 1 tells it to go after everything else. Since we only have 1 item to randomise,
 //it will always appear in the little window section since that is always classed as a high priority input.
-Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndCryoWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Cryo Items to it as Input
@@ -31,9 +30,8 @@ Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
 }
 
 //Create a randomiser for the Science Sector Weapons
-Create "rndComplexRandomiser" "rndScienceWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndScienceWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Science Items to it as Input
@@ -47,9 +45,8 @@ Create "rndComplexRandomiser" "rndScienceWeaponRandomiser"
 }
 
 //Create a randomiser for the R and D Weapons
-Create "rndComplexRandomiser" "rndRandDWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndRandDWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

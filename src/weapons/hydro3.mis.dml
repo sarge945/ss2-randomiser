@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a Randomiser for the Weapons
-Create "rndComplexRandomiser" "rndWeaponsRandomiser"
+Create "rndWeaponRandomiser" "rndWeaponsRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

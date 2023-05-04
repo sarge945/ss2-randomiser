@@ -5,6 +5,12 @@ class rndUtil
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 	
+	static function isCorpse(obj)
+	{
+		return isArchetype(obj,-503);
+	}
+	
+	//Return true for containers and corpses
 	static function isContainer(obj)
 	{
 		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
@@ -204,6 +210,50 @@ class rndFilterShuffle
 		}		
 				
 		return shuffle;
+	}
+}
+
+//Filters an array of outputs based on corpse and container status
+class rndFilterOutputsByType
+{
+	results = null;
+
+	constructor(outputs,noContainers,noCorpses)
+	{
+		results = [];
+	
+		foreach(val in outputs)
+		{
+			if (noContainers && val.isContainer)
+				continue;
+			
+			if (noCorpses && val.isCorpse)
+				continue;
+			
+			results.append(val);
+		}
+	}
+}
+
+//Filters an array of inputs based on corpse and container status
+class rndFilterInputsByType
+{
+	results = null;
+
+	constructor(inputs,noContainers,noCorpses)
+	{
+		results = [];
+	
+		foreach(val in inputs)
+		{
+			if (noContainers && val.originalContainer != null)
+				continue;
+			
+			if (noCorpses && val.fromCorpse)
+				continue;
+			
+			results.append(val);
+		}
 	}
 }
 

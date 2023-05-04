@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Security Keycard
-Create "rndComplexRandomiser" "rndKeycardRandomiser"
+Create "rndCardRandomiser" "rndKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; debug=1;"
 }
 //Input
 +Link "rndBrigObjects" "rndKeycardRandomiser" "SwitchLink"

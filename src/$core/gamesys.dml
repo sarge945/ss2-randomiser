@@ -20,6 +20,33 @@ CreateArch "Marker" "rndComplexRandomiser"
 	}
 }
 
+//Randomiser Types (for convenience)
+CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
+}
+
+CreateArch "rndComplexRandomiser" "rndCardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
+}
+
+CreateArch "rndComplexRandomiser" "rndPowercellRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
+}
+
+CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277; ignorePriority=1; noSecret=1; variedOutput=0;"
+}
+
+CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; ignorePriority=1; variedOutput=0; priority=1;"
+}
+
+
 //Acts as an output
 //TargetLink this to a Randomiser, exactly like an item, and items will spawn in this location.
 CreateArch "Marker" "rndOutputMarker"

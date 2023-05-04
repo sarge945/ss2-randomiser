@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Audio Logs in Cryo
-Create "rndComplexRandomiser" "rndLogCryoRandomiser"
+Create "rndAudioLogRandomiser" "rndLogCryoRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-76; noRespectJunk=1; priority=1;"
 }
 //Inputs
 +Link "rndCryoObjectsAfterAirlock" "rndLogCryoRandomiser" "SwitchLink"
@@ -17,9 +16,8 @@ Create "rndComplexRandomiser" "rndLogCryoRandomiser"
 }
 
 //Create a randomiser for the Audio Logs in the rest of the level
-Create "rndComplexRandomiser" "rndLogRandomiser"
+Create "rndAudioLogRandomiser" "rndLogRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-76; noRespectJunk=1; priority=1;"
 }
 
 //Inputs

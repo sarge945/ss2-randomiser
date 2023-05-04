@@ -460,3 +460,67 @@ Create "rndObjectCollection" "rndSecurityCrates"
 +Link 823 "rndSecurityCrates" "Target"
 {
 }
+
+/////////////////=====	Audio Logs	=====\\\\\\\\\\\\\\\\\
+
+/*
+//Chemical Manifest
++Link 286 "rndTubeStorage5Objects" "Target"
+{
+}
+*/
+
+//Log on Sanger's Desk in her Cabin
++Link 701 "rndEngineObjectsCabin" "Target"
+{
+}
+
+//Floor in Engineering Control Lobby
++Link 936 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Floor in Engineering Tubes
++Link 1334 "rndTubeObjects" "Target"
+{
+}
+
+//Floor in Engineering Control Lobby Elevator Room
++Link 1400 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Floor in Engineering Tubes near Security Storage 4
++Link 450 "rndTubeObjects" "Target"
+{
+}
+
+//Floor in Engineering Tubes
++Link 875 "rndTubeObjects" "Target"
+{
+}
+
+/*
+//Fluidics Control Door talking about Cargo Bay 2
+//Plot relevant, don't move
++Link 451 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Fluidics Control with Aux Storage 5 code
+//Plot relevant, don't move
++Link 1421 "rndControlObjects" "Target"
+{
+}
+*/
+
+//Corner of Engine Area
++Link 1453 "rndEngineObjects" "Target"
+{
+}
+
+//Starbord Nacelle
++Link 1330 "rndEngineObjects" "Target"
+{
+}
+

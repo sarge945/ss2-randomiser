@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the non Cargo Bay weapons
-Create "rndComplexRandomiser" "rndControlWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndControlWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndHallwayObjects" "rndControlWeaponRandomiser" "SwitchLink"
@@ -24,9 +23,8 @@ Create "rndComplexRandomiser" "rndControlWeaponRandomiser"
 }
 
 //Create a randomiser for Cargo Bay 1 Weapons
-Create "rndComplexRandomiser" "rndCargoBay1WeaponRandomiser"
+Create "rndWeaponRandomiser" "rndCargoBay1WeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndCargoBay1AObjects" "rndCargoBay1WeaponRandomiser" "SwitchLink"
@@ -45,9 +43,8 @@ Create "rndComplexRandomiser" "rndCargoBay1WeaponRandomiser"
 }
 
 //Create a randomiser for Cargo Bay 2 Weapons
-Create "rndComplexRandomiser" "rndCargoBay2WeaponRandomiser"
+Create "rndWeaponRandomiser" "rndCargoBay2WeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndCargoBay2AObjects" "rndCargoBay2WeaponRandomiser" "SwitchLink"

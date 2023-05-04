@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for Korenchkins Room Log
-Create "rndComplexRandomiser" "rndKorenchkinLogRandomiser"
+Create "rndAudioLogRandomiser" "rndKorenchkinLogRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-76; noRespectJunk=1; priority=1;"
 }
 
 //Inputs

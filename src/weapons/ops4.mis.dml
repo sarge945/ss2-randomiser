@@ -6,9 +6,8 @@
 //we have seen before, and which don't matter all that much.
 //NOTE: The Stasis Field Generator is specifically not an input,
 //so don't worry about it.
-Create "rndComplexRandomiser" "rndOpsWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndOpsWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndBarracksObjects" "rndOpsWeaponRandomiser" "SwitchLink"

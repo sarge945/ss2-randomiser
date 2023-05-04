@@ -47,6 +47,7 @@ class rndComplexRandomiser extends rndBase
 	prioritizeWorld = null;
 	noRespectJunk = null;
 	noSecret = null;
+	noCorpse = null;
 	allowOriginalLocations = null;
 
 	function SetSeed()
@@ -125,6 +126,7 @@ class rndComplexRandomiser extends rndBase
 		ignorePriority = getParam("ignorePriority",false);
 		prioritizeWorld = getParam("prioritizeWorldObjects",false);
 		noSecret = getParam("noSecret",false);
+		noCorpse = getParam("noCorpse",false);
 		noRespectJunk = getParam("noRespectJunk",false);
 		allowOriginalLocations = getParam("allowOriginalLocations",false);
 		SetAllowedTypes();
@@ -134,12 +136,16 @@ class rndComplexRandomiser extends rndBase
 		//Shuffle and filter inputs by type
 		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
 		
-		outputs = rndFilterCombine(IOcollection.outputsItems,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
+		//Filter outputs based on whether they are corpses or containers, based on what we allow
+		outputs = rndFilterOutputsByType(IOcollection.outputs,false,noCorpse).results;
+		
+		//Filter inputs based on whether they are corpses or containers, based on what we allow
+		inputs = rndFilterInputsByType(inputs,false,noCorpse).results;
 		
 		//Even though we have a lot of possible outputs,
 		//We need to signal which ones are usable
 		//So we get a list of outputs which are also inputs to validate
-		local validInputOutputs = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
+		local validInputOutputs = rndFilterMatching(inputs,outputs).results_output;
 		
 		//Validate each input
 		foreach (output in validInputOutputs)
@@ -176,7 +182,7 @@ class rndComplexRandomiser extends rndBase
 				
 			debugger.Log("Outputs: ");
 			foreach (output in outputs)
-				debugger.Log(" -> " + output.obj);
+				debugger.Log(" -> " + output.obj + " (is corpse: " + output.isCorpse + ")");
 		}
 		
 		if (inputs.len() == 0)

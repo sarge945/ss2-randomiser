@@ -646,3 +646,43 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 150 "rndHackableObjects" "Target"
 {
 }
+
+/////////////////=====	Audio Logs	=====\\\\\\\\\\\\\\\\\
+
+//Desk in crew quarters
++Link 250 "rndCrewObjects" "Target"
+{
+}
+
+//Desk in vivisection lab
++Link 271 "rndMedicalObjects" "Target"
+{
+}
+
+//Table in biopsy lab
++Link 327 "rndMedicalObjects" "Target"
+{
+}
+
+//Table in radiation room
++Link 322 "rndMedicalRadiation1Objects" "Target"
+{
+}
+
+//Shelf in Radiation storage
++Link 537 "rndMedicalObjects" "Target"
+{
+}
+
+//Seat in Crew Quarters
++Link 303 "rndCrewObjects" "Target"
+{
+}
+
+/*
+//Table in Armoury Entrance
+//This one belongs here, it's story related.
++Link 329 "rndCrewObjects" "Target"
+{
+}
+*/

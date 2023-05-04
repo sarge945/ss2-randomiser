@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Medical Sector Weapons
-Create "rndComplexRandomiser" "rndMedicalWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndMedicalWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs
@@ -19,9 +18,8 @@ Create "rndComplexRandomiser" "rndMedicalWeaponRandomiser"
 }
 
 //Create a randomiser for the Crew Sector Weapons
-Create "rndComplexRandomiser" "rndCrewWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndCrewWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

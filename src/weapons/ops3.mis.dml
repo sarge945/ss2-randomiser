@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Mess Hall
-Create "rndComplexRandomiser" "rndMessHallWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndMessHallWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndMessHallObjects" "rndMessHallWeaponRandomiser" "SwitchLink"
@@ -29,9 +28,8 @@ Create "rndComplexRandomiser" "rndMessHallWeaponRandomiser"
 }
 
 //Create a randomiser for the Main Hallway
-Create "rndComplexRandomiser" "rndMainWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndMainWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndHallwayObjects" "rndMainWeaponRandomiser" "SwitchLink"

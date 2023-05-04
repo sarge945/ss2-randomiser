@@ -4,9 +4,8 @@
 
 //Create a randomiser for the Pre-Engine core weapons
 //This will cover everything before Core Control, the Nacelles, and the service tube area
-Create "rndComplexRandomiser" "rndPreCoreWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndPreCoreWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndTubeObjects" "rndPreCoreWeaponRandomiser" "SwitchLink"
@@ -35,9 +34,8 @@ Create "rndComplexRandomiser" "rndPreCoreWeaponRandomiser"
 
 //Create a randomiser for the Post-Engine core weapons
 //This will cover everything from Core Control, the Nacelles, and the service tube area
-Create "rndComplexRandomiser" "rndCoreWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndCoreWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

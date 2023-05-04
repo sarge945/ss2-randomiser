@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a randomiser for the Art Terminals
-Create "rndComplexRandomiser" "rndArtRandomiser"
+Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
 }
 
 //Inputs
