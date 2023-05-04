@@ -1,0 +1,4 @@
+class rndOutputMarker extends rndOutput
+{
+	
+}

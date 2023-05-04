@@ -1,0 +1,16 @@
+//Create a randomiser for the items before the cryo airlock
+Create "rndRandomiser" "rndCryoRandomiser"
+{
+	//+ObjProp "DesignNoteSS" = "Input0="rndCryoBeforeAirlock"; Input1="rndCryoAfterAirlock"; Output0="rndCryoAfterAirlock";"
+}
+//Add Inputs
++Link "rndCryoRandomiser" "rndCryoBeforeAirlock" "Target"
+{
+}
++Link "rndCryoRandomiser" "rndCryoAfterAirlock" "Target"
+{
+}
+//Add Outputs
++Link "rndCryoRandomiser" "rndCryoBeforeAirlock" "~Target"
+{
+}

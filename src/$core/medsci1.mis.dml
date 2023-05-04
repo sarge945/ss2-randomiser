@@ -1,0 +1,791 @@
+DML1
+
+FINGERPRINT
+{
+   1892 [105.14 -5.11 -2]
+   870 [104.99 -0.17 -2]
+   1131 [97.79 0.96 -2]
+   1939 [94.26 4.32 -2]
+   361 [90.57 9.52 -2]
+   392 [101.62 18.81 -2]
+   1087 [122.71 69.42 -2]
+   388 [127.93 65.88 -2]
+   476 [128.1 61.64 -2]
+   365 [127.73 57.51 -2]
+}
+
+// ================================================================================
+// 								Item Collections
+// ================================================================================
+
+//Cryo Recovery Suite Items, everything before the airlock
+Create "rndObjectCollection" "rndCryoBeforeAirlock"
+{
+}
+
+//Cryo Recovery Suite Items, everything after the airlock
+Create "rndObjectCollection" "rndCryoAfterAirlock"
+{
+}
+
+//Everything in the Science Sector (except special items, like items in Hackable crates)
+Create "rndObjectCollection" "SargeMedSciScienceObjects"
+{
+}
+
+//Everything in the R&D Sector (except special items, like items in Hackable crates)
+Create "rndObjectCollection" "SargeMedSciRandDObjects"
+{
+}
+
+//Special
+Create "rndObjectCollection" "SargeMedSciSpecialObjects"
+{
+}
+
+//Everything in the Maintenance Hallway (just 1 corpse)
+Create "rndObjectCollection" "SargeMedSciMaintenanceObjects"
+{
+}
+
+// ================================================================================
+// 								Add Items to Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+
+/////////////////=====	Before the Airlock	=====\\\\\\\\\\\\\\\\\
+
+
+////Corpses
+
+//Cryo Code guy (12451)
++Link 1680 "rndCryoBeforeAirlock" "Target"
+{
+}
+
+//Wrench Guy at the start of the game
++Link 1177 "rndCryoBeforeAirlock" "Target"
+{
+}
+
+////Loose Items
+
+//Wrench in Power Recharge room
++Link 1707 "rndCryoBeforeAirlock" "Target"
+{
+}
+
+/////////////////=====	After the Airlock	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Corpse in downstairs computer room
++Link 831 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Corpse near Cryo Chambers upstairs
++Link 219 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Corpse in Computer Room Upstairs
++Link 931 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Corpse right next to skill trainers
++Link 490 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Corpse near 00000 door
++Link 1584 "rndCryoAfterAirlock" "Target"
+{
+}
+
+////Containers
+
+//Box immediately after exiting the airlock
++Link 910 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Crate near 00000 door with audio log on top
++Link 105 "rndCryoAfterAirlock" "Target"
+{
+}
+
+////Loose Items
+
+//Med hypo in the upper level
++Link 234 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//"Floor nanites" near the door to Sci
++Link 1505 "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Add the 2 items from the computer station smashable glass area
+//Shotgun Ammo
++Link 607 "rndCryoAfterAirlock" "Target"
+{
+}
+//Psi Hypo
++Link 599 "rndCryoAfterAirlock" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//inside the smashable glass section
+Create "Marker" "SargeRandomCryoSmashableMarker"
+{
+	+ObjProp "Position"
+	{
+		"Location" "42.7551, -163.693, 5.39923"
+		"Heading" d134
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomCryoSmashableMarker" "rndCryoAfterAirlock" "Target"
+{
+}
+
+//Where the floor hypo used to be (the room with the ramp and the exploding computer)
+Create "Marker" "SargeRandomCryoFloorSpot"
+{
+	+ObjProp "Position"
+	{
+		"Location" "58.015, -158.769, -3.55719"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomCryoFloorSpot" "rndCryoAfterAirlock" "Target"
+{
+}
+
+/////////////////=====	Science Sector	=====\\\\\\\\\\\\\\\\\
+
+//Small security room desk
++Link 258 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Small security room crate
++Link 565 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Overturned Crate in turret ramp room
++Link 1432 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Chemicsl Storeroom Crate
++Link 893 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Chemicsl Storeroom Crate
++Link 900 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Trap Room Crate
++Link 976 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Trap Room Desk
++Link 483 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Trap Room Desk
++Link 1071 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Desk
++Link 915 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Trashcan near R and D Sector Door in lowered area
++Link 1796 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Body Bag
++Link 794 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Body Bag
++Link 798 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Body Bag
++Link 828 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Body Bag
++Link 684 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse near Power Recharger
++Link 1182 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Corpse in the Xerxes core room
++Link 880 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Hanging guy
++Link 735 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse in Trap Room
++Link 294 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse with Power Cell at Medical Bulkhead Door
++Link 1095 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse Near the door to R and D
++Link 1153 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse Near the door to R and D
++Link 507 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse in the Xerxes Core next to the "Remember Citadel" sign
++Link 1428 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse in the Turret Ramp room
++Link 702 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Corpse in the Chemical Storeroom
++Link 867 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Corpse in the upper section next to the Turret Ambush room
++Link 998 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A bag of chips in the Security Closet
++Link 551 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A bottle of Liquor in the Security Closet
++Link 549 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A bottle of vodka in the Xerxes Core room
++Link 1425 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A bottle of vodka in the Turret Ambush room
++Link 997 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Rad Patch on Medical Lobby Desk
++Link 438 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Rad Patch in nook near Medical Lobby Desk
++Link 835 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Some floor nanites in the main Xerxes area
++Link 871 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Some AP Ammo in the Turret Ramp room
++Link 225 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Some Bullets behind Turret in Ramp Room
++Link 79 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Psi Hypo on a Box in the Turret Ambush room
++Link 159 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//A Med Hypo under a piece of Debris in a Computer Room near the R and D Entrance
++Link 1113 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Nanites near recharging station
++Link 1665 "SargeMedSciScienceObjects" "Target"
+{
+}
+
+
+
+
+////Extra Markers
+
+
+
+
+
+//On the floor near the first power charger (with the turrets)
+Create "Marker" "SargeRechargerInput"
+{
+	+ObjProp "Position"
+	{
+		"Location" "2.54925, -25.0458, -13.2326"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRechargerInput" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Bench in small area with trashcan and observation window to Watts lab
+Create "Marker" "SargeRandomObservationRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "36.5863, 45.1214, -13.0845"
+		"Heading" 4234
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomObservationRoom" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Desk in trap room
+Create "Marker" "SargeRandomTrapRoomDesk"
+{
+	+ObjProp "Position"
+	{
+		"Location" "33.829, -59.5517, 0.115531"
+		"Heading" 2344
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomTrapRoomDesk" "SargeMedSciScienceObjects" "Target"
+{
+}
+//Desk in trap room
+Create "Marker" "SargeRandomTrapRoomDesk2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-0.526425, -57.9892, 0.115531"
+		"Heading" 5aa4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomTrapRoomDesk2" "SargeMedSciScienceObjects" "Target"
+{
+}
+//Trap room grating area
+Create "Marker" "SargeRandomTrapRoomGrating"
+{
+	+ObjProp "Position"
+	{
+		"Location" "7.85815, -39.3168, -1.68447"
+		"Heading" 218
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomTrapRoomGrating" "SargeMedSciScienceObjects" "Target"
+{
+}
+/*
+//Trap room floor area
+Create "Marker" "SargeRandomTrapRoomFloor"
+{
+	+ObjProp "Position"
+	{
+		"Location" "35.518, -29.8082, -3.0694"
+		"Heading" f858
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomTrapRoomFloor" "SargeMedSciScienceObjects" "Target"
+{
+}
+*/
+
+//Security Room closet desk
+Create "Marker" "SargeRandomSecurityRoomClosetDesk"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-35.9509, -168.484, -0.0694024"
+		"Heading" e478
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomSecurityRoomClosetDesk" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+
+//Medical lobby desk
+Create "Marker" "SargeRandomMedicalLobbyDesk"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-54.7713, -195.792, 0.830598"
+		"Heading" de60
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomMedicalLobbyDesk" "SargeMedSciScienceObjects" "Target"
+{
+}
+Create "Marker" "SargeRandomMedicalLobbyDesk2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-73.9693, -198.961, 0.830598"
+		"Heading" 3610
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomMedicalLobbyDesk2" "SargeMedSciScienceObjects" "Target"
+{
+}
+Create "Marker" "SargeRandomMedicalLobbyDesk3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-67.5565, -194.652, 0.830598"
+		"Heading" a98
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomMedicalLobbyDesk3" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Medical lobby nook above the desk
+Create "Marker" "SargeRandomMedicalLobbyDesk4"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-74.899, -208.508, 8.6306"
+		"Heading" a98
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomMedicalLobbyDesk4" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Chair in the main Xerxes room
+Create "Marker" "SargeRandomXerxesChair"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-50.4874, -42.5113, -0.969402"
+		"Heading" b6c8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomXerxesChair" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Gurney in the Morgue
+Create "Marker" "SargeRandomMorgueGurney"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-83.5665, -111.267, -0.157899"
+		"Heading" fa5c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomMorgueGurney" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Computer Room near R&D
+Create "Marker" "SargeRandomComputerRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "12.423, -5.5672, -2.93785"
+		"Heading" ea39
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomComputerRoom" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//Chemical Storeroom
+Create "Marker" "SargeRandomChemicalStoreroom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-34.6176, -43.9759, -0.537849"
+		"Heading" f270
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomChemicalStoreroom" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+//On top of box in turret/recharger room
+Create "Marker" "SargeRandomTurretRoomBox"
+{
+	+ObjProp "Position"
+	{
+		"Location" "3.89734, 13.2885, -4.88342"
+		"Heading" f508
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomTurretRoomBox" "SargeMedSciScienceObjects" "Target"
+{
+}
+
+/////////////////=====	R And D Sector	=====\\\\\\\\\\\\\\\\\
+
+//A Desk
++Link 533 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Overturned Desk in Power Recharger room
++Link 1391 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Crate opposite power recharger
++Link 525 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Crate outside power recharger room next to body
++Link 562 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Shotgun guy
++Link 967 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Corpse in random closet near Turret window
++Link 1362 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Corpse in corner of Watts room
++Link 1351 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Ghost Phantom Corpse in Hallway
++Link 833 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Corpse in Power Recharger Room
++Link 781 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Headless Corpse in the main R and D hallway
++Link 492 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//A Med Hypo
++Link 114 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//A Pistol in the small Closet near the Turret Window
++Link 1363 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Some Juice in the main R and D Hallway
++Link 297 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Some Pistol Bullets near a Camera outside the Power Cell Room
++Link 1343 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//AP Clip on the Bench in the Power Cell Room
++Link 1345 "SargeMedSciRandDObjects" "Target"
+{
+}
+
+
+
+
+////Extra Markers
+
+
+
+
+
+
+//Dr Watts room gurneys
+Create "Marker" "SargeRandomWattsRoomOutput2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "12.9051, 110.403, -12.073"
+		"Heading" 3580
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomWattsRoomOutput2" "SargeMedSciRandDObjects" "Target"
+{
+}
+Create "Marker" "SargeRandomWattsRoomOutput3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "43.0566, 106.801, -12.073"
+		"Heading" b3e0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomWattsRoomOutput3" "SargeMedSciRandDObjects" "Target"
+{
+}
+
+//Table in R&D Room with power charger
+Create "Marker" "SargeRandomRandDPowerRoomDesk"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-26.0393, 110.423, -8.06447"
+		"Heading" e0be
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomRandDPowerRoomDesk" "SargeMedSciRandDObjects" "Target"
+{
+}
+//Table in R&D Room with power charger
+Create "Marker" "SargeRandomRandDPowerRoomDesk2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-23.2229, 95.1905, -8.06447"
+		"Heading" 2590
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomRandDPowerRoomDesk2" "SargeMedSciRandDObjects" "Target"
+{
+}
+//Table in R&D Room with power charger
+Create "Marker" "SargeRandomRandDPowerRoomDesk3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-30.1695, 52.4995, 0.515529"
+		"Heading" 1fc
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomRandDPowerRoomDesk3" "SargeMedSciRandDObjects" "Target"
+{
+}
+
+
+//Gurney in main R&D Hallway
+Create "Marker" "SargeRandomRandDHallway1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-23.676, 45.1518, 0.115529"
+		"Heading" 844
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "SargeRandomRandDHallway1" "SargeMedSciRandDObjects" "Target"
+{
+}
+
+/////////////////=====	Maintenance Sector	=====\\\\\\\\\\\\\\\\\
+
+//Corpse next to Engineering hatch
++Link 165 "SargeMedSciMaintenanceObjects" "Target"
+{
+}
+
+
+// ================================================================================
+// 								Randomisers
+// ================================================================================

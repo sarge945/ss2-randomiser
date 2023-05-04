@@ -1,0 +1,63 @@
+DML1
+
+//Input data for the randomiser system. Acts as a "collection" of objects,
+//based on Target links
+CreateArch "Marker" "rndObjectCollection"
+{
+}
+
+//Takes one or more Object Collections and acts on them, based on conditions
+CreateArch "Marker" "rndRandomiser"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndRandomiser"
+		//"Script 0" "nuts"
+		"Don't inherit" false
+	}
+}
+
+//Acts in conjunction with a linked Object Collection, as an output
+CreateArch "Marker" "rndOutputMarker"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutputMarker"
+		"Don't inherit" false
+	}
+}
+
+//Attach to a container to make it act as an output. Similar to the output Marker above
+CreateArch "Misc Metaprops" "Object Randomiser - Container"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutputContainer"
+		"Don't inherit" false
+	}
+}
+
+////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
+
+/*
+//Prevent a container from having more than 1 of a certain item (used for wrench guy at the start of the game)
+CreateArch "Misc Metaprops" "Object Randomiser  - No Duplicates"
+{
+}
+
+//Disable physics on an output
+CreateArch "Misc Metaprops" "Object Randomiser - Disable Physics"
+{
+}
+
+//Create a Marker at the location of an input when adding it to a randomiser
+CreateArch "Misc Metaprops" "Object Randomiser - Create Marker"
+{
+}
+
+
+//Item won't be stripped from any inventories under any circumstances. Used for plot items, various logs, etc.
+CreateArch "Misc Metaprops" "Object Randomiser - Dont Strip"
+{
+}
+*/
