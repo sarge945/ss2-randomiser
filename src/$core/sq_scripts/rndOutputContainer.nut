@@ -2,7 +2,7 @@ class rndOutputContainer extends rndOutput
 {
 	function ProcessItem()
 	{
-		print ("adding " + item + " to inventory for " + self);
+		print ("output " + self + " adding " + item + " to inventory");
 		
 		//Remove previous Contains links on item
 		foreach(containsLink in Link.GetAll(linkkind("~Contains"),item))

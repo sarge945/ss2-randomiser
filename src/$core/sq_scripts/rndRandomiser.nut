@@ -6,6 +6,7 @@ class rndRandomiser extends rndBase
 	allowedTypes = null;
 	autoOutputs = null;
 	autoInputs = null;
+	maxItems = null;
 	
 	//Default allowed inputItemLists.
 	//We can replace this
@@ -37,6 +38,9 @@ class rndRandomiser extends rndBase
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
+		maxItems = getParam("maxItems",999);
+	
+		print (self + " has AutoInputs set to: " + autoInputs);
 	
 		ProcessLinks();
 		
@@ -53,13 +57,12 @@ class rndRandomiser extends rndBase
 		print ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
 		foreach (output in outputs)
 		{
-			print ("   -> " + output);
+			print ("   -> " + output[0] + " " + output[1]);
 		}
 		//================
 		
 		//We need a slightl delay here, otherwise Squirrel explodes
-		SetOneShotTimer("InitTimer",0.01);
-		Randomise();
+		SetOneShotTimer("InitTimer",1.05);
 	}
 	
 	function OnTimer()
@@ -73,10 +76,10 @@ class rndRandomiser extends rndBase
 	{
 		foreach(output in outputs)
 		{
-			if (isArchetype(output,-379) || isArchetype(output,-118))
+			if (output[1] == true)
 			{
-				if (!Object.HasMetaProperty(output,"Object Randomiser - Container"))
-					Object.AddMetaProperty(output,"Object Randomiser - Container");
+				if (!Object.HasMetaProperty(output[0],"Object Randomiser - Container"))
+					Object.AddMetaProperty(output[0],"Object Randomiser - Container");
 			}
 		}
 	}
@@ -87,17 +90,26 @@ class rndRandomiser extends rndBase
 		
 		local remaining = inputs.len();
 		
-		while (remaining > 0)
+		if (outputs.len() == 0 || inputs.len() == 0)
+			return;
+		
+		while (remaining > 0 && maxItems > 0)
 		{
-			foreach(output in outputs)
+			foreach(index,output in outputs)
 			{
-				if (remaining > 0)
+				if (remaining > 0 && maxItems > 0)
 				{
 					//print ("remaining " + remaining);
-					SendMessage(output,"ReceiveItem",inputs[remaining - 1]);
-					print ("PROCESSING INPUT " + (remaining - 1) + ": " + inputs[remaining - 1]);
+					SendMessage(output[0],"ReceiveItem",inputs[remaining - 1]);
+					print (self + " PROCESSING INPUT " + (remaining - 1) + ": " + inputs[remaining - 1]);
 					//inputs.remove(remaining - 1);
+					if (output[1] == true)
+					{
+						//print ("removing index " + index);
+						outputs.remove(index);
+					}
 					remaining--;
+					maxItems--;
 				}
 				else
 					break;
@@ -112,40 +124,79 @@ class rndRandomiser extends rndBase
 		foreach (inLink in Link.GetAll(linkkind("~Target"),self))
 		{
 			local obj = sLink(inLink).dest;
-			ProcessInput(obj);
+			ProcessInput(obj,false);
 		}
 		
-		/*
 		//All Target Links are outputs, which may be of multiple types
 		foreach (inLink in Link.GetAll(linkkind("Target"),self))
 		{
 			local obj = sLink(inLink).dest;
 			ProcessOutput(obj);
 		}
-		*/
+		
+		//All ~SwitchLink Links are object collections, their targets need to be added
+		foreach (switchLink in Link.GetAll(linkkind("~SwitchLink"),self))
+		{
+			local objList = sLink(switchLink).dest;
+		
+			{
+				foreach (inLink in Link.GetAll(linkkind("~Target"),objList))
+				{
+					local obj = sLink(inLink).dest;
+					
+					if (autoInputs == true)
+						ProcessInput(obj);
+					if (autoOutputs == true)
+						ProcessOutput(obj);
+				}
+			}
+			
+			/*
+			if (autoOutputs == true)
+			{
+				foreach (inLink in Link.GetAll(linkkind("Target"),objList))
+				{
+					local obj = sLink(inLink).dest;
+					ProcessOutput(obj);
+				}
+			}
+			*/
+		}
+	}
+
+	function ProcessOutput(obj)
+	{
+		local isContainer = isArchetype(obj,-379) || isArchetype(obj,-118);
+		local isMarker = ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
+	
+		if (isContainer || isMarker)
+			outputs.append([obj,isMarker]);
 	}
 
 	//Inputs will be either items or containers directly, or item lists
-	function ProcessInput(input)
-	{		
+	function ProcessInput(input,shouldValidate = true)
+	{
+		local isContainer = isArchetype(input,-379) || isArchetype(input,-118);
+		local isMarker = ShockGame.GetArchetypeName(input) == "rndOutputMarker";
+	
 		//Add linked objecf it it's a valid type
-		if (IsValidInput(input))
+		if (!shouldValidate || IsValidInput(input))
 			inputs.append(input);
 		
 		//if it's a container, a marker or a corpse, it's also an output
-		if (isArchetype(input,-379) || isArchetype(input,-118) || ShockGame.GetArchetypeName(input) == "rndOutputMarker") //isArchetype(input,-327)) 
+		if (isContainer || isMarker) 
 		{
-			if (autoOutputs)
-				outputs.append(input);
+			if (autoOutputs == true)
+				outputs.append([input,isMarker]);
 		}
 		
-		if (autoInputs)
+		if (autoInputs == true)
 		{
 			//Also get the contents of it's inventory and add them as well
 			foreach (containsLink in Link.GetAll(linkkind("Contains"),input))
 			{
 				local contained = sLink(containsLink).dest;			
-				if (IsValidInput(contained))
+				if (!shouldValidate || IsValidInput(contained))
 					inputs.append(contained);
 			}
 		}

@@ -5,9 +5,9 @@ class rndOutput extends rndBase
 	//We need to take a little time to allow things to actually load in first
 	function OnReceiveItem()
 	{
-		//print ("output " + self + " received " + message().data);
 		item = message().data;
-		SetOneShotTimer("GameplayTimer",0.01);
+		print ("output " + self + " received " + item);
+		SetOneShotTimer("GameplayTimer",0.1);
 	}
 	
 	function OnTimer()

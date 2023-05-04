@@ -20,7 +20,7 @@ class rndOutputMarker extends rndOutput
 	function ProcessItem()
 	{
 		local item = CloneContainedItem(item);
-		print ("moving item " + item + " to position " + Object.Position(self));
+		print ("output " + self + " moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
 		Object.Destroy(self);
 	}
