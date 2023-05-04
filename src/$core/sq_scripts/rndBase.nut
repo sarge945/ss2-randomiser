@@ -10,7 +10,7 @@ class rndBase extends SqRootScript
 	{
 		if (!GetData("Started"))
 		{
-			debug = getParam("debug",false);
+			debug = getParam("debug",true);
 			Init();
 			SetData("Started");
 		}

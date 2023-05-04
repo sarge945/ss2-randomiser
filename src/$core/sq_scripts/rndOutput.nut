@@ -1,17 +1,5 @@
 class rndOutput extends rndBase
 {
-	randomisers = null;
-	highPriority = null;
-	blocked = null;
-	process = null;
-	
-	function Init()
-	{
-		randomisers = [];
-		highPriority = getParam("highPriority",false);
-		blocked = false;
-	}
-
 	function OnReceiveItem()
 	{
 		DebugPrint("are you mad");
@@ -22,7 +10,7 @@ class rndOutput extends rndBase
 		local item = message().data;
 		DebugPrint("output " + self + " received " + item);
 		process = item;
-		SetOneShotTimer("ProcessTimer",0.3);
+		SetOneShotTimer("ProcessTimer",0.4);
 		Delay();
 	}
 	
@@ -57,15 +45,23 @@ class rndOutput extends rndBase
 		{
 			local randomiser = randomisers[Data.RandInt(0,randomisers.len() - 1)];
 			DebugPrint ("Sending GetItem to Randomiser " + randomiser);
-			SendMessage(randomiser,"GetItem");
+			
+			if (limitType)
+				SendMessage(randomiser,"GetItem",limitType);
+			else
+				SendMessage(randomiser,"GetItem");
 		}
 		//Delay();
 	}
 	
 	function OnReadyForOutput()
 	{
+		hellocount++;
 		DebugPrint (self + " received ReadyForOutput from " + message().from);
-		randomisers.append(message().from);
-		Delay();
+		
+		DebugPrint ("hello count is " + hellocount + " and we are expecting " + randomisers.len());
+		
+		if (randomisers.len() <= hellocount)
+			Delay();
 	}
 }

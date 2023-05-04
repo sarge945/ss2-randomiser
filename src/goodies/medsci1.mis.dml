@@ -2,3 +2,29 @@
 // 								Add Goodies to Randomisers
 // ================================================================================
 
+//Create a randomiser for the Cryo Sector
+Create "rndRandomiser" "rndCryoRandomiser"
+{
+}
+//Link the Cryo Items to it
++Link "rndScienceObjects" "rndCryoRandomiser" "SwitchLink"
+{
+}
+
+//Create a randomiser for the Science and R&D Sector
+Create "rndRandomiser" "rndScienceRandomiser"
+{
+}
+//Link the Science Items to it
++Link "rndScienceObjects" "rndScienceRandomiser" "SwitchLink"
+{
+}
+//Link the Maintenance Items to it
++Link "rndMaintenanceObjects" "rndScienceRandomiser" "SwitchLink"
+{
+}
+
+//Create a randomiser for the "Secure" items, like in the hack 2 crates
+Create "rndRandomiser" "rndScienceRandomiserSecure"
+{
+}

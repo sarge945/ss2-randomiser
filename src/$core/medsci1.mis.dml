@@ -39,52 +39,7 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 }
 
 // ================================================================================
-// 								Randomisers
-// ================================================================================
-
-//Create a randomiser for the Cryo Sector
-Create "rndRandomiser" "rndCryoRandomiser"
-{
-}
-//Link the Cryo Items to it
-+Link "rndScienceObjects" "rndCryoRandomiser" "SwitchLink"
-{
-}
-
-//Create a randomiser for the Science and R&D Sector
-Create "rndRandomiser" "rndScienceRandomiser"
-{
-}
-//Link the Science Items to it
-+Link "rndScienceObjects" "rndScienceRandomiser" "SwitchLink"
-{
-}
-//Link the Science Bodybags to it
-+Link "rndScienceObjectsBodybags" "rndScienceRandomiser" "SwitchLink"
-{
-}
-
-//Create a randomiser for the Science Sector Power Cell
-Create "rndRandomiser" "rndScienceRandomiserPowercell"
-{
-	+ObjProp "DesignNoteSS" = "autoInputs=false;"
-}
-//Link the Science Items to it, so it can appear anywhere
-+Link "rndScienceObjects" "rndScienceRandomiserPowercell" "SwitchLink"
-{
-}
-//Link the Power Cell to it
-+Link 1186 "rndScienceRandomiserPowercell" "Target"
-{
-}
-
-//Create a randomiser for the "Secure" items, like in the hack 2 crates
-Create "rndRandomiser" "rndScienceRandomiserSecure"
-{
-}
-
-// ================================================================================
-// 								Add Items to Item Lists
+// 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
 // 							Plus any loose items in the map
 // ================================================================================
@@ -108,6 +63,11 @@ Create "rndRandomiser" "rndScienceRandomiserSecure"
 
 //Wrench in Power Recharge room
 +Link 1707 "rndCryoObjects" "Target"
+{
+}
+
+//Power Cell needed to open Airlock door
++Link 1767 "rndCryoObjects" "Target"
 {
 }
 
@@ -264,21 +224,25 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 +Link 794 "rndScienceObjects" "Target"
 {
 }
++ObjProp 794 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
 +Link 798 "rndScienceObjects" "Target"
 {
 }
++ObjProp 798 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
 +Link 828 "rndScienceObjects" "Target"
 {
 }
++ObjProp 828 "DesignNoteSS" = "limitType=-51;"
 
 //A Body Bag
 +Link 684 "rndScienceObjects" "Target"
 {
 }
++ObjProp 684 "DesignNoteSS" = "limitType=-51;"
 
 //Corpse near Power Recharger
 +Link 1182 "rndScienceObjects" "Target"
@@ -332,6 +296,14 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 
 //Corpse in the upper section next to the Turret Ambush room
 +Link 998 "rndScienceObjects" "Target"
+{
+}
+
+
+////Loose Items
+
+//Power Cell needed to open Medical sector
++Link 1186 "rndScienceObjects" "Target"
 {
 }
 
@@ -822,3 +794,7 @@ Create "rndOutputMarker" "SargeRandomRandDHallway1"
 +Link 165 "rndMaintenanceObjects" "Target"
 {
 }
+
+// ================================================================================
+// 								Randomisers
+// ================================================================================

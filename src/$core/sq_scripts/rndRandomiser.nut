@@ -1,3 +1,11 @@
+// ================================================================================
+// Randomiser
+// Builds up a list of inputs, by getting all ~Targets, and SwitchLinks,
+// but will also get inputs from the inventories of SwitchLinks and register them as outputs.
+// Then, will iterate through inputs one by one, 
+// Sending ready messages to each output in turn,
+// until they respond asking for an item of a given type,
+// then returning the item and moving on to the next output
 class rndRandomiser extends rndBase
 {
 
@@ -7,10 +15,7 @@ class rndRandomiser extends rndBase
 	autoOutputs = null;
 	autoInputs = null;
 	
-	rollItemNum = null;
-	maxItems = null;
-	
-	currentInputIndex = null;
+	currentOutputIndex = null;
 	
 	//Default allowed inputItemLists.
 	//We can replace this
@@ -42,13 +47,7 @@ class rndRandomiser extends rndBase
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
-		maxItems = getParam("maxItems",999);
-		rollItemNum = getParam("rollItemNumber",false);
-		
-		if (rollItemNum)
-			maxItems = Data.RandInt(0,maxItems);
-		
-		currentInputIndex = 0;
+		currentOutputIndex = 0;
 	
 		DebugPrint (self + " has AutoInputs set to: " + autoInputs);
 	
@@ -71,8 +70,8 @@ class rndRandomiser extends rndBase
 		}
 		//================
 		
-		//We need a slightl delay here, otherwise Squirrel explodes
-		SetOneShotTimer("InitTimer",0.05);
+		//We need a slight delay here, otherwise Squirrel explodes
+		SetOneShotTimer("InitTimer",Data.RandFlt0to1 * 0.2);
 	}
 	
 	function OnTimer()
@@ -104,15 +103,23 @@ class rndRandomiser extends rndBase
 	//Send an item to an output
 	function OnGetItem()
 	{
-		DebugPrint (self + " received GetItem from " + message().from);
-		DebugPrint ("maxItems: " + maxItems);
+		DebugPrint (self + " received GetItem from " + message().from + " (maxitems: " + maxItems + ")");
 	
-		if (currentInputIndex < inputs.len() && currentInputIndex < maxItems)
+		if (inputs.len() > 0 && maxItems > 0)
 		{
-			DebugPrint (self + " sending ReceiveItem to " + message().from);
-			SendMessage(message().from,"ReceiveItem",inputs[currentInputIndex]);
-			currentInputIndex++;
-			maxItems--;
+			local index = 0;
+			if (message().data)
+				index = GetValidInputIndex(message().data);
+				
+			DebugPrint("index is: " + index);
+			
+			if (index >= 0)
+			{
+				DebugPrint (self + " sending ReceiveItem to " + message().from);
+				SendMessage(message().from,"ReceiveItem",inputs[index]);
+				maxItems--;
+				inputs.remove(index);
+			}
 		}
 	}
 	
@@ -199,6 +206,16 @@ class rndRandomiser extends rndBase
 					inputs.append(contained);
 			}
 		}
+	}
+	
+	function GetValidInputIndex(type)
+	{
+		foreach(index,input in inputs)
+		{
+			if (isArchetype(input,type))
+				return index;
+		}
+		return -1;
 	}
 	
 	function IsValidInput(item)
