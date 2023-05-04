@@ -582,7 +582,13 @@ Create "rndOutputMarker" "rndSectorBEmptyCloset"
 
 ////Loose Items
 
-//Wrench near Xerxes hun
+//Cyber Modules on floor in observation room
++MetaProp 632 "Object Randomiser - No Auto Output"
++Link 632 "rndSectorCObjects" "Target"
+{
+}
+
+//Wrench near Xerxes hub
 +Link 140 "rndSectorCObjects" "Target"
 {
 }
@@ -594,6 +600,29 @@ Create "rndOutputMarker" "rndSectorBEmptyCloset"
 
 //Mug on Windowsill
 +Link 337 "rndSectorCObjects" "Target"
+{
+}
+
+//Auto Repair Tool near Environmental Regulator
++Link 1067 "rndSectorCObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//Replace the cyber modules on the floor by rotating them 90 degrees, since large items won't fit otherwise
+//Replacing 632
+Create "rndOutputMarker" "rndSectorC632Replacer"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-195.6, 84, 6.10508"
+		"Heading" 1fe0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndSectorC632Replacer" "rndSectorCObjects" "Target"
 {
 }
 

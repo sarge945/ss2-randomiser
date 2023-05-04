@@ -139,6 +139,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Loose Items
 
+//Med Hypo between plant boxes
++MetaProp 1082 "Object Randomiser - No Auto Output"
++Link 1082 "rndHydro1Objects" "Target"
+{
+}
+
 //Cyber Modules near the power recharger
 +MetaProp 969 "Object Randomiser - No Auto Output"
 +Link 969 "rndHydro1Objects" "Target"

@@ -926,6 +926,11 @@ Create "rndOutputMarker" "rndCargoBay2BBox6"
 {
 }
 
+//Misc
+
+//Stop the French-Epstein device from being randomised because it's a reward for completing the area
++MetaProp 220 "Object Randomiser - No Auto Input"
+
 /////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
 
 +Link 428 "rndSecurityCrates" "Target"

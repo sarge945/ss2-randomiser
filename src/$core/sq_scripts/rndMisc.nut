@@ -302,10 +302,10 @@ class PhysicalOutput extends Output
 	
 	//Items with these archetypes will have their X, Y and Z facing set to the specified value
 	static fixArchetypes = [
-		[-938,0,0,0], //Cyber Modules
-		[-85,0,0,0], //Nanites
-		[-1396,3000,0,0], //Ciggies
-		//[-964,0,0,0], //Vodka
+		[-938,-1,0,-1], //Cyber Modules
+		[-85,0,0,-1], //Nanites
+		[-1396,3000,-1,-1], //Ciggies
+		//[-964,-1,-1,-1], //Vodka
 	];
 	
 	function FixItemFacing(item)
@@ -318,7 +318,19 @@ class PhysicalOutput extends Output
 			local type = archetype[0];
 			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
 			{
-				return vector(archetype[1], archetype[2], archetype[3]);
+				local x = archetype[1];
+				local y = archetype[2];
+				local z = archetype[3];
+				if (x == -1)
+					x = facing.x;
+				if (y == -1)
+					y = facing.y;
+				if (z == -1)
+					z = facing.z;
+				
+				return vector(x, y, z);
+				//return vector(archetype[1], archetype[2], archetype[3]);
+				//return vector(facing.x + archetype[1], 0, facing.z + archetype[3]);
 			}
 		}
 		return facing;
