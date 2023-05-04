@@ -17,6 +17,7 @@ class rndRandomiser extends rndBase
 	autoOutputs = null;
 	autoInputs = null;
 	maxItems = null;
+	allowMonsters = null;
 	
 	currentOutputIndex = null;
 	
@@ -39,6 +40,9 @@ class rndRandomiser extends rndBase
 		-3863, //GamePig Games
 		-90, //Decorative items like mugs etc
 	];
+	
+	static INPUT_OBJECT = 0;
+	static INPUT_CREATE_MARKER = 1;
 
 	function Init()
 	{
@@ -50,6 +54,8 @@ class rndRandomiser extends rndBase
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
+		allowMonsters = getParam("allowMonsters",false); //for safety
+		
 		maxItems = 999;
 		currentOutputIndex = 0;
 	
@@ -156,8 +162,6 @@ class rndRandomiser extends rndBase
 				DebugPrint("incrementing current index " + currentOutputIndex);
 				if (currentOutputIndex == outputs.len() - 1)
 					currentOutputIndex = 0;
-				else
-					currentOutputIndex++;
 			}
 			
 			if (currentOutputIndex == outputs.len() - 1)
@@ -237,8 +241,12 @@ class rndRandomiser extends rndBase
 	//Inputs will be either items or containers directly, or item lists
 	function ProcessInput(input,shouldValidate = true)
 	{
-		local isContainer = isArchetype(input,-379) || isArchetype(input,-118);
+		local isContainer = isArchetype(input,-379) || isArchetype(input,-118); //Usable Containers or Corpse
+		local isMonster = isArchetype(input,-162) && allowMonsters;
 		local isMarker = ShockGame.GetArchetypeName(input) == "rndOutputMarker";
+		local isContained = Link.AnyExist(linkkind("~Contains"), input);
+		local isPickupable = Property.Get(input,"InvDims","Width") > 0;
+		local isAllowedToCreateMarkers = !Object.HasMetaProperty(input, "Object Randomiser - No Auto Create Marker");
 		local noInherit = Property.Get(input, "Scripts", "Don't Inherit") == 1;
 	
 		//Add linked objecf it it's a valid type
@@ -254,6 +262,19 @@ class rndRandomiser extends rndBase
 			}
 			else if (autoOutputs == true)
 				outputs.append(input);
+		}
+		
+		//If it's a "world object", we can create a marker at it's position
+		if (isPickupable && isAllowedToCreateMarkers && !isContained)
+		{
+			local designNote = Property.Get(input,"DesignNoteSS");
+		
+			DebugPrint(self + ": input " + input + " is pickupable, creating auto marker");
+			//local marker = Object.BeginCreate("rndOutputMarker");
+			//Object.Teleport(marker, Object.Position(input), Object.Facing(input));
+			//Object.Teleport(marker, Object.Position(input), vector(0,0,0));
+			//Property.SetSimple(marker,"DesignNoteSS",designNote);
+			//Object.EndCreate(marker);
 		}
 		
 		if (autoInputs == true)

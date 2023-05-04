@@ -27,6 +27,7 @@ CreateArch "Marker" "rndObjectCollection"
 }
 
 //Attach to a container to make it act as an output. Similar to the output Marker above
+//This is usually auto-attached, so shouldn't need to be added to anything
 CreateArch "Misc Metaprops" "Object Randomiser - Container"
 {
 	+ObjProp "Scripts"
@@ -38,9 +39,14 @@ CreateArch "Misc Metaprops" "Object Randomiser - Container"
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
 
+//Prevent a world-object from automatically creating a marker
+CreateArch "Misc Metaprops" "Object Randomiser - No Auto Create Marker"
+{
+}
+
 /*
 //Prevent a container from having more than 1 of a certain item (used for wrench guy at the start of the game)
-CreateArch "Misc Metaprops" "Object Randomiser  - No Duplicates"
+CreateArch "Misc Metaprops" "Object Randomiser - No Duplicates"
 {
 }
 
