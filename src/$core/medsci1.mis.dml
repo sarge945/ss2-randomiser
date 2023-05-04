@@ -46,6 +46,10 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 Create "rndRandomiser" "rndCryoRandomiser"
 {
 }
+//Link the Cryo Items to it
++Link "rndScienceObjects" "rndCryoRandomiser" "SwitchLink"
+{
+}
 
 //Create a randomiser for the Science and R&D Sector
 Create "rndRandomiser" "rndScienceRandomiser"
@@ -53,6 +57,10 @@ Create "rndRandomiser" "rndScienceRandomiser"
 }
 //Link the Science Items to it
 +Link "rndScienceObjects" "rndScienceRandomiser" "SwitchLink"
+{
+}
+//Link the Science Bodybags to it
++Link "rndScienceObjectsBodybags" "rndScienceRandomiser" "SwitchLink"
 {
 }
 
@@ -253,22 +261,22 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Body Bag
-+Link 794 "rndScienceObjectsBodybags" "Target"
++Link 794 "rndScienceObjects" "Target"
 {
 }
 
 //A Body Bag
-+Link 798 "rndScienceObjectsBodybags" "Target"
++Link 798 "rndScienceObjects" "Target"
 {
 }
 
 //A Body Bag
-+Link 828 "rndScienceObjectsBodybags" "Target"
++Link 828 "rndScienceObjects" "Target"
 {
 }
 
 //A Body Bag
-+Link 684 "rndScienceObjectsBodybags" "Target"
++Link 684 "rndScienceObjects" "Target"
 {
 }
 

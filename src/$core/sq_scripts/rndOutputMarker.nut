@@ -11,7 +11,7 @@ class rndOutputMarker extends rndOutput
 		{
 			local item2 = Object.Create(item);
 			Object.Destroy(item);
-			print (item + " cloned to new item " + item2);
+			DebugPrint (item + " cloned to new item " + item2);
 			item = item2;
 		}
 		return item;
@@ -28,7 +28,7 @@ class rndOutputMarker extends rndOutput
 	{
 		item = CloneContainedItem(item);
 		FixPhysics(item);
-		print ("output " + self + " moving item " + item + " to position " + Object.Position(self));
+		DebugPrint ("output " + self + " moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
 		blocked = true;
 		Object.Destroy(self);

@@ -6,6 +6,8 @@ class rndRandomiser extends rndBase
 	allowedTypes = null;
 	autoOutputs = null;
 	autoInputs = null;
+	
+	rollItemNum = null;
 	maxItems = null;
 	
 	currentInputIndex = null;
@@ -41,9 +43,14 @@ class rndRandomiser extends rndBase
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
 		maxItems = getParam("maxItems",999);
+		rollItemNum = getParam("rollItemNumber",false);
+		
+		if (rollItemNum)
+			maxItems = Data.RandInt(0,maxItems);
+		
 		currentInputIndex = 0;
 	
-		print (self + " has AutoInputs set to: " + autoInputs);
+		DebugPrint (self + " has AutoInputs set to: " + autoInputs);
 	
 		ProcessLinks();
 		
@@ -52,15 +59,15 @@ class rndRandomiser extends rndBase
 		
 		//DEBUG CODE
 		//================
-		print ("ALL " + inputs.len() + " INPUTS FOR " + self);
+		DebugPrint ("ALL " + inputs.len() + " INPUTS FOR " + self);
 		foreach (input in inputs)
 		{
-			print ("   <- " + input);
+			DebugPrint ("   <- " + input);
 		}
-		print ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
+		DebugPrint ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
 		foreach (output in outputs)
 		{
-			print ("   -> " + output);
+			DebugPrint ("   -> " + output);
 		}
 		//================
 		
@@ -97,11 +104,12 @@ class rndRandomiser extends rndBase
 	//Send an item to an output
 	function OnGetItem()
 	{
-		print (self + " received GetItem from " + message().from);
+		DebugPrint (self + " received GetItem from " + message().from);
+		DebugPrint ("maxItems: " + maxItems);
 	
 		if (currentInputIndex < inputs.len() && currentInputIndex < maxItems)
 		{
-			print (self + " sending ReceiveItem to " + message().from);
+			DebugPrint (self + " sending ReceiveItem to " + message().from);
 			SendMessage(message().from,"ReceiveItem",inputs[currentInputIndex]);
 			currentInputIndex++;
 			maxItems--;
@@ -115,7 +123,7 @@ class rndRandomiser extends rndBase
 		foreach (inLink in Link.GetAll(linkkind("~Target"),self))
 		{
 			local obj = sLink(inLink).dest;
-			ProcessInput(obj,false);
+			ProcessInput(obj);
 		}
 		
 		//All Target Links are outputs, which may be of multiple types
