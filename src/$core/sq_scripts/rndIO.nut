@@ -199,13 +199,12 @@ class Output
 		isMarker = rndUtil.isMarker(cObj);
 		seed = cSeed;
 		debugger = cDebugger;
+		outputLocations = [];
 	}
 	
 	//Get all the possible locations this output can redirect to
 	function GetOutputLocations()
-	{
-		outputLocations = [];
-		
+	{		
 		//Add ourself, we are always a valid location
 		if (isContainer)
 			outputLocations.append(ContainerLocation(obj,highPriority));
