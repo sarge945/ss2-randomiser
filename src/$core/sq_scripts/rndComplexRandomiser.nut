@@ -30,19 +30,17 @@ class rndComplexRandomiser extends rndBase
 	function Init()
 	{
 		DebugPrint ("Randomiser Init");
-		
-		manager = IOManager();
-		delay = getParam("priority",0) * 0.02;
-		//delay += (Data.RandInt(0,1) * 0.01); //add some randomness so that randomisers go in a non-deterministic order
-		
-		ConfigureAllowedTypes()
-		
 		SetOneShotTimer("StartTimer",0.1);
-
 	}
 	
 	function Setup()
 	{		
+		delay = getParam("priority",0) * 0.02;
+		//delay += (Data.RandInt(0,1) * 0.01); //add some randomness so that randomisers go in a non-deterministic order
+		
+		ConfigureAllowedTypes();
+	
+		manager = IOManager();
 		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
 		
 		if (debug)
@@ -150,5 +148,6 @@ class rndComplexRandomiser extends rndBase
 		}
 		
 		DebugPrint("Randomize: Rolled " + count + " times");
+		Object.Destroy(self);
 	}
 }

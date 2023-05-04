@@ -4,23 +4,25 @@ class rndBase extends SqRootScript
 	debug = null;
 	initialised = null;
 
-	//Run Once.
-	function OnSim()
+	//Run Once
+	function OnBeginScript()
 	{
-		if (!initialised)
+		if (!GetData("Started"))
 		{
+			SetData("Started",true);
 			debug = getParam("debug",false);
-			//SetOneShotTimer("InitTimer",GetTimerValue());
 			Init();
-			initialised = true;
-			//Object.Destroy(self);
 		}
 	}
 	
 	function DebugPrint(msg)
 	{
 		if (debug)
-			print(self + ">: " + msg);
+		{
+			local message = self + ">: " + msg;
+			//ShockGame.AddText(message, "Player");
+			print(message);
+		}
 	}
 
 	//override this

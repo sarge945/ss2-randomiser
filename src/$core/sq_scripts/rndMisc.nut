@@ -121,16 +121,14 @@ class IOManager
 			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		//local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		
-		print ("prioritize: " + prioritize);
-		
 		if (highPriority)
 		{
-			print (item.output + " was high priority");
+			//print (item.output + " was high priority");
 			outputs.append(item);
 		}
 		else
 		{
-			print (item.output + " was low priority");
+			//print (item.output + " was low priority");
 			outputsLow.append(item);
 		}
 	}
@@ -215,6 +213,8 @@ class Output
 
 class PhysicalOutput extends Output
 {
+	static LINK_TARGET = 44;
+
 	facing = null;
 	position = null;
 	
@@ -232,7 +232,9 @@ class PhysicalOutput extends Output
 		if (!valid || Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
 			return false;
 			
-		if (Object.IsTransient(output))
+		//if (Object.IsTransient(output))
+		//if (Property.Get(item,"DoorOpenSound") == "output_used")
+		if (!Link.AnyExist(LINK_TARGET,output))
 			return false;
 		
 		/* Broken currently - do not use!
@@ -241,7 +243,10 @@ class PhysicalOutput extends Output
 		*/
 			
 		//prevent output from being used again
-		Object.SetTransience(output, true);
+		//Object.SetTransience(output, true);
+		//Property.SetSimple(item,"DoorOpenSound","output_used");
+		foreach(target in Link.GetAll(LINK_TARGET,output))
+			Link.Destroy(target);
 	
 		//Move object into position
 		Container.Remove(item);
@@ -267,19 +272,12 @@ class PhysicalOutput extends Output
 		return true;
 	}
 	
-	function CloneObject(item)
-	{
-		local item2 = Object.BeginCreate(item);
-		Object.Destroy(item);
-		return item2;
-	}
-	
 	//Items with these archetypes will have their X and Z facing set to the specified value
 	static fixArchetypes = [
-		[-938,0,0], //Cyber Modules
-		[-85,0,0], //Nanites
-		[-1396,3000,0], //Ciggies
-		//[-964,0,0], //Vodka
+		[-938,0,0,0], //Cyber Modules
+		[-85,0,0,0], //Nanites
+		[-1396,3000,0,0], //Ciggies
+		//[-964,0,0,0], //Vodka
 	];
 	
 	function FixItemFacing(item)
@@ -292,7 +290,7 @@ class PhysicalOutput extends Output
 			local type = archetype[0];
 			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
 			{
-				return vector(archetype[1], facing.y, archetype[2]);
+				return vector(archetype[1], archetype[2], archetype[3]);
 			}
 		}
 		return facing;
