@@ -7,7 +7,7 @@ class rndUtil
 	
 	static function isCorpse(obj)
 	{
-		return isArchetype(obj,-503);
+		return isArchetype(obj,-503) || isArchetype(obj,-551) || isArchetype(obj,-181);
 	}
 	
 	//Return true for containers and corpses
