@@ -1,0 +1,797 @@
+// ================================================================================
+// 								Relocators
+// ================================================================================
+
+/////////////////=====	Primate Research	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndPrimateResearchRelocator"
+{
+}
+
+//Nanites
++Link "rndPrimateResearchRelocator" 1221 "SwitchLink"
+{
+}
+//Medbed Key
++Link "rndPrimateResearchRelocator" 332 "SwitchLink"
+{
+}
+
+/*
+//In front of the turret near the Monkeys that smash glass
+Create "rndOutputMarker" "rndTurretNearMonkeys"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-123.851, -283.565, -14.864"
+		"Heading" 5cc
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndTurretNearMonkeys" "Object Randomiser - No Junk"
++Link "rndTurretNearMonkeys" "rndPrimateResearchRelocator" "Target"
+{
+}
+*/
+
+//In front of Turret. I had the same idea but this might be a better location
+Create "rndOutputMarker" "rnd_marker_47"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-128.05, -286.13, -14.56"
+        "Heading" 7085
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_47" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Inside a holding cell above in Primate Research
+Create "rndOutputMarker" "rndPrimateResearchCell"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-94.0829, -254.185, 1.2"
+		"Heading" 15b8
+		"Pitch" 0
+		"Bank" 1f88
+	}
+}
++Link "rndPrimateResearchCell" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//On a chair in Primate Research
+Create "rndOutputMarker" "rndPrimateResearchChair"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-110.543, -247.732, 0.9"
+		"Heading" ed7c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPrimateResearchChair" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//On a table in the lower section of Primate Research
+Create "rndOutputMarker" "rnd_marker_52"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-95.19, -228.69, -11.77"
+        "Heading" 5249
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_52" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Near bottom window of Primate Research
+Create "rndOutputMarker" "rnd_marker_46"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-119.89, -226.44, -14.56"
+        "Heading" 4559
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_46" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Ledge near Primate Research
+Create "rndOutputMarker" "rnd_marker_44"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-125.63, -245.82, -3.04"
+        "Heading" 2543
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_44" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Near the Nanites on the little ledge above the Primate Research lab
+Create "rndOutputMarker" "rnd_marker_43"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-89.34, -229.92, -1.98"
+        "Heading" 6186
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++MetaProp "rnd_marker_43" "Object Randomiser - No Junk"
++Link "rnd_marker_43" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Cells in Primate Research
+Create "rndOutputMarker" "rnd_marker_41"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-101.27, -265.42, 1.65"
+        "Heading" 272
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_41" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Cells in Primate Research
+Create "rndOutputMarker" "rnd_marker_40"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-106, -265.78, 1.76"
+        "Heading" 3497
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_40" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+//Biopsy Lab corner of Primate Research
+Create "rndOutputMarker" "rnd_marker_38"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-101.03, -296.87, -0.7"
+        "Heading" 1277
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_38" "rndPrimateResearchRelocator" "Target"
+{
+}
+
+
+
+
+/////////////////=====	Apartments With Overturned Table and Broken Door	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndBrokenApartmentRelocator"
+{
+}
++Link "rndBrokenApartmentRelocator" "rndMedicalObjects" "Target"
+{
+}
+
+//On the floor in the broken door room
+Create "rndOutputMarker" "rndApartmentBroken"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-126.646, -120.041, -3.3"
+		"Heading" 29b8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndApartmentBroken" "Object Randomiser - No Junk"
++Link "rndApartmentBroken" "rndBrokenApartmentRelocator" "Target"
+{
+}
+
+//Behind the table
+Create "rndOutputMarker" "rnd_marker_72"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-128.37, -96.69, -2.73"
+        "Heading" 4147
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_72" "rndBrokenApartmentRelocator" "Target"
+{
+}
+
+
+
+
+/////////////////=====	Normally Useless Apartment	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndUselessApartmentRelocator"
+{
+}
+
+//This Month in Ping-Pong
++Link "rndUselessApartmentRelocator" 1844 "SwitchLink"
+{
+}
+//Mug
++Link "rndUselessApartmentRelocator" 1839 "SwitchLink"
+{
+}
+//Cigarettes
++Link "rndUselessApartmentRelocator" 1840 "SwitchLink"
+{
+}
+//Plant
++Link "rndUselessApartmentRelocator" 1843 "SwitchLink"
+{
+}
+
+//In the Corner
+Create "rndOutputMarker" "rnd_marker_91"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-95.73, 26.55, -3.01"
+        "Heading" 3700
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_91" "rndUselessApartmentRelocator" "Target"
+{
+}
+
+
+//On the Desk
+Create "rndOutputMarker" "rnd_marker_89"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-84.01, 30.6, 0.62"
+        "Heading" 3802
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_89" "rndUselessApartmentRelocator" "Target"
+{
+}
+
+
+
+
+
+
+
+
+
+
+/////////////////=====	Apartment With Nook	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndApartmentWithNookRelocator"
+{
+}
+
+//Kangaroo Quarterly
++Link "rndApartmentWithNookRelocator" 163 "SwitchLink"
+{
+}
+
+//Bed in Apartment with Nook
+Create "rndOutputMarker" "rnd_marker_62"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-109.73, -150.82, -0.93"
+        "Heading" 3141
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_62" "rndApartmentWithNookRelocator" "Target"
+{
+}
+
+
+
+
+
+
+
+
+
+/////////////////=====	Apartment With Junk	=====\\\\\\\\\\\\\\\\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////=====	Biopsy Lab	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndBiopsyLabRelocator"
+{
+}
+
+//Med Hypo
++Link "rndBiopsyLabRelocator" 1569 "SwitchLink"
+{
+}
+//Desk
++Link "rndBiopsyLabRelocator" 471 "SwitchLink"
+{
+}
+
+//Biopsy Lab bottom floor near corpse
+Create "rndOutputMarker" "rnd_marker_24"
+{
+    +ObjProp "Position"
+    {
+        "Location" "45.19, -272.54, -16.13"
+        "Heading" 3456
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_24" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+//Biopsy Lab floor near end of desk
+Create "rndOutputMarker" "rnd_marker_23"
+{
+    +ObjProp "Position"
+    {
+        "Location" "43.71, -255.08, -16.13"
+        "Heading" 4800
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_23" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+//Top Story of Biopsy Lab
+Create "rndOutputMarker" "rnd_marker_21"
+{
+    +ObjProp "Position"
+    {
+        "Location" "45.17, -255.61, 10.11"
+        "Heading" 447
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_21" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+//Hidden nook in middle story of Biopsy Lab
+Create "rndOutputMarker" "rnd_marker_19"
+{
+    +ObjProp "Position"
+    {
+        "Location" "24.03, -256.32, -2.9"
+        "Heading" 1995
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_19" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+//Biopsy Lab bench
+Create "rndOutputMarker" "rnd_marker_18"
+{
+    +ObjProp "Position"
+    {
+        "Location" "19.77, -286.63, 0.3"
+        "Heading" 3736
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_18" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+//Biopsy Lab Desk near Turrets
+Create "rndOutputMarker" "rnd_marker_17"
+{
+    +ObjProp "Position"
+    {
+        "Location" "55.86, -262.63, 0.38"
+        "Heading" 5290
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_17" "rndBiopsyLabRelocator" "SwitchLink"
+{
+}
+
+
+
+
+
+
+
+
+/////////////////=====	Biopsy Lab Storage (near the turret)	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndBiopsyLabStorageRelocator"
+{
+}
+
+//Corpse
++Link "rndBiopsyLabStorageRelocator" 1475 "SwitchLink"
+{
+}
+/*
+//Crate
++Link "rndBiopsyLabStorageRelocator" 1476 "SwitchLink"
+{
+}
+*/
+
+//Top Shelf
+Create "rndOutputMarker" "rnd_marker_16"
+{
+    +ObjProp "Position"
+    {
+        "Location" "46.96, -238.8, 3.79"
+        "Heading" 4224
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_16" "rndBiopsyLabStorageRelocator" "Target"
+{
+}
+
+//Bottom shelf
+Create "rndOutputMarker" "rnd_marker_15"
+{
+    +ObjProp "Position"
+    {
+        "Location" "58.35, -244.73, -1.97"
+        "Heading" 4254
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_15" "rndBiopsyLabStorageRelocator" "Target"
+{
+}
+
+//Middle Shelf
+Create "rndOutputMarker" "rnd_marker_14"
+{
+    +ObjProp "Position"
+    {
+        "Location" "53.38, -244.9, 0.81"
+        "Heading" 2529
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_14" "rndBiopsyLabStorageRelocator" "Target"
+{
+}
+
+//Bottom Shelf
+Create "rndOutputMarker" "rnd_marker_13"
+{
+    +ObjProp "Position"
+    {
+        "Location" "47.08, -234.6, -1.97"
+        "Heading" 1185
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_13" "rndBiopsyLabStorageRelocator" "Target"
+{
+}
+
+
+
+
+
+/////////////////=====	Radiation Storage (near hard Radiation Room)	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndRadiationStorageRelocator"
+{
+}
++Link "rndRadiationStorageRelocator" "rndMedicalObjects" "Target"
+{
+}
+
+//Middle Shelf
+Create "rndOutputMarker" "rndRadiationShelves"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-33.6461, -169.112, 0.3"
+		"Heading" b3b4
+		"Pitch" 0
+		"Bank" 60
+	}
+}
++Link "rndRadiationShelves" "rndRadiationStorageRelocator" "Target"
+{
+}
+
+//On top of crates
+Create "rndOutputMarker" "rndRadiationLabStorageCrates"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-23.1994, -196.6, 7.04943"
+		"Heading" 8898
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndRadiationLabStorageCrates" "Object Randomiser - Secret"
++Link "rndRadiationLabStorageCrates" "rndRadiationStorageRelocator" "Target"
+{
+}
+
+//Top shelf
+Create "rndOutputMarker" "rnd_marker_8"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-33.68, -169.29, 3.53"
+        "Heading" 7964
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_8" "rndRadiationStorageRelocator" "Target"
+{
+}
+
+//Bottom Shelf
+Create "rndOutputMarker" "rnd_marker_6"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-30.18, -169.33, -2.23"
+        "Heading" 1695
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_6" "rndRadiationStorageRelocator" "Target"
+{
+}
+
+//On table in room where Polito tells you about ghosts
+Create "rndOutputMarker" "rnd_marker_4"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-51.23, -188.88, 0.47"
+        "Heading" 1707
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_4" "rndRadiationStorageRelocator" "Target"
+{
+}
+
+
+
+
+/////////////////=====	QBRM Room	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndQBRMRelocator"
+{
+}
++Link "rndQBRMRelocator" "rndMedicalObjects" "Target"
+{
+}
+
+//On the table
+Create "rndOutputMarker" "rndQBRTable"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-71.8425, -242.118, -0.6"
+		"Heading" 4a4
+		"Pitch" 0
+		"Bank" f6f0
+	}
+}
++Link "rndQBRTable" "rndQBRMRelocator" "Target"
+{
+}
+
+//Corner near Window
+Create "rndOutputMarker" "rnd_marker_3"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-79.4, -226.13, -2.73"
+        "Heading" 313
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_3" "rndQBRMRelocator" "Target"
+{
+}
+
+//Corner behind machinery
+Create "rndOutputMarker" "rnd_marker_2"
+{
+    +ObjProp "Position"
+    {
+        "Location" "-61.95, -242.54, -2.73"
+        "Heading" 5772
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_2" "rndQBRMRelocator" "Target"
+{
+}
+
+/////////////////=====	ICU Storage (the room next to the Biopsy lab across from ICU)	=====\\\\\\\\\\\\\\\\\
+
+Create "rndOutputRelocator" "rndICUStorageRelocator"
+{
+}
+
+//Champagne
++Link "rndICUStorageRelocator" 1516 "SwitchLink"
+{
+}
+//Plant
++Link "rndICUStorageRelocator" 1522 "SwitchLink"
+{
+}
+
+//Middle Shelf, right side
+Create "rndOutputMarker" "rnd_marker_30"
+{
+    +ObjProp "Position"
+    {
+        "Location" "12.59, -232.26, 3.88"
+        "Heading" 7011
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_30" "rndICUStorageRelocator" "Target"
+{
+}
+
+//Middle Shelf, left side
+Create "rndOutputMarker" "rnd_marker_29"
+{
+    +ObjProp "Position"
+    {
+        "Location" "2.19, -227.27, 3.46"
+        "Heading" 7611
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_29" "rndICUStorageRelocator" "Target"
+{
+}
+
+//Behind the boxes on the shelf
+Create "rndOutputMarker" "rnd_marker_28"
+{
+    +ObjProp "Position"
+    {
+        "Location" "12.45, -247.63, -2.3"
+        "Heading" 4158
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_28" "rndICUStorageRelocator" "Target"
+{
+}
+
+//On top of box
+Create "rndOutputMarker" "rnd_marker_26"
+{
+    +ObjProp "Position"
+    {
+        "Location" "2.19, -247.94, 2.57"
+        "Heading" 5244
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_26" "rndICUStorageRelocator" "Target"
+{
+}
+
+//On Bed
+Create "rndOutputMarker" "rnd_marker_27"
+{
+    +ObjProp "Position"
+    {
+        "Location" "0.25, -237.38, -0.76"
+        "Heading" 937
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_27" "rndICUStorageRelocator" "Target"
+{
+}
+
+//Very top shelf, left side
+Create "rndOutputMarker" "rndICUStorageTopShelf"
+{
+    +ObjProp "Position"
+    {
+        "Location" "8.79, -227.87, 7.06"
+        "Heading" 7611
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rndICUStorageTopShelf" "rndICUStorageRelocator" "Target"
+{
+}

@@ -23,10 +23,20 @@ CreateArch "Marker" "rndComplexRandomiser"
 }
 
 //Acts as an output
-//Markers can be SwitchLinked to items to act as a "linked" marker - anything that outputs to that item may use the marker
-//Use switchLinks to fill rooms with markers without biasing the randomisation system.
-//Note: SwitchLinks are recursive.
+//TargetLink this to a Randomiser, exactly like an item, and items will spawn in this location.
 CreateArch "Marker" "rndOutputMarker"
+{
+}
+
+//Nothing spawns at a relocation marker.
+//Instead, it's SwitchLinked to a number of rndOutputMarkers or items (which should be inputs).
+//TargetLink this to a randomiser as normal, and it will act only as 1 output,
+//but will instead redirect the output to one of many connected objects which target it.
+//This is useful for eg having 10+ markers in a room, but not wanting them to bias the randomisation by appearing
+//as 10 inputs that can accept 10 items, possibly bloating a room with lots of items.
+//Note: Multiple Relocators can share markers
+//Instead, only one input will be sent to it, and will appear at one of the 10+ linked markers.
+CreateArch "Marker" "rndOutputRelocator"
 {
 }
 

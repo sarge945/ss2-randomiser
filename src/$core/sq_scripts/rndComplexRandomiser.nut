@@ -63,7 +63,7 @@ class rndComplexRandomiser extends rndBase
 	
 	function GetStartTimer()
 	{
-		return 0.1 + (seed % 999 * 0.0001);
+		return 0.2 + (seed % 999 * 0.0001);
 	}
 	
 	function GetRandomiseTimer()
@@ -127,7 +127,11 @@ class rndComplexRandomiser extends rndBase
 		
 		//Remove outputs that are items that don't match with any input
 		local outputItems = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
-		outputs = rndFilterCombine(rndFilterCombine(outputItems,IOcollection.outputsMarkers).results,IOcollection.outputsContainers).results;
+		outputs = rndFilterCombine(outputItems,IOcollection.outputsMarkers,IOcollection.outputsContainers,IOcollection.outputsRelocators).results;
+		
+		//prepare each output
+		foreach (output in outputs)
+			output.Setup(self);
 		
 		if (ignorePriority)
 		{
@@ -188,7 +192,7 @@ class rndComplexRandomiser extends rndBase
 	//rather than always at the end
 	function ReplaceOutput(index,output)
 	{
-		if (fuzzy && output.isContainer)
+		if (fuzzy)
 		{
 			local min = outputs.len() * 0.35;
 			local insertIndex = rndUtil.RandBetween(seed + output.obj,min,outputs.len() - 1);
@@ -215,7 +219,7 @@ class rndComplexRandomiser extends rndBase
 				return;
 			
 			foreach(index, output in outputs)
-			{
+			{		
 				if (output.CanMove(input,noSecret,allowOriginalLocations))
 				{
 					input.SetInvalid(self);

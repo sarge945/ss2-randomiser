@@ -256,105 +256,15 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
+
+
 ////Markers and other spawn points
 
-//In front of the turret near the Monkeys that smash glass
-Create "rndOutputMarker" "rndTurretNearMonkeys"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-123.851, -283.565, -14.864"
-		"Heading" 5cc
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndTurretNearMonkeys" "Object Randomiser - No Junk"
-+Link "rndTurretNearMonkeys" "rndMedicalObjects" "Target"
-{
-}
 
-//Inside a holding cell above in Primate Research
-Create "rndOutputMarker" "rndPrimateResearchCell"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-94.0829, -254.185, 1.2"
-		"Heading" 15b8
-		"Pitch" 0
-		"Bank" 1f88
-	}
-}
-+Link "rndPrimateResearchCell" 332 "SwitchLink"
-{
-}
-+Link "rndPrimateResearchCell" 1221 "SwitchLink"
-{
-}
 
-/*
-//Disabled due to too many outputs in this room and items floating
-//On a chair in Primate Research
-Create "rndOutputMarker" "rndPrimateResearchChair"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-110.543, -247.732, 0.9"
-		"Heading" ed7c
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "rndPrimateResearchChair" "rndMedicalObjects" "Target"
-{
-}
-*/
+///////////////////////
 
-//On a table in QBRM Room
-Create "rndOutputMarker" "rndQBRTable"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-71.8425, -242.118, -0.6"
-		"Heading" 4a4
-		"Pitch" 0
-		"Bank" f6f0
-	}
-}
-+Link "rndQBRTable" "rndMedicalObjects" "Target"
-{
-}
 
-//On a shelf in Radiation Lab (near ICU)
-Create "rndOutputMarker" "rndRadiationShelves"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-33.6461, -169.112, 0.3"
-		"Heading" b3b4
-		"Pitch" 0
-		"Bank" 60
-	}
-}
-+Link "rndRadiationShelves" "rndMedicalObjects" "Target"
-{
-}
-
-//On top of crates in Radiation Lab Storage
-Create "rndOutputMarker" "rndRadiationLabStorageCrates"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-23.1994, -196.6, 7.04943"
-		"Heading" 8898
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndRadiationLabStorageCrates" "Object Randomiser - Secret"
-+Link "rndRadiationLabStorageCrates" "rndRadiationShelves" "SwitchLink"
-{
-}
 
 /////////////////=====	Crew Sector	=====\\\\\\\\\\\\\\\\\
 
@@ -540,23 +450,7 @@ Create "rndOutputMarker" "rndForcefieldRoomTable"
 		"Bank" 0
 	}
 }
-+Link "rndForcefieldRoomTable" "rndCrewObjects" "Target"
-{
-}
-
-//In the apartment with a broken door
-Create "rndOutputMarker" "rndApartmentBroken"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-126.646, -120.041, -3.3"
-		"Heading" 29b8
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndApartmentBroken" "Object Randomiser - No Junk"
-+Link "rndApartmentBroken" "rndCrewObjects" "Target"
++Link "rndForcefieldRoomTable" "rndApartmentsRelocator" "Target"
 {
 }
 
@@ -572,7 +466,7 @@ Create "rndOutputMarker" "rndArmouryAccess"
 	}
 }
 +MetaProp "rndArmouryAccess" "Object Randomiser - No Junk"
-+Link "rndArmouryAccess" "rndCrewObjects" "Target"
++Link "rndArmouryAccess" "rndApartmentsRelocator" "Target"
 {
 }
 

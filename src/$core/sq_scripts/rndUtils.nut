@@ -171,13 +171,17 @@ class rndFilterCombine
 {
 	results = null;
 	
-	constructor(array1, array2)
+	constructor(array1, array2, array3 = [], array4 = [])
 	{
 		results = [];
 		
 		foreach(val in array1)
 			results.append(val);
 		foreach(val in array2)
+			results.append(val);
+		foreach(val in array3)
+			results.append(val);
+		foreach(val in array4)
 			results.append(val);
 	}
 }
@@ -201,6 +205,10 @@ class rndFilterRemoveDuplicates
 	{
 		foreach(av in arr)
 		{
+			//TODO: Refactor
+			if (av instanceof RelocatorOutput)
+				return false;
+		
 			if (av.obj == val.obj)
 				return true;
 		}
