@@ -41,7 +41,7 @@ class rndOutputMarker extends rndOutput
 		DebugPrint ("output " + self + " moving item " + linkedItem + " to position " + Object.Position(self));
 		
 		local facing = Object.Facing(self);
-		Object.Teleport(linkedItem, Object.Position(self), vector(facing.x,0,0));
+		Object.Teleport(linkedItem, Object.Position(self), vector(0,facing.y,0));
 		
 		Object.SetTransience(self,true);
 		//Object.Destroy(self);
