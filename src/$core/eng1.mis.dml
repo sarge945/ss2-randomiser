@@ -63,11 +63,6 @@ Create "rndObjectCollection" "rndEngineObjectsCabin"
 {
 }
 
-//Create an object collection for the Engineering Engine Area Cabin Drinks Stand
-Create "rndObjectCollection" "rndEngineObjectsCabinShelf"
-{
-}
-
 //Create an object collection for the Engineering Armoury Area
 Create "rndObjectCollection" "rndArmouryObjects"
 {
@@ -384,19 +379,27 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Loose Objects
 
+/*
 //Cabin Drinks
-+Link 592 "rndEngineObjectsCabinShelf" "Target"
++MetaProp 592 "Object Randomiser - Junk Only"
++MetaProp 592 "Object Randomiser - High Priority Output"
++Link 592 "rndEngineObjectsCabin" "Target"
 {
 }
 
 //Liquor
-+Link 593 "rndEngineObjectsCabinShelf" "Target"
++MetaProp 593 "Object Randomiser - Junk Only"
++MetaProp 593 "Object Randomiser - High Priority Output"
++Link 593 "rndEngineObjectsCabin" "Target"
 {
 }
 //Juice
-+Link 595 "rndEngineObjectsCabinShelf" "Target"
++MetaProp 595 "Object Randomiser - Junk Only"
++MetaProp 595 "Object Randomiser - High Priority Output"
++Link 595 "rndEngineObjectsCabin" "Target"
 {
 }
+*/
 
 //Cabin Desk Items
 //Ciggies
