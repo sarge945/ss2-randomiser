@@ -33,6 +33,9 @@ Create "rndComplexRandomiser" "rndHydroRandomiser"
 +Link "rndSectorBMedical" "rndHydroRandomiser" "SwitchLink"
 {
 }
++Link "rndSectorBSecret" "rndHydroRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndAdminObjects" "rndHydroRandomiser" "~SwitchLink"
@@ -54,6 +57,9 @@ Create "rndComplexRandomiser" "rndHydroRandomiser"
 {
 }
 +Link "rndSectorDObjects" "rndHydroRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBSecret" "rndHydroRandomiser" "~SwitchLink"
 {
 }
 
@@ -88,5 +94,27 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 
 //Output only to the medical area
 +Link "rndSectorBMedical" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the LabAssistant implant
+//Only allow it to appear in the main office area
+Create "rndComplexRandomiser" "rndLabAssistRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-969; priority=1; debug=1;"
+}
+
+//Inputs
++Link "rndSurveyObjects" "rndLabAssistRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndAdminObjects" "rndLabAssistRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndLabAssistRandomiser" "~SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndLabAssistRandomiser" "~SwitchLink"
 {
 }

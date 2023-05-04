@@ -43,6 +43,11 @@ Create "rndObjectCollection" "rndSectorBObjects"
 {
 }
 
+//Create an object collection for the Sector B Observation area
+Create "rndObjectCollection" "rndSectorBSecret"
+{
+}
+
 //Create an object collection for the Sector B Biological Survey Labs Medbeds (for hypos only)
 Create "rndObjectCollection" "rndSectorBMedical"
 {
@@ -342,11 +347,6 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
-//Guy on top of observation area
-+Link 1413 "rndSectorBObjects" "Target"
-{
-}
-
 //Dead guy inside Observation Area
 +Link 1270 "rndSecurityObjects" "Target"
 {
@@ -418,50 +418,13 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
-//Nanites in secret area through vent above observation area
-+MetaProp 407 "Object Randomiser - No Auto Output"
-+Link 407 "rndSectorBObjects" "Target"
-{
-}
-
-//Maintenance tool in secret area through vent above observation area
-+MetaProp 1048 "Object Randomiser - No Auto Output"
-+Link 1048 "rndSectorBObjects" "Target"
+//Rad hypo in pool
+//+MetaProp 1106 "Object Randomiser - No Auto Output"
++Link 1106 "rndSectorBObjects" "Target"
 {
 }
 
 ////Markers and other spawn points
-
-//Replace the 2 secret objects above observation area in sector B with markers, since large objects won't fit
-//Replacing 1048 and 407
-Create "rndOutputMarker" "rndSectorB407Replacer"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-78.2, 37.5, 8.63462"
-		"Heading" c800
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndSectorB407Replacer" "Object Randomiser - High Priority Output"
-+Link "rndSectorB407Replacer" "rndSectorBObjects" "Target"
-{
-}
-Create "rndOutputMarker" "rndSectorB1048Replacer"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-78.3, 39.5, 8.29868"
-		"Heading" 0
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+MetaProp "rndSectorB1048Replacer" "Object Randomiser - High Priority Output"
-+Link "rndSectorB1048Replacer" "rndSectorBObjects" "Target"
-{
-}
 
 //inside the empty room
 Create "rndOutputMarker" "rndSectorBEmptyCloset"
@@ -476,6 +439,56 @@ Create "rndOutputMarker" "rndSectorBEmptyCloset"
 }
 +MetaProp "rndSectorBEmptyCloset" "Object Randomiser - High Priority Output"
 +Link "rndSectorBEmptyCloset" "rndSectorBObjects" "Target"
+{
+}
+
+/////////////////=====	Sector B Secret Area	=====\\\\\\\\\\\\\\\\\
+
+//Guy on top of observation area
++Link 1413 "rndSectorBSecret" "Target"
+{
+}
+
+//Nanites in secret area through vent above observation area
++MetaProp 407 "Object Randomiser - No Auto Output"
++Link 407 "rndSectorBSecret" "Target"
+{
+}
+
+//Maintenance tool in secret area through vent above observation area
++MetaProp 1048 "Object Randomiser - No Auto Output"
++Link 1048 "rndSectorBSecret" "Target"
+{
+}
+
+//Replace the 2 secret objects above observation area in sector B with markers, since large objects won't fit
+//Replacing 1048 and 407
+Create "rndOutputMarker" "rndSectorB407Replacer"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-78.2, 37.5, 8.63462"
+		"Heading" c800
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorB407Replacer" "Object Randomiser - High Priority Output"
++Link "rndSectorB407Replacer" "rndSectorBSecret" "Target"
+{
+}
+Create "rndOutputMarker" "rndSectorB1048Replacer"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-78.3, 39.5, 8.29868"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorB1048Replacer" "Object Randomiser - High Priority Output"
++Link "rndSectorB1048Replacer" "rndSectorBSecret" "Target"
 {
 }
 

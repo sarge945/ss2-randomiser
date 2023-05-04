@@ -1,0 +1,6 @@
+// ================================================================================
+// 								RSD Compatibility
+// ================================================================================
+
+//In RSD, this is the first assault rifle we find, so don't let it randomise
++MetaProp 961 "Object Randomiser - No Auto Input" //Assault Rifle

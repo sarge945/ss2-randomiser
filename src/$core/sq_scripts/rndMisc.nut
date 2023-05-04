@@ -135,7 +135,7 @@ class IOManager
 			local output = Output(item);
 			AddOutput(output,false);
 		}
-		else
+		else if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
 		{
 			local output = PhysicalOutput(item);
 			AddOutput(output,prioritizeWorldObjects);

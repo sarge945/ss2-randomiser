@@ -36,20 +36,22 @@ class rndComplexRandomiser extends rndBase
 		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
 		if (minTimes > maxTimes)
 			minTimes = maxTimes;
-		SetData("Times",Data.RandInt(minTimes,maxTimes));	
+		SetData("Times",Data.RandInt(minTimes,maxTimes));
 		local seed = Data.RandInt(0,10000);
 		SetData("Seed",seed);
 		
 		//Add a delay to the timer to put less stress on the game when loading new areas
 		local priority = getParam("priority",0);
-		local startDelay = 0.01 + self * 0.0002 + (priority * 0.1);
+		local startDelay = (self % 1000) * 0.0001;
+		SetData("startDelay",startDelay);
 		DebugPrint("startDelay for " + Object.GetName(self) + " (" + self + ") is " + startDelay + " (Priority: " + priority + ")");
-		SetOneShotTimer("StartTimer",startDelay);
+		SetOneShotTimer("StartTimer",0.1 + startDelay + (priority * 0.1));
 	}
 	
 	function Setup()
 	{
 		local seed = GetData("Seed");
+		local startDelay = GetData("startDelay");
 		DebugPrint ("Randomiser Setup (seed: " + seed + ")");
 			
 		ConfigureAllowedTypes();
@@ -71,7 +73,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.1); //DO NOT change this timer value, otherwise things start to break
+		SetOneShotTimer("RandomizeTimer",startDelay); //DO NOT change this timer value, otherwise things start to break
 	}
 	
 	function ConfigureAllowedTypes()
