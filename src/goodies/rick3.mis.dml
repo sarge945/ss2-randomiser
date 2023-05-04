@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Rick3.
+Create "rndComplexRandomiser" "rndGoodiesRandomiser"
+{
+}
+
+//Inputs
++Link "rndMainObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndDiegoObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndEscapeObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMainObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndDiegoObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndEscapeObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}

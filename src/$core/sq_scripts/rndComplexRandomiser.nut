@@ -269,6 +269,9 @@ class rndComplexRandomiser extends rndBase
 		{
 			if (count >= times)
 				return;
+				
+			if (!input.IsValid())
+				continue;
 			
 			foreach(index, output in outputs)
 			{		

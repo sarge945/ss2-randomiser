@@ -80,22 +80,21 @@ Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 }
 
 //Create a randomiser for the Body Bags (only allow hypos)
-Create "rndComplexRandomiser" "rndBodybagRandomiser"
+Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=4; minTimes=2; priority=1;"
 }
 //Inputs
-+Link "rndScienceObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndScienceObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndRNDObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndRNDObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndBodybags" "rndBodybagRandomiser" "SwitchLink"
++Link "rndBodybags" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
 //Outputs
-+Link "rndBodybags" "rndBodybagRandomiser" "~SwitchLink"
++Link "rndBodybags" "rndBodybagsRandomiser" "~SwitchLink"
 {
 }
 

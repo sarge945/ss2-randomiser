@@ -21,6 +21,12 @@ CreateArch "Marker" "rndComplexRandomiser"
 }
 
 //Randomiser Types (for convenience)
+
+CreateArch "rndComplexRandomiser" "rndBodybagRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85; maxTimes=5; minTimes=2; priority=1;"
+}
+
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
