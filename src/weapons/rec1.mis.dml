@@ -1,0 +1,41 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Lobby and Medical Area weapons
+Create "rndComplexRandomiser" "rndLobbyWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
+}
+//Inputs
++Link "rndLobbyObjects" "rndLobbyWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndLobbyWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndLobbyObjects" "rndLobbyWeaponRandomiser" "~SwitchLink"
+{
+}
+//Outputs
++Link "rndMedicalObjects" "rndLobbyWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Crew Quarters weapons
+Create "rndComplexRandomiser" "rndCrewQuartersWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
+}
+//Inputs
++Link "rndCrewObjects" "rndCrewQuartersWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndCrewObjects" "rndCrewQuartersWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//NOTE: Don't make a Weapon Randomiser for Athletics, since the only weapon there is the Fusion Cannon, which is a reward for reaching the generator
+//NOTE: Don't make a Weapon Randomiser for the locked apartment (rndCrewLockedApartmentObjects), since the weapons in there are also rewards

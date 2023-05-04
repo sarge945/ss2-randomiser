@@ -3,26 +3,36 @@ class rndComplexRandomiser extends rndBase
 
 	//If no allowed types are specified, use the default
 	static allowedTypesDefault = [
-		//-49, //Goodies
-		//-12, //Weapons
-		//-156, //Keys
-		//-76, //Audio Logs
-		-30, //Ammo
-		-51, //Patches
-		-70, //Devices (portable batteries etc)
-		//-78, //Armor
-		-85, //Nanites
-		-99, //Implants
-		-320, //Softwares
-		-1105, //Beakers
-		-938, //Cyber Modules
-		-3863, //GamePig Games
-		-90, //Decorative items like mugs etc
-		-1255, //magazines
-		-4105, //Annelid Healing Gland
-		-1676, //Medbed Key
-		//-68, //potted plants
-		//-69, //potted plants
+		//-49,	//Goodies
+		//-12,	//Weapons
+		//-156,	//Keys
+		//-76,	//Audio Logs
+		-30,	//Ammo
+		-51,	//Patches
+		-70,	//Devices (portable batteries etc)
+		//-78,	//Armor
+		-85,	//Nanites
+		-99,	//Implants
+		-320,	//Softwares
+		-1105,	//Beakers
+		-938,	//Cyber Modules
+		-3863,	//GamePig Games
+		-91,	//Soda Can
+		-92,	//Chips
+		-964,	//Vodka
+		-965,	//Champagne
+		-966,	//Juice
+		-967,	//Liquor
+		-1221,	//Mug
+		-1396,	//Cigarettes
+		-1398,	//Heart Pillow
+		-4286,	//Basketall
+		//-1214,	//Ring Buoy
+		-1255,	//Magazines
+		-4105,	//Annelid Healing Gland
+		-1676,	//Medbed Key
+		//-68,	//Potted plants
+		//-69,	//Potted plants
 	];
 	
 	allowedTypes = null;
@@ -180,6 +190,35 @@ class rndComplexRandomiser extends rndBase
 		local seedString = "seed: " + seed;
 		local timeString = "times: " + GetTimes();
 		debugger.LogAlways(nameString + " [" + startTimerString + ", " + randomTimerString + ", " + seedString + ", " + timeString + "]");
+		
+		if (debugger.debugLevel >= 5)
+		{
+			local items = inputs.len();
+			local physical = 0.0;
+			local markers = 0.0;
+			local containers = 0.0;
+		
+			foreach(o in outputs)
+			{
+				if (o.isContainer)
+					containers++;
+				else if (o.isMarker)
+					markers++;
+				else
+					physical++;
+			}
+		
+			debugger.LogAlways("Item Report");
+			debugger.LogAlways("===========");
+			debugger.LogAlways("Items: " + items);
+			debugger.LogAlways("Physical: " + physical);
+			debugger.LogAlways("Containers: " + containers);
+			debugger.LogAlways("Markers: " + markers);
+			debugger.LogAlways("Items/Containers: " + ( items / containers ));
+			debugger.LogAlways("Items+Markers/Containers: " + ((items + markers) / containers));
+			debugger.LogAlways("This should be as close to 1.0 as possible");
+			debugger.LogAlways("===========");
+		}
 		
 		SetOneShotTimer("Randomise",GetRandomiseTimer());
 	}

@@ -222,8 +222,6 @@ class Output
 			foreach (rlink in Link.GetAll(-LINK_TARGET,relocator))
 			{
 				local location = sLink(rlink).dest;
-				if (obj == 1475)
-					print ("found possible location: " + location);
 				if (rndUtil.isContainer(location))
 					outputLocations.append(ContainerLocation(location,highPriority));
 				else
@@ -243,14 +241,6 @@ class Output
 		}
 		
 		outputLocations = rndFilterShuffle(outputLocations,seed).results;
-		
-		if (obj == 1926)
-		{
-			foreach(ol in outputLocations)
-			{
-				print("Location: " + ol.obj);
-			}
-		}
 	}
 	
 	//Get the first valid output location for a given input
@@ -431,10 +421,10 @@ class ObjectPlacer
 	}
 
 	function Place(input,noFacing = false)
-	{		
+	{	
 		//Make object render
 		Property.SetSimple(input.obj, "HasRefs", TRUE);
-		
+				
 		//If we are the same object, don't bother doing anything.
 		//Just remain in place.
 		if (obj == input.obj)
@@ -444,7 +434,6 @@ class ObjectPlacer
 		else if (SameItemType(input))
 		{
 			Object.Teleport(input.obj, position, facing);
-			Property.Set(input.obj, "PhysControl", "Controls Active", physicsControls);
 		}
 		//Different objects, need to "jiggle" the object to fix physics issues
 		else
@@ -464,7 +453,7 @@ class ObjectPlacer
 		[-938,0,0,-1], //Cyber Modules
 		[-85,0,0,-1], //Nanites
 		[-1396,90,0,-1], //Ciggies
-		[-99,-1,0,-1], //Implants
+		[-99,90,0,-1], //Implants
 		[-91,0,-1,-1], //Cola
 		[-51,-1,0,-1], //Hypos
 		//[-964,-1,-1,-1], //Vodka
@@ -502,16 +491,14 @@ class ObjectPlacer
 		[-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
 		[-1256, -1257, -1258, -1259, -1260, -1261], //This Month in Ping-Pong, Rolling Monthly, Cigar Lover, DJ Lover, Kangaroo Quarterly, Vita Men's Monthly
 		[-1455, -1485], //Circuit Board, RadKey Card
+		[-1277, -2936], //Art Terminal, Code Art
 	];
 	
 	function SameItemType(input)
 	{		
 		if (rndUtil.isArchetype(input.obj,obj))
 			return true;
-			
-		local iArch = Object.Archetype(input.obj);
-		local oArch = Object.Archetype(obj);
-			
+					
 		//Similar Archetypes count for the same
 		foreach (archList in similarArchetypes)
 		{
@@ -519,9 +506,9 @@ class ObjectPlacer
 			local oValid = false;
 			foreach (arch in archList)
 			{
-				if (iArch == arch)
+				if (rndUtil.isArchetype(input.obj,arch))
 					iValid = true;
-				if (oArch == arch)
+				if (rndUtil.isArchetype(obj,arch))
 					oValid = true;
 			}
 			if (iValid && oValid)

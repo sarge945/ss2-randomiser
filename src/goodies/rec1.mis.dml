@@ -1,0 +1,97 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for rec1.
+//Exchanging items between the crew quarters, athletics and medical shouldn't be an issue
+Create "rndComplexRandomiser" "rndRecRandomiser"
+{
+}
+
+//Inputs
++Link "rndElevatorObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndLobbyObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndAthleticsObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewLockedApartmentObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndBodybags" "rndRecRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndElevatorObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndLobbyObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndAthleticsObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewLockedApartmentObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Body Bags (only allow hypos)
+Create "rndComplexRandomiser" "rndBodybagRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=2; minTimes=1; priority=1;"
+}
+//Inputs
++Link "rndLobbyObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndAthleticsObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewLockedApartmentObjects" "rndBodybagRandomiser" "SwitchLink"
+{
+}
++Link "rndBodybags" "rndBodybagRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndBodybags" "rndBodybagRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

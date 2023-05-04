@@ -1,0 +1,575 @@
+DML1
+
+FINGERPRINT
+{
+   162 [33.4487 -554.949 4.91395]
+   796 [37.6137 -554.605 4.91395]
+   307 [41.7694 -554.159 4.91395]
+   120 [44.2092 -554.334 4.91395]
+   839 [42.9643 -544.603 4.91395]
+   118 [41.6347 -533.931 4.91395]
+   814 [38.2317 -531.325 4.91395]
+   813 [34.3838 -530.806 4.91395]
+   161 [30.9866 -527.87 4.91395]
+   158 [26.4369 -532.171 4.91395]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Elevator Lobby. This is the area that's accessible before completing Deck 4
+//So we don't want to have anything really valuable spawn here.
+Create "rndObjectCollection" "rndElevatorObjects"
+{
+}
+
+//Create an object collection for the athletics sector
+Create "rndObjectCollection" "rndLobbyObjects"
+{
+}
+
+//Create an object collection for the Crew Quarters.
+Create "rndObjectCollection" "rndCrewObjects"
+{
+}
+
+//Create an object collection for the Crew Quarters Locked Room.
+Create "rndObjectCollection" "rndCrewLockedApartmentObjects"
+{
+}
+
+//Create an object collection for the Medical Sector.
+Create "rndObjectCollection" "rndMedicalObjects"
+{
+}
+
+//Create an object collection for the Medical Sector.
+Create "rndObjectCollection" "rndBodybags"
+{
+}
+
+//Create an object collection for the Athletics Sector.
+Create "rndObjectCollection" "rndAthleticsObjects"
+{
+}
+
+//Create an object collection for the Art Terminals.
+Create "rndObjectCollection" "rndArtObjects"
+{
+}
+
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Elevator Lobby	=====\\\\\\\\\\\\\\\\\
+
+//Shotgun Ammo
+//Problematic, so we set it as not an output
+//Will use the marker below instead
++MetaProp 1443 "Object Randomiser - No Auto Output"
++Link 1443 "rndElevatorObjects" "Target"
+{
+}
+
+//Bench in small area with trashcan and observation window to Watts lab
+Create "rndOutputMarker" "rndReplace1443"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-6.76107, -315.236, -12.6066"
+		"Heading" acf5
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndReplace1443" "rndElevatorObjects" "Target"
+{
+}
+
+/////////////////=====	Athletics Lobby	=====\\\\\\\\\\\\\\\\\
+
+//Corpse with Power Cell
++Link 107 "rndLobbyObjects" "Target"
+{
+}
+
+////Desk near Upgrade Stations
+
+//Plant on Desk across from upgrade stations
++Link 1873 "rndLobbyObjects" "Target"
+{
+}
+
+//Mug on desk across from upgrade units
++Link 1913 "rndLobbyObjects" "Target"
+{
+}
+
+//Magazine on desk across from upgrade units
++Link 220 "rndLobbyObjects" "Target"
+{
+}
+
+//Psi Hypo on desk across from upgrade units
++Link 218 "rndLobbyObjects" "Target"
+{
+}
+
+////Down the Hall
+
+//Garbage Bin
++Link 1921 "rndLobbyObjects" "Target"
+{
+}
+
+////Athletics Entry Desk
+
+//Juice on Desk
++Link 644 "rndLobbyObjects" "Target"
+{
+}
+
+//Soda Can on Desk
++Link 320 "rndLobbyObjects" "Target"
+{
+}
+
+////Store Room
+
+//Magazine on Desk
++Link 431 "rndLobbyObjects" "Target"
+{
+}
+
+//Juice on Desk
++Link 430 "rndLobbyObjects" "Target"
+{
+}
+
+//Soda Can on Desk
++Link 320 "rndLobbyObjects" "Target"
+{
+}
+
+//Magazine on Shelf
++Link 458 "rndLobbyObjects" "Target"
+{
+}
+
+//Magazine on Shelf
++Link 450 "rndLobbyObjects" "Target"
+{
+}
+
+//Plant on Shelf
++Link 446 "rndLobbyObjects" "Target"
+{
+}
+
+//Plant on Shelf
++Link 443 "rndLobbyObjects" "Target"
+{
+}
+
+////Bathroom
+
+//Plant on floor
++Link 219 "rndLobbyObjects" "Target"
+{
+}
+
+//Pistol on floor
++Link 722 "rndLobbyObjects" "Target"
+{
+}
+
+//Corpse on floor
+//Make High Priority as it's trapped
++MetaProp 566 "Object Randomiser - High Priority Output"
++Link 566 "rndLobbyObjects" "Target"
+{
+}
+
+//Garbage bin
++Link 1453 "rndLobbyObjects" "Target"
+{
+}
+
+////Radiation Room
+
+//Nanites on floor
++MetaProp 1550 "Object Randomiser - No Junk"
++Link 1550 "rndLobbyObjects" "Target"
+{
+}
+
+//Nanites on Floor
++MetaProp 625 "Object Randomiser - No Junk"
++Link 625 "rndLobbyObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 1551 "Object Randomiser - High Priority Output"
++Link 1551 "rndLobbyObjects" "Target"
+{
+}
+
+////End of hallways
+
+//Desk
++Link 571 "rndLobbyObjects" "Target"
+{
+}
+
+//Ciggies
++Link 585 "rndLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Medical Section	=====\\\\\\\\\\\\\\\\\
+
+////First room filled with eggs etc.
+
+//Corpse on table
++Link 405 "rndMedicalObjects" "Target"
+{
+}
+
+//Corpse on table
++Link 403 "rndMedicalObjects" "Target"
+{
+}
+
+////QBR room
+
+//Corpse on floor
+//Trapped, so set to high priority
++MetaProp 348 "Object Randomiser - High Priority Output"
++Link 348 "rndMedicalObjects" "Target"
+{
+}
+
+//Bodybag on table
++Link 453 "rndBodybags" "Target"
+{
+}
+
+////Storeroom with Ring Buoys
+
+//Crate
++Link 2000 "rndMedicalObjects" "Target"
+{
+}
+
+//Crate
++Link 1999 "rndMedicalObjects" "Target"
+{
+}
+
+//Crate
++Link 2002 "rndMedicalObjects" "Target"
+{
+}
+
+/////////////////=====	Athletics Section	=====\\\\\\\\\\\\\\\\\
+
+//Dead guy in changing room
++Link 211 "rndAthleticsObjects" "Target"
+{
+}
+
+//Dead guy on basketball court
++Link 576 "rndAthleticsObjects" "Target"
+{
+}
+
+//Dead guy near transmitter
++Link 466 "rndAthleticsObjects" "Target"
+{
+}
+
+//Dead guy near transmitter
++Link 774 "rndAthleticsObjects" "Target"
+{
+}
+
+//Dead woman in the pool
++Link 102 "rndAthleticsObjects" "Target"
+{
+}
+
+//Desk in recharger room
++Link 354 "rndAthleticsObjects" "Target"
+{
+}
+
+/////////////////=====	Crew Section	=====\\\\\\\\\\\\\\\\\
+
+//Corpse near entrance door
++Link 670 "rndCrewObjects" "Target"
+{
+}
+
+////////Ground floor apartments, clockwise from entrance door
+
+////First Apartment
+//Trapped Corpse
++MetaProp 859 "Object Randomiser - High Priority Output"
++Link 859 "rndCrewObjects" "Target"
+{
+}
+
+//Desk
++Link 1034 "rndCrewObjects" "Target"
+{
+}
+
+////Between Apartments
+
+//Corpse near Crew Quarters entrance
++Link 517 "rndCrewObjects" "Target"
+{
+}
+
+////Third Apartment
+
+//Vodka
++Link 437 "rndCrewObjects" "Target"
+{
+}
+
+//Corpse next to egg
++Link 523 "rndCrewObjects" "Target"
+{
+}
+
+////Middle Section near Lift to Command
+
+//Anti-Pers bullets
++MetaProp 1434 "Object Randomiser - No Junk"
++Link 1434 "rndCrewObjects" "Target"
+{
+}
+
+//AP bullets
++MetaProp 1174 "Object Randomiser - No Junk"
++Link 1174 "rndCrewObjects" "Target"
+{
+}
+
+////////Top floor apartments, clockwise from entrance door
+
+////First Apartment
+
+//Corpse
++Link 724 "rndCrewObjects" "Target"
+{
+}
+
+//Desk
++Link 949 "rndCrewObjects" "Target"
+{
+}
+
+////Second Apartment
+
+//Nanites on the floor
++Link 499 "rndCrewObjects" "Target"
+{
+}
+
+////Third Apartment
+
+//Corpse
++Link 786 "rndCrewObjects" "Target"
+{
+}
+
+////Fourth Apartment
+
+//Table
++Link 90 "rndCrewObjects" "Target"
+{
+}
+
+//Guy who drank himself to death
++Link 356 "rndCrewObjects" "Target"
+{
+}
+
+//Vodka bottles. Don't randomise since they set a cool scene
+/*
++Link 359 "rndCrewObjects" "Target"
+{
+}
++Link 357 "rndCrewObjects" "Target"
+{
+}
++Link 358 "rndCrewObjects" "Target"
+{
+}
++Link 360 "rndCrewObjects" "Target"
+{
+}
+*/
+
+////Fifth Apartment
+
+//Table in egg room. High priority because it's a very horrible room otherwise
++MetaProp 479 "Object Randomiser - High Priority Output"
++Link 479 "rndCrewObjects" "Target"
+{
+}
+
+////Sixth Apartment
+
+//Corpse. Room is otherwise empty/useless, but has an assassin in it.
++MetaProp 1924 "Object Randomiser - High Priority Output"
++Link 1924 "rndCrewObjects" "Target"
+{
+}
+
+////Seventh Apartment - locked with 11111
+
+//Crystal Shard. Disabled because Shodan sends an email about it
+/*
++Link 1942 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+*/
+
+//Heavy Armour
++Link 351 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+//Desk
++Link 1317 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+//Corpse
++Link 646 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+/*
+//Viral Proliferator
+//Disabled due to it being plot-relevant (a log mentions storing it in here)
++Link 775 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+*/
+
+//Incendiary Grenades
++Link 1738 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+//Nanites
++Link 148 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+//Hanging Corpse
++Link 392 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+//Plant
++Link 948 "rndCrewLockedApartmentObjects" "Target"
+{
+}
+
+////Eigth Apartment - Contains Nothing
+
+////Ninth Apartment - Contains a hole in the wall
+
+//Shotgun
++Link 188 "rndCrewObjects" "Target"
+{
+}
+
+//Nanites
++Link 623 "rndCrewObjects" "Target"
+{
+}
+
+//Nanites
++Link 624 "rndCrewObjects" "Target"
+{
+}
+
+//Corpse
++Link 262 "rndCrewObjects" "Target"
+{
+}
+
+////Tenth Apartment
+
+//Trapped Corpse
++Link 751 "rndCrewObjects" "Target"
+{
+}
+
+//Make the Repair Tool from corpse 751 never disappear, since it's a reward for getting to the apartments.
++MetaProp 494 "Object Randomiser - No Auto Input"
+
+//Liquor
++Link 770 "rndCrewObjects" "Target"
+{
+}
+
+/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
+
+//Main athletics lobby - 10
++Link 79 "rndArtObjects" "Target"
+{
+}
+
+//Crew Quarters Apartment - 6]
++Link 78 "rndArtObjects" "Target"
+{
+}
+
+//Crew Quarters Apartment
++Link 689 "rndArtObjects" "Target"
+{
+}
+
+//Crew Quarters Apartment
++Link 835 "rndArtObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Crate in Storeroom
++Link 191 "rndSecurityCrates" "Target"
+{
+}
+
+//Trapped Crate in Storeroom
++Link 190 "rndSecurityCrates" "Target"
+{
+}
+
+//Crate in Buoy Storeroom
++Link 194 "rndSecurityCrates" "Target"
+{
+}

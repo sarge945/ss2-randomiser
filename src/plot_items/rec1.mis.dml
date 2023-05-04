@@ -1,0 +1,60 @@
+// ================================================================================
+// 								Add Plot Items to Randomiser
+// ================================================================================
+
+//Create a randomiser for the Athletics Keycard
+//It should aonly appear in the Crew Quarters
+Create "rndComplexRandomiser" "rndKeycardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
+}
+
+//Inputs
++Link "rndCrewObjects" "rndKeycardRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndCrewObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
+
+
+/////////////////////////////////////////////////
+
+//Create a randomiser for the Power Cell
+Create "rndComplexRandomiser" "rndPowercellRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862; ignorePriority=1; noSecret=1;"
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndPowercellRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndLobbyObjects" "rndPowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndPowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndPowercellRandomiser" "~SwitchLink"
+{
+}
+
+/////////////////////////////////////////////////
+
+//Create a randomiser for the Art Terminals
+Create "rndComplexRandomiser" "rndArtRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
+}
+
+//Inputs
++Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+{
+}

@@ -1,16 +1,16 @@
 class rndUtil
 {
 	static function isArchetype(obj,type)
-	{
+	{	
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 	
-	function isContainer(obj)
+	static function isContainer(obj)
 	{
 		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
 	}
 	
-	function isMarker(obj)
+	static function isMarker(obj)
 	{
 		return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
 	}
