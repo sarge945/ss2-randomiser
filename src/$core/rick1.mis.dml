@@ -87,6 +87,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Ammo Clip
++Link 1461 "rndUmbilicalObjects" "Target"
+{
+}
+
 /////////////////=====	Support Control A	=====\\\\\\\\\\\\\\\\\
 
 //Corpse

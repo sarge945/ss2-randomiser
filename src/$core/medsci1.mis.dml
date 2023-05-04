@@ -382,7 +382,8 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 
 //Some Bullets behind Turret in Ramp Room
 //Really dangerous, so mark it as a secret - don't want the power cell there
-+MetaProp 79 "Object Randomiser - No Junk"
+//+MetaProp 79 "Object Randomiser - No Junk"
++MetaProp 79 "Object Randomiser - High Priority Output"
 +MetaProp 79 "Object Randomiser - Secret"
 +Link 79 "rndScienceObjects" "Target"
 {

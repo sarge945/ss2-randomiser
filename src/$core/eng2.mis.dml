@@ -65,9 +65,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Loose Items
 
 //BrawnBoost lying on the floor
-//We need to give it exact positioning so it doesn't obviously "spawn" in when we start the map
-//+MetaProp 653 "Object Randomiser - Exact Positioning"
-+MetaProp 653 "Object Randomiser - No Auto Output"
++MetaProp 653 "Object Randomiser - Output Self Only"
 +Link 653 "rndHallwayObjects" "Target"
 {
 }
