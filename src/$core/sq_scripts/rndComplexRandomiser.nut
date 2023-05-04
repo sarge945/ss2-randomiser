@@ -120,14 +120,14 @@ class rndComplexRandomiser extends rndBase
 		allowOriginalLocations = getParam("allowOriginalLocations",false);
 		SetAllowedTypes();
 			
-		local IOcollection = rndIOCollection(self,seed);
+		local IOcollection = rndIOCollection(self,seed,debugger);
 		
 		//Shuffle and filter inputs by type
 		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
 		
 		//Remove outputs that are items that don't match with any input
 		local outputItems = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
-		outputs = rndFilterCombine(outputItems,IOcollection.outputsMarkers,IOcollection.outputsContainers,IOcollection.outputsRelocators).results;
+		outputs = rndFilterCombine(outputItems,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
 		
 		//prepare each output
 		foreach (output in outputs)
@@ -139,7 +139,6 @@ class rndComplexRandomiser extends rndBase
 		}
 		else
 		{
-		
 			//shuffle and filter outputs by priority
 			local out = rndPriorityFilter(outputs,prioritizeWorld);
 			local high = rndFilterShuffle(out.high_priority_outputs,seed).results;

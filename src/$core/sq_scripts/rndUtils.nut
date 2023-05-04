@@ -5,6 +5,16 @@ class rndUtil
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 	
+	function isContainer(obj)
+	{
+		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
+	}
+	
+	function isMarker(obj)
+	{
+		return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
+	}
+	
 	static function Min(val1,val2)
 	{
 		if (val1 > val2)
@@ -156,7 +166,7 @@ class rndFilterShuffle
 		srand(seed);
 		for (local position = shuffle.len() - 1;position > 0;position--)
 		{
-			local val = rand() % position;
+			local val = rand() % (position + 1);
 			local temp = shuffle[position];
 			shuffle[position] = shuffle[val];
 			shuffle[val] = temp;
@@ -204,11 +214,7 @@ class rndFilterRemoveDuplicates
 	function IsInArray(val,arr)
 	{
 		foreach(av in arr)
-		{
-			//TODO: Refactor
-			if (av instanceof RelocatorOutput)
-				return false;
-		
+		{	
 			if (av.obj == val.obj)
 				return true;
 		}

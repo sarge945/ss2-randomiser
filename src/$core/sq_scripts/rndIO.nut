@@ -11,20 +11,20 @@ class rndIOCollection
 	outputsContainers = null;
 	outputsMarkers = null;
 	outputsItems = null;
-	outputsRelocators = null;
 	randomiser = null;
 	seed = null;
+	debugger = null;
 	
-	constructor(cRandomiser, cSeed)
+	constructor(cRandomiser, cSeed, cDebugger)
 	{
 		randomiser = cRandomiser;
 		inputs = [];
 		outputs = [];
 		outputsContainers = [];
 		outputsMarkers = [];
-		outputsRelocators = [];
 		outputsItems = [];
 		seed = cSeed;
+		debugger = cDebugger;
 		GetInputsAndOutputsForRandomiser();
 	}
 	
@@ -55,7 +55,7 @@ class rndIOCollection
 	
 	function ProcessInput(obj)
 	{
-		if (IsContainer(obj))
+		if (rndUtil.isContainer(obj))
 		{
 			foreach (link in Link.GetAll(LINK_CONTAINS,obj))
 			{
@@ -78,36 +78,19 @@ class rndIOCollection
 	}
 	
 	function ProcessOutput(obj)
-	{
-		//If it's a redirector, add that instead
-		local relocator = Link.GetOne(-LINK_SWITCHLINK,obj)
-		if (relocator)
-			obj = sLink(relocator).dest;
-	
+	{	
 		if (!ValidateOutput(obj))
 			return;
-	
-		local output;
-		if (IsContainer(obj))
-		{
-			output = ContainerOutput(obj,seed);
-			outputsContainers.append(output);
-		}
-		else if (IsRelocator(obj))
-		{
-			output = RelocatorOutput(obj,seed);
-			outputsRelocators.append(output);
-		}
-		else
-		{
-			output = PhysicalOutput(obj,seed);
-			
-			if (output.isMarker)
-				outputsMarkers.append(output);
-			else
-				outputsItems.append(output);
-		}
+		
+		local output = Output(obj,seed,debugger);
 		outputs.append(output);
+	
+		if (rndUtil.isContainer(obj))
+			outputsContainers.append(output);
+		else if (output.isMarker)
+			outputsMarkers.append(output);
+		else
+			outputsItems.append(output);
 	}
 	
 	//Note: This is checked for both items AND containers.
@@ -125,17 +108,6 @@ class rndIOCollection
 			return false;
 		
 		return true;
-	}
-	
-	//TODO: Fix these
-	function IsContainer(obj)
-	{
-		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
-	}
-	
-	function IsRelocator(obj)
-	{
-		return ShockGame.GetArchetypeName(obj) == "rndOutputRelocator"
 	}
 }
 
@@ -208,27 +180,98 @@ class Output
 	static LINK_TARGET = 44;
 	static LINK_SWITCHLINK = 21;
 
+	debugger = null;
 	obj = null;
 	highPriority = null;
 	isMarker = null;
 	isContainer = null;
-	isRelocator = null;
 	selfOnly = null;
-	secret = null;
-	noJunk = null;
 	seed = null;
+	outputLocations = null;
+	currentOutputLocation = null;
 
-	constructor(cObj, cSeed)
+	constructor(cObj, cSeed, cDebugger)
 	{
 		obj = cObj;
 		highPriority = Object.HasMetaProperty(cObj,"Object Randomiser - High Priority Output");
-		secret = Object.HasMetaProperty(cObj,"Object Randomiser - Secret");
-		noJunk = Object.HasMetaProperty(cObj,"Object Randomiser - No Junk") || secret || highPriority;
 		selfOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Output Self Only");
-		isContainer = false;
-		isMarker = false;
-		isRelocator = false;
+		isContainer = rndUtil.isContainer(cObj);
+		isMarker = rndUtil.isMarker(cObj);
 		seed = cSeed;
+		debugger = cDebugger;
+		GetOutputLocations();
+	}
+	
+	//Get all the possible locations this output can redirect to
+	function GetOutputLocations()
+	{
+		outputLocations = [];
+		
+		//Add ourself, we are always a valid location
+		if (isContainer)
+			outputLocations.append(ContainerLocation(obj,highPriority));
+		else
+			outputLocations.append(PhysicalLocation(obj,highPriority));
+			
+		//Relocators are switchlinked to us, and markers are target linked to them
+		foreach (slink in Link.GetAll(-LINK_SWITCHLINK,obj))
+		{
+			local relocator = sLink(slink).dest;
+			//print ("found relocator: " + relocator);
+			
+			foreach (rlink in Link.GetAll(-LINK_TARGET,relocator))
+			{
+				local location = sLink(rlink).dest;
+				if (obj == 1475)
+					print ("found possible location: " + location);
+				if (rndUtil.isContainer(location))
+					outputLocations.append(ContainerLocation(location,highPriority));
+				else
+					outputLocations.append(PhysicalLocation(location,highPriority));
+			}
+		}
+		
+		//We also accept markers which are directly targeted to us
+		foreach (slink in Link.GetAll(-LINK_TARGET,obj))
+		{
+			local location = sLink(slink).dest;
+			
+			if (rndUtil.isMarker(location))
+				outputLocations.append(PhysicalLocation(location,highPriority));
+			
+			//print ("found possible location: " + location);
+		}
+		
+		outputLocations = rndFilterShuffle(outputLocations,seed).results;
+		
+		if (obj == 1926)
+		{
+			foreach(ol in outputLocations)
+			{
+				print("Location: " + ol.obj);
+			}
+		}
+	}
+	
+	//Get the first valid output location for a given input
+	function GetValidOutputLocation(noSecret,input)
+	{
+		foreach(location in outputLocations)
+		{		
+			if (!location.IsValid())
+				continue;
+		
+			//don't allow junk
+			if (location.noJunk && input.isJunk)
+				continue;
+		
+			//don't allow secrets
+			if (location.secret && noSecret)
+				continue;
+				
+			return location;
+		}
+		return null;
 	}
 	
 	function CanMove(input,noSecret,allowOriginalLocation,debug = false)
@@ -236,17 +279,18 @@ class Output
 		//Check if the input is already moved
 		if (!input.IsValid())
 			return false;
+			
+		//Check if the output is valid
+		if (!IsEnabled())
+			return false;
 	
 		//Ensure that if self only is enabled, we only allow ourself
 		if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
 			return false;
 	
-		//don't allow junk
-		if (noJunk && input.isJunk)
-			return false;
+		currentOutputLocation = GetValidOutputLocation(noSecret,input);
 		
-		//don't allow secrets
-		if (noSecret && secret)
+		if (currentOutputLocation == null)
 			return false;
 	
 		return true;
@@ -254,8 +298,68 @@ class Output
 	
 	function HandleMove(input)
 	{
+		if (currentOutputLocation == null)
+			return;
+	
 		//print ("Moving " + input.obj + " to " + obj);		
 		Container.Remove(input.obj);
+		
+		currentOutputLocation.HandleMove(input);
+		
+		if (!isContainer)
+			DisableOutput();
+	}
+	
+	function IsEnabled()
+	{
+		//Make sure the output is still enabled
+		return Link.AnyExist(-LINK_SWITCHLINK,obj);
+	}
+	
+	function Setup(randomiser)
+	{
+		//Link to Randomiser			
+		Link.Create(-LINK_SWITCHLINK,obj,randomiser);
+	
+		foreach(location in outputLocations)
+			location.Setup(randomiser);
+	}
+	
+	function DisableOutput()
+	{
+		//Remove Randomiser link
+		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
+			Link.Destroy(ilink);
+	}
+}
+
+class LocationBase
+{
+	static LINK_CONTAINS = 10;
+	static LINK_TARGET = 44;
+	static LINK_SWITCHLINK = 21;
+
+	obj = null;
+
+	secret = null;
+	noJunk = null;
+
+	constructor(cObj,forceNoJunk)
+	{
+		obj = cObj;
+		secret = Object.HasMetaProperty(cObj,"Object Randomiser - Secret");
+		noJunk = Object.HasMetaProperty(cObj,"Object Randomiser - No Junk") || secret || forceNoJunk;
+	}
+	
+	//Overwrite this
+	function HandleMove(input)
+	{
+	}
+	
+	//Overwrite this
+	function IsValid()
+	{
+		return true;
 	}
 	
 	function Setup(randomiser)
@@ -263,14 +367,8 @@ class Output
 	}
 }
 
-class ContainerOutput extends Output
+class ContainerLocation extends LocationBase
 {
-	constructor(cObj,cSeed)
-	{
-		base.constructor(cObj,cSeed);
-		isContainer = true;
-	}
-	
 	function HandleMove(input)
 	{
 		base.HandleMove(input);
@@ -279,54 +377,34 @@ class ContainerOutput extends Output
 	}
 }
 
-
-class PhysicalOutput extends Output
+class PhysicalLocation extends LocationBase
 {
-	position = null;
-	facing = null;
-	physicsControls = null;
-
-	constructor(cObj,cSeed)
-	{
-		base.constructor(cObj,cSeed);
-		isMarker = ShockGame.GetArchetypeName(cObj) == "rndOutputMarker";
-		position = Object.Position(cObj);
-		facing = Object.Facing(cObj);
-		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
-	}
+	placer = null;
 	
-	function OutputEnabled()
+	constructor(cObj,forceNoJunk)
+	{
+		base.constructor(cObj,forceNoJunk)
+		placer = ObjectPlacer(cObj);
+	}
+
+	function IsValid()
 	{
 		//Make sure the output is still enabled
 		return Link.AnyExist(-LINK_SWITCHLINK,obj);
 	}
 	
-	function DisableOutput(input)
+	function DisableLocation(input)
 	{
 		//Remove Randomiser link
 		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
 			Link.Destroy(ilink);
 	}
 	
-	function CanMove(input,noSecret,allowOriginalLocation,debug = false)
-	{	
-		if (!base.CanMove(input,noSecret,allowOriginalLocation,debug))
-			return false;
-	
-		if (!OutputEnabled())
-			return false;
-	
-		return true;
-	}
-	
 	function HandleMove(input)
 	{
 		base.HandleMove(input);
-		
-		local placer = ObjectPlacer(obj,position,facing,physicsControls);
 		placer.Place(input);
-		
-		DisableOutput(input);
+		DisableLocation(input);
 	}
 	
 	function Setup(randomiser)
@@ -336,149 +414,7 @@ class PhysicalOutput extends Output
 	}
 }
 
-class RelocatorOutput extends Output
-{
-	linkedOutputs = null;
-	currentOutput = null;
-	
-	constructor(cObj,cSeed)
-	{
-		base.constructor(cObj,cSeed);
-		isRelocator = true;
-		GetLinkedOuputs();
-		GetHighPriority();
-	}
-	
-	function GetHighPriority()
-	{
-		foreach(output in linkedOutputs)
-		{
-			if (output.highPriority)
-			{
-				highPriority = true;
-				return;
-			}
-		}
-	}
-	
-	//TODO: Refactor and properly add this to Utils
-	function IsContainer(obj)
-	{
-		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
-	}
-	
-	function GetLinkedOuputs()
-	{
-		linkedOutputs = [];
-	
-		//~Targets are linked outputs
-		foreach (ilink in Link.GetAll(-LINK_TARGET,obj))
-		{
-			local linkedObj = sLink(ilink).dest;
-			//print ("Relocator " + obj + " found target destination " + linkedObj);
-			if (IsContainer(linkedObj))
-				linkedOutputs.append(ContainerOutput(linkedObj,seed));
-			else
-				linkedOutputs.append(PhysicalOutput(linkedObj,seed));
-		}
-		
-		//SwitchLinks are used to keep track of how many objects we are "replacing", and are also outputs
-		foreach (ilink in Link.GetAll(LINK_SWITCHLINK,obj))
-		{
-			local linkedObj = sLink(ilink).dest;
-			//print ("Relocator " + obj + " found target object " + linkedObj);
-			if (IsContainer(linkedObj))
-				linkedOutputs.append(ContainerOutput(linkedObj,seed));
-			else
-				linkedOutputs.append(PhysicalOutput(linkedObj,seed));
-		}
-		
-		linkedOutputs = rndFilterShuffle(linkedOutputs,seed).results;
-		//foreach(lo in linkedOutputs)
-			//print ("LinkedOutput -> " + lo.obj);
-	}
-	
-	function CanMove(input,noSecret,allowOriginalLocation,debug = false)
-	{	
-		if (!OutputEnabled())
-			return false;
-		
-		currentOutput = null;
-		
-		foreach (output in linkedOutputs)
-		{
-			if (output.CanMove(input,noSecret,allowOriginalLocation,true))
-			{
-				currentOutput = output;
-				break;
-			}
-		}
-		
-		if (currentOutput == null)
-			return false;
-		
-		return true;
-	}
-	
-	function HandleMove(input)
-	{
-		if (currentOutput != null)
-			currentOutput.HandleMove(input);
-		
-		DisableOutput();
-	}
-	
-	function OutputEnabled()
-	{
-		//Make sure the output is still enabled
-		return Link.AnyExist(-LINK_TARGET,obj);
-	}
-	
-	//TODO: Refactor and properly add this to Utils
-	function IsContainer(obj)
-	{
-		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
-	}
-	
-	function DisableOutput()
-	{
-		local switchlinks = [];
-	
-		//Remove a SwitchLink if we have any. If it's the last one, remove target link too
-		foreach (link in Link.GetAll(LINK_SWITCHLINK,obj))
-			switchlinks.append(link);
-		
-		if (switchlinks.len() > 0 && !IsContainer(obj))
-		{
-			//print ("Removing one switch link for " + obj);
-			
-			//Remove links from our current input so it can't be counted again
-			Link.Destroy(switchlinks[0]);
-			switchlinks.remove(0);
-		}
-		
-		if (switchlinks.len() == 0)
-		{
-			//print ("Removing target links for " + obj);
-		
-			//Remove all Target Links
-			foreach (ilink in Link.GetAll(-LINK_TARGET,obj))
-				Link.Destroy(ilink);
-		}
-	}
-	
-	function Setup(randomiser)
-	{
-		//Link to Randomiser			
-		Link.Create(-LINK_SWITCHLINK,obj,randomiser);
-		
-		//link all targets to randomiser
-		foreach (ilink in Link.GetAll(-LINK_TARGET,obj))
-			Link.Create(-LINK_SWITCHLINK,sLink(ilink).dest,randomiser);
-	}
-}
-
-//This is responsible for making sure objects are placed correct;y
+//This is responsible for making sure objects are placed correctly in the world
 class ObjectPlacer
 {
 	obj = null;
@@ -486,12 +422,12 @@ class ObjectPlacer
 	facing = null;
 	physicsControls = null;
 	
-	function constructor(cObj, cPosition, cFacing, cPhysicsControls)
+	function constructor(cObj)
 	{
 		obj = cObj;
-		position = cPosition;
-		facing = cFacing;
-		physicsControls = cPhysicsControls;
+		position = Object.Position(cObj);
+		facing = Object.Facing(cObj);
+		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
 	}
 
 	function Place(input,noFacing = false)

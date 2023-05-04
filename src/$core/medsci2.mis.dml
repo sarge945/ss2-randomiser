@@ -450,7 +450,7 @@ Create "rndOutputMarker" "rndForcefieldRoomTable"
 		"Bank" 0
 	}
 }
-+Link "rndForcefieldRoomTable" "rndApartmentsRelocator" "Target"
++Link "rndForcefieldRoomTable" "rndCrewObjects" "Target"
 {
 }
 
@@ -466,7 +466,7 @@ Create "rndOutputMarker" "rndArmouryAccess"
 	}
 }
 +MetaProp "rndArmouryAccess" "Object Randomiser - No Junk"
-+Link "rndArmouryAccess" "rndApartmentsRelocator" "Target"
++Link "rndArmouryAccess" "rndCrewObjects" "Target"
 {
 }
 
