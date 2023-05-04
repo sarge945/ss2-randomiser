@@ -1,18 +1,27 @@
 class rndBase extends SqRootScript
 {
-	debugger = null;
-	name = null;
+
+	debug = null;
+	initialised = null;
 
 	//Run Once
 	function OnBeginScript()
 	{
-		local debugLevel = getParam("debug",1);
-		debugger = rndDebugger(self,debugLevel);
-		name = Object.GetName(self);
+		debug = getParam("debug",0);
 		if (!GetData("Started"))
 		{
 			SetData("Started",true);
 			Init();
+		}
+	}
+	
+	function DebugPrint(msg)
+	{
+		if (debug)
+		{
+			local message = self + ">: " + msg;
+			//ShockGame.AddText(message, "Player");
+			print(message);
 		}
 	}
 
@@ -51,5 +60,27 @@ class rndBase extends SqRootScript
 		}
 		
 		return array;
+	}
+	
+	//Returns if an item is a given type
+	function isArchetype(obj,type)
+	{
+		return obj == type || Object.Archetype(obj) == type || Object.InheritsFrom(obj,type);
+	}
+	
+	//Returns the max of 2 values
+	function Max(value1, value2)
+	{
+		if (value1 > value2)
+			return value1;
+		return value2;
+	}
+	
+	//Returns the min of 2 values
+	function Min(value1, value2)
+	{
+		if (value1 < value2)
+			return value1;
+		return value2;
 	}
 }

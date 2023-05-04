@@ -209,7 +209,7 @@ Create "rndOutputMarker" "rnd_marker_93"
 {
 }
 
-/*
+
 //Normally useless apartment
 Create "rndOutputMarker" "rnd_marker_91"
 {
@@ -221,10 +221,19 @@ Create "rndOutputMarker" "rnd_marker_91"
         "Bank" 0
     }
 }
-+Link "rnd_marker_91" "rndCrewObjects" "Target"
++Link "rnd_marker_91" 1839 "SwitchLink"
 {
 }
-*/
++Link "rnd_marker_91" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_91" 1843 "SwitchLink"
+{
+}
+
 
 //Normally useless apartment
 Create "rndOutputMarker" "rnd_marker_89"
@@ -237,7 +246,16 @@ Create "rndOutputMarker" "rnd_marker_89"
         "Bank" 0
     }
 }
-+Link "rnd_marker_89" "rndCrewObjects" "Target"
++Link "rnd_marker_89" 1839 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 1840 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 1844 "SwitchLink"
+{
+}
++Link "rnd_marker_89" 1843 "SwitchLink"
 {
 }
 

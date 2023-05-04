@@ -1,10 +1,7 @@
 class rndComplexRandomiser extends rndBase
 {
-	allowedTypes = null;
-	
-	manager = null;
-	delay = null;
-		
+
+	//If no allowed types are specified, use the default
 	static allowedTypesDefault = [
 		//-49, //Goodies
 		//-12, //Weapons
@@ -28,146 +25,128 @@ class rndComplexRandomiser extends rndBase
 		//-69, //potted plants
 	];
 	
-	function Init()
-	{
-		//ONLY UNCOMMENT FOR TEST
-		//debug = true;
+	allowedTypes = null;
 	
-		//Configure the number of times we will randomise
-		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
-		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
-		if (minTimes > maxTimes)
-			minTimes = maxTimes;
-		SetData("Times",Data.RandInt(minTimes,maxTimes));
-		local seed = getParam("forceSeed",-1);
+	inputs = null;
+	outputs = null;
+	
+	startDelay = null;
+	priority = null;
+	fuzzy = null;
+	seed = null;
+
+	function SetSeed()
+	{
+		seed = getParam("forceSeed",-1);
 		if (seed == -1)
-			seed = Data.RandInt(0,9999);
+			seed = Data.RandInt(0,99999);
 		SetData("Seed",seed);
-		
-		//Add a delay to the timer to put less stress on the game when loading new areas
-		local startDelay = (seed % 1000) * 0.0002;
-		SetData("StartDelay",startDelay);
-		
-		//Set up priority
-		local priority = getParam("priority",0);
-		SetData("Priority",priority);
-		
-		//Initial print
-		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + startDelay + ", Priority: " + priority + "]");
-		
-		SetOneShotTimer("StartTimer",0.1 + startDelay);
-	}
-	
-	function Setup()
-	{
-		local seed = GetData("Seed");
-		local startDelay = GetData("StartDelay");
-		local priority = GetData("Priority");
-		local ignorePriority = getParam("ignorePriority",false);
-		local prioritizeWorld = getParam("prioritizeWorldObjects",false);
-		local fuzzy = getParam("variedOutput",true);
-					
-		ConfigureAllowedTypes();
-	
-		manager = IOManager(debug,self,seed,ignorePriority,allowedTypes,prioritizeWorld,fuzzy);
-		manager.GetInputsAndOutputsForAllObjectPools();
-		
-		if (debug)
-		{
-			DebugPrint(manager.inputs.len() + " inputs for " + self + ":")
-			foreach(input in manager.inputs)
-			{
-				DebugPrint(" -> " + input.item);
-			}
-			DebugPrint(manager.outputs.len() + " outputs for " + self + ":")
-			foreach(output in manager.outputs)
-			{
-				DebugPrint(" -> " + output.output);
-			}
-		}
-		
-		if (manager.inputs.len() == 0)
-			print("WARNING: Randomiser " + Object.GetName(self) + " (" + self + ") has no inputs!");
-		else if (manager.outputs.len() == 0)
-			print("WARNING: Randomiser " + Object.GetName(self) + " (" + self + ") has no outputs!");
-		else
-		{
-			local messageTime = 0.1 + startDelay + (priority * 0.2); //DO NOT change this timer value, otherwise things start to break
-			DebugPrint("Sending Randomise message in " + messageTime);
-			SetOneShotTimer("RandomizeTimer",messageTime);
-		}
 	}
 
-	function ConfigureAllowedTypes()
+	function Init()
 	{
-		//if we have allowedTypes defined, overwrite the default allowed types list.
-		//If we have the allowedTypesAdd array, simply add them to the existing list instead.
-		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault); //Our first allowed type. Leave null to allow the usual
+		//just testing
+		debugger.debugLevel = 999;
 		
-		/*
-		local allowedTypesPlus = getParamArray("allowedTypesAdd",[]);
-		{
-			foreach (additionalType in allowedTypesPlus)
-			{
-				allowedTypes.append(additionalType);
-			}
-		}
-		*/
+		//Set our random seed
+		SetSeed();
+		
+		//We need to delay right at the start to give everything time to properly init,
+		//plus the game has a tendency to crash on loading otherwise
+		local startDelay = 0.1 + (seed % 1000 * 0.0001);
+		SetData("StartDelay",startDelay);
+		SetOneShotTimer("StartTimer",startDelay);
 	}
-	
+
 	function OnTimer()
 	{
 		if (message().name == "StartTimer")
+		{
 			Setup();
-		else
-			Randomize();
+			SetOneShotTimer("Randomise",startDelay + (priority * 0.1));
+		}
+		else if (message().name == "Randomise")
+		{
+			Randomise();
+		}
 	}
 	
-	function Randomize()
+	//Set up our input and output arrays
+	function Setup()
+	{		
+		//Get our basic settings
+		fuzzy = getParam("variedOutput",true);
+		seed = GetData("Seed");
+		startDelay = GetData("StartDelay");
+		priority = getParam("priority",0);
+		
+		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", seed: " + seed + ")");
+	
+		local IOcollection = rndIOCollection(self);
+		
+		//Shuffle and filter inputs by type
+		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
+		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
+		
+		//Remove outputs that are items that don't match with any input
+		local outputItems = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
+		outputs = rndFilterCombine(rndFilterCombine(outputItems,IOcollection.outputsMarkers).results,IOcollection.outputsContainers).results;
+				
+		//shuffle and filter outputs by priority
+		local out = rndPriorityFilter(outputs);
+		local high = rndFilterShuffle(out.high_priority_outputs,seed).results;
+		local low = rndFilterShuffle(out.low_priority_outputs,seed).results;
+			
+		foreach(h in high)
+			debugger.Log("H -> " + h.obj);
+		foreach(l in low)
+			debugger.Log("L -> " + l.obj);
+		
+		//combine all outputs into one list again
+		outputs = rndFilterCombine(high,low).results;
+		
+		//Remove duplicates from inputs and outputs
+		inputs = rndFilterRemoveDuplicates(inputs).results;
+		outputs = rndFilterRemoveDuplicates(outputs).results;
+			
+		debugger.Log("Total Inputs: " + inputs.len());
+		debugger.Log("Total Outputs: " + outputs.len());
+	}
+	
+	//Move an input to the end after it's used
+	function ReplaceOutput(output)
 	{
-		local count = 0;
-		local nosecret = getParam("noSecret",false);
-		local successes = 0;
-		local times = Min(manager.inputs.len(),GetData("Times"));
-		
-		DebugPrint("Randomizing " + times + " times");
-
-		while (count < manager.inputs.len() && successes < times)
-		{		
-			if (manager.inputs.len() == 0 || manager.outputs.len() == 0)
-				break;
-				
-			local input = manager.inputs[count];
-			local output;
-			
-			local success;
-			local currentOutput = -1;
-			
-			do
+		outputs.remove(0);
+		if (output.isContainer)
+		{
+			if (fuzzy)
 			{
-				currentOutput++;
-				
-				if (currentOutput >= manager.outputs.len())
+				srand(seed + output.obj);
+				local min = outputs.len() * 0.35;
+				local range = outputs.len() - min;
+				local index = rand() % range + min;
+				outputs.insert(index,output);
+			}
+			else
+			{
+				outputs.append(output);
+			}
+		}		
+	}
+	
+	function Randomise()
+	{
+		foreach (input in inputs)
+		{
+			foreach(output in outputs)
+			{
+				if (output.CanMove(input))
+				{
+					output.HandleMove(input);
+					ReplaceOutput(output);
 					break;
-				
-				output = manager.outputs[currentOutput];
-				success = output.HandleMove(input,nosecret);				
-				DebugPrint("Attempting to move " + input.item + " to output " + output.output + " (success: " + success + ")");
+				}
 			}
-			while (!success)
-			
-			if (success)
-			{
-				successes++;
-				DebugPrint("Sending " + input.item + " to " + output.output);
-			}
-			
-			manager.RefreshOutput(currentOutput,!success);		
-			count++;
 		}
-		
-		DebugPrint("Randomize: Rolled " + count + " times (" + successes + " were successful)");
-		srand(time());
-		Object.Destroy(self);
 	}
 }

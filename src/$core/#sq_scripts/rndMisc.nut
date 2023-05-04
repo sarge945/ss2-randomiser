@@ -389,50 +389,60 @@ class PhysicalOutput extends Output
 	static LINK_TARGET = 44;
 	static LINK_SWITCHLINK = 21;
 
+	position = null;
+	facing = null;
+
 	noFacing = null;
 	physicsControls = null;
 	selfOnly = null;
-	facing = null;
-	position = null;
 	linkedOutput = null;
 	disallowLinkedOutputs = null;
+	linkedMarkers = null;
 	
 	constructor(cOutput, cRandomiser, cSeed, cDisallowLinked = false)
 	{
 		base.constructor(cOutput, cRandomiser, cSeed);
-		noFacing = Object.HasMetaProperty(cOutput,"Object Randomiser - No Facing");
-		physicsControls = Property.Get(cOutput, "PhysControl", "Controls Active");
-		selfOnly = Object.HasMetaProperty(cOutput,"Object Randomiser - Output Self Only");
 		isContainer = false;
 		isMarker = ShockGame.GetArchetypeName(cOutput) == "rndOutputMarker";
 		disallowLinkedOutputs = cDisallowLinked;
+		GetLinkedMarkers();
 		GetLinkedOutput();
+	}
+	
+	function GetLinkedMarkers()
+	{
+		linkedMarkers = [];
+		linkedMarkers.append([output,Object.Position(output),Object.Facing(output),Property.Get(output, "PhysControl", "Controls Active")]);
+		foreach(switchlink in Link.GetAll(-LINK_SWITCHLINK,output))
+		{
+			local outputPos = sLink(switchlink).dest;
+			linkedMarkers.append([outputPos,Object.Position(outputPos),Object.Facing(outputPos),0]);
+		}
 	}
 	
 	//Get any of our linked outputs
 	function GetLinkedOutput()
 	{
-		//If we have any SwitchLinks, randomly select one, so we can link markers without upsetting balance
-		local outputPositions = [output]
-		foreach(switchlink in Link.GetAll(-LINK_SWITCHLINK,output))
-		{
-			local outputPos = sLink(switchlink).dest;
-			outputPositions.append(outputPos);
-		}
-		
-		if (disallowLinkedOutputs)
-			linkedOutput = outputPositions[0];
+		print ("Getting linked output...");
+	
+		if (linkedMarkers.len() == 1)
+			linkedOutput = linkedMarkers[0];
 		else
 		{
 			srand(seed + output);
-			linkedOutput = outputPositions[rand() % outputPositions.len()];
+			local index = rand() % linkedMarkers.len();
+			linkedOutput = linkedMarkers[index];
+			print ("linked Output chose index " + index + " of " + linkedMarkers.len());
 		}
 	
-		facing = Object.Facing(linkedOutput);
-		position = Object.Position(linkedOutput);
-		secret = secret || Object.HasMetaProperty(linkedOutput,"Object Randomiser - Secret");
-		highPriority = highPriority || Object.HasMetaProperty(linkedOutput,"Object Randomiser - High Priority Output");
-		noJunk = noJunk || Object.HasMetaProperty(linkedOutput,"Object Randomiser - No Junk") || highPriority || secret;
+		position = linkedOutput[1];
+		facing = linkedOutput[2];
+		secret = secret || Object.HasMetaProperty(linkedOutput[0],"Object Randomiser - Secret");
+		highPriority = highPriority || Object.HasMetaProperty(linkedOutput[0],"Object Randomiser - High Priority Output");
+		noJunk = noJunk || Object.HasMetaProperty(linkedOutput[0],"Object Randomiser - No Junk") || highPriority || secret;
+		noFacing = Object.HasMetaProperty(linkedOutput[0],"Object Randomiser - No Facing");
+		physicsControls = linkedOutput[3];
+		selfOnly = Object.HasMetaProperty(output,"Object Randomiser - Output Self Only");
 	}
 	
 	function checkHandleMove(input,nosecret)
@@ -499,9 +509,7 @@ class PhysicalOutput extends Output
 	
 	function HandleMove(input, nosecret)
 	{
-	
-		if (output == 1901 || output == 1905)
-			print (randomiser + " sending " + input.item + " to 1901");
+		GetLinkedOutput();
 	
 		if (!checkHandleMove(input,nosecret))
 			return false;
@@ -509,8 +517,10 @@ class PhysicalOutput extends Output
 		//Set output as unusable
 		foreach (ilink in Link.GetAll(LINK_TARGET,0,output))
 			Link.Destroy(ilink);
-		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,linkedOutput))
+		
+		foreach (ilink in Link.GetAll(LINK_SWITCHLINK,linkedOutput[0]))
 			Link.Destroy(ilink);
+
 		
 		//Move object out of container
 		Container.Remove(input.item);
@@ -521,10 +531,10 @@ class PhysicalOutput extends Output
 		//If we are the same archetype, don't bother doing any of the physics stuff, and don't remove controls
 		//Instead, we need to just teleport the item to the output,
 		//and give it the same physics controls, so that it looks the same
-		if (linkedOutput == input.item)
+		if (linkedOutput[0] == input.item)
 		{
 		}
-		else if (SameItemType(input,linkedOutput))
+		else if (SameItemType(input,linkedOutput[0]))
 		{
 			Object.Teleport(input.item, position, facing);
 			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
@@ -539,7 +549,6 @@ class PhysicalOutput extends Output
 			Physics.SetVelocity(input.item,vector(0,0,10));
 			Physics.Activate(input.item);
 		}
-		
 		return true;
 	}
 	

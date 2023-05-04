@@ -80,10 +80,10 @@ Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
 {
 }
 
-//Allow one kitchen item in Watts room
+//Allow up to 2 kitchen items in Watts room
 Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=2; variedOutput=0; maxTimes=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=2; variedOutput=0; maxTimes=2;"
 }
 //Inputs
 +Link "rndCrewObjectsKitchen" "rndWattsRoomRandomiser" "SwitchLink"
@@ -96,7 +96,6 @@ Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
 +Link "rndWattsRoomObjects" "rndWattsRoomRandomiser" "~SwitchLink"
 {
 }
-
 
 //Create a Randomiser for the Security Crates
 Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
