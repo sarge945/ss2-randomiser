@@ -1,3 +1,64 @@
+//Attached to all Inputs
+CreateArch "Misc Metaprops" "Object Randomiser Input"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndInput"
+		"Don't inherit" false
+	}
+}
+
+//Attached to all Outputs
+CreateArch "Misc Metaprops" "Object Randomiser Output"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutput"
+		"Don't inherit" false
+	}
+}
+
+//Acts as an output
+//Link this to an Item Pool and it will behave like any regular output
+CreateArch "Marker" "rndOutputMarker"
+{
+}
+
+//Acts as an input, by "linking" to it's input item
+//This is designed for inputs with the "Don't Inherit" flag set
+CreateArch "Marker" "rndInputLinker"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndInput"
+		"Don't inherit" false
+	}
+}
+
+//Acts as an output, by "linking" to it's output item
+//This is designed for outputs with the "Don't Inherit" flag set
+CreateArch "Marker" "rndOutputLinker"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutput"
+		"Don't inherit" false
+	}
+}
+
+//Object Pool
+//SwitchLink to a Randomiser to have all linked Targets added as inputs
+//~SwitchLink to a Randomiser to have all linked Targets added as outputs
+CreateArch "Marker" "rndObjectCollection"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndObjectPool"
+		"Don't inherit" false
+	}
+}
+
+
 /*
 //Treats all Targets as inputs, and ~Targets as outputs
 CreateArch "Marker" "rndRandomiser"
@@ -50,31 +111,6 @@ CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; ignorePriority=1; variedOutput=0; priority=1;"
-}
-
-
-//Acts as an output
-//TargetLink this to a Randomiser, exactly like an item, and items will spawn in this location.
-CreateArch "Marker" "rndOutputMarker"
-{
-}
-
-//Nothing spawns at a relocation marker.
-//Instead, it's SwitchLinked to a number of rndOutputMarkers or items (which should be inputs).
-//TargetLink this to a randomiser as normal, and it will act only as 1 output,
-//but will instead redirect the output to one of many connected objects which target it.
-//This is useful for eg having 10+ markers in a room, but not wanting them to bias the randomisation by appearing
-//as 10 inputs that can accept 10 items, possibly bloating a room with lots of items.
-//Note: Multiple Relocators can share markers
-//Instead, only one input will be sent to it, and will appear at one of the 10+ linked markers.
-CreateArch "Marker" "rndOutputRelocator"
-{
-}
-
-//SwitchLink to a Randomiser to have all linked Targets added as inputs
-//~SwitchLink to a Randomiser to have all linked Targets added as outputs
-CreateArch "Marker" "rndObjectCollection"
-{
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object

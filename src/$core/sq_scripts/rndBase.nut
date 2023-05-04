@@ -1,22 +1,37 @@
 class rndBase extends SqRootScript
 {
-	debugger = null;
 	name = null;
+	debugLevel = null;
 
 	//Run Once
 	function OnBeginScript()
 	{
-		local debugLevel = getParam("debug",1);
-		debugger = rndDebugger(self,debugLevel);
+		debugLevel = getParam("debug",0);
 		name = Object.GetName(self);
-		if (!GetData("Started"))
-		{
-			SetData("Started",true);
-			Init();
-		}
+		if (name == "")
+			name = ShockGame.GetArchetypeName(self);
+		//print (name + " (" + self + ") initialised");
+		Init();
 	}
-
-	//override this
+	
+	function PrintDebug(msg,requiredDebugLevel = 0)
+	{
+		if (debugLevel >= requiredDebugLevel)
+			print(GetIdentifier() + "> " + msg);
+	}
+	
+	function ShowDebug(msg,requiredDebugLevel = 0)
+	{
+		if (debugLevel >= requiredDebugLevel)
+			ShockGame.AddText(GetIdentifier() + "> " + msg,"Player");
+	}
+	
+	//Make debug easier
+	function GetIdentifier()
+	{
+		return "[" + self + "] " + name;
+	}
+	
 	function Init()
 	{
 	}
