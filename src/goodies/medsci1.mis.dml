@@ -97,19 +97,3 @@ Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
 +Link "rndBodybags" "rndBodybagsRandomiser" "~SwitchLink"
 {
 }
-
-//Create a Randomiser for the Security Crates
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
-}
-
-//Inputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
-{
-}
-
-//Outputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
-{
-}

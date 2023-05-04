@@ -34,19 +34,3 @@ Create "rndComplexRandomiser" "rndGoodiesRandomiser"
 +Link "rndCargoBayObjects" "rndGoodiesRandomiser" "~SwitchLink"
 {
 }
-
-//Create a Randomiser for the Hackable Crates in the Cargo Bay
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
-}
-
-//Inputs
-+Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "SwitchLink"
-{
-}
-
-//Outputs
-+Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
-{
-}

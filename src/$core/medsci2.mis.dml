@@ -48,7 +48,7 @@ Create "rndObjectCollection" "rndWattsRoomObjects"
 }
 
 //Create an object collection for the Hackable Crates
-Create "rndObjectCollection" "rndHackableObjects"
+Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
@@ -628,22 +628,22 @@ Create "rndOutputMarker" "rndArmouryAccess"
 /////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
 
 //Biopsy Lab top level
-+Link 135 "rndHackableObjects" "Target"
++Link 135 "rndSecurityCrates" "Target"
 {	
 }
 
 //ICU
-+Link 137 "rndHackableObjects" "Target"
++Link 137 "rndSecurityCrates" "Target"
 {	
 }
 
 //Room near ICU
-+Link 143 "rndHackableObjects" "Target"
++Link 143 "rndSecurityCrates" "Target"
 {
 }
 
 //Forcefield Room
-+Link 150 "rndHackableObjects" "Target"
++Link 150 "rndSecurityCrates" "Target"
 {
 }
 

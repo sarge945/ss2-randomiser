@@ -2,18 +2,18 @@
 // 								Randomise Security Crates
 // ================================================================================
 
-//Create a Randomiser for the Security Crates
+//Create a Randomiser for the Hackable Crates in the Cargo Bay
 Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "variedOutput=0;"
 }
 
 //Inputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
++Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "SwitchLink"
 {
 }
 
 //Outputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
++Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
 {
 }

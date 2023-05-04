@@ -85,19 +85,3 @@ Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
 +Link "rndWattsRoomObjects" "rndWattsRoomRandomiser" "~SwitchLink"
 {
 }
-
-//Create a Randomiser for the Security Crates
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
-}
-
-//Inputs
-+Link "rndHackableObjects" "rndSecurityCratesRandomiser" "SwitchLink"
-{
-}
-
-//Outputs
-+Link "rndHackableObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
-{
-}

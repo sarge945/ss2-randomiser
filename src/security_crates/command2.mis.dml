@@ -2,18 +2,18 @@
 // 								Randomise Security Crates
 // ================================================================================
 
-//Create a Randomiser for the Security Crates
+//Create a Randomiser for the Super Crates
 Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "variedOutput=0;"
 }
 
 //Inputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
++Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "SwitchLink"
 {
 }
 
 //Outputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
++Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
 {
 }

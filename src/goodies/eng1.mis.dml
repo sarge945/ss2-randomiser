@@ -65,19 +65,3 @@ Create "rndComplexRandomiser" "rndEngineeringRandomiser"
 +Link "rndTubeStorage5Objects" "rndEngineeringRandomiser" "~SwitchLink"
 {
 }
-
-//Create a Randomiser for the Security Crates
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
-}
-
-//Inputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
-{
-}
-
-//Outputs
-+Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
-{
-}

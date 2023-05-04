@@ -58,19 +58,3 @@ Create "rndComplexRandomiser" "rndCommand2Randomiser"
 +Link "rndKorenchkinObjects" "rndCommand2Randomiser" "~SwitchLink"
 {
 }
-
-//Create a Randomiser for the Super Crates
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
-}
-
-//Inputs
-+Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "SwitchLink"
-{
-}
-
-//Outputs
-+Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
-{
-}
