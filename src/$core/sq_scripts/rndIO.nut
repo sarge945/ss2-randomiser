@@ -199,7 +199,11 @@ class Output
 	}
 	
 	function CanMove(input,noSecret,allowOriginalLocation)
-	{	
+	{
+		//Check if the input is already moved
+		if (Link.AnyExist(-LINK_TARGET,input.obj))
+			return false;
+	
 		if (selfOnly && (rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
 			return false;
 	
@@ -215,6 +219,8 @@ class Output
 	function HandleMove(input)
 	{
 		//print ("Moving " + input.obj + " to " + obj);
+		//Set input as unusable
+		Link.Create(-LINK_TARGET,input.obj,obj);
 	}
 }
 

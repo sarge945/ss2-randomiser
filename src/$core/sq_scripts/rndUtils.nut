@@ -4,6 +4,13 @@ class rndUtil
 	{
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
+	
+	static function Min(val1,val2)
+	{
+		if (val1 > val2)
+			return val2;
+		return val1;
+	}
 }
 
 class rndDebugger

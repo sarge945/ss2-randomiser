@@ -39,6 +39,7 @@ class rndComplexRandomiser extends rndBase
 	prioritizeWorld = null;
 	noSecret = null;
 	allowOriginalLocations = null;
+	randomiseDelay = null;
 
 	function SetSeed()
 	{
@@ -76,6 +77,7 @@ class rndComplexRandomiser extends rndBase
 		//plus the game has a tendency to crash on loading otherwise
 		local startDelay = 0.1 + (seed % 1000 * 0.0001);
 		SetData("StartDelay",startDelay);
+		
 		SetOneShotTimer("StartTimer",startDelay);
 	}
 
@@ -84,7 +86,7 @@ class rndComplexRandomiser extends rndBase
 		if (message().name == "StartTimer")
 		{
 			Setup();
-			SetOneShotTimer("Randomise",startDelay + (priority * 0.1));
+			SetOneShotTimer("Randomise",randomiseDelay);
 		}
 		else if (message().name == "Randomise")
 		{
@@ -107,14 +109,15 @@ class rndComplexRandomiser extends rndBase
 		fuzzy = getParam("variedOutput",true);
 		seed = GetData("Seed");
 		startDelay = GetData("StartDelay");
-		priority = getParam("priority",0);
+		priority = rndUtil.Min(getParam("priority",0),3);
 		ignorePriority = getParam("ignorePriority",false);
 		prioritizeWorld = getParam("prioritizeWorldObjects",false);
 		noSecret = getParam("noSecret",false);
 		allowOriginalLocations = getParam("allowOriginalLocations",false);
+		randomiseDelay = startDelay + (3 - priority) * 0.1;
 		SetAllowedTypes();
 		
-		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", seed: " + seed + ")");
+		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", randomiseDelay: " + randomiseDelay + ", seed: " + seed + ")");
 	
 		local IOcollection = rndIOCollection(self);
 		
@@ -163,22 +166,21 @@ class rndComplexRandomiser extends rndBase
 	//Move an input to the end after it's used
 	function ReplaceOutput(index,output)
 	{
-		outputs.remove(index);
-		if (output.isContainer)
+		if (fuzzy && output.isContainer)
 		{
-			if (fuzzy)
-			{
-				srand(seed + output.obj);
-				local min = outputs.len() * 0.35;
-				local range = outputs.len() - min;
-				local insertIndex = rand() % range + min;
-				outputs.insert(insertIndex,output);
-			}
-			else
-			{
-				outputs.append(output);
-			}
-		}		
+			srand(seed + output.obj);
+			local min = outputs.len() * 0.35;
+			local range = outputs.len() - min;
+			local insertIndex = rand() % range + min;
+			outputs.remove(index);
+			outputs.insert(insertIndex,output);
+			print ("fuzzy: " + insertIndex + ", min: " + min + ", range: " + range + ", total:" + outputs.len());
+		}
+		else
+		{
+			outputs.remove(index);
+			outputs.append(output);
+		}
 	}
 	
 	function Randomise()
