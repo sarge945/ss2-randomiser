@@ -1,5 +1,12 @@
 class rndRandomiser extends rndBase
 {
+
+	inputs = null;
+	outputs = null;
+	allowedTypes = null;
+	autoOutputs = null;
+	autoInputs = null;
+	
 	//Default allowed inputItemLists.
 	//We can replace this
 	//Randomisers AND outputItemLists have input filters
@@ -20,135 +27,137 @@ class rndRandomiser extends rndBase
 		-90, //Decorative items like mugs etc
 	];
 
-	totalReady = null;
-
-	allowedTypes = null;
-	outputItemLists = null;
-	inputItemLists = null;
-	
-	currentItem = null;
-	currentOutput = null;
-	
-	totalTime = null;
-	totalItems = null;
-
 	function Init()
-	{	
-		//copy the array so we can modify it
+	{
+		//Squirrel has an issue with global variables being shared across instances
+		//so we need to instantiate them here
+		//See note under section 2.9.2 at http://squirrel-lang.org/squirreldoc/reference/language/classes.html
+		inputs = [];
+		outputs = [];
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
-		
-		totalItems = getParam("totalItems",100);
-		totalTime = 0;
-		totalReady = 0;
-		
-		outputItemLists = [];
-		inputItemLists = [];
-		
-		GetInputItemLists();
-		GetOutputItemLists();
-				
-		//if (inputItemLists.len() > 0 && outputItemLists.len() > 0)
-			//SetTimer(0.05);
-	}
+		autoOutputs = getParam("autoOutputs",true);
+		autoInputs = getParam("autoInputs",true);
 	
-	function OnObjectListReady()
-	{
-		print ("item list " + message().from + " ready");
+		ProcessLinks();
 		
-		foreach(list in outputItemLists)
+		Array_Shuffle(inputs);
+		Array_Shuffle(outputs);
+		
+		//DEBUG CODE
+		//================
+		print ("ALL " + inputs.len() + " INPUTS FOR " + self);
+		foreach (input in inputs)
 		{
-			if (list[0] == message().from)
-				list[1] = message().data;
+			print ("   <- " + input);
 		}
+		print ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
+		foreach (output in outputs)
+		{
+			print ("   -> " + output);
+		}
+		//================
 		
-		totalReady++;
-		
-		if (totalReady >= (outputItemLists.len() + inputItemLists.len()))
-			SetTimer();
-		else
-			print ("Waiting on more lists");
-	}
-	
-	function SetTimer(extra = 0.0)
-	{
-		//print ("timer finished");
-		local timer = Data.RandFlt0to1() * 0.002;
-		totalTime += timer + extra;
-		SetOneShotTimer("RandomiserWait", timer + extra);
+		//We need a slightl delay here, otherwise Squirrel explodes
+		SetOneShotTimer("InitTimer",0.01);
+		Randomise();
 	}
 	
 	function OnTimer()
 	{
-		if (currentItem == null)
-		{
-			local roll = Data.RandInt(0,inputItemLists.len() - 1);
-			local itemList = inputItemLists[roll];
-			local typeRoll = Data.RandInt(0,allowedTypes.len() - 1);
-			local type = allowedTypes[typeRoll];
-		
-			SendMessage(itemList,"GetInput",type);
-		}
-		else if (currentOutput == null)
-		{
-			local roll = Data.RandInt(0,outputItemLists.len() - 1);
-			local itemList = outputItemLists[roll];
-		
-			SendMessage(itemList[0],"GetOutput");
-		}
-		else
-			Randomise();
-		
-		if (totalItems > 0)
-		//if (totalTime < 2.0 && totalItems > 0) //stop asking for items after 2 seconds or if we run out of items
-			SetTimer();
-	}
-	
-	function OnGetItem()
-	{
-		//print ("reply with item: " + message().data);
-		currentItem = message().data;
-		
+		SetOutputMetaprops();
 		Randomise();
 	}
-	
-	function OnGetOutput()
+
+	//Allow any outputs to function
+	function SetOutputMetaprops()
 	{
-		//print ("reply with output: " + message().data);
-		currentOutput = message().data;
-		
-		//We need to apply metaprop to containers and corpses that don't have it
-		if (isArchetype(currentOutput,-379) || isArchetype(currentOutput,-118))
+		foreach(output in outputs)
 		{
-			if (!Object.HasMetaProperty(currentOutput,"Object Randomiser - Container"))
-				Object.AddMetaProperty(currentOutput,"Object Randomiser - Container");
+			if (isArchetype(output,-379) || isArchetype(output,-118))
+			{
+				if (!Object.HasMetaProperty(output,"Object Randomiser - Container"))
+					Object.AddMetaProperty(output,"Object Randomiser - Container");
+			}
 		}
-		
-		Randomise();
 	}
 	
 	function Randomise()
-	{
-		if (currentItem && currentOutput)
+	{		
+		//print ("inputs len: " + inputs.len());
+		
+		local remaining = inputs.len();
+		
+		while (remaining > 0)
 		{
-			print (">>>Randomiser " + self + " randomising item " + currentItem + " at output " + currentOutput)
-			SendMessage(currentOutput,"ReceiveItem",currentItem);
-			totalItems--;
-			currentItem = null;
-			currentOutput = null;
+			foreach(output in outputs)
+			{
+				if (remaining > 0)
+				{
+					//print ("remaining " + remaining);
+					SendMessage(output,"ReceiveItem",inputs[remaining - 1]);
+					print ("PROCESSING INPUT " + (remaining - 1) + ": " + inputs[remaining - 1]);
+					//inputs.remove(remaining - 1);
+					remaining--;
+				}
+				else
+					break;
+			}
 		}
 	}
 	
-	function GetInputItemLists()
+	//Turns all target links and their inventories into usable input and output links
+	function ProcessLinks()
 	{
-		//All Target Links are Input Object Collections
-		foreach (iLink in Link.GetAll(linkkind("Target"),self))
-			inputItemLists.append(sLink(iLink).dest);
+		//All ~Target Links are inputs, which may be of multiple types
+		foreach (inLink in Link.GetAll(linkkind("~Target"),self))
+		{
+			local obj = sLink(inLink).dest;
+			ProcessInput(obj);
+		}
+		
+		/*
+		//All Target Links are outputs, which may be of multiple types
+		foreach (inLink in Link.GetAll(linkkind("Target"),self))
+		{
+			local obj = sLink(inLink).dest;
+			ProcessOutput(obj);
+		}
+		*/
+	}
+
+	//Inputs will be either items or containers directly, or item lists
+	function ProcessInput(input)
+	{		
+		//Add linked objecf it it's a valid type
+		if (IsValidInput(input))
+			inputs.append(input);
+		
+		//if it's a container, a marker or a corpse, it's also an output
+		if (isArchetype(input,-379) || isArchetype(input,-118) || ShockGame.GetArchetypeName(input) == "rndOutputMarker") //isArchetype(input,-327)) 
+		{
+			if (autoOutputs)
+				outputs.append(input);
+		}
+		
+		if (autoInputs)
+		{
+			//Also get the contents of it's inventory and add them as well
+			foreach (containsLink in Link.GetAll(linkkind("Contains"),input))
+			{
+				local contained = sLink(containsLink).dest;			
+				if (IsValidInput(contained))
+					inputs.append(contained);
+			}
+		}
 	}
 	
-	function GetOutputItemLists()
+	function IsValidInput(item)
 	{
-		//All ~Target Links are Output Object Collections
-		foreach (oLink in Link.GetAll(linkkind("~Target"),self))
-			outputItemLists.append([sLink(oLink).dest,0]);
+		foreach (archetype in allowedTypes)
+		{
+			if (isArchetype(item,archetype))
+				return true;
+		}
+		return false;
 	}
 }

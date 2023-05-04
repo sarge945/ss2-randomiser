@@ -1,8 +1,11 @@
 class rndOutputMarker extends rndOutput
 {
+	cloneItem = null;
+
 	//If an item has a contains link, it should be cloned so that it actually works when placed in the world
 	function CloneContainedItem(item)
 	{
+		
 		//If item is contained, we need to clone it and delete the old one
 		if (Link.AnyExist(linkkind("~Contains"),item))
 		{
@@ -14,11 +17,10 @@ class rndOutputMarker extends rndOutput
 		return item;
 	}
 
-	//Move item to current location
-	function OnReceiveItem()
+	function ProcessItem()
 	{
-		local item = CloneContainedItem(message().data);
-		//print ("moving item " + item + " to position " + Object.Position(self));
+		local item = CloneContainedItem(item);
+		print ("moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
 		Object.Destroy(self);
 	}
