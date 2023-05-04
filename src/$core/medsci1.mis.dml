@@ -751,7 +751,7 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-30.1695, 52.4995, 0.515529"
+		"Location" "-22.9695, 52.4995, 0.515529"
 		"Heading" 1fc
 		"Pitch" 0
 		"Bank" 0
