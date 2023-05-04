@@ -9,6 +9,8 @@
 class rndRandomiser extends rndBase
 {
 
+	static DELAY_TIME = 0.01;
+
 	inputs = null;
 	outputs = null;
 	allowedTypes = null;
@@ -73,7 +75,7 @@ class rndRandomiser extends rndBase
 		//================
 		
 		//We need a slight delay here, otherwise Squirrel explodes
-		SetOneShotTimer("InitTimer",Data.RandFlt0to1() * 0.02);
+		SetOneShotTimer("InitTimer",Data.RandFlt0to1() * DELAY_TIME);
 	}
 	
 	function OnTimer()
@@ -81,7 +83,7 @@ class rndRandomiser extends rndBase
 		if (message().name == "InitTimer")
 		{
 			SetOutputMetaprops();
-			SetOneShotTimer("StandardTimer",0.01);
+			SetOneShotTimer("StandardTimer",DELAY_TIME);
 		}
 		else
 			SignalReady();
@@ -162,7 +164,7 @@ class rndRandomiser extends rndBase
 					currentOutputIndex = 0;
 			
 			//This is required otherwise we get a stack overflow
-			SetOneShotTimer("StandardTimer",0.01);
+			SetOneShotTimer("StandardTimer",DELAY_TIME);
 		}
 			
 	}
