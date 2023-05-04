@@ -1,0 +1,19 @@
+// ================================================================================
+// 								Swap Hardware Override Cards
+// ================================================================================
+
+//Create a Randomiser for the Hardware Override Cards
+Create "rndComplexRandomiser" "rndHardwareOverrideRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-1461; allowedTypes1=-1455"
+}
+
+//Inputs
++Link "rndTubeStorage5Cards" "rndHardwareOverrideRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndTubeStorage5Cards" "rndHardwareOverrideRandomiser" "~SwitchLink"
+{
+}

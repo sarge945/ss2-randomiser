@@ -284,7 +284,7 @@ class PhysicalOutput extends Output
 		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,ob))
 		{
 			local id = sLink(ilink).dest;
-			local location = Location(id);
+			local location = LinkedLocation(id);
 			locations.append(location);
 			GetLocationsForObject(id);
 		}
@@ -308,13 +308,7 @@ class PhysicalOutput extends Output
 	
 	function DisableOutput(obj)
 	{
-		//Remove all SwitchLinks
-		foreach (ilink in Link.GetAll(LINK_SWITCHLINK,obj))
-			Link.Destroy(ilink);
-	
-		//Remove all Target links
-		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
-			Link.Destroy(ilink);
+		currentLocation.Disable();
 	}
 	
 	function CanMove(input,noSecret,allowOriginalLocation)
@@ -394,6 +388,13 @@ class Location
 		return targetLink || switchLink;
 	}
 	
+	function Disable()
+	{
+		//Remove all Target links
+		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
+			Link.Destroy(ilink);
+	}
+	
 	function MoveTo(input)
 	{		
 		//Make object render
@@ -465,6 +466,7 @@ class Location
 		[-964, -965, -967], //Vodka, Champagne, Liquor
 		[-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
 		[-1256, -1257, -1258, -1259, -1260, -1261], //This Month in Ping-Pong, Rolling Monthly, Cigar Lover, DJ Lover, Kangaroo Quarterly, Vita Men's Monthly
+		[-1455, -1485], //Circuit Board, RadKey Card
 	];
 	
 	function SameItemType(input)
@@ -490,5 +492,15 @@ class Location
 			if (iValid && oValid)
 				return true;
 		}
+	}
+}
+
+class LinkedLocation extends Location
+{
+	function Disable()
+	{
+		//Remove all SwitchLinks
+		foreach (ilink in Link.GetAll(LINK_SWITCHLINK,obj))
+			Link.Destroy(ilink);
 	}
 }
