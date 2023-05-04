@@ -381,6 +381,11 @@ Create "rndObjectCollection" "rndEggs"
 
 ////Loose Items
 
+//Cyber Modules on box near window
++Link 185 "rndSectorBObjects" "Target"
+{
+}
+
 //Electro Shock in Infirmary
 +Link 1011 "rndSectorBObjects" "Target"
 {
