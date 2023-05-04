@@ -5,7 +5,6 @@ class rndOutput extends rndBase
 
 	function Init(reloaded)
 	{
-		debugLevel = 999;
 	
 		container = isContainer(self);
 		corpse = isCorpse(self);
@@ -97,8 +96,8 @@ class rndOutput extends rndBase
 		local RnoSecret = randomiserSettings[1].tointeger();
 		local RnoCorpse = randomiserSettings[2].tointeger();
 		local RallowOriginalLocations = randomiserSettings[3].tointeger();
-	
-		if (IsPlaced() || !IsVerified())
+		
+		if (!Object.Exists(input) || IsPlaced() || !IsVerified())
 			return 1;
 			
 		if (!CheckAllowedTypes(input))
@@ -158,16 +157,27 @@ class rndOutput extends rndBase
 			if (IsValid(input,configArr) == 0)
 			{
 				SetData("placed",true);
-				PrintDebug("	found suitable input " + input + " from " + source + ", outputting to " + self + "<"+ ShockGame.SimTime() +">",4);
-				if (isContainer(self))
-					PlaceInContainer(input,self);
-				else
-					PlacePhysical(input,self);
+				PrintDebug("	found suitable input " + input + " from " + source,4);
+				Place(input,self);
 				PostMessage(source,"OutputSuccess",input,container);
 				return;
 			}
 		}
 		PostMessage(source,"OutputFailed");
+	}
+	
+	function Place(input,output)
+	{
+		if (isContainer(output))
+		{
+			PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",0);
+			PlaceInContainer(input,output);
+		}
+		else
+		{
+			PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",0);
+			PlacePhysical(input,output);
+		}
 	}
 	
 	function PlaceInContainer(input,output)

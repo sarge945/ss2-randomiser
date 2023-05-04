@@ -44,39 +44,10 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	noSecret = null;
 	noCorpse = null;
 	
-	//Debug
-	function SetSeed()
-	{
-		base.SetSeed();
-		if (self == 764)
-			seed = 5003;
-		else if (self == 648)
-			seed = 31184;
-		else if (self == 699)
-			seed = 20142;
-		else if (self == 744)
-			seed = 25465;
-		else if (self == 767)
-			seed = 606;
-		else if (self == 686)
-			seed = 9619;
-		else if (self == 795)
-			seed = 5742;
-		else if (self == 649)
-			seed = 24902;
-		else if (self == 727)
-			seed = 10904;
-		else if (self == 697)
-			seed = 28907;
-			
-		SetData("Seed",seed);
-	}
-	
 	function Setup()
 	{
 		base.Setup();
 
-		debugLevel = 999;
 		
 		//Populate configuration
 		fuzzy = getParam("variedOutput",1);
@@ -181,6 +152,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	function Complete()
 	{
 		PrintDebug("Randomiser Completed. Randomised " + currentRolls + " of " + totalItems + " items (" + failures + " rerolls)");
+		Object.Destroy(self);
 	}
 
 	function VerifyInputs()

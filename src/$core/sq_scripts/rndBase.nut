@@ -334,9 +334,7 @@ class rndBaseRandomiser extends rndBase
 	
 	function GetStartTime()
 	{
-		return 0.2 + (seed % 999 * 0.0001);
-		//local seedDelay = (seed % 1000) * 0.0005;
-		//return 0.1 + (0.05 - 0.01 * priority) + seedDelay;
+		return 0.2;
 	}
 	
 	function SetSeed()
