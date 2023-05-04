@@ -86,15 +86,14 @@ class rndIOCollection
 			output = ContainerOutput(obj,seed);
 			outputsContainers.append(output);
 		}
-		else if (IsMarker(obj))
-		{
-			output = MarkerOutput(obj,seed);
-			outputsMarkers.append(output);
-		}
 		else
 		{
-			output = ItemOutput(obj,seed);
-			outputsItems.append(output);
+			output = PhysicalOutput(obj,seed);
+			
+			if (output.isMarker)
+				outputsMarkers.append(output);
+			else
+				outputsItems.append(output);
 		}
 		outputs.append(output);
 	}
@@ -119,15 +118,14 @@ class rndIOCollection
 	{
 		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
 	}
-	
-	function IsMarker(obj)
-	{
-		return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
-	}
 }
 
 class Input
 {
+	static LINK_CONTAINS = 10;
+	static LINK_TARGET = 44;
+	static LINK_SWITCHLINK = 21;
+
 	//Items with these archetypes will be counted as junk.
 	static junkArchetypes = [
 		-68, //Plant #1
@@ -173,6 +171,16 @@ class Input
 		containerOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Container Only");
 		originalContainer = cOriginalContainer;
 	}
+	
+	function SetInvalid(randomiser)
+	{
+		Link.Create(LINK_TARGET,randomiser,obj);
+	}
+	
+	function IsValid()
+	{
+		return !Link.AnyExist(-LINK_TARGET,obj)
+	}
 }
 
 class Output
@@ -205,15 +213,18 @@ class Output
 	function CanMove(input,noSecret,allowOriginalLocation)
 	{
 		//Check if the input is already moved
-		if (Link.AnyExist(-LINK_TARGET,input.obj))
+		if (!input.IsValid())
 			return false;
 	
-		if (selfOnly && (rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
+		//Ensure that if self only is enabled, we only allow ourself
+		if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
 			return false;
 	
+		//don't allow junk
 		if (noJunk && input.isJunk)
 			return false;
-			
+		
+		//don't allow secrets
 		if (noSecret && secret)
 			return false;
 	
@@ -222,9 +233,8 @@ class Output
 	
 	function HandleMove(input)
 	{
-		//print ("Moving " + input.obj + " to " + obj);
-		//Set input as unusable
-		Link.Create(-LINK_TARGET,input.obj,obj);
+		//print ("Moving " + input.obj + " to " + obj);		
+		Container.Remove(input.obj);
 	}
 }
 
@@ -239,40 +249,170 @@ class ContainerOutput extends Output
 	function HandleMove(input)
 	{
 		base.HandleMove(input);
-		Container.Remove(input.obj);
 		Link.Create(LINK_CONTAINS,obj,input.obj);
 		Property.SetSimple(input.obj, "HasRefs", FALSE);
 	}
 }
 
+//Physical Outputs can have associated "Locations"
+//Which are markers that don't count as outputs
 class PhysicalOutput extends Output
 {
-	position = null;
-	facing = null;
-	physicsControls = null;
-	noFacing = null;
+	locations = null;
+	currentLocation = null;
 
 	constructor(cObj,cSeed)
 	{
 		base.constructor(cObj,cSeed);
-		position = Object.Position(cObj);
-		facing = Object.Facing(cObj);
-		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
-		noFacing = Object.HasMetaProperty(cObj,"Object Randomiser - No Facing");
+		isMarker = ShockGame.GetArchetypeName(cObj) == "rndOutputMarker";
+		GetLocations();
+	}
+	
+	function GetLocations()
+	{
+		//Add self as a location too
+		local location = Location(obj);
+		locations = [location];
+		
+		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
+		{
+			local location = Location(sLink(ilink).dest);
+			locations.append(location);
+		}
+		locations = rndFilterShuffle(locations,seed).results;
+	}
+	
+	function OutputEnabled()
+	{
+		//Make sure the output is still enabled
+		return Link.AnyExist(LINK_TARGET,obj);
+	}
+	
+	function FindFirstValidLocation(noSecret)
+	{
+		foreach (location in locations)
+		{
+			if (location.Valid(noSecret))
+				return location;
+		}
+		return null;
+	}
+	
+	function DisableOutput(obj)
+	{
+		//Remove all SwitchLinks
+		foreach (ilink in Link.GetAll(LINK_SWITCHLINK,obj))
+			Link.Destroy(ilink);
+	
+		//Remove all Target links
+		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
+			Link.Destroy(ilink);
 	}
 	
 	function CanMove(input,noSecret,allowOriginalLocation)
 	{
-		if (!base.CanMove(input,noSecret,allowOriginalLocation))
+		//print (obj + " when you need foundation repair");
+			
+		if (!base.CanMove(input,false,allowOriginalLocation))
 			return false;
 			
-		if (!selfOnly && input.containerOnly)
-			return false;
-	
+		//print (obj + " you want foundation repair");
+		
 		if (!OutputEnabled())
 			return false;
+			
+		//print (obj + " and you'd like to save a lot of money, right?");
+							
+		//Don't allow anything with "Containers Only", as this is a physical output
+		//Except, allow things with selfOnly, since that will cancel it out
+		if (!selfOnly && input.containerOnly)
+			return false;
+			
+		//print (obj + " and you'd like to suck a lot of c**k, right?");
+			
+		currentLocation = FindFirstValidLocation(noSecret);
+		if (currentLocation == null)
+			return false;
+			
+		//print (obj + " Then you should call HOH SIS");
 	
 		return true;
+	}
+	
+	function HandleMove(input)
+	{
+		base.HandleMove(input);
+		DisableOutput(obj);
+		DisableOutput(currentLocation.obj);
+		currentLocation.MoveTo(input);
+	}
+}
+
+class Location
+{
+	static LINK_CONTAINS = 10;
+	static LINK_TARGET = 44;
+	static LINK_SWITCHLINK = 21;
+
+	obj = null;
+	position = null;
+	facing = null;
+	physicsControls = null;
+	noFacing = null;
+	secret = null;
+	isMarker = null;
+	
+	constructor(cObj)
+	{
+		obj = cObj;
+		secret = Object.HasMetaProperty(cObj,"Object Randomiser - Secret");
+		position = Object.Position(cObj);
+		facing = Object.Facing(cObj);
+		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
+		noFacing = Object.HasMetaProperty(cObj,"Object Randomiser - No Facing");
+		isMarker = ShockGame.GetArchetypeName(cObj) == "rndOutputMarker";
+	}
+	
+	function Valid(noSecret)
+	{
+		//Check for at least one target or switch link
+		//Output must still be usable
+		local targetLink = Link.AnyExist(LINK_TARGET,obj);
+		local switchLink = Link.AnyExist(LINK_SWITCHLINK,obj);
+		
+		if (noSecret && secret)
+			return false;
+		
+		return targetLink || switchLink;
+	}
+	
+	function MoveTo(input)
+	{		
+		//Make object render
+		Property.SetSimple(input.obj, "HasRefs", TRUE);
+		
+		//If we are the same object, don't bother doing anything.
+		//Just remain in place.
+		if (obj == input.obj)
+		{
+		}
+		//If we are the same archetype, "lock" into position
+		else if (SameItemType(input))
+		{
+			Object.Teleport(input.obj, position, facing);
+			Property.Set(input.obj, "PhysControl", "Controls Active", physicsControls);
+		}
+		//Different objects, need to "jiggle" the object to fix physics issues
+		else
+		{
+			local position_up = vector(position.x, position.y, position.z + 0.2);
+			Object.Teleport(input.obj, position_up, FixItemFacing(input.obj));
+			
+			//Fix up physics
+			Property.Set(input.obj, "PhysControl", "Controls Active", "");
+			Physics.SetVelocity(input.obj,vector(0,0,10));
+			Physics.Activate(input.obj);
+		}
 	}
 	
 	//Items with these archetypes will have their X, Y and Z facing set to the specified value
@@ -342,71 +482,5 @@ class PhysicalOutput extends Output
 			if (iValid && oValid)
 				return true;
 		}
-	}
-	
-	function OutputEnabled()
-	{
-		//Check for at least one target link
-		return Link.AnyExist(LINK_TARGET,obj);
-	}
-	
-	function DisableOutput()
-	{
-		//Remove all Target links
-		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
-			Link.Destroy(ilink);
-	}
-	
-	function HandleMove(input)
-	{
-		base.HandleMove(input);
-	
-		DisableOutput();
-		
-		//Move object out of container
-		Container.Remove(input.obj);
-		
-		//Make object render
-		Property.SetSimple(input.obj, "HasRefs", TRUE);
-		
-		//If we are the same object, don't bother doing anything.
-		//Just remain in place.
-		if (obj == input.obj)
-		{
-		}
-		//If we are the same archetype, "lock" into position
-		else if (SameItemType(input))
-		{
-			Object.Teleport(input.obj, position, facing);
-			Property.Set(input.obj, "PhysControl", "Controls Active", physicsControls);
-		}
-		//Different objects, need to "jiggle" the object to fix physics issues
-		else
-		{
-			local position_up = vector(position.x, position.y, position.z + 0.2);
-			Object.Teleport(input.obj, position_up, FixItemFacing(input.obj));
-			
-			//Fix up physics
-			Property.Set(input.obj, "PhysControl", "Controls Active", "");
-			Physics.SetVelocity(input.obj,vector(0,0,10));
-			Physics.Activate(input.obj);
-		}
-	}
-}
-
-class ItemOutput extends PhysicalOutput
-{
-	constructor(cObj,cSeed)
-	{
-		base.constructor(cObj,cSeed);
-	}
-}
-
-class MarkerOutput extends PhysicalOutput
-{
-	constructor(cObj,cSeed)
-	{
-		base.constructor(cObj,cSeed);
-		isMarker = true;
 	}
 }

@@ -170,7 +170,7 @@ class rndComplexRandomiser extends rndBase
 	//rather than always at the end
 	function ReplaceOutput(index,output)
 	{
-		if (fuzzy)
+		if (fuzzy && output.IsContainer)
 		{
 			srand(seed + output.obj);
 			local min = outputs.len() * 0.35;
@@ -178,7 +178,6 @@ class rndComplexRandomiser extends rndBase
 			local insertIndex = rand() % range + min;
 			outputs.remove(index);
 			outputs.insert(insertIndex,output);
-			print ("fuzzy: " + insertIndex + ", min: " + min + ", range: " + range + ", total:" + outputs.len());
 		}
 		else
 		{
@@ -201,6 +200,7 @@ class rndComplexRandomiser extends rndBase
 			{
 				if (output.CanMove(input,noSecret,allowOriginalLocations))
 				{
+					input.SetInvalid(self);
 					output.HandleMove(input);
 					ReplaceOutput(index,output);
 					count++;
