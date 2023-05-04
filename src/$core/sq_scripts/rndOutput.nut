@@ -153,47 +153,21 @@ class rndOutput extends rndBase
 	
 		PrintDebug("OnRandomiseOutput received from " + source + " contains: [" + inputs + ", " + config + "]",4);
 		
-		local success = null;
-		
 		foreach(input in inputArr)
 		{		
 			if (IsValid(input,configArr) == 0)
 			{
-				if (input == 1407)
-					debugLevel = 999;
-			
-				success = input;
-				break;
+				SetData("placed",true);
+				PrintDebug("	found suitable input " + input + " from " + source + ", outputting to " + self + "<"+ ShockGame.SimTime() +">",4);
+				if (isContainer(self))
+					PlaceInContainer(input,self);
+				else
+					PlacePhysical(input,self);
+				PostMessage(source,"OutputSuccess",input,container);
+				return;
 			}
 		}
-		
-		if (success != null)
-		{
-			SetData("placed",true);
-			//local timer = success * 0.001;
-			local timer = timerSetting * 0.001 + (success * 0.01);
-			SetOneShotTimer("PlaceTimer",timer,success);
-			PrintDebug("	found suitable input " + success + " from " + source + ", outputting to " + self + " in " + timer,4);
-			PostMessage(source,"OutputSuccess",success,container);
-		}
-		else
-		{
-			PostMessage(source,"OutputFailed");
-		}
-	}
-	
-	function OnTimer()
-	{
-		if (message().name == "PlaceTimer")
-		{
-			local input = message().data;
-			local pc = message().data2;
-			//print("OnTimer: " + input);
-			if (isContainer(self))
-				PlaceInContainer(input,self);
-			else
-				PlacePhysical(input,self);
-		}
+		PostMessage(source,"OutputFailed");
 	}
 	
 	function PlaceInContainer(input,output)
