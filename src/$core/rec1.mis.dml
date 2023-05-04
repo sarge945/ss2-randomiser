@@ -28,11 +28,6 @@ Create "rndObjectCollection" "rndMedicalObjects"
 {
 }
 
-//Create an object collection for the Medical Sector.
-Create "rndObjectCollection" "rndBodybags"
-{
-}
-
 //Create an object collection for the Athletics Sector.
 Create "rndObjectCollection" "rndAthleticsObjects"
 {
@@ -45,6 +40,11 @@ Create "rndObjectCollection" "rndArtObjects"
 
 //Create an object collection for the Security Crates
 Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
 {
 }
 
@@ -244,9 +244,10 @@ Create "rndOutputMarker" "rndReplace1443"
 }
 
 //Bodybag on table
-+Link 453 "rndBodybags" "Target"
++Link 453 "rndMedicalObjects" "Target"
 {
 }
++MetaProp 453 "Object Randomiser - Body Bag Output"
 
 ////Storeroom with Ring Buoys
 
@@ -561,3 +562,70 @@ Create "rndOutputMarker" "rndReplace1443"
 +Link 194 "rndSecurityCrates" "Target"
 {
 }
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 397 "rndEggs" "Target"
+{
+}
+
++Link 500 "rndEggs" "Target"
+{
+}
+
++Link 290 "rndEggs" "Target"
+{
+}
+
+/*
+//Useless egg on elevator
++Link 776 "rndEggs" "Target"
+{
+}
+*/
+
++Link 264 "rndEggs" "Target"
+{
+}
+
++Link 198 "rndEggs" "Target"
+{
+}
+
++Link 563 "rndEggs" "Target"
+{
+}
+
++Link 131 "rndEggs" "Target"
+{
+}
+
++Link 284 "rndEggs" "Target"
+{
+}
+
++Link 106 "rndEggs" "Target"
+{
+}
+
+/*
++Link 886 "rndEggs" "Target"
+{
+}
+*/
+
++Link 572 "rndEggs" "Target"
+{
+}
+
+/*
+//DISABLED until we can properly determine egg type through output
+//These need to be "no goo" eggs
++Link 2005 "rndEggs" "Target"
+{
+}
+
++Link 297 "rndEggs" "Target"
+{
+}
+*/

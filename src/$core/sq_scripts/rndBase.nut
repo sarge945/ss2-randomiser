@@ -1,5 +1,7 @@
 class rndBase extends SqRootScript
 {
+	static PHYSCONTROL_LOC_ROT = 24;
+
 	name = null;
 	debugLevel = null;
 
@@ -30,7 +32,10 @@ class rndBase extends SqRootScript
 	function ShowDebug(msg,requiredDebugLevel = 0)
 	{
 		if (debugLevel >= requiredDebugLevel)
+		{
 			ShockGame.AddText(GetIdentifier() + "> " + msg,"Player");
+			print(GetIdentifier() + "> " + msg);
+		}
 	}
 	
 	//Make debug easier

@@ -55,7 +55,7 @@ class rndOutput extends rndBase
 
 	static function ContainerOnlyCheck(input,output)
 	{
-		if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && SameItemType(output,input))
+		if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && isArchetype(input,output))
 			return true;
 	
 		if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
@@ -107,7 +107,7 @@ class rndOutput extends rndBase
 		
 		if (!SameTypeCheck(input,self))
 			return 3;
-			
+		
 		if (!ContainerOnlyCheck(input,self))
 			return 4;
 			
@@ -206,7 +206,7 @@ class rndOutput extends rndBase
 				
 		//If we are the same object, don't bother doing anything.
 		//Just remain in place.
-		if (output == input)
+		if (input == output)
 		{
 		}
 		//If we are the same archetype, "lock" into position and adopt physics controls
@@ -227,6 +227,12 @@ class rndOutput extends rndBase
 			
 			if (!Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
 				Physics.SetVelocity(input,vector(0,0,10));
+		}
+		
+		//Freeze objects
+		if (Object.HasMetaProperty(output,"Object Randomiser - Freeze"))
+		{
+			Property.Set(input, "PhysControl", "Controls Active", PHYSCONTROL_LOC_ROT);
 		}
 	}
 	

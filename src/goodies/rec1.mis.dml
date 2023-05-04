@@ -27,9 +27,6 @@ Create "rndComplexRandomiser" "rndRecRandomiser"
 +Link "rndCrewLockedApartmentObjects" "rndRecRandomiser" "SwitchLink"
 {
 }
-+Link "rndBodybags" "rndRecRandomiser" "SwitchLink"
-{
-}
 
 //Outputs
 +Link "rndElevatorObjects" "rndRecRandomiser" "~SwitchLink"
@@ -48,33 +45,5 @@ Create "rndComplexRandomiser" "rndRecRandomiser"
 {
 }
 +Link "rndCrewLockedApartmentObjects" "rndRecRandomiser" "~SwitchLink"
-{
-}
-
-//Create a randomiser for the Body Bags (only allow hypos)
-Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
-{
-}
-//Inputs
-+Link "rndLobbyObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndMedicalObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndAthleticsObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewLockedApartmentObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndBodybags" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndBodybags" "rndBodybagsRandomiser" "~SwitchLink"
 {
 }

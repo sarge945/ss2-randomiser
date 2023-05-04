@@ -47,6 +47,11 @@ Create "rndObjectCollection" "rndHighSecurityObjects"
 {
 }
 
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -706,5 +711,43 @@ Create "rndObjectCollection" "rndHighSecurityObjects"
 
 //Locked Security Room in Apartments
 +Link 1427 "rndHighSecurityObjects" "Target"
+{
+}
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 539 "rndEggs" "Target"
+{
+}
+
++Link 537 "rndEggs" "Target"
+{
+}
+
++Link 1410 "rndEggs" "Target"
+{
+}
+
++Link 505 "rndEggs" "Target"
+{
+}
+
++Link 506 "rndEggs" "Target"
+{
+}
+
++Link 319 "rndEggs" "Target"
+{
+}
+
++Link 1418 "rndEggs" "Target"
+{
+}
+
++Link 1416 "rndEggs" "Target"
+{
+}
+
++Link 1414 "rndEggs" "Target"
 {
 }

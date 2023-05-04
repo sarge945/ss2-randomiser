@@ -110,7 +110,7 @@ CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
 
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; ignorePriority=1; variedOutput=0; priority=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=1 noSecret=1; ignorePriority=1; variedOutput=0; priority=1;"
 }
 
 //NOT THE BEES!
@@ -119,9 +119,21 @@ CreateArch "rndReplacerRandomiser" "rndHydroEggRandomiser"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476"
 }
 
+//Swarmers and Worms only, no goo
+CreateArch "rndReplacerRandomiser" "rndNoGooEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes2=-1332;"
+}
+
 CreateArch "rndReplacerRandomiser" "rndEggRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;"
+}
+
+//Use for Wall eggs
+CreateArch "rndReplacerRandomiser" "rndWallEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333"
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
@@ -187,5 +199,11 @@ CreateArch "Misc Metaprops" "Object Randomiser - Secret"
 //Some items, like the first vodka bottle in eng1, are visible almost instantly when starting a new map, and this setting exists
 //to give an output a more smooth transition and so spawned items look less obviously like they are "falling" when starting the map.
 CreateArch "Misc Metaprops" "Object Randomiser - No Position Fix"
+{
+}
+
+//Some items are placed very specifically in the map, and this prevents newly created items from being able to move at all
+//They are essentially frozen in place.
+CreateArch "Misc Metaprops" "Object Randomiser - Freeze"
 {
 }

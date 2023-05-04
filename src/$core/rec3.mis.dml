@@ -37,6 +37,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}
+
 /////////////////=====	Galleria	=====\\\\\\\\\\\\\\\\\
 
 ////Toilets
@@ -459,3 +464,60 @@ Create "rndObjectCollection" "rndSecurityCrates"
 +Link 183 "rndSecurityCrates" "Target"
 {
 }
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 532 "rndEggs" "Target"
+{
+}
+
++Link 290 "rndEggs" "Target"
+{
+}
+
++Link 501 "rndEggs" "Target"
+{
+}
+
++Link 506 "rndEggs" "Target"
+{
+}
+
++Link 509 "rndEggs" "Target"
+{
+}
+
+/*
+//Roof pod
+//TODO: Prevent this from having goo
++Link 478 "rndEggs" "Target"
+{
+}
+*/
+
++Link 460 "rndEggs" "Target"
+{
+}
+
+/*
+//Cell pod
+//Don't randomise it as it's set off by the door and is NVbuilt
++Link 125 "rndEggs" "Target"
+{
+}
+*/
+
+//Cinema
+
++Link 521 "rndEggs" "Target"
+{
+}
+
++Link 524 "rndEggs" "Target"
+{
+}
+
++Link 520 "rndEggs" "Target"
+{
+}
+

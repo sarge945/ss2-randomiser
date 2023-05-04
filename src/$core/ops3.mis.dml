@@ -42,6 +42,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}
+
 
 // ================================================================================
 // 								Add Objects to Object Collections
@@ -566,7 +571,8 @@ Create "rndOutputMarker" "rndMessHallFreezer1"
 
 //Cyber Modules
 //Cannot use these as a standard output as they are stuck inside a physics object
-+MetaProp 1351 "Object Randomiser - Exact Positioning"
++MetaProp 1351 "Object Randomiser - Output Self Only"
++MetaProp 1351 "Object Randomiser - Freeze"
 +Link 1351 "rndLoungeObjects" "Target"
 {
 }
@@ -601,3 +607,39 @@ Create "rndOutputMarker" "rndMessHallFreezer1"
 +Link 1031 "rndSecurityCrates" "Target"
 {
 }
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 246 "rndEggs" "Target"
+{
+}
+
++Link 248 "rndEggs" "Target"
+{
+}
+
++Link 1133 "rndEggs" "Target"
+{
+}
+
++Link 628 "rndEggs" "Target"
+{
+}
+
++Link 636 "rndEggs" "Target"
+{
+}
+
+/*
+//DISABLED: Flies are the only really good egg type that works here
++Link 1135 "rndEggs" "Target"
+{
+}
+*/
+
+/*
+//DISABLED: Worms are the only really good egg type that works here
++Link 1126 "rndEggs" "Target"
+{
+}
+*/

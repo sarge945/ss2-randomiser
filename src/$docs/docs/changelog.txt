@@ -87,3 +87,7 @@ Beta 13:
 - Fixed an issue where objects tagged with "containers only" would invalidate the "allow self only" tag. Now thet can appear either in a random container, or their original position.
 - Fixed a strange edge case where some randomisers wouldn't run correctly, resulting in items appearing inside each other and inconsistent values when using the same seed.
 - Other minor tweaks, addition of some missed items, and small bugfixes
+
+Beta 14:
+- Complete rewrite under-the-hood to be message based. Randomising should now be much faster!
+- Added egg randomisation for all levels except BOTM (needs thorough testing!)

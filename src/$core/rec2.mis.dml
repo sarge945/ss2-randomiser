@@ -47,6 +47,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -471,5 +476,49 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Crate in Chemical Storeroom
 +Link 195 "rndSecurityCrates" "Target"
+{
+}
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 98 "rndEggs" "Target"
+{
+}
+
++Link 112 "rndEggs" "Target"
+{
+}
+
++Link 551 "rndEggs" "Target"
+{
+}
+
++Link 564 "rndEggs" "Target"
+{
+}
+
++Link 555 "rndEggs" "Target"
+{
+}
+
++Link 559 "rndEggs" "Target"
+{
+}
+
++Link 705 "rndEggs" "Target"
+{
+}
+
+//Grave Room
+
++Link 416 "rndEggs" "Target"
+{
+}
+
++Link 1290 "rndEggs" "Target"
+{
+}
+
++Link 1672 "rndEggs" "Target"
 {
 }

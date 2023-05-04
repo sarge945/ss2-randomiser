@@ -1,0 +1,15 @@
+// ================================================================================
+// 								Handle Eggs
+// ================================================================================
+
+/*
+//Only one egg in the map
+Create "rndWallEggRandomiser" "rndWallEggsRandomiser"
+{
+}
+
+//Outputs
++Link "rndWallEggs" "rndWallEggsRandomiser" "~SwitchLink"
+{
+}
+*/

@@ -1,0 +1,24 @@
+// ================================================================================
+// 								Handle Eggs
+// ================================================================================
+
+//Create a randomiser for the Eggs
+//For now, just put everything together.
+Create "rndEggRandomiser" "rndEggsRandomiser"
+{
+}
+
+//Outputs
++Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Wall Eggs
+Create "rndWallEggRandomiser" "rndWallEggsRandomiser"
+{
+}
+
+//Outputs
++Link "rndWallEggs" "rndWallEggsRandomiser" "~SwitchLink"
+{
+}

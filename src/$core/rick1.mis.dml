@@ -69,6 +69,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+/*
+//Only one egg in the map
+//TODO: Allow only Goo and Swarms, no grub
+Create "rndObjectCollection" "rndWallEggs"
+{
+}
+*/
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -308,16 +316,19 @@ Create "rndObjectCollection" "rndSecurityCrates"
 +Link 360 "rndMorgueBodybags" "Target"
 {
 }
++MetaProp 360 "Object Randomiser - Body Bag Output"
 
 //Body Bag in bottom row
 +Link 2162 "rndMorgueBodybags" "Target"
 {
 }
++MetaProp 2162 "Object Randomiser - Body Bag Output"
 
 //Second Body Bag in bottom row
 +Link 2154 "rndMorgueBodybags" "Target"
 {
 }
++MetaProp 2154 "Object Randomiser - Body Bag Output"
 
 /////////////////=====	Nacelle B Hallway	=====\\\\\\\\\\\\\\\\\
 
@@ -530,3 +541,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 +Link 2164 "rndSecurityCrates" "Target"
 {
 }
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
+/*
++Link 2144 "rndWallEggs" "Target"
+{
+}
+*/

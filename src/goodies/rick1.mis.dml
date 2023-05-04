@@ -41,6 +41,9 @@ Create "rndComplexRandomiser" "rndGoodiesRandomiser"
 +Link "rndPod2MissileObjects" "rndGoodiesRandomiser" "SwitchLink"
 {
 }
++Link "rndMorgueBodybags" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndUmbilicalObjects" "rndGoodiesRandomiser" "~SwitchLink"
@@ -76,52 +79,6 @@ Create "rndComplexRandomiser" "rndGoodiesRandomiser"
 +Link "rndPod2MissileObjects" "rndGoodiesRandomiser" "~SwitchLink"
 {
 }
-+Link "rndMorgueBodybags" "rndGoodiesRandomiser" "SwitchLink"
-{
-}
-
-//Create a randomiser for the Body Bags (only allow hypos)
-Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
-{
-}
-//Inputs
-+Link "rndUmbilicalObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndSupportAObjectsBeforeCrane" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndSupportAObjectsAfterCrane" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndVentilationObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndSupportAObjectsAfterVentilation" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndPod2LobbyObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndNacelleAObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndNacelleBHallwayObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndNacelleBObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndPod2HallwayObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndPod2MissileObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndMorgueBodybags" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndMorgueBodybags" "rndBodybagsRandomiser" "~SwitchLink"
++Link "rndMorgueBodybags" "rndGoodiesRandomiser" "~SwitchLink"
 {
 }

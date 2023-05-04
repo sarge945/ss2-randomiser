@@ -1,0 +1,14 @@
+// ================================================================================
+// 								Handle Eggs
+// ================================================================================
+
+//Create a randomiser for the Eggs
+//For now, just put everything together.
+Create "rndHydroEggRandomiser" "rndHydroEggsRandomiser"
+{
+}
+
+//Outputs
++Link "rndEggs" "rndHydroEggsRandomiser" "~SwitchLink"
+{
+}

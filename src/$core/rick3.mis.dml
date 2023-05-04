@@ -24,6 +24,11 @@ Create "rndObjectCollection" "rndBridgeObjects"
 {
 }
 
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -116,5 +121,15 @@ Create "rndObjectCollection" "rndBridgeObjects"
 
 //Corpse
 +Link 506 "rndEscapeObjects" "Target"
+{
+}
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 134 "rndEggs" "Target"
+{
+}
+
++Link 175 "rndEggs" "Target"
 {
 }
