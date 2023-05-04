@@ -62,16 +62,13 @@ class rndRandomiser extends rndBase
 		//DebugPrint (self + " has AutoInputs set to: " + autoInputs);
 	
 		ProcessLinks();
-		
-		Array_Shuffle(inputs);
-		Array_Shuffle(outputs);
-		
+			
 		//DEBUG CODE
 		//================
 		DebugPrint ("ALL " + inputs.len() + " INPUTS FOR " + self);
 		foreach (input in inputs)
 		{
-			DebugPrint ("   <- " + input);
+			DebugPrint ("   <- " + input[INPUT_OBJECT]);
 		}
 		DebugPrint ("ALL " + outputs.len() + " OUTPUTS FOR " + self);
 		foreach (output in outputs)
@@ -88,6 +85,12 @@ class rndRandomiser extends rndBase
 	{
 		if (message().name == "InitTimer")
 		{
+			//create automarkers
+			CreateAutoMarkers();
+		
+			Array_Shuffle(inputs);
+			Array_Shuffle(outputs);
+			
 			SetOutputMetaprops();
 			SetOneShotTimer("StandardTimer",DELAY_TIME);
 		}
@@ -127,6 +130,27 @@ class rndRandomiser extends rndBase
 		SendMessage(outputs[currentOutputIndex],"ReadyForOutput",inputs.len(),outputs.len());
 	}
 	
+	//Automatically creates an output marker at the location of an input item
+	function CreateAutoMarkers()
+	{
+		foreach(input in inputs)
+		{
+			if (input[INPUT_CREATE_MARKER])
+			{
+				local worldItem = input[INPUT_OBJECT];
+				local designNote = Property.Get(worldItem,"DesignNoteSS");
+		
+				DebugPrint(self + ": input " + worldItem + " is pickupable, creating auto marker");
+				local marker = Object.BeginCreate("rndOutputMarker");
+				//Object.Teleport(marker, Object.Position(worldItem), Object.Facing(worldItem));
+				Object.Teleport(marker, Object.Position(worldItem), vector(0,0,0));
+				Property.SetSimple(marker,"DesignNoteSS",designNote);
+				Object.EndCreate(marker);
+				outputs.append(marker);
+			}
+		}
+	}
+	
 	//Send an item to an output
 	function OnGetItem()
 	{
@@ -142,8 +166,10 @@ class rndRandomiser extends rndBase
 			
 			if (index >= 0)
 			{
+				local input = inputs[index][INPUT_OBJECT];
+			
 				DebugPrint (self + " sending ReceiveItem to " + message().from);
-				SendMessage(message().from,"ReceiveItem",inputs[index]);
+				SendMessage(message().from,"ReceiveItem",input);
 				maxItems--;
 				inputs.remove(index);
 				
@@ -251,7 +277,7 @@ class rndRandomiser extends rndBase
 	
 		//Add linked objecf it it's a valid type
 		if (!shouldValidate || IsValidInput(input))
-			inputs.append(input);
+			inputs.append([input,isPickupable && isAllowedToCreateMarkers && !isContained]);
 		
 		//if it's a container, a marker or a corpse, it's also an output
 		if (isContainer || isMarker)
@@ -264,6 +290,7 @@ class rndRandomiser extends rndBase
 				outputs.append(input);
 		}
 		
+		/*
 		//If it's a "world object", we can create a marker at it's position
 		if (isPickupable && isAllowedToCreateMarkers && !isContained)
 		{
@@ -275,7 +302,9 @@ class rndRandomiser extends rndBase
 			//Object.Teleport(marker, Object.Position(input), vector(0,0,0));
 			//Property.SetSimple(marker,"DesignNoteSS",designNote);
 			//Object.EndCreate(marker);
+			
 		}
+		*/
 		
 		if (autoInputs == true)
 		{
@@ -284,7 +313,7 @@ class rndRandomiser extends rndBase
 			{
 				local contained = sLink(containsLink).dest;			
 				if (!shouldValidate || IsValidInput(contained))
-					inputs.append(contained);
+					inputs.append([contained,false]);
 			}
 		}
 	}
@@ -293,7 +322,7 @@ class rndRandomiser extends rndBase
 	{
 		foreach(index,input in inputs)
 		{
-			if (isArchetype(input,type))
+			if (isArchetype(input[INPUT_OBJECT],type))
 				return index;
 		}
 		return -1;
