@@ -2,21 +2,18 @@
 // 								Add Power Cells to Randomisers
 // ================================================================================
 
-/*
-//Wrench in Power Recharge room
-+Link 1707 "rndCryoRandomiser" "Target"
-{
-}
-*/
-
-/*
 //Create a randomiser for the Science Sector Power Cell
-Create "rndRandomiser" "rndSciencePowercellRandomiser"
+Create "rndComplexRandomiser" "rndSciencePowercellRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862;"
 }
-//Link the Science Items to it
+
+//Link the Science Items to it as Input
 +Link "rndScienceObjects" "rndSciencePowercellRandomiser" "SwitchLink"
 {
 }
-*/
+
+//Link the Science Items to it as Output
++Link "rndScienceObjects" "rndSciencePowercellRandomiser" "~SwitchLink"
+{
+}

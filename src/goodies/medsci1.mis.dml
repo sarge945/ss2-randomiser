@@ -2,47 +2,82 @@
 // 								Add Goodies to Randomisers
 // ================================================================================
 
-//Create a randomiser for MedSci1
+//Create a randomiser for Cryo objects
+//This means that the objects in Cryo will only ever be available in Cryo
+//This is so we always have enough CMs, hypos etc to prepare before the game actually starts by entering Science sector
+Create "rndComplexRandomiser" "rndCryoRandomiser"
+{
+}
+
+//Inputs
++Link "rndCryoObjects" "rndCryoRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndCryoObjects" "rndCryoRandomiser" "~SwitchLink"
+{
+}
+
+//Shuffle up to 2 objects from Science sector into Cryo, for variety
+Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "maxTimes=2; minTimes=0;"
+}
+
+//Inputs
++Link "rndScienceObjects" "rndCryoExtraRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndCryoObjects" "rndCryoExtraRandomiser" "~SwitchLink"
+{
+}
+
+
+
+
+//Create a randomiser for the rest of MedSci1
+//Science and R&D Items can be mixed together
 Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true;"
 }
+
 //Inputs
-+Link "rndCryoObjects" "rndMedSci1Randomiser" "SwitchLink"
-{
-}
-/*
 +Link "rndScienceObjects" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
+
 +Link "rndRNDObjects" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
+
 +Link "rndBodybags" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
-*/
-//Outputs
-+Link "rndCryoObjects" "rndMedSci1Randomiser" "~SwitchLink"
+
++Link "rndMaintenanceObjects" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
-/*
+
+//Outputs
 +Link "rndScienceObjects" "rndMedSci1Randomiser" "~SwitchLink"
 {
 }
 +Link "rndRNDObjects" "rndMedSci1Randomiser" "~SwitchLink"
 {
 }
++Link "rndMaintenanceObjects" "rndMedSci1Randomiser" "~SwitchLink"
+{
+}
 
 //Create a randomiser for the Body Bags (only allow hypos)
 Create "rndComplexRandomiser" "rndBodybagRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=true; allowedTypes0=-51; maxTimes=3; minTimes=1"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=4; minTimes=2"
 }
 //Inputs
-+Link "rndCryoObjects" "rndBodybagRandomiser" "SwitchLink"
-{
-}
 +Link "rndScienceObjects" "rndBodybagRandomiser" "SwitchLink"
 {
 }
@@ -56,32 +91,18 @@ Create "rndComplexRandomiser" "rndBodybagRandomiser"
 +Link "rndBodybags" "rndBodybagRandomiser" "~SwitchLink"
 {
 }
-*/
 
-
-
-/*
-
-//Create a randomiser for the Science and R&D Sector
-Create "rndRandomiser" "rndScienceRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "debug=true;"
-}
-//Link the Science Items to it
-+Link "rndScienceObjects" "rndScienceRandomiser" "SwitchLink"
-{
-}
-//Link the Maintenance Items to it
-+Link "rndMaintenanceObjects" "rndScienceRandomiser" "SwitchLink"
-{
-}
-//Link the R and D Items to it
-+Link "rndRNDObjects" "rndScienceRandomiser" "SwitchLink"
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
 {
 }
 
-//Create a randomiser for the "Secure" items, like in the hack 2 crates
-Create "rndRandomiser" "rndScienceRandomiserSecure"
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
 {
 }
-*/
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

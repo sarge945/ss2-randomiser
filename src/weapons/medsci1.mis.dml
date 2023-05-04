@@ -1,0 +1,55 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Cryo Sector Weapons (only PsiAmp)
+Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; disallowMarkers=true;"
+}
+
+//Link the Cryo Items to it as Input
++Link "rndCryoObjects" "rndCryoWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Link the Cryo Items to it as Output
++Link "rndCryoObjects" "rndCryoWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Science Sector Weapons
+Create "rndComplexRandomiser" "rndScienceWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; disallowMarkers=true;"
+}
+
+//Link the Science Items to it as Input
++Link "rndScienceObjects" "rndScienceWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Link the Science Items to it as Output
++Link "rndScienceObjects" "rndScienceWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the R and D Weapons
+Create "rndComplexRandomiser" "rndRandDWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; disallowMarkers=true;"
+}
+
+//Inputs
++Link "rndRNDObjects" "rndRandDWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndRNDObjects" "rndRandDWeaponRandomiser" "~SwitchLink"
+{
+}
+//Outputs
++Link "rndMaintenanceObjects" "rndRandDWeaponRandomiser" "~SwitchLink"
+{
+}

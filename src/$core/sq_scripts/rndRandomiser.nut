@@ -45,25 +45,7 @@ class Output
 
 class rndRandomiser extends rndBase
 {
-
-	static allowedTypesDefault = [
-		//-49, //Goodies
-		//-12, //Weapons
-		//-156, //Keys
-		-30, //Ammo
-		-51, //Patches
-		-70, //Devices (portable batteries etc)
-		//-78, //Armor
-		-85, //Nanites
-		-99, //Implants
-		-320, //Softwares
-		-1105, //Beakers
-		-938, //Cyber Modules
-		-3863, //GamePig Games
-		-90, //Decorative items like mugs etc
-	];
-	
-	allowedTypes = null;
+	disallowMarkers = null
 	
 	inputs = null;
 	outputs = null;
@@ -73,8 +55,8 @@ class rndRandomiser extends rndBase
 	minTimes = null;
 
 	function Init()
-	{		
-		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
+	{
+		disallowMarkers = getParam("disallowMarkers",false);
 		
 		maxTimes = getParam("maxTimes",99999); //The maximum number of randomisations we can make
 		minTimes = getParam("minTimes",99999); //After how many randomisations are we permitted to stop (random chance)
@@ -83,69 +65,29 @@ class rndRandomiser extends rndBase
 		outputs = [];
 		highOutputs = [];
 	
-		//Process each SwitchLinked object collection
-		foreach (link in Link.GetAll(linkkind("~SwitchLink"),self))
-		{	
-			local collection = sLink(link).dest;
-			//print (ShockGame.GetArchetypeName(sLink.dest));
-			ProcessCollectionInput(collection);
-		}
+		ProcessLinks();
 		
-		//Process each ~SwitchLinked object collection
-		foreach (link in Link.GetAll(linkkind("SwitchLink"),self))
-		{	
-			local collection = sLink(link).dest;
-			//print (ShockGame.GetArchetypeName(sLink.dest));
-			ProcessCollectionOutput(collection);
-		}
-		
-		print ("calling Randomise for " + self);
+		DebugPrint ("calling Randomise for " + self);
 		Randomise();
 	}
 	
-	function ProcessCollectionInput(collection)
+	//overwrite this
+	function ProcessLinks()
 	{
-		//Objects will be Target linked to object collections
-		foreach (link in Link.GetAll(linkkind("~Target"),collection))
+		//All ~Targets are Inputs
+		foreach (link in Link.GetAll(linkkind("~Target"),self))
 		{
 			local linkedObject = sLink(link).dest;
-			local isContainer = isArchetype(linkedObject,-379) || isArchetype(linkedObject,-118);
-			
-			if (isContainer)
-			{
-				foreach(itemLink in Link.GetAll(linkkind("Contains"),linkedObject))
-				{
-					local containedObject = sLink(itemLink).dest;
-					//print(" -> " + ShockGame.GetArchetypeName(containedObject));
-					if (IsValidType(containedObject))
-					{
-						ProcessInput(containedObject,true);
-					}
-				}
-			}
-			else
-			{
-				if (IsValidType(linkedObject))
-				{
-					ProcessInput(linkedObject,false);
-				}
-			}
+			local isContained = Link.AnyExist(linkkind("~Contains"),linkedObject);
+			ProcessInput(linkedObject,isContained);
 		}
-	}
-	
-	function ProcessCollectionOutput(collection)
-	{
-		//Objects will be Target linked to object collections
-		foreach (link in Link.GetAll(linkkind("~Target"),collection))
+		
+		//All Targets are Outputs
+		foreach (link in Link.GetAll(linkkind("Target"),self))
 		{
 			local linkedObject = sLink(link).dest;
-			local isContainer = isArchetype(linkedObject,-379) || isArchetype(linkedObject,-118);
-			local isMarker = ShockGame.GetArchetypeName(linkedObject) == "rndOutputMarker";
-			
-			if (isContainer || isMarker || IsValidType(linkedObject))
-			{
-				ProcessOutput(linkedObject,isContainer);
-			}
+			local isContainer = isArchetype(linkedObject,-379) || isArchetype(linkedObject,-118) || isArchetype(linkedObject,-551);
+			ProcessOutput(linkedObject,isContainer);
 		}
 	}
 	
@@ -154,8 +96,11 @@ class rndRandomiser extends rndBase
 		if (inputs.find(item) != null)
 			return;
 	
+		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
+			return;
+	
 		//Remove any valid item from it's existing containers, as it will be shuffled	
-		Container.Remove(item);
+		//Container.Remove(item);
 	
 		local input = Input(item);
 		inputs.append(input);
@@ -164,6 +109,9 @@ class rndRandomiser extends rndBase
 	function ProcessOutput(item,isContainer)
 	{
 		if (outputs.find(item) != null)
+			return;
+			
+		if (!isContainer && disallowMarkers)
 			return;
 			
 		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Output"))
@@ -177,27 +125,17 @@ class rndRandomiser extends rndBase
 			outputs.append(output);
 	}
 	
-	function IsValidType(item)
-	{
-		foreach (archetype in allowedTypes)
-		{
-			if (isArchetype(item,archetype))
-				return true;
-		}
-		return false;
-	}
-	
 	function Randomise()
 	{
 		if (inputs.len() == 0)
 		{
-			print("WARNING! No inputs defined!");
+			print("WARNING! No inputs defined for " + self + "!");
 			return;
 		}
 		
 		if (outputs.len() == 0 && highOutputs.len() == 0)
 		{
-			print("WARNING! No outputs defined!");
+			print("WARNING! No outputs defined for " + self + "!");
 			return;
 		}
 	
@@ -208,7 +146,7 @@ class rndRandomiser extends rndBase
 		//Add the high-priority outputs into the list first
 		foreach (ho in highOutputs)
 		{
-			print ("moving " + ho.item + " into outputs");
+			DebugPrint ("moving " + ho.item + " into outputs (high priority)");
 			outputs.insert(0,ho);
 		}
 		
@@ -226,34 +164,41 @@ class rndRandomiser extends rndBase
 		if (maxTimes > inputs.len())
 			maxTimes = inputs.len();
 		
-		while (true && times < maxTimes)
-		{		
-			print (curInput + " curInput");
-			print (curOutput + " curOutput");
+		//get the minimum times we want to run
+		if (minTimes > maxTimes)
+			minTimes = maxTimes;
+		
+		local minimum = Data.RandInt(minTimes,maxTimes);
+		
+		while (true && times < maxTimes && minimum > 0)
+		{
+			//DebugPrint (curInput + " curInput");
+			//DebugPrint (curOutput + " curOutput");
 		
 			local input = inputs[curInput];
 			local output = outputs[curOutput];
 			
 			if (!output.valid)
 			{
-				print ("invalid output " + curOutput);
+				//DebugPrint ("invalid output " + curOutput);
 				curOutput++;
 				badOutputs++;
 			}
 			else if (!input.valid)
 			{
-				print ("invalid input " + curInput);
+				//DebugPrint ("invalid input " + curInput);
 				curInput++;
 				badInputs++;
 			}
 			else if (LinkInputToOutput(input,output))
 			{
+				//DebugPrint ("valid input " + curInput);
 				curOutput++;
 				curInput++;
 				badInputs = 0;
 				badOutputs = 0;
-				print ("valid");
 				times++;
+				minimum -= 1;
 			}
 					
 			//We have tried all inputs, move to next output
@@ -281,7 +226,20 @@ class rndRandomiser extends rndBase
 	
 	function LinkInputToOutput(input, output)
 	{
-		print("linking " + input.getDebugString() +  " to " + output.getDebugString());
+		DebugPrint("linking " + input.getDebugString() +  " to " + output.getDebugString());
+		Container.Remove(input.item);
+		
+		//Stop issues with the occasional duplicated link when multiple randomisers work on the same containers
+		//foreach(link in Link.GetAll(linkkind("~Contains"),input.item))
+		//{
+		//	Link.Destroy(link);
+		//}
+		
+		//Stop issues with the occasional duplicated link when multiple randomisers work on the same containers
+		foreach(link in Link.GetAll(linkkind("Target"),input.item))
+		{
+			Link.Destroy(link);
+		}
 		
 		if (output.isContainer)
 		{
@@ -298,6 +256,13 @@ class rndRandomiser extends rndBase
 			Physics.Activate(input.item);
 			//Physics.SetGravity(input.item,100);
 			Physics.SetVelocity(input.item,vector(0,0,5));
+			
+			//Stop this marker from being linked to any other randomiser
+			foreach(link in Link.GetAll(linkkind("Target"),output.item))
+			{
+				print ("Removing target link");
+				Link.Destroy(link);
+			}
 		}
 		
 		input.valid = false;
@@ -310,7 +275,7 @@ class rndRandomiser extends rndBase
 		if (Physics.HasPhysics(item))
 			return;
 			
-		print ("Adding physics to " + item);
+		DebugPrint ("Adding physics to " + item);
 		Property.Set(item,"PhysType","Type","Sphere");
 		Property.Set(item,"PhysType","# Submodels",1);
 		Property.Set(item,"PhysType","Remove on Sleep",FALSE);

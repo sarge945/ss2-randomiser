@@ -38,6 +38,11 @@ CreateArch "Marker" "rndObjectCollection"
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
 
+//Prevent an object inside a container from being added automatically
+CreateArch "Misc Metaprops" "Object Randomiser - No Auto Input"
+{
+}
+
 //Prevent a world-object from automatically creating a marker
 CreateArch "Misc Metaprops" "Object Randomiser - No Auto Output"
 {

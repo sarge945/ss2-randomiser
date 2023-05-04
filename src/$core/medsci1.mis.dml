@@ -47,6 +47,11 @@ Create "rndObjectCollection" "rndBodybags"
 {
 }
 
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -64,6 +69,7 @@ Create "rndObjectCollection" "rndBodybags"
 }
 
 //Wrench Guy at the start of the game
++MetaProp 1177 "Object Randomiser - No Auto Input"
 +Link 1177 "rndCryoObjects" "Target"
 {
 }
@@ -71,11 +77,13 @@ Create "rndObjectCollection" "rndBodybags"
 ////Loose Items
 
 //Wrench in Power Recharge room
++MetaProp 1707 "Object Randomiser - No Auto Output"
 +Link 1707 "rndCryoObjects" "Target"
 {
 }
 
 //Power Cell needed to open Airlock door
++MetaProp 1767 "Object Randomiser - No Auto Output"
 +Link 1767 "rndCryoObjects" "Target"
 {
 }
@@ -380,6 +388,17 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 {
 }
 
+//Potted plant in trap room
++Link 473 "rndScienceObjects" "Target"
+{
+}
+
+//Potted plant on desk near Medical entrance
+//+MetaProp 840 "Object Randomiser - No Auto Output"
++Link 840 "rndScienceObjects" "Target"
+{
+}
+
 
 
 
@@ -552,9 +571,8 @@ Create "rndOutputMarker" "SargeRandomComputerRoom"
 		"Pitch" 0
 		"Bank" 0
 	}
-	+ObjProp "DesignNoteSS" = "limitType=-51;"
 }
-+Link "SargeRandomMorgueGurney" "rndScienceObjects" "Target"
++Link "SargeRandomComputerRoom" "rndScienceObjects" "Target"
 {
 }
 
@@ -684,6 +702,15 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 {
 }
 
+//A Pistol near a corpse in the corner of Dr Watts room
++Link 1358 "rndRNDObjects" "Target"
+{
+}
+
+//Wattsy
++Link 734 "rndRNDObjects" "Target"
+{
+}
 
 
 
@@ -725,6 +752,20 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 {
 }
 
-// ================================================================================
-// 								Randomisers
-// ================================================================================
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+
+//Crate in Door Trap room
++Link 474 "rndSecurityCrates" "Target"
+{
+}
+
+//Crate in Security Room
++Link 467 "rndSecurityCrates" "Target"
+{
+}
+
+//Crate near R and D Entrance
++Link 471 "rndSecurityCrates" "Target"
+{
+}
