@@ -279,10 +279,12 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
+/*
 //Medbed Key on upstairs table
 +Link 332 "rndMedicalObjects" "Target"
 {
 }
+*/
 
 //Med Hypo in Biopsy Lab
 +Link 1569 "rndMedicalObjects" "Target"
@@ -304,6 +306,66 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 }
 +MetaProp "rndTurretNearMonkeys" "Object Randomiser - High Priority Output"
 +Link "rndTurretNearMonkeys" "rndMedicalObjects" "Target"
+{
+}
+
+//Inside a holding cell above in Primate Research
+Create "rndOutputMarker" "rndPrimateResearchCell"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-94.0829, -254.185, 1.2"
+		"Heading" 15b8
+		"Pitch" 0
+		"Bank" 1f88
+	}
+}
++Link "rndPrimateResearchCell" "rndMedicalObjects" "Target"
+{
+}
+
+//On a chair in Primate Research
+Create "rndOutputMarker" "rndPrimateResearchChair"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-110.543, -247.732, 0.9"
+		"Heading" ed7c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPrimateResearchChair" "rndMedicalObjects" "Target"
+{
+}
+
+//On a table in QBR Room
+Create "rndOutputMarker" "rndQBRTable"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-71.8425, -242.118, -0.6"
+		"Heading" 4a4
+		"Pitch" 0
+		"Bank" f6f0
+	}
+}
++Link "rndQBRTable" "rndMedicalObjects" "Target"
+{
+}
+
+//On a shelf in Radiation Lab (near ICU)
+Create "rndOutputMarker" "rndRadiationShelves"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-33.6461, -169.112, 0.3"
+		"Heading" b3b4
+		"Pitch" 0
+		"Bank" 60
+	}
+}
++Link "rndRadiationShelves" "rndMedicalObjects" "Target"
 {
 }
 
@@ -444,6 +506,7 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 
 //Items in the main bar section (with the grenade launcher)
 //Soda Cans
++MetaProp 1027 "Object Randomiser - No Auto Output"
 +Link 1027 "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -453,9 +516,11 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 +Link 953 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1022 "Object Randomiser - No Auto Output"
 +Link 1022 "rndCrewObjectsKitchen" "Target"
 {
 }
++MetaProp 1023 "Object Randomiser - No Auto Output"
 +Link 1023 "rndCrewObjectsKitchen" "Target"
 {
 }
@@ -505,6 +570,21 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 
 
 ////Markers and other spawn points
+
+//In the apartment with a broken door
+Create "rndOutputMarker" "rndApartmentBroken"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-33.6461, -169.112, 0.3"
+		"Heading" b3b4
+		"Pitch" 0
+		"Bank" 60
+	}
+}
++Link "rndApartmentBroken" "rndCrewObjects" "Target"
+{
+}
 
 /////////////////=====	Armoury	=====\\\\\\\\\\\\\\\\\
 
