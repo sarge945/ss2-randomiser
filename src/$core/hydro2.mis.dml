@@ -498,16 +498,19 @@ Create "rndOutputMarker" "rndSectorB1048Replacer"
 ////Loose Items
 
 //Toxin Hypo
++MetaProp 1154 "Object Randomiser - Hypo Output"
 +Link 1154 "rndSectorBMedical" "Target"
 {
 }
 
 //Med Hypo
++MetaProp 2079 "Object Randomiser - Hypo Output"
 +Link 2079 "rndSectorBMedical" "Target"
 {
 }
 
 //Med Hypo
++MetaProp 1207 "Object Randomiser - Hypo Output"
 +Link 1207 "rndSectorBMedical" "Target"
 {
 }

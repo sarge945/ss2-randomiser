@@ -1,3 +1,4 @@
+//TODO: This sucks, please redo
 class rndReplacerRandomiser extends rndBaseRandomiser
 {
 	function Setup()
@@ -50,16 +51,6 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 		
 		GenerateInput(output);
 		Randomise();
-	}
-	
-	//Copies over all the links of one type from one object to another.
-	function copyLinks(source,dest,linkType)
-	{
-		foreach (outLink in Link.GetAll(linkkind(linkType),source))
-		{
-			local realLink = sLink(outLink);
-			Link.Create(realLink.flavor,dest,realLink.dest);
-		}
 	}
 	
 	function GenerateInput(output)

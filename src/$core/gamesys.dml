@@ -24,6 +24,12 @@ CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85"
 }
 
+//Shorthand for a Hypo Only
+CreateArch "Misc Metaprops" "Object Randomiser - Hypo Output"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51"
+}
+
 //Acts as an output
 //Link this to an Item Pool and it will behave like any regular output
 CreateArch "Marker" "rndOutputMarker"

@@ -267,6 +267,17 @@ class rndBase extends SqRootScript
 		
 		return results;
 	}
+	
+		
+	//Copies over all the links of one type from one object to another.
+	function copyLinks(source,dest,linkType)
+	{
+		foreach (outLink in Link.GetAll(linkkind(linkType),source))
+		{
+			local realLink = sLink(outLink);
+			Link.Create(realLink.flavor,dest,realLink.dest);
+		}
+	}
 }
 
 class rndBaseRandomiser extends rndBase
@@ -291,17 +302,27 @@ class rndBaseRandomiser extends rndBase
 	
 	function Init(reloaded)
 	{
+		seed = GetData("Seed");
+		priority = getParam("priority",0);
+		
 		if (!reloaded)
 		{
 			SetSeed();
-			//SetAllowedTypes();
-			priority = getParam("priority",0);
 			
 			//Set timer
 			local startTime = GetStartTime();
 			SetData("StartTime",startTime);
 			SetOneShotTimer("StartTimer",startTime);
 		}
+		
+		SetAllowedTypes();
+		maxTimes = getParam("maxTimes",9999);
+		minTimes = getParam("minTimes",9999);
+		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		SetAllowedTypes();
+		totalRolls = RandBetween(seed,minTimes,maxTimes);
+		currentRolls = 0;
+		failures = 0;
 	}
 	
 	function OnTimer()
@@ -314,19 +335,7 @@ class rndBaseRandomiser extends rndBase
 	
 	function Setup()
 	{	
-		//Config
-		maxTimes = getParam("maxTimes",9999);
-		minTimes = getParam("minTimes",9999);
-		allowOriginalLocations = getParam("allowOriginalLocations",1);
-		SetAllowedTypes();
-	
-		//Setup variables
-		seed = GetData("Seed");
-		totalRolls = RandBetween(seed,minTimes,maxTimes);
-		currentRolls = 0;
-		totalRolls = RandBetween(seed,minTimes,maxTimes);
-		currentRolls = 0;
-		failures = 0;
+			
 		inputs = StrToIntArray(DeStringify(GetData("Inputs")));
 		outputs = StrToIntArray(DeStringify(GetData("Outputs")));
 		
