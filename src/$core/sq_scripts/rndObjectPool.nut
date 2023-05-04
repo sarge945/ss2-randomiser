@@ -58,9 +58,6 @@ class PhysicalOutput extends Output
 		
 		if (!Physics.HasPhysics(item))
 			return false;
-			
-		if (!CheckPosition())
-			return false;
 	
 		//GenerateOutput(item);
 		Object.Teleport(item, position, FixItemFacing(item));
@@ -78,11 +75,6 @@ class PhysicalOutput extends Output
 		[-85,0,0], //Nanites
 		[-1396,3000,0], //Ciggies
 	];
-	
-	function CheckPosition()
-	{
-		return position.y != Object.Position(output).y && position.x != Object.Position(output).x;
-	}
 	
 	function FixItemFacing(item)
 	{
