@@ -2,10 +2,10 @@
 
 +ObjProp "rndNoGooEggRandomiser" "DesignNoteSS"
 {
-	"" "allowedTypes0=-1335;"
+	"" "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335"
 }
 
 +ObjProp "rndEggRandomiser" "DesignNoteSS"
 {
-	"" "allowedTypes0=-1335;allowedTypes1=-1476;"
+	"" "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335;outputTypes1=-1476"
 }

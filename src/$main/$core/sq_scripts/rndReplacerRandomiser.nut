@@ -1,9 +1,14 @@
 //TODO: This sucks, please redo
 class rndReplacerRandomiser extends rndBaseRandomiser
 {
+	outputTypes = null;
+
 	function Setup()
-	{	
+	{
 		base.Setup();
+		
+		outputTypes = getParamArray("outputTypes",allowedTypes);
+		
 		if (outputs.len() == 0)
 		{
 			PrintDebug("Randomiser won't function! [outputs: " + outputs.len() + "]");
@@ -23,7 +28,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 	
 	function GetRandomAllowedType(output)
 	{
-		return allowedTypes[RandBetween(seed + output,0,allowedTypes.len() - 1)];
+		return outputTypes[RandBetween(seed + output,0,outputTypes.len() - 1)];
 	}
 	
 	function ShuffleOutputs()

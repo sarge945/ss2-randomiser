@@ -93,3 +93,6 @@ Beta 14:
 - Added egg randomisation for all levels except BOTM (needs thorough testing!)
 - Fixed a few errors with some item spots looking weird
 - Fixed broken Hydro2 weapon randomisation (broken in Beta 13)
+
+Beta 15:
+- Added "No Swarm Eggs" addon. Will prevent Swarm Eggs from appearing at all, and remove the relevant log in rec1 as well. To enable, use the optional file.
