@@ -101,10 +101,6 @@ CreateArch "Marker" "rndSwitchLinkOutputHandler"
 
 //Randomiser Types (for convenience)
 
-CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1341; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
-}
 
 CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 {
@@ -116,47 +112,14 @@ CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
 }
 
-CreateArch "rndComplexRandomiser" "rndCardRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
-}
-
 CreateArch "rndComplexRandomiser" "rndPowercellRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-1862; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
 }
 
-CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277; ignorePriority=1; noSecret=1; variedOutput=0;"
-}
-
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=1 noSecret=1; noHighPriority=1; variedOutput=0; priority=1;"
-}
-
-//NOT THE BEES!
-CreateArch "rndReplacerRandomiser" "rndHydroEggRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335;outputTypes1=-1476;"
-}
-
-//Swarmers and Worms only, no goo
-CreateArch "rndReplacerRandomiser" "rndNoGooEggRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335;outputTypes1=-1332;"
-}
-
-CreateArch "rndReplacerRandomiser" "rndEggRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332"
-}
-
-//Use for Wall eggs
-CreateArch "rndReplacerRandomiser" "rndWallEggRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333"
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object

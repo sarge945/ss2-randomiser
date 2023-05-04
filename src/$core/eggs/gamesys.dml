@@ -1,0 +1,22 @@
+//NOT THE BEES!
+CreateArch "rndReplacerRandomiser" "rndHydroEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335;outputTypes1=-1476;"
+}
+
+//Swarmers and Worms only, no goo
+CreateArch "rndReplacerRandomiser" "rndNoGooEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;outputTypes0=-1335;outputTypes1=-1332;"
+}
+
+CreateArch "rndReplacerRandomiser" "rndEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332"
+}
+
+//Use for Wall eggs
+CreateArch "rndReplacerRandomiser" "rndWallEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333"
+}

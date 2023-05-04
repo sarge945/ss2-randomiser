@@ -1,0 +1,14 @@
+CreateArch "rndComplexRandomiser" "rndCardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
+}
+
+CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277; ignorePriority=1; noSecret=1; variedOutput=0;"
+}
+
+CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1341; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
+}
