@@ -51,7 +51,7 @@ class rndObjectPool extends rndBase
 		foreach (ilink in Link.GetAll(linkkind("~Target"),self))
 		{
 			local object = sLink(ilink).dest;
-			if (rndUtil.isContainer(object))
+			if (isContainer(object))
 			{
 				if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Input"))
 				{
@@ -65,7 +65,7 @@ class rndObjectPool extends rndBase
 				if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Output"))
 					outputs.append(object);
 			}
-			else if (rndUtil.isMarker(object))
+			else if (isMarker(object))
 			{
 				if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Output"))
 				outputs.append(object);
@@ -82,8 +82,8 @@ class rndObjectPool extends rndBase
 	
 	function SendMessages()
 	{
-		local inputString = rndUtil.Stringify(inputs);
-		local outputString = rndUtil.Stringify(outputs);
+		local inputString = Stringify(inputs);
+		local outputString = Stringify(outputs);
 		
 		foreach (ilink in Link.GetAll(linkkind("SwitchLink"),self))
 		{

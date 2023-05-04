@@ -47,9 +47,10 @@ class rndComplexRandomiser extends rndBase
 	allowedTypes = null;	
 	seed = null;
 	fuzzy = null;
+	ignorePriority = null;
+	priority = null;
 	
 	//TODO
-	ignorePriority = null;
 	//prioritizeWorld = null;
 	noRespectJunk = null;
 	noSecret = null;
@@ -66,6 +67,7 @@ class rndComplexRandomiser extends rndBase
 		rolls = 0;
 		
 		//Configure Randomiser
+		priority = getParam("priority",0);
 		SetSeed();
 		SetAllowedTypes();
 		fuzzy = getParam("variedOutput",true);
@@ -76,9 +78,15 @@ class rndComplexRandomiser extends rndBase
 		allowOriginalLocations = getParam("allowOriginalLocations",true);
 		
 		//Show startup message
-		PrintDebug("Randomiser Started. Seed: [" + seed + "]");
+		PrintDebug("Randomiser Started. [seed: " + seed + ", startTime: " + GetStartTime() + "]");
 		
-		SetOneShotTimer("StartTimer",0.05);
+		SetOneShotTimer("StartTimer",GetStartTime());
+	}
+
+	function GetStartTime()
+	{
+		local seedDelay = (seed % 1000) * 0.00001;
+		return 0.05 + (0.1 - 0.02 * priority) + seedDelay;
 	}
 
 	function OnOutputSuccess()
@@ -143,7 +151,7 @@ class rndComplexRandomiser extends rndBase
 		local input = inputs[currentInput];
 		local output = outputs[currentOutput];
 		
-		//PrintDebug("Randomising " + input + " to " + output,4)
+		PrintDebug("Randomising " + input + " to " + output);
 		
 		PostMessage(output,"RandomiseInput",input);
 	}
@@ -158,15 +166,32 @@ class rndComplexRandomiser extends rndBase
 		
 		if (inputs.len() > 0 && outputs.len() > 0)
 		{
-			Shuffle();
+			ShuffleBothArrays();
 			Randomise();
 		}
 	}
 	
-	function Shuffle()
+	function ShuffleBothArrays()
 	{
-		inputs = rndUtil.Shuffle(inputs,seed);
-		outputs = rndUtil.Shuffle(outputs,seed);
+		inputs = Shuffle(inputs,seed);
+		
+		//If we are set to have high-priority outputs, then we are going to need
+		//to split the outputs array, then shuffle each, then recombine them,
+		//with the high priority ones at the start
+		if (ignorePriority)
+		{
+			outputs = Shuffle(outputs,seed);
+		}
+		else
+		{
+			local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
+			local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
+			
+			lowPrio = Shuffle(lowPrio,seed);
+			highPrio = Shuffle(highPrio,seed);
+			
+			outputs = Combine(highPrio,lowPrio);
+		}
 	}
 	
 	function SetAllowedTypes()
@@ -181,14 +206,14 @@ class rndComplexRandomiser extends rndBase
 	{
 		seed = getParam("forceSeed",-1);
 		if (seed == -1)
-			seed = Data.RandInt(0,999999);
+			seed = Data.RandInt(0,999);
 	}
 	
 	function CheckAllowedTypes(input)
 	{
 		foreach(type in allowedTypes)
 		{
-			if (rndUtil.isArchetype(input,type))
+			if (isArchetype(input,type))
 				return true;
 		}
 		return false;
@@ -211,7 +236,7 @@ class rndComplexRandomiser extends rndBase
 	function OnSetInputs()
 	{
 		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
-		local expandedInputs = rndUtil.DeStringify(message().data);
+		local expandedInputs = DeStringify(message().data);
 		
 		foreach(val in expandedInputs)
 		{
@@ -226,7 +251,7 @@ class rndComplexRandomiser extends rndBase
 	
 	function OnSetOutputs()
 	{
-		local expandedOutputs = rndUtil.DeStringify(message().data);
+		local expandedOutputs = DeStringify(message().data);
 		PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
 		
 		foreach(val in expandedOutputs)
@@ -254,7 +279,7 @@ class rndComplexRandomiser extends rndBase
 			local min = outputs.len() * 0.35;
 			local max = outputs.len() - 1;
 			
-			local insertIndex = rndUtil.RandBetween(seed + output,min,max);
+			local insertIndex = RandBetween(seed + output,min,max);
 			outputs.remove(index);
 			outputs.insert(insertIndex,output);
 		}
