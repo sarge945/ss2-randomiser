@@ -346,7 +346,7 @@ Create "rndObjectCollection" "rndEggs"
 }
 
 //Dead guy inside Observation Area
-+Link 1270 "rndSecurityObjects" "Target"
++Link 1270 "rndSectorBObjects" "Target"
 {
 }
 
@@ -412,6 +412,7 @@ Create "rndObjectCollection" "rndEggs"
 }
 
 //Cyber Modules in the water
++MetaProp 634 "Object Randomiser - Secret"
 +Link 634 "rndSectorBObjects" "Target"
 {
 }
@@ -442,6 +443,22 @@ Create "rndOutputMarker" "rndSectorBEmptyCloset"
 }
 +MetaProp "rndSectorBEmptyCloset" "Object Randomiser - High Priority Output"
 +Link "rndSectorBEmptyCloset" "rndSectorBObjects" "Target"
+{
+}
+
+//on top of some boxes
+Create "rndOutputMarker" "rndSectorBBox"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-96.793, -106.559, 5.75456"
+		"Heading" fa6c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndSectorBBox" "Object Randomiser - Secret"
++Link "rndSectorBBox" "rndSectorBObjects" "Target"
 {
 }
 

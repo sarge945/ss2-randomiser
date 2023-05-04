@@ -112,6 +112,8 @@ class rndComplexRandomiser extends rndBase
 		local count = 0;
 		
 		local fuzzy = getParam("variedOutput",true);
+		local nosecret = getParam("noSecret",false);
+		
 		DebugPrint ("Fuzzy enabled: " + getParam("variedOutput",true));
 
 		while (count < times)
@@ -129,7 +131,7 @@ class rndComplexRandomiser extends rndBase
 			{
 				currentOutput++;
 				output = manager.outputs[currentOutput];
-				success = output.HandleMove(input.item);
+				success = output.HandleMove(input.item,nosecret);
 				//DebugPrint("Attemptiny to move " + input.item + " to output " + output.output + " (success: " + success + ")");
 			}
 			while (!success && currentOutput <= manager.outputs.len())

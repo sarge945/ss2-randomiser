@@ -74,3 +74,9 @@ CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
 CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
 {
 }
+
+//Use this for particularly devious spots. Randomisers set to noSecret=1 won't use them.
+//Use for making things like key items not be super hidden and block progress
+CreateArch "Misc Metaprops" "Object Randomiser - Secret"
+{
+}

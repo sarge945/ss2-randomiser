@@ -223,9 +223,21 @@ class Output
 		valid = true;
 	}
 	
-	function HandleMove(item)
+	function checkHandleMove(item,nosecret)
 	{
 		if (!valid)
+			return false;
+			
+		//handle "secret" outputs
+		if (nosecret && Object.HasMetaProperty(output,"Object Randomiser - Secret"))
+			return false;
+		
+		return true;
+	}
+	
+	function HandleMove(item,nosecret)
+	{
+		if (!checkHandleMove(item,nosecret))
 			return false;
 	
 		//print ("moving " + item + " to container " + output);
@@ -255,9 +267,22 @@ class PhysicalOutput extends Output
 		valid = true;
 	}
 	
-	function HandleMove(item)
+	function checkHandleMove(item,nosecret)
 	{
-		if (!valid || Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
+		local check = base.checkHandleMove(item,nosecret);
+		
+		if (!check)
+			return false;
+			
+		if (Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
+			return false;
+		
+		return true;
+	}
+	
+	function HandleMove(item, nosecret)
+	{
+		if (!checkHandleMove(item,nosecret))
 			return false;
 			
 		//if (Object.IsTransient(output))
