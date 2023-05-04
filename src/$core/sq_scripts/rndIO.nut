@@ -306,14 +306,31 @@ class Output
 	function IsEnabled()
 	{
 		//Make sure the output is still enabled
-		return Link.AnyExist(-LINK_SWITCHLINK,obj);
+		if (!Link.AnyExist(-LINK_SWITCHLINK,obj))
+			return false;
+		
+		//Make sure it's Validated
+		if (!IsValid())
+			return false;
+		
+		return true
+	}
+	
+	function IsValid()
+	{
+		return Object.HasMetaProperty(obj,"Object Randomiser - Validated (Internal)") || isContainer || isMarker;
+	}
+	
+	function Validate()
+	{
+		Object.AddMetaProperty(obj,"Object Randomiser - Validated (Internal)");
 	}
 	
 	function Setup(randomiser)
 	{
 		//Link to Randomiser			
 		Link.Create(-LINK_SWITCHLINK,obj,randomiser);
-		
+	
 		GetOutputLocations();
 	
 		foreach(location in outputLocations)

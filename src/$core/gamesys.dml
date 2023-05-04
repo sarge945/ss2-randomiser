@@ -112,3 +112,8 @@ CreateArch "Misc Metaprops" "Object Randomiser - Junk Only"
 CreateArch "Misc Metaprops" "Object Randomiser - Secret"
 {
 }
+
+//Internal metaprop used to signal "validated" inputs (IE those which will be randomised) to allow them to be used as outputs
+CreateArch "Misc Metaprops" "Object Randomiser - Validated (Internal)"
+{
+}

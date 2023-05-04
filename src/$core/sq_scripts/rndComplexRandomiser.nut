@@ -138,12 +138,15 @@ class rndComplexRandomiser extends rndBase
 		
 		//Even though we have a lot of possible outputs,
 		//We need to signal which ones are usable
-		//So we get a list of inputs which are either containers, markers, or an input
-		local validOutputs = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
-		validOutputs = rndFilterCombine(validOutputs,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
+		//So we get a list of outputs which are also inputs to validate
+		local validInputOutputs = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
+		
+		//Validate each input
+		foreach (output in validInputOutputs)
+			output.Validate();
 		
 		//prepare each of our filtered outputs
-		foreach (output in validOutputs)
+		foreach (output in outputs)
 			output.Setup(self);
 		
 		if (ignorePriority)
