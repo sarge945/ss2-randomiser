@@ -27,6 +27,11 @@ Create "rndObjectCollection" "rndCryoObjects"
 {
 }
 
+//Create an object collection for the Cryo Sector (After Airlock)
+Create "rndObjectCollection" "rndCryoObjectsAfterAirlock"
+{
+}
+
 //Create an object collection for the Science Sector
 Create "rndObjectCollection" "rndScienceObjects"
 {
@@ -93,39 +98,39 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Corpses
 
 //Corpse in downstairs computer room
-+Link 831 "rndCryoObjects" "Target"
++Link 831 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Corpse near Cryo Chambers upstairs
-+Link 219 "rndCryoObjects" "Target"
++Link 219 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Corpse in Computer Room Upstairs
-+Link 931 "rndCryoObjects" "Target"
++Link 931 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Corpse right next to skill trainers
-+Link 490 "rndCryoObjects" "Target"
++Link 490 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Corpse near 00000 door
-+Link 1584 "rndCryoObjects" "Target"
++Link 1584 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 ////Containers
 
 //Box immediately after exiting the airlock
-+Link 910 "rndCryoObjects" "Target"
++Link 910 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Crate near 00000 door with audio log on top
-+Link 105 "rndCryoObjects" "Target"
++Link 105 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
@@ -133,24 +138,24 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Med hypo in the upper level
 +MetaProp 234 "Object Randomiser - No Auto Output"
-+Link 234 "rndCryoObjects" "Target"
++Link 234 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //"Floor nanites" near the door to Sci
-+Link 1505 "rndCryoObjects" "Target"
++Link 1505 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
 //Add the 2 items from the computer station smashable glass area
 //Shotgun Ammo
 +MetaProp 607 "Object Randomiser - No Auto Output"
-+Link 607 "rndCryoObjects" "Target"
++Link 607 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 //Psi Hypo
 +MetaProp 599 "Object Randomiser - No Auto Output"
-+Link 599 "rndCryoObjects" "Target"
++Link 599 "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
@@ -168,7 +173,7 @@ Create "rndOutputMarker" "rndCryoGlassChamber"
 	}
 }
 +MetaProp "rndCryoGlassChamber" "Object Randomiser - High Priority Output"
-+Link "rndCryoGlassChamber" "rndCryoObjects" "Target"
++Link "rndCryoGlassChamber" "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 
@@ -184,7 +189,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 		"Bank" 0
 	}
 }
-+Link "rndCryoFloorSpot" "rndCryoObjects" "Target"
++Link "rndCryoFloorSpot" "rndCryoObjectsAfterAirlock" "Target"
 {
 }
 */
@@ -320,6 +325,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 ////Loose Items
 
 //Power Cell needed to open Medical sector
++MetaProp 1186 "Object Randomiser - No Auto Output"
 +Link 1186 "rndScienceObjects" "Target"
 {
 }

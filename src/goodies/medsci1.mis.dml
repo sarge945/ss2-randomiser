@@ -13,12 +13,21 @@ Create "rndComplexRandomiser" "rndCryoRandomiser"
 +Link "rndCryoObjects" "rndCryoRandomiser" "SwitchLink"
 {
 }
+//Inputs
++Link "rndCryoObjectsAfterAirlock" "rndCryoRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndCryoObjects" "rndCryoRandomiser" "~SwitchLink"
 {
 }
+//Outputs
++Link "rndCryoObjectsAfterAirlock" "rndCryoRandomiser" "~SwitchLink"
+{
+}
 
+/*
 //Shuffle up to 2 objects from Science sector into Cryo, for variety
 Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
 {
@@ -31,10 +40,10 @@ Create "rndComplexRandomiser" "rndCryoExtraRandomiser"
 }
 
 //Outputs
-+Link "rndCryoObjects" "rndCryoExtraRandomiser" "~SwitchLink"
++Link "rndCryoObjectsAfterAirlock" "rndCryoExtraRandomiser" "~SwitchLink"
 {
 }
-
+*/
 
 
 
