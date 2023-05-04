@@ -1,0 +1,27 @@
+// ================================================================================
+// 								Add Power Cell to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Power Cell in Ops lobby
+Create "rndPowercellRandomiser" "rndLobbyPowercellRandomiser"
+{
+}
+
+//Link the Power Cell as Input
++Link "rndLobbyObjects" "rndLobbyPowercellRandomiser" "SwitchLink"
+{
+}
+
+//Link the rest of the map as outputs
++Link "rndLobbyObjects" "rndLobbyPowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndSystemsAdminObjects" "rndLobbyPowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndLobbyPowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewQuartersObjects" "rndLobbyPowercellRandomiser" "~SwitchLink"
+{
+}

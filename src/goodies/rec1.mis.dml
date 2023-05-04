@@ -52,31 +52,30 @@ Create "rndComplexRandomiser" "rndRecRandomiser"
 }
 
 //Create a randomiser for the Body Bags (only allow hypos)
-Create "rndComplexRandomiser" "rndBodybagRandomiser"
+Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; maxTimes=2; minTimes=1; priority=1;"
 }
 //Inputs
-+Link "rndLobbyObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndLobbyObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndCrewObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndCrewObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndMedicalObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndMedicalObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndAthleticsObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndAthleticsObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndCrewLockedApartmentObjects" "rndBodybagRandomiser" "SwitchLink"
++Link "rndCrewLockedApartmentObjects" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
-+Link "rndBodybags" "rndBodybagRandomiser" "SwitchLink"
++Link "rndBodybags" "rndBodybagsRandomiser" "SwitchLink"
 {
 }
 //Outputs
-+Link "rndBodybags" "rndBodybagRandomiser" "~SwitchLink"
++Link "rndBodybags" "rndBodybagsRandomiser" "~SwitchLink"
 {
 }
 

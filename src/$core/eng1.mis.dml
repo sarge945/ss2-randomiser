@@ -164,18 +164,23 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Containers
 
 //Small Crate
++MetaProp 1440 "Object Randomiser - High Priority Output"
 +Link 1440 "rndTubeStorage4Objects" "Target"
 {
 }
++MetaProp 1438 "Object Randomiser - High Priority Output"
 +Link 1438 "rndTubeStorage4Objects" "Target"
 {
 }
++MetaProp 1439 "Object Randomiser - High Priority Output"
 +Link 1439 "rndTubeStorage4Objects" "Target"
 {
 }
++MetaProp 1420 "Object Randomiser - High Priority Output"
 +Link 1420 "rndTubeStorage4Objects" "Target"
 {
 }
++MetaProp 1422 "Object Randomiser - High Priority Output"
 +Link 1422 "rndTubeStorage4Objects" "Target"
 {
 }

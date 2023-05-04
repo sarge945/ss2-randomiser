@@ -21,22 +21,22 @@ Create "rndCardRandomiser" "rndKeycardRandomiser"
 /////////////////////////////////////////////////
 
 //Create a randomiser for the Power Cell
-Create "rndPowercellRandomiser" "rndPowercellRandomiser"
+Create "rndPowercellRandomiser" "rndRec1PowercellRandomiser"
 {
 }
 
 //Inputs
-+Link "rndLobbyObjects" "rndPowercellRandomiser" "SwitchLink"
++Link "rndLobbyObjects" "rndRec1PowercellRandomiser" "SwitchLink"
 {
 }
 //Outputs
-+Link "rndLobbyObjects" "rndPowercellRandomiser" "~SwitchLink"
++Link "rndLobbyObjects" "rndRec1PowercellRandomiser" "~SwitchLink"
 {
 }
-+Link "rndCrewObjects" "rndPowercellRandomiser" "~SwitchLink"
++Link "rndCrewObjects" "rndRec1PowercellRandomiser" "~SwitchLink"
 {
 }
-+Link "rndMedicalObjects" "rndPowercellRandomiser" "~SwitchLink"
++Link "rndMedicalObjects" "rndRec1PowercellRandomiser" "~SwitchLink"
 {
 }
 

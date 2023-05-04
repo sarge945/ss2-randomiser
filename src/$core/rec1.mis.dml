@@ -255,12 +255,21 @@ Create "rndOutputMarker" "rndReplace1443"
 {
 }
 
-//Crate
+//Ring Buoy Crate
+//We don't want to randomise it's contents, since the ring buoys are a nice meme
+//Instead, we want to randomise only the shells inside it.
++MetaProp 1999 "Object Randomiser - No Auto Input"
 +Link 1999 "rndMedicalObjects" "Target"
 {
 }
 
-//Crate
+//Shotgun Shells inside Ring Bouy Crate
++Link 214 "rndMedicalObjects" "Target"
+{
+}
+
+//Same thing as above with this crate
++MetaProp 2002 "Object Randomiser - No Auto Input"
 +Link 2002 "rndMedicalObjects" "Target"
 {
 }

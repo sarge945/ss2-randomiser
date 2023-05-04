@@ -8,3 +8,22 @@
 //so there's not much point going down there anymore.
 //Let's change that.
 +MetaProp 1476 "Object Randomiser - High Priority Output"
+
+// ================================================================================
+// 								Add Power Cell to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Easy Radiation Room Power Cell
+Create "rndPowercellRandomiser" "rndEasyRadiationPowercellRandomiser"
+{
+}
+
+//Link the Radiation Room items to it as Input
++Link "rndMedicalRadiation1Objects" "rndEasyRadiationPowercellRandomiser" "SwitchLink"
+{
+}
+
+//Link the Radiation Room items to it as Output
++Link "rndMedicalRadiation1Objects" "rndEasyRadiationPowercellRandomiser" "SwitchLink"
+{
+}

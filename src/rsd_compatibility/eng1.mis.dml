@@ -1,0 +1,27 @@
+// ================================================================================
+// 								Add Power Cell to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Power Cell in Aux Storage 4
+Create "rndPowercellRandomiser" "rndAux4PowercellRandomiser"
+{
+}
+
+//Link the Storage 4 items to it as Input
++Link "rndTubeStorage4Objects" "rndAux4PowercellRandomiser" "SwitchLink"
+{
+}
+
+//Link the Tubes, Storage Rooms and elsewhere to it
++Link "rndTubeObjects" "rndAux4PowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndTubeStorage4Objects" "rndAux4PowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndControlLobbyObjects" "rndAux4PowercellRandomiser" "~SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndAux4PowercellRandomiser" "~SwitchLink"
+{
+}

@@ -30,6 +30,9 @@ Create "rndComplexRandomiser" "rndEngineeringRandomiser"
 +Link "rndEngineObjectsCabin" "rndEngineeringRandomiser" "SwitchLink"
 {
 }
++Link "rndTubeStorage4Objects" "rndEngineeringRandomiser" "SwitchLink"
+{
+}
 +Link "rndTubeStorage5Objects" "rndEngineeringRandomiser" "SwitchLink"
 {
 }
@@ -54,6 +57,9 @@ Create "rndComplexRandomiser" "rndEngineeringRandomiser"
 {
 }
 +Link "rndEngineObjectsCabin" "rndEngineeringRandomiser" "~SwitchLink"
+{
+}
++Link "rndTubeStorage4Objects" "rndEngineeringRandomiser" "~SwitchLink"
 {
 }
 +Link "rndTubeStorage5Objects" "rndEngineeringRandomiser" "~SwitchLink"

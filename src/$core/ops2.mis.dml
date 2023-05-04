@@ -38,12 +38,17 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Containers
 
 //Small Tri-Op crates near the Shodan reveal door
++MetaProp 503 "Object Randomiser - High Priority Output"
 +Link 503 "rndLobbyObjects" "Target"
 {
 }
++MetaProp 504 "Object Randomiser - High Priority Output"
++MetaProp 504 "Object Randomiser - Junk Only"
 +Link 504 "rndLobbyObjects" "Target"
 {
 }
++MetaProp 505 "Object Randomiser - High Priority Output"
++MetaProp 505 "Object Randomiser - Junk Only"
 +Link 505 "rndLobbyObjects" "Target"
 {
 }
