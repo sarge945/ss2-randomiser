@@ -12,8 +12,9 @@ class rndIOCollection
 	outputsMarkers = null;
 	outputsItems = null;
 	randomiser = null;
+	seed = null;
 	
-	constructor(cRandomiser)
+	constructor(cRandomiser, cSeed)
 	{
 		randomiser = cRandomiser;
 		inputs = [];
@@ -21,6 +22,7 @@ class rndIOCollection
 		outputsContainers = [];
 		outputsMarkers = [];
 		outputsItems = [];
+		seed = cSeed;
 		GetInputsAndOutputsForRandomiser();
 	}
 	
@@ -81,17 +83,17 @@ class rndIOCollection
 		local output;
 		if (IsContainer(obj))
 		{
-			output = ContainerOutput(obj);
+			output = ContainerOutput(obj,seed);
 			outputsContainers.append(output);
 		}
 		else if (IsMarker(obj))
 		{
-			output = MarkerOutput(obj);
+			output = MarkerOutput(obj,seed);
 			outputsMarkers.append(output);
 		}
 		else
 		{
-			output = ItemOutput(obj);
+			output = ItemOutput(obj,seed);
 			outputsItems.append(output);
 		}
 		outputs.append(output);
@@ -186,8 +188,9 @@ class Output
 	selfOnly = null;
 	secret = null;
 	noJunk = null;
+	seed = null;
 
-	constructor(cObj)
+	constructor(cObj, cSeed)
 	{
 		obj = cObj;
 		highPriority = Object.HasMetaProperty(cObj,"Object Randomiser - High Priority Output");
@@ -196,6 +199,7 @@ class Output
 		selfOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Output Self Only");
 		isContainer = false;
 		isMarker = false;
+		seed = cSeed;
 	}
 	
 	function CanMove(input,noSecret,allowOriginalLocation)
@@ -226,9 +230,9 @@ class Output
 
 class ContainerOutput extends Output
 {
-	constructor(cObj)
+	constructor(cObj,cSeed)
 	{
-		base.constructor(cObj);
+		base.constructor(cObj,cSeed);
 		isContainer = true;
 	}
 	
@@ -248,9 +252,9 @@ class PhysicalOutput extends Output
 	physicsControls = null;
 	noFacing = null;
 
-	constructor(cObj)
+	constructor(cObj,cSeed)
 	{
-		base.constructor(cObj);
+		base.constructor(cObj,cSeed);
 		position = Object.Position(cObj);
 		facing = Object.Facing(cObj);
 		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
@@ -265,7 +269,7 @@ class PhysicalOutput extends Output
 		if (!selfOnly && input.containerOnly)
 			return false;
 	
-		if (!Link.AnyExist(LINK_TARGET,obj))
+		if (!OutputEnabled())
 			return false;
 	
 		return true;
@@ -340,13 +344,24 @@ class PhysicalOutput extends Output
 		}
 	}
 	
+	function OutputEnabled()
+	{
+		//Check for at least one target link
+		return Link.AnyExist(LINK_TARGET,obj);
+	}
+	
+	function DisableOutput()
+	{
+		//Remove all Target links
+		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
+			Link.Destroy(ilink);
+	}
+	
 	function HandleMove(input)
 	{
 		base.HandleMove(input);
 	
-		//Set output as unusable
-		foreach (ilink in Link.GetAll(LINK_TARGET,obj))
-			Link.Destroy(ilink);
+		DisableOutput();
 		
 		//Move object out of container
 		Container.Remove(input.obj);
@@ -381,17 +396,17 @@ class PhysicalOutput extends Output
 
 class ItemOutput extends PhysicalOutput
 {
-	constructor(cObj)
+	constructor(cObj,cSeed)
 	{
-		base.constructor(cObj);
+		base.constructor(cObj,cSeed);
 	}
 }
 
 class MarkerOutput extends PhysicalOutput
 {
-	constructor(cObj)
+	constructor(cObj,cSeed)
 	{
-		base.constructor(cObj);
+		base.constructor(cObj,cSeed);
 		isMarker = true;
 	}
 }

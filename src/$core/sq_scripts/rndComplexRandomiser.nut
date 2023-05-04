@@ -119,7 +119,7 @@ class rndComplexRandomiser extends rndBase
 		
 		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", randomiseDelay: " + randomiseDelay + ", seed: " + seed + ")");
 	
-		local IOcollection = rndIOCollection(self);
+		local IOcollection = rndIOCollection(self,seed);
 		
 		//Shuffle and filter inputs by type
 		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
@@ -164,9 +164,13 @@ class rndComplexRandomiser extends rndBase
 	}
 	
 	//Move an input to the end after it's used
+	//Allow items to "bubble" where a container will
+	//possibly contain more than one, or nothing,
+	//since they are reinserted from the bubble index to the end,
+	//rather than always at the end
 	function ReplaceOutput(index,output)
 	{
-		if (fuzzy && output.isContainer)
+		if (fuzzy)
 		{
 			srand(seed + output.obj);
 			local min = outputs.len() * 0.35;
