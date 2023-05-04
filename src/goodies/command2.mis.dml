@@ -1,0 +1,76 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Command2.
+Create "rndComplexRandomiser" "rndCommand2Randomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
++Link "rndKorenchkinObjects" "rndCommand2Randomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
++Link "rndKorenchkinObjects" "rndCommand2Randomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Super Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHighSecurityObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

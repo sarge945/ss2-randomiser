@@ -1,0 +1,324 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main Lobby
+Create "rndObjectCollection" "rndLobbyObjects"
+{
+}
+
+//Create an object collection for the Umbilical Tram Station
+Create "rndObjectCollection" "rndUmbilicalObjects"
+{
+}
+
+//Create an object collection for the Main Section
+Create "rndObjectCollection" "rndMainStationObjects"
+{
+}
+
+//Create an object collection for the Cargo Bays
+Create "rndObjectCollection" "rndCargoBayObjects"
+{
+}
+
+//Create an object collection for the Security Crates in the Main area (only one)
+Create "rndObjectCollection" "rndSecurityMainObjects"
+{
+}
+
+//Create an object collection for the Security Crates in the Cargo Bays area
+Create "rndObjectCollection" "rndSecurityCargoObjects"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Main Lobby	=====\\\\\\\\\\\\\\\\\
+
+////Lobby Area outside Elevator
+
+//Corpse next to security station
++Link 209 "rndLobbyObjects" "Target"
+{
+}
+
+//Guy behind tiped over bench
++Link 2220 "rndLobbyObjects" "Target"
+{
+}
+
+//Soda Can behind piller
++Link 208 "rndLobbyObjects" "Target"
+{
+}
+
+//Ciggies on floor
++Link 230 "rndLobbyObjects" "Target"
+{
+}
+
+//Maintenance Tool on Floor
++Link 274 "rndLobbyObjects" "Target"
+{
+}
+
+//Vodka Bottle on Chair
++Link 231 "rndLobbyObjects" "Target"
+{
+}
+
+//Magazine on Chair
++Link 232 "rndLobbyObjects" "Target"
+{
+}
+
+////Area with broken QBRM
+
+//Corpse in front of QBR Machine
++Link 1182 "rndLobbyObjects" "Target"
+{
+}
+
+//Audio Log
++Link 409 "rndLobbyObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 402 "rndLobbyObjects" "Target"
+{
+}
+
+////Tram Station
+
+//First Corpse in front of Tram
++Link 2201 "rndLobbyObjects" "Target"
+{
+}
+
+//Second Corpse in front of Tram
++Link 2375 "rndLobbyObjects" "Target"
+{
+}
+
+//Third Corpse in front of Tram
++Link 2243 "rndLobbyObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 365 "rndLobbyObjects" "Target"
+{
+}
+
+//Replicator Vodka
++Link 366 "rndLobbyObjects" "Target"
+{
+}
+
+//Second Replicator Vodka
++Link 357 "rndLobbyObjects" "Target"
+{
+}
+
+//Replicator Clip
++Link 1187 "rndLobbyObjects" "Target"
+{
+}
+
+//Replicator Chips 1
+//Looks weird when replaced with some items
++MetaProp 356 "Object Randomiser - No Auto Output"
++Link 356 "rndLobbyObjects" "Target"
+{
+}
+
+//Replicator Chips 2
++Link 358 "rndLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Umbilical Station	=====\\\\\\\\\\\\\\\\\
+
+////Main Area, Ground Floor
+
+//Garbage Bin
++Link 519 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 461 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Audio Log
++Link 411 "rndUmbilicalObjects" "Target"
+{
+}
+
+////Main Area, Second Floor
+
+//Garbage Bin
++Link 514 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 515 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Corpse in Corner
++Link 1227 "rndUmbilicalObjects" "Target"
+{
+}
+
+////Past the Security Door
+
+//Corpse near entry
++Link 2256 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Corpse near Umbilical
++Link 417 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Audio Log
++Link 410 "rndUmbilicalObjects" "Target"
+{
+}
+
+/////////////////=====	Main Station	=====\\\\\\\\\\\\\\\\\
+
+////Lobby First Level
+
+//Garbage Bin
++Link 576 "rndMainStationObjects" "Target"
+{
+}
+
+//Audio Log
++Link 554 "rndMainStationObjects" "Target"
+{
+}
+
+////Upper Level
+
+//Garbage Bin
++Link 577 "rndMainStationObjects" "Target"
+{
+}
+
+
+
+//Cyber Modules
++Link 322 "rndMainStationObjects" "Target"
+{
+}
+
+/////////////////=====	Cargo Bay	=====\\\\\\\\\\\\\\\\\
+
+////Cargo Bay Lobby
+
+//Medikit in entrance ramp
++Link 2229 "rndCargoBayObjects" "Target"
+{
+}
+
+//Audio Log behind Egg in main area
++Link 2380 "rndCargoBayObjects" "Target"
+{
+}
+
+//Corpse
++Link 275 "rndCargoBayObjects" "Target"
+{
+}
+
+////Shuttle Bay A
+
+//Corpse
++Link 2255 "rndCargoBayObjects" "Target"
+{
+}
+
+//Crate
++Link 2232 "rndCargoBayObjects" "Target"
+{
+}
+
+//Crate next to Delacroix
++Link 946 "rndCargoBayObjects" "Target"
+{
+}
+
+//Delacroix Body
+//Don't take anything from her, we need the modules for the event, and it makes sense for her to have ammo
+//since she has a gun. But we can still add items
++MetaProp 91 "Object Randomiser - No Auto Input"
++Link 91 "rndCargoBayObjects" "Target"
+{
+}
+
+/*
+//Delacroix Pistol
+//Disabled for now as it makes sense to be here
++Link 1188 "rndCargoBayObjects" "Target"
+{
+}
+*/
+
+////Shuttle Bay B
+
+//FE Device
++Link 104 "rndCargoBayObjects" "Target"
+{
+}
+
+//Small Crate
++Link 2236 "rndCargoBayObjects" "Target"
+{
+}
+
+//Crate
++Link 2240 "rndCargoBayObjects" "Target"
+{
+}
+
+//Audio Log
++Link 107 "rndCargoBayObjects" "Target"
+{
+}
+
+//Med Hypo
++Link 2238 "rndCargoBayObjects" "Target"
+{
+}
+
+//Corpse
++Link 389 "rndCargoBayObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Station near Umbilical
++Link 391 "rndSecurityMainObjects" "Target"
+{
+}
+
+//Cargo Bay B has 2 crates
++Link 318 "rndSecurityCargoObjects" "Target"
+{
+}
++Link 289 "rndSecurityCargoObjects" "Target"
+{
+}

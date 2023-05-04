@@ -1,0 +1,18 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for Korenchkins Room Log
+Create "rndComplexRandomiser" "rndKorenchkinLogRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0; allowedTypes0=-76; noRespectJunk=1; priority=1;"
+}
+
+//Inputs
++Link "rndKorenchkinObjects" "rndKorenchkinLogRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndKorenchkinObjects" "rndKorenchkinLogRandomiser" "~SwitchLink"
+{
+}

@@ -1,0 +1,52 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Command1.
+Create "rndComplexRandomiser" "rndGoodiesRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndUmbilicalObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndMainStationObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBayObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndUmbilicalObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndMainStationObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBayObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Hackable Crates in the Cargo Bay
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

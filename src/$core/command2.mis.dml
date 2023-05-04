@@ -1,0 +1,710 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main Lobby Area (Lower floor area near Tram station)
+Create "rndObjectCollection" "rndLobbyObjects"
+{
+}
+
+//Create an object collection for the Officers Quarters Area (everything on Level 2 except Escape Pods and Officers Lounge)
+Create "rndObjectCollection" "rndOfficersQuartersObjects"
+{
+}
+
+//Create an object collection for the Officers Lounge Area
+Create "rndObjectCollection" "rndOfficersLoungeObjects"
+{
+}
+
+//Create an object collection for the Officers Quarters upper-area apartments
+Create "rndObjectCollection" "rndApartmentsObjects"
+{
+}
+
+//Create an object collection for the Escape Pods Area
+Create "rndObjectCollection" "rndEscapePodsObjects"
+{
+}
+
+//Create an object collection for the Captains Quarters (everything on the third floor)
+Create "rndObjectCollection" "rndCaptainsObjects"
+{
+}
+
+//Create an object collection for the Bridge
+Create "rndObjectCollection" "rndBridgeObjects"
+{
+}
+
+//Create an object collection for Korenchkin's Room (on the bridge)
+Create "rndObjectCollection" "rndKorenchkinObjects"
+{
+}
+
+//Create an object collection for the High Security Crates
+Create "rndObjectCollection" "rndHighSecurityObjects"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Lobby Objects	=====\\\\\\\\\\\\\\\\\
+
+//Garbage Bin
++Link 589 "rndLobbyObjects" "Target"
+{
+}
+
+//Garbage Bin next to Replicator
++Link 591 "rndLobbyObjects" "Target"
+{
+}
+
+//Crystal Shard next to Replicator
++Link 2175 "rndLobbyObjects" "Target"
+{
+}
+
+//Pool Guy
++Link 595 "rndLobbyObjects" "Target"
+{
+}
+
+////Desk
+
+//Cyber Modules
++Link 292 "rndLobbyObjects" "Target"
+{
+}
+
+//Crystal Shard
++Link 2178 "rndLobbyObjects" "Target"
+{
+}
+
+//Corpse
++Link 584 "rndLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Officers Quarters	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 575 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+//L33T Soldier at entrance to Escape Pods
++Link 1337 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+////Conference Room
+
+//Ciggies
++Link 2138 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+//Audio Log
++Link 2378 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+//Soda Can
++Link 2136 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+//Laser Rapier
++Link 2179 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+//Corpse
++Link 2124 "rndOfficersQuartersObjects" "Target"
+{
+}
+
+/////////////////=====	Officers Lounge	=====\\\\\\\\\\\\\\\\\
+
+////Hallway
+
+//Corpse
++Link 84 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Prisms
++Link 2274 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Corpse on the way to Escape Pods
++Link 983 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//2 corpses near door to escape pods
++Link 984 "rndOfficersLoungeObjects" "Target"
+{
+}
+
++Link 979 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+////Lower Section near Escape Pods Entry with QBRM
+
+//Corpse next to QBRM
++Link 183 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//CM's in nook across from QBRM
++MetaProp 287 "Object Randomiser - Secret"
++Link 287 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Wrench in nook across from QBRM
++MetaProp 270 "Object Randomiser - Secret"
++Link 270 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Corpse in Worm Room
+//Booby trapped, so give her something good
++MetaProp 1419 "Object Randomiser - High Priority Output"
++Link 1419 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+////Rec Room
+
+//Corpse near pool table
++Link 1913 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Nanites
++Link 1420 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Vodka near pool table
++Link 1921 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Vodka near Crate
++Link 1937 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Crate
++Link 1335 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Shotgun
++Link 2275 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Audio Log
++Link 2381 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+////Toilets
+
+//Audio Log
++Link 2379 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Corpse in Shower
++Link 1281 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+//Maintenance Tool in Shower
++Link 188 "rndOfficersLoungeObjects" "Target"
+{
+}
+
+/////////////////=====	Apartments	=====\\\\\\\\\\\\\\\\\
+
+////Hallway
+
+//Corpse
++Link 2386 "rndApartmentsObjects" "Target"
+{
+}
+
+//////Four Corner Apartments
+
+////First Apartment
+
+//A Locker
++Link 1015 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1893 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1885 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1897 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1901 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1877 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1881 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Corpse
++Link 1356 "rndApartmentsObjects" "Target"
+{
+}
+
+////Second Apartment
+
+//A Locker
++Link 1817 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1845 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1849 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Corpse on Bed
++Link 1339 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Corpse on Roof Section
++Link 1343 "rndApartmentsObjects" "Target"
+{
+}
+
+////Third Apartment
+
+//A Locker
++Link 1020 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1789 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1765 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1773 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1777 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1793 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1797 "rndApartmentsObjects" "Target"
+{
+}
+
+//Stasis Field Generator
++Link 1366 "rndApartmentsObjects" "Target"
+{
+}
+
+//Corpse
++Link 1365 "rndApartmentsObjects" "Target"
+{
+}
+
+////Fourth Apartment
+
+//A Locker
++Link 80 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1497 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1517 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker - Myers Security Log
++MetaProp 1489 "Object Randomiser - No Auto Input"
++Link 1489 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1501 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1505 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1481 "rndApartmentsObjects" "Target"
+{
+}
+
+//A Locker
++Link 1485 "rndApartmentsObjects" "Target"
+{
+}
+
+//Roof Corpse near Myers locker
++Link 1388 "rndApartmentsObjects" "Target"
+{
+}
+
+//Roof Corpse near Grenade Launcher
++Link 1392 "rndApartmentsObjects" "Target"
+{
+}
+
+//Roof Corpse near Door
++Link 1383 "rndApartmentsObjects" "Target"
+{
+}
+
+//Grenades on Bed
++Link 2291 "rndApartmentsObjects" "Target"
+{
+}
+
+//Grenades on Floor
++Link 2292 "rndApartmentsObjects" "Target"
+{
+}
+
+//Grenade Launcher
++Link 1393 "rndApartmentsObjects" "Target"
+{
+}
+
+//////Apartments in the middle section, going from ladder
+
+////First
+
+//EMP Rifle
+//Up against wall, don't allow anything else there
++MetaProp 2164 "Object Randomiser - Output Self Only"
++Link 2164 "rndApartmentsObjects" "Target"
+{
+}
+
+//Desk - Contains Shuttle Access Card
++Link 532 "rndApartmentsObjects" "Target"
+{
+}
+
+//Corpse
++Link 153 "rndApartmentsObjects" "Target"
+{
+}
+
+////Second - Chemical Storeroom
+
+//Wrench
+//Up against wall, don't allow anything else there
++MetaProp 2081 "Object Randomiser - Output Self Only"
++Link 2081 "rndApartmentsObjects" "Target"
+{
+}
+
+/*
+//Manifest
++Link 504 "rndApartmentsObjects" "Target"
+{
+}
+*/
+
+////Third - Muerte
+
+//A Locker
++Link 1675 "rndApartmentsObjects" "Target"
+{
+}
+
+////End
+
+//Desk
++Link 2279 "rndApartmentsObjects" "Target"
+{
+}
+
+/////////////////=====	Escape Pods	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 744 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 695 "rndEscapePodsObjects" "Target"
+{
+}
+
+//FE Device
++Link 415 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Shotgun
++Link 1263 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Shotgun Shells
++Link 1266 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Beaker
++Link 798 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 742 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 1083 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Yet another Garbage Bin
++Link 1072 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Chips, or as British call them, "Crisps"
++Link 785 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Vodka, or as Russians call them, "Water"
++Link 782 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Maintenance Tool
++Link 187 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Ciggies
++Link 1082 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Wrench against wall
++MetaProp 786 "Object Randomiser - Output Self Only"
++Link 786 "rndEscapePodsObjects" "Target"
+{
+}
+
+//Bridge Card
++Link 135 "rndEscapePodsObjects" "Target"
+{
+}
+
+/////////////////=====	Bridge	=====\\\\\\\\\\\\\\\\\
+
+//EMP Rifle at top of Elevator
++Link 1329 "rndBridgeObjects" "Target"
+{
+}
+
+////Main Bridge Room, Lower Floor
+
+//Mug
++MetaProp 1684 "Object Randomiser - Junk Only"
++Link 1684 "rndBridgeObjects" "Target"
+{
+}
+
+//Auto Repair Unit
++Link 2217 "rndBridgeObjects" "Target"
+{
+}
+
+//Pistol Clip
++Link 1583 "rndBridgeObjects" "Target"
+{
+}
+
+//Cyber Modules
++Link 413 "rndBridgeObjects" "Target"
+{
+}
+
+////Main Bridge Room, Upper Floor
+
+//Corpse holding Medical Kit
++Link 261 "rndBridgeObjects" "Target"
+{
+}
+
+//Medical Kit
++Link 2208 "rndBridgeObjects" "Target"
+{
+}
+
+//Corpse near Window
++Link 268 "rndBridgeObjects" "Target"
+{
+}
+
+//Magazine on Table
++Link 1553 "rndBridgeObjects" "Target"
+{
+}
+
+//Modify Soft V2 on Table
++Link 2214 "rndBridgeObjects" "Target"
+{
+}
+
+//Snail on Table
++Link 2215 "rndBridgeObjects" "Target"
+{
+}
+
+//Desk
++Link 2199 "rndBridgeObjects" "Target"
+{
+}
+
+/*
+//Ops Override Key (probably shouldn't touch this)
++Link 507 "rndBridgeObjects" "Target"
+{
+}
+*/
+
+/////////////////=====	Korenchkin Room (Added in SCP4)	=====\\\\\\\\\\\\\\\\\
+//TODO: Make sure this still works with Vanilla
+
+//Mug
++MetaProp 1801 "Object Randomiser - Junk Only"
++Link 1801 "rndKorenchkinObjects" "Target"
+{
+}
+
+////Korenchkin's Snack Shelves
+
+//4 Bottles of Vodka
++MetaProp 1815 "Object Randomiser - Junk Only"
++MetaProp 1815 "Object Randomiser - High Priority Output"
++Link 1815 "rndKorenchkinObjects" "Target"
+{
+}
+//+MetaProp 1828 "Object Randomiser - Junk Only"
+//+MetaProp 1828 "Object Randomiser - High Priority Output"
++MetaProp 1828 "Object Randomiser - No Auto Output" //Too close to other items
++Link 1828 "rndKorenchkinObjects" "Target"
+{
+}
+//+MetaProp 1829 "Object Randomiser - Junk Only"
+//+MetaProp 1829 "Object Randomiser - High Priority Output"
++MetaProp 1829 "Object Randomiser - No Auto Output" //Too close to other items
++Link 1829 "rndKorenchkinObjects" "Target"
+{
+}
++MetaProp 1830 "Object Randomiser - Junk Only"
++MetaProp 1830 "Object Randomiser - High Priority Output"
++Link 1830 "rndKorenchkinObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 1886 "Object Randomiser - Junk Only"
++MetaProp 1886 "Object Randomiser - High Priority Output"
++Link 1886 "rndKorenchkinObjects" "Target"
+{
+}
+
+//Ciggies
++MetaProp 1831 "Object Randomiser - Junk Only"
++MetaProp 1831 "Object Randomiser - High Priority Output"
++Link 1831 "rndKorenchkinObjects" "Target"
+{
+}
+
+//Desk
++Link 1827 "rndKorenchkinObjects" "Target"
+{
+}
+
+/////////////////=====	Super Crates	=====\\\\\\\\\\\\\\\\\
+
+//Korenchkin's Room (SCP4)
+//Bridhe (Vanilla)
++Link 1426 "rndHighSecurityObjects" "Target"
+{
+}
+
+//Locked Security Room in Apartments
++Link 1427 "rndHighSecurityObjects" "Target"
+{
+}
