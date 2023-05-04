@@ -3,16 +3,18 @@
 // ================================================================================
 
 //Create a randomiser for the Medical and Crew Quarters sections
-//Prioritize world objects, since the map seems pretty barren and empty otherwise
 Create "rndComplexRandomiser" "rndMedicalRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "prioritizeWorldObjects=1"
+	//+ObjProp "DesignNoteSS" = "prioritizeWorldObjects=1"
 }
 //Inputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 +Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndWattsRoomObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
 /*
@@ -38,14 +40,6 @@ Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=1; variedOutput=0; prioritizeWorldObjects=1;"
 }
 //Inputs
-/*
-+Link "rndMedicalObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
-{
-}
-*/
 +Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "SwitchLink"
 {
 }
@@ -86,19 +80,22 @@ Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
 {
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Allow one kitchen item in Watts room
+Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-90; priority=2; variedOutput=0; maxTimes=1;"
+}
+//Inputs
++Link "rndCrewObjectsKitchen" "rndWattsRoomRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjectsBar" "rndWattsRoomRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndWattsRoomObjects" "rndWattsRoomRandomiser" "~SwitchLink"
+{
+}
 
 
 //Create a Randomiser for the Security Crates

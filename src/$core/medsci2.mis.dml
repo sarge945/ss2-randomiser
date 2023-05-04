@@ -62,6 +62,11 @@ Create "rndObjectCollection" "rndArmouryObjects"
 {
 }
 
+//Create an object collection for Dr Watts Room
+Create "rndObjectCollection" "rndWattsRoomObjects"
+{
+}
+
 //Create an object collection for the Hackable Crates
 Create "rndObjectCollection" "rndHackableObjects"
 {
@@ -235,7 +240,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
-//Nanites near bioopsy lab
+//Nanites near Primate Research
 +MetaProp 1221 "Object Randomiser - No Junk"
 +Link 1221 "rndMedicalObjects" "Target"
 {
@@ -252,6 +257,22 @@ Create "rndObjectCollection" "rndHackableObjects"
 }
 
 ////Markers and other spawn points
+
+//On top of crates in Radiation Lab Storage
+Create "rndOutputMarker" "rndRadiationLabStorageCrates"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-23.1994, -196.6, 7.04943"
+		"Heading" 8898
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndRadiationLabStorageCrates" "Object Randomiser - Secret"
++Link "rndRadiationLabStorageCrates" "rndRadiationShelves" "SwitchLink"
+{
+}
 
 //In front of the turret near the Monkeys that smash glass
 Create "rndOutputMarker" "rndTurretNearMonkeys"
@@ -280,10 +301,15 @@ Create "rndOutputMarker" "rndPrimateResearchCell"
 		"Bank" 1f88
 	}
 }
-+Link "rndPrimateResearchCell" "rndMedicalObjects" "Target"
++Link "rndPrimateResearchCell" 332 "SwitchLink"
+{
+}
++Link "rndPrimateResearchCell" 1221 "SwitchLink"
 {
 }
 
+/*
+//Disabled due to too many outputs in this room and items floating
 //On a chair in Primate Research
 Create "rndOutputMarker" "rndPrimateResearchChair"
 {
@@ -298,8 +324,9 @@ Create "rndOutputMarker" "rndPrimateResearchChair"
 +Link "rndPrimateResearchChair" "rndMedicalObjects" "Target"
 {
 }
+*/
 
-//On a table in QBR Room
+//On a table in QBRM Room
 Create "rndOutputMarker" "rndQBRTable"
 {
 	+ObjProp "Position"
@@ -381,7 +408,7 @@ Create "rndOutputMarker" "rndRadiationShelves"
 }
 
 //Desk in Watts room
-+Link 503 "rndCrewObjects" "Target"
++Link 503 "rndWattsRoomObjects" "Target"
 {
 }
 
@@ -412,9 +439,12 @@ Create "rndOutputMarker" "rndRadiationShelves"
 {
 }
 
+//DISABLED: We are using a marker instead since it's a more centered position
+//So disable output on this
 //Bullets in first apartment in little alcove
 //Alcove looks weird with nothing in it
-+MetaProp 291 "Object Randomiser - High Priority Output"
+//+MetaProp 291 "Object Randomiser - High Priority Output"
++MetaProp 291 "Object Randomiser - No Auto Output"
 +Link 291 "rndCrewObjects" "Target"
 {
 }
@@ -498,6 +528,21 @@ Create "rndOutputMarker" "rndRadiationShelves"
 
 
 ////Markers and other spawn points
+
+//On the table in the forcefield room
+Create "rndOutputMarker" "rndForcefieldRoomTable"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-83.2601, -0.528089, 0"
+		"Heading" ebe0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndForcefieldRoomTable" "rndCrewObjects" "Target"
+{
+}
 
 //In the apartment with a broken door
 Create "rndOutputMarker" "rndApartmentBroken"

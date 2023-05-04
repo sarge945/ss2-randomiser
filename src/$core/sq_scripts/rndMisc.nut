@@ -9,6 +9,10 @@ class IOManager
 	inputs = null;
 	outputs = null;
 	outputsLow = null;
+	
+	numOutputContainers = null;
+	numOutputMarkers = null;
+	numOutputItems = null;
 
 	seed = null; //The random seed we are using to generate.
 	ignorePriority = null; //Ignore all priority, give all outputs equal weight.
@@ -17,7 +21,9 @@ class IOManager
 	prioritizeWorldObjects = null; //Should world objects get priority (1 in 4 chance)
 	fuzzy = null; //Whether or not items can "bubble" into the same containers, rather than simply iterating the entire list. Fuzzy will result in less sets where everything always has 1-2 items, and gives more variation.
 	
-	constructor(cRandomiser, cSeed, cIgnorePriority, cAllowedTypes, cPrioritizeWorld, cFuzzy)
+	debug = null;
+	
+	constructor(cDebug, cRandomiser, cSeed, cIgnorePriority, cAllowedTypes, cPrioritizeWorld, cFuzzy)
 	{
 		inputs = [];
 		outputs = [];
@@ -29,12 +35,15 @@ class IOManager
 		allowedTypes = cAllowedTypes;
 		prioritizeWorldObjects = cPrioritizeWorld;
 		fuzzy = cFuzzy;
+		debug = cDebug;
+		
+		numOutputMarkers = 0;
+		numOutputContainers = 0;
+		numOutputItems = 0;
 	}
 	
 	function GetInputsAndOutputsForAllObjectPools()
-	{
-		//print ("Prioritising world objects for " + randomiser + " set to " + prioritizeWorldObjects);
-		
+	{		
 		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,randomiser))
 		{	
 			local objectPool = sLink(ilink).dest;
@@ -57,6 +66,37 @@ class IOManager
 		srand(seed);
 		inputs = Array_Shuffle(inputs);
 		outputs = GetOutputsArray();
+		DebugReportObjects();
+	}
+	
+	//Creates a report on the ratio of world items to containers
+	//The vanilla game maintains about a 50/50 or 60/40 split depending on the map
+	//We can use this to ensure we don't go overboard on markers, or disable too many objects
+	//and screw up the balance of containers vs world objects, which feels weird to play
+	function DebugReportObjects()
+	{
+		if (debug > 1)
+		{
+			print("-----Objects Report for " + randomiser + " -----");
+			print("Number of Outputs: " + outputs.len());
+			print("Number of Markers: " + numOutputMarkers);
+			print("Number of Containers: " + numOutputContainers);
+			print("Number of Output Items: " + numOutputItems);
+			print("Item/Container ratio without markers: " + (numOutputItems + 0.0) / numOutputContainers);
+			print("Item/Container ratio with markers: " + (numOutputItems + numOutputMarkers + 0.0) / numOutputContainers);
+			print("Ideally both ratios should be very similar to maintain vanilla balance");
+			print("Ideally this should be around 0.5 - 1.5 max on most maps, since that seems to be what vanilla does");
+			if (debug >= 3)
+			{
+				print ("Marker List:")
+				foreach (output in outputs)
+				{
+					if (output.isMarker)
+						print ("  Marker: " + output.output + " - " + output.name);
+				}
+			}
+			print("------------------------");
+		}
 	}
 	
 	//Check if an input exists for a given output
@@ -74,22 +114,25 @@ class IOManager
 	function RefreshOutput(currentOutput, forceNoFuzzy)
 	{
 		local output = outputs[currentOutput];
-		srand(seed + currentOutput + output.output);
 		
 		//print ("refreshing array position " + currentOutput);
 		outputs.remove(currentOutput);
 		
-		//Add a little variation to the output, otherwise each container gets exactly 1 item
-		if (fuzzy && !forceNoFuzzy)
+		if (output.isContainer)
 		{
-			local min = outputs.len() * 0.35;
-			local range = outputs.len() - min;
-			local index = rand() % range + min;
-			outputs.insert(index,output);
-		}
-		else
-		{
-			outputs.append(output);
+			//Add a little variation to the output, otherwise each container gets exactly 1 item
+			srand(seed + currentOutput + output.output);
+			if (fuzzy && !forceNoFuzzy)
+			{
+				local min = outputs.len() * 0.35;
+				local range = outputs.len() - min;
+				local index = rand() % range + min;
+				outputs.insert(index,output);
+			}
+			else
+			{
+				outputs.append(output);
+			}
 		}
 	}
 	
@@ -117,7 +160,7 @@ class IOManager
 		}
 		else if (IsInputValid(item))
 		{
-			local input = Input(item);		
+			local input = Input(item);
 			inputs.append(input);
 		}
 	}
@@ -155,12 +198,19 @@ class IOManager
 		
 		if (IsContainer(item))
 		{
-			local output = Output(item,randomiser);
+			local output = Output(item,randomiser,seed);
+			numOutputContainers++;
 			AddOutput(output,false);
 		}
 		else if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
 		{
-			local output = PhysicalOutput(item,randomiser);
+			local output = PhysicalOutput(item,randomiser,seed,false);
+			
+			if (isMarker)
+				numOutputMarkers++;
+			else
+				numOutputItems++;
+			
 			AddOutput(output,prioritizeWorldObjects);
 			
 			if (InputExistsForOutput(output) || isMarker)
@@ -231,7 +281,7 @@ class Input
 	constructor(cItem)
 	{
 		item = cItem;
-		name = ShockGame.GetArchetypeName(cItem);
+		name = Object.GetName(cItem);
 		valid = true;
 		containerOnly = Object.HasMetaProperty(cItem,"Object Randomiser - Container Only");
 		isJunk = checkIsJunk(cItem);
@@ -280,16 +330,22 @@ class Output
 	noJunk = null;
 	highPriority = null;
 	randomiser = null;
+	seed = null;
+	isContainer = null;
+	isMarker = null;
 	
-	constructor(cOutput, cRandomiser)
+	constructor(cOutput, cRandomiser, cSeed)
 	{
 		output = cOutput;
-		name = ShockGame.GetArchetypeName(cOutput);
+		name = Object.GetName(cOutput);
 		valid = true;
 		secret = Object.HasMetaProperty(cOutput,"Object Randomiser - Secret");
 		highPriority = Object.HasMetaProperty(cOutput,"Object Randomiser - High Priority Output");
 		noJunk = Object.HasMetaProperty(cOutput,"Object Randomiser - No Junk") || highPriority || secret;
 		randomiser = cRandomiser;
+		seed = cSeed;
+		isContainer = true;
+		isMarker = false;
 	}
 	
 	function checkHandleMove(input,nosecret)
@@ -313,7 +369,7 @@ class Output
 	}
 	
 	function HandleMove(input,nosecret)
-	{	
+	{
 		if (!checkHandleMove(input,nosecret))
 			return false;
 	
@@ -331,21 +387,52 @@ class Output
 class PhysicalOutput extends Output
 {
 	static LINK_TARGET = 44;
+	static LINK_SWITCHLINK = 21;
 
-	facing = null;
-	position = null;
 	noFacing = null;
 	physicsControls = null;
 	selfOnly = null;
+	facing = null;
+	position = null;
+	linkedOutput = null;
+	disallowLinkedOutputs = null;
 	
-	constructor(cOutput, cRandomiser)
+	constructor(cOutput, cRandomiser, cSeed, cDisallowLinked = false)
 	{
-		base.constructor(cOutput, cRandomiser);
-		facing = Object.Facing(cOutput);
-		position = Object.Position(cOutput);
+		base.constructor(cOutput, cRandomiser, cSeed);
 		noFacing = Object.HasMetaProperty(cOutput,"Object Randomiser - No Facing");
 		physicsControls = Property.Get(cOutput, "PhysControl", "Controls Active");
 		selfOnly = Object.HasMetaProperty(cOutput,"Object Randomiser - Output Self Only");
+		isContainer = false;
+		isMarker = ShockGame.GetArchetypeName(cOutput) == "rndOutputMarker";
+		disallowLinkedOutputs = cDisallowLinked;
+		GetLinkedOutput();
+	}
+	
+	//Get any of our linked outputs
+	function GetLinkedOutput()
+	{
+		//If we have any SwitchLinks, randomly select one, so we can link markers without upsetting balance
+		local outputPositions = [output]
+		foreach(switchlink in Link.GetAll(-LINK_SWITCHLINK,output))
+		{
+			local outputPos = sLink(switchlink).dest;
+			outputPositions.append(outputPos);
+		}
+		
+		if (disallowLinkedOutputs)
+			linkedOutput = outputPositions[0];
+		else
+		{
+			srand(seed + output);
+			linkedOutput = outputPositions[rand() % outputPositions.len()];
+		}
+	
+		facing = Object.Facing(linkedOutput);
+		position = Object.Position(linkedOutput);
+		secret = secret || Object.HasMetaProperty(linkedOutput,"Object Randomiser - Secret");
+		highPriority = highPriority || Object.HasMetaProperty(linkedOutput,"Object Randomiser - High Priority Output");
+		noJunk = noJunk || Object.HasMetaProperty(linkedOutput,"Object Randomiser - No Junk") || highPriority || secret;
 	}
 	
 	function checkHandleMove(input,nosecret)
@@ -385,7 +472,7 @@ class PhysicalOutput extends Output
 		[-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
 	];
 	
-	function SameItemType(input)
+	function SameItemType(input,output)
 	{		
 		if (IOManager.isArchetype(input.item,output))
 			return true;
@@ -412,11 +499,17 @@ class PhysicalOutput extends Output
 	
 	function HandleMove(input, nosecret)
 	{
+	
+		if (output == 1901 || output == 1905)
+			print (randomiser + " sending " + input.item + " to 1901");
+	
 		if (!checkHandleMove(input,nosecret))
 			return false;
 		
 		//Set output as unusable
 		foreach (ilink in Link.GetAll(LINK_TARGET,0,output))
+			Link.Destroy(ilink);
+		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,linkedOutput))
 			Link.Destroy(ilink);
 		
 		//Move object out of container
@@ -425,14 +518,13 @@ class PhysicalOutput extends Output
 		//Make object render
 		Property.SetSimple(input.item, "HasRefs", TRUE);
 		
-		//If we are the same object, don't do anything
-		if (input.item == output)
-		{
-		}
 		//If we are the same archetype, don't bother doing any of the physics stuff, and don't remove controls
 		//Instead, we need to just teleport the item to the output,
 		//and give it the same physics controls, so that it looks the same
-		else if (SameItemType(input))
+		if (linkedOutput == input.item)
+		{
+		}
+		else if (SameItemType(input,linkedOutput))
 		{
 			Object.Teleport(input.item, position, facing);
 			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
@@ -440,7 +532,7 @@ class PhysicalOutput extends Output
 		else
 		{
 			local position_up = vector(position.x, position.y, position.z + 0.2);
-			Object.Teleport(input.item, position_up, FixItemFacing(input.item));
+			Object.Teleport(input.item, position_up, FixItemFacing(input.item,facing));
 			
 			//Fix up physics
 			Property.Set(input.item, "PhysControl", "Controls Active", "");
@@ -462,7 +554,7 @@ class PhysicalOutput extends Output
 		//[-964,-1,-1,-1], //Vodka
 	];
 	
-	function FixItemFacing(item)
+	function FixItemFacing(item,facing)
 	{
 		if (noFacing)
 			return vector(0, facing.y, 0);

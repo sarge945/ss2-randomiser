@@ -28,6 +28,9 @@ Create "rndComplexRandomiser" "rndCrewWeaponRandomiser"
 +Link "rndCrewObjects" "rndCrewWeaponRandomiser" "SwitchLink"
 {
 }
++Link "rndWattsRoomObjects" "rndCrewWeaponRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndCrewObjects" "rndCrewWeaponRandomiser" "~SwitchLink"

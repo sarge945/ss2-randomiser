@@ -45,7 +45,7 @@ class rndComplexRandomiser extends rndBase
 		SetData("Seed",seed);
 		
 		//Add a delay to the timer to put less stress on the game when loading new areas
-		local startDelay = (seed % 1000) * 0.0001;
+		local startDelay = (seed % 1000) * 0.0002;
 		SetData("StartDelay",startDelay);
 		
 		//Set up priority
@@ -53,9 +53,9 @@ class rndComplexRandomiser extends rndBase
 		SetData("Priority",priority);
 		
 		//Initial print
-		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + (startDelay + (priority * 0.1)) + ", Priority: " + priority + "]");
+		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + startDelay + ", Priority: " + priority + "]");
 		
-		SetOneShotTimer("StartTimer",0.05 + startDelay);
+		SetOneShotTimer("StartTimer",0.1 + startDelay);
 	}
 	
 	function Setup()
@@ -66,12 +66,10 @@ class rndComplexRandomiser extends rndBase
 		local ignorePriority = getParam("ignorePriority",false);
 		local prioritizeWorld = getParam("prioritizeWorldObjects",false);
 		local fuzzy = getParam("variedOutput",true);
-		
-		DebugPrint ("Randomiser Setup (seed: " + seed + ")");
-			
+					
 		ConfigureAllowedTypes();
 	
-		manager = IOManager(self,seed,ignorePriority,allowedTypes,prioritizeWorld,fuzzy);
+		manager = IOManager(debug,self,seed,ignorePriority,allowedTypes,prioritizeWorld,fuzzy);
 		manager.GetInputsAndOutputsForAllObjectPools();
 		
 		if (debug)
@@ -93,9 +91,13 @@ class rndComplexRandomiser extends rndBase
 		else if (manager.outputs.len() == 0)
 			print("WARNING: Randomiser " + Object.GetName(self) + " (" + self + ") has no outputs!");
 		else
-			SetOneShotTimer("RandomizeTimer",0.1 + startDelay + (priority * 0.1)); //DO NOT change this timer value, otherwise things start to break
+		{
+			local messageTime = 0.1 + startDelay + (priority * 0.2); //DO NOT change this timer value, otherwise things start to break
+			DebugPrint("Sending Randomise message in " + messageTime);
+			SetOneShotTimer("RandomizeTimer",messageTime);
+		}
 	}
-	
+
 	function ConfigureAllowedTypes()
 	{
 		//if we have allowedTypes defined, overwrite the default allowed types list.
@@ -160,7 +162,7 @@ class rndComplexRandomiser extends rndBase
 				DebugPrint("Sending " + input.item + " to " + output.output);
 			}
 			
-			manager.RefreshOutput(currentOutput,!success);			
+			manager.RefreshOutput(currentOutput,!success);		
 			count++;
 		}
 		
