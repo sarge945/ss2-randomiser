@@ -269,8 +269,8 @@ class Output
 	
 	//If an input the same as it's output
 	function IsSelf(input)
-	{
-		return rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj;
+	{	
+		return rndUtil.SameItemType(input,obj) || input.originalContainer == obj;
 	}
 	
 	function CanMove(input,noSecret,noRespectJunk,allowOriginalLocation,debug = false)

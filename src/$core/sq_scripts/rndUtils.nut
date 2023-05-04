@@ -58,6 +58,8 @@ class rndUtil
 		[-307, -32, -31], //AP Clip, HE Clip, Standard Ammo
 		[-42, -43], //Pellets, Slugs
 		[-42, -37, -38, -39, -40], //Timed Grenade, EMP Grenade, Incend Grenade, Prox Grenade, Toxin Grenade
+		[-101, -102, -103, -104, -969, -1661, -1344], //BrawnBoost, EndurBoost, SwiftBoost, SmartBoost (aka Psi Boost), LabAssistant, ExperTech, RunFast
+		[-106, -762, -1334, -1660], //WormBlood, WormBlend, WormHeart, WormMind
 	];
 	
 	static function SameItemType(input,obj)
