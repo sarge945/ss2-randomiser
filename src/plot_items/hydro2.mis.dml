@@ -21,3 +21,105 @@ Create "rndCardRandomiser" "rndKeycardRandomiser"
 +Link "rndSectorBStoreroom" "rndKeycardRandomiser" "~SwitchLink"
 {
 }
+
+// ================================================================================
+// 									Toxin A
+//						We need to kill the emails and add scripts
+//					Emails are reimplemented by the objects themselves
+//						In order to work correctly when randomised
+// ================================================================================
+
+//Create a randomiser for the Toxin A Vials
+Create "rndToxinARandomiser" "rndToxinAHydro2Randomiser"
+{
+}
+
+//Link the Items to it as Input
++Link "rndAdminObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndToxinAHydro2Randomiser" "SwitchLink"
+{
+}
+
+//Link the Items to it as Output
++Link "rndAdminObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
+
+//Link the Items to it as Output
++Link "rndHydro1Objects" "rndToxinAHydro2Randomiser" "~SwitchLink"
+{
+}
+
+////Kill Emails
+
+//Email in room
+-Link 1322 1437 SwitchLink 0151002D
+
+//"Frob" emails
+-Link 675 1437 SwitchLink 015100C1
+-Link 354 1437 SwitchLink 015100BE
+
+////Add Input Handlers
+
+Create "rndSwitchLinkOutputHandler" "ToxinAHandler"
+{
+}
+
++Link "ToxinAHandler" 2140 "Target"
+{
+}
++Link "ToxinAHandler" 547 "Target"
+{
+}
++Link "ToxinAHandler" 1185 "Target"
+{
+}
++Link "ToxinAHandler" 1186 "Target"
+{
+}
+
++Link "ToxinAHandler" 1437 "SwitchLink"
+{
+}
+

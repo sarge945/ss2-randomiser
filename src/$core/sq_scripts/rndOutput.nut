@@ -164,7 +164,6 @@ class rndOutput extends rndBase
 				SetData("placed",true);
 				PostMessage(source,"OutputSuccess",input,!container);
 				PrintDebug("	found suitable input " + input + " from " + source,4);
-				PostMessage(input,"Randomised",source);
 				Place(input,self);
 				return;
 			}
@@ -174,6 +173,14 @@ class rndOutput extends rndBase
 	
 	function Place(input,output)
 	{
+		//Send a "Randomised" message to all objects targeting our input
+		//This allows special behaviours to be implemented without modifying the scripts on our inputs
+		foreach (ilink in Link.GetAll(linkkind("~Target"),input))
+		{
+			local targeted = sLink(ilink).dest;
+			PostMessage(targeted,"Randomise",input);
+		}
+	
 		Container.Remove(input);
 		if (isContainer(output) && !isContainer(input))
 		{

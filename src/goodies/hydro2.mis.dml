@@ -64,11 +64,11 @@ Create "rndComplexRandomiser" "rndHydroRandomiser"
 //Only allow it to appear in the main office area
 Create "rndComplexRandomiser" "rndLabAssistRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-969; priority=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-969; priority=1; ignorePriority=1;"
 }
 
 //Inputs
-+Link "rndSurveyObjects" "rndLabAssistRandomiser" "SwitchLink"
++Link "rndLabAssistObjects" "rndLabAssistRandomiser" "SwitchLink"
 {
 }
 //Outputs

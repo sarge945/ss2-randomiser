@@ -42,6 +42,11 @@ Create "rndObjectCollection" "rndSectorDObjects"
 {
 }
 
+//Create an object collection for the Lab Assist implant
+Create "rndObjectCollection" "rndLabAssistObjects"
+{
+}
+
 //Create an object collection for the Eggs in the level
 Create "rndObjectCollection" "rndEggs"
 {
@@ -170,6 +175,13 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
+//Toxin A Vial
+//Trapped, so make something good appear here
++MetaProp 2140 "Object Randomiser - High Priority Output"
++Link 2140 "rndAdminObjects" "Target"
+{
+}
+
 /////////////////=====	Biological Survey Admin	=====\\\\\\\\\\\\\\\\\
 
 ////Containers
@@ -259,7 +271,7 @@ Create "rndObjectCollection" "rndEggs"
 }
 
 //LabAssist on Desk 675
-+Link 1064 "rndSurveyObjects" "Target"
++Link 1064 "rndLabAssistObjects" "Target"
 {
 }
 

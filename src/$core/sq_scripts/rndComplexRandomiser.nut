@@ -78,7 +78,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		
 		if (inputs.len() > 0 && outputs.len() > 0)
 		{
-			VerifyInputs();
 			ShuffleBothArrays();
 			Randomise();
 		}
@@ -173,14 +172,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	function GetSettingsString()
 	{
 		return noRespectJunk + ";" + noSecret + ";" + noCorpse + ";" + allowOriginalLocations + ";";
-	}
-
-	function VerifyInputs()
-	{
-		foreach (input in inputs)
-		{
-			PostMessage(input,"Verify");
-		}
 	}
 	
 	function ShuffleBothArrays()

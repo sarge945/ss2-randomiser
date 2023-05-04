@@ -16,3 +16,45 @@ Create "rndCardRandomiser" "rndKeycardRandomiser"
 +Link "rndHydro1Objects" "rndKeycardRandomiser" "~SwitchLink"
 {
 }
+
+// ================================================================================
+// 									Toxin A
+//						We need to kill the emails and add scripts
+//					Emails are reimplemented by the objects themselves
+//						In order to work correctly when randomised
+// ================================================================================
+
+//Create a randomiser for the Toxin A Vial
+Create "rndToxinARandomiser" "rndToxinAHydro1Randomiser"
+{
+}
+
+//Link the Items to it as Input
++Link "rndHydro1Objects" "rndToxinAHydro1Randomiser" "SwitchLink"
+{
+}
+
+//Link the Items to it as Output
++Link "rndHydro1Objects" "rndToxinAHydro1Randomiser" "~SwitchLink"
+{
+}
+
+
+////Kill Email Triggers
+
+//Corpse
+-Link 466 1347 SwitchLink 01510002
+
+////Add Input Handler
+
+Create "rndSwitchLinkOutputHandler" "ToxinAHandler"
+{
+}
+
++Link "ToxinAHandler" 1199 "Target"
+{
+}
+
++Link "ToxinAHandler" 1347 "SwitchLink"
+{
+}

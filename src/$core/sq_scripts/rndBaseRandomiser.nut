@@ -145,6 +145,7 @@ class rndBaseRandomiser extends rndBase
 			if (IsInputValid(vali))
 			{
 				inputs.append(vali);
+				PostMessage(vali,"Verify");
 			}
 		}
 		

@@ -87,11 +87,27 @@ CreateArch "Marker" "rndReplacerRandomiser"
 	}
 }
 
+//"Special Output Handler"
+//Designed to do special handling for certain objects as they are randomised
+CreateArch "Marker" "rndSwitchLinkOutputHandler"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndSwitchLinkHandler"
+		"Don't inherit" false
+	}
+}
+
 //Randomiser Types (for convenience)
 
 CreateArch "rndComplexRandomiser" "rndCorpseRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-503; variedOutput=0;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-503; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
+}
+
+CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1341; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
 }
 
 CreateArch "rndComplexRandomiser" "rndCrateRandomiser"

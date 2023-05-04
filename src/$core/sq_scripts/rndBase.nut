@@ -9,9 +9,7 @@ class rndBase extends SqRootScript
 	function OnBeginScript()
 	{
 		debugLevel = getParam("debug",0);
-		name = Object.GetName(self);
-		if (name == "")
-			name = ShockGame.GetArchetypeName(self);
+		name = GetObjectName(self);
 		//print (name + " (" + self + ") initialised");
 	
 		if (!GetData("Started"))
@@ -21,6 +19,14 @@ class rndBase extends SqRootScript
 		}
 		else
 			Init(true);
+	}
+	
+	static function GetObjectName(obj)
+	{
+		local name = Object.GetName(obj);
+		if (name == "")
+			name = ShockGame.GetArchetypeName(obj);
+		return name;
 	}
 	
 	function PrintDebug(msg,requiredDebugLevel = 0)
