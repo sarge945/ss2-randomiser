@@ -51,7 +51,7 @@ class rndRandomiser extends rndBase
 		maxItems = 999;
 		currentOutputIndex = 0;
 	
-		DebugPrint (self + " has AutoInputs set to: " + autoInputs);
+		//DebugPrint (self + " has AutoInputs set to: " + autoInputs);
 	
 		ProcessLinks();
 		
@@ -79,8 +79,12 @@ class rndRandomiser extends rndBase
 	function OnTimer()
 	{
 		if (message().name == "InitTimer")
+		{
 			SetOutputMetaprops();
-		SignalReady();
+			SetOneShotTimer("StandardTimer",0.01);
+		}
+		else
+			SignalReady();
 	}
 
 	//Allow any outputs to function
@@ -97,7 +101,7 @@ class rndRandomiser extends rndBase
 	
 	function SignalReady()
 	{
-		DebugPrint("remaining items: " + inputs.len());
+		DebugPrint(self + " has remaining items: " + inputs.len());
 	
 		if (outputs.len() == 0 || inputs.len() == 0)
 			return;
@@ -105,10 +109,9 @@ class rndRandomiser extends rndBase
 		if (currentOutputIndex >= outputs.len())
 			currentOutputIndex == 0;
 			
-		DebugPrint("Signalling ready for " + outputs[currentOutputIndex]);
+		DebugPrint(self + " Signalling ready for " + outputs[currentOutputIndex]);
 		
 		SendMessage(outputs[currentOutputIndex],"ReadyForOutput",inputs.len(),outputs.len());
-		currentOutputIndex++;
 	}
 	
 	//Send an item to an output
@@ -122,7 +125,7 @@ class rndRandomiser extends rndBase
 			if (message().data)
 				index = GetValidInputIndex(message().data);
 				
-			DebugPrint("index is: " + index);
+			DebugPrint(self + " index is: " + index);
 			
 			if (index >= 0)
 			{
@@ -132,10 +135,17 @@ class rndRandomiser extends rndBase
 				inputs.remove(index);
 				
 				//This is required otherwise we get a stack overflow
-				SetOneShotTimer("StandardTimer",0.01);
 				//SignalReady();
 			}
+			
+			if (message().data2 == true)
+				outputs.remove(currentOutputIndex);
+			else
+				currentOutputIndex++;
+			
+			SetOneShotTimer("StandardTimer",0.01);
 		}
+			
 	}
 	
 	//Turns all target links and their inventories into usable input and output links

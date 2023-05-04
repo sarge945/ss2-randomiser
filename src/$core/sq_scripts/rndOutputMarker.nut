@@ -1,7 +1,5 @@
 class rndOutputMarker extends rndOutput
 {
-	cloneItem = null;
-
 	//If an item has a contains link, it should be cloned so that it actually works when placed in the world
 	function CloneContainedItem(item)
 	{
@@ -30,6 +28,12 @@ class rndOutputMarker extends rndOutput
 		FixPhysics(item);
 		DebugPrint ("output " + self + " moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
-		Object.Destroy(self);
+		//Object.Destroy(self);
+	}
+	
+	function Init()
+	{
+		base.Init();
+		onceOnly = true;
 	}
 }

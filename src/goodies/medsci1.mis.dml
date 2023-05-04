@@ -23,6 +23,10 @@ Create "rndRandomiser" "rndScienceRandomiser"
 +Link "rndMaintenanceObjects" "rndScienceRandomiser" "SwitchLink"
 {
 }
+//Link the R and D Items to it
++Link "rndRNDObjects" "rndScienceRandomiser" "SwitchLink"
+{
+}
 
 //Create a randomiser for the "Secure" items, like in the hack 2 crates
 Create "rndRandomiser" "rndScienceRandomiserSecure"

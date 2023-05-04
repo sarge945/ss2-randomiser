@@ -1,10 +1,12 @@
 class rndOutput extends rndBase
 {
 	limitType = null;
+	onceOnly = null;
 
 	function Init()
 	{
 		limitType = getParam("limitType",null);
+		onceOnly = false;
 	}
 
 	function OnReceiveItem()
@@ -22,6 +24,6 @@ class rndOutput extends rndBase
 	function OnReadyForOutput()
 	{
 		DebugPrint (self + " received ReadyForOutput from " + message().from);
-		SendMessage(message().from,"GetItem",limitType);
+		SendMessage(message().from,"GetItem",limitType,onceOnly);
 	}
 }
