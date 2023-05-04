@@ -274,7 +274,7 @@ class rndBaseRandomiser extends rndBase
 	static allowedTypesDefault = [];
 
 	//Configuration
-	allowedTypes = null;	
+	allowedTypes = null;
 	minTimes = null;
 	maxTimes = null;
 	allowOriginalLocations = null;

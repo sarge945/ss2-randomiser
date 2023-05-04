@@ -110,7 +110,7 @@ CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
 
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=1 noSecret=1; ignorePriority=1; variedOutput=0; priority=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=1 noSecret=1; noHighPriority=1; variedOutput=0; priority=1;"
 }
 
 //NOT THE BEES!

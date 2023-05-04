@@ -2,6 +2,7 @@ class rndOutput extends rndBase
 {
 	container = null;
 	corpse = null;
+	allowedTypes = null;
 
 	function Init(reloaded)
 	{	
@@ -11,12 +12,11 @@ class rndOutput extends rndBase
 		SetData("facing",Object.Facing(self));
 		SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
 		PrintDebug("Output Online [container: " + container + ", corpse: " + corpse + "]",4);
+		allowedTypes = getParamArray("allowedTypes",[]);
 	}
 
 	function CheckAllowedTypes(input)
-	{
-		local allowedTypes = getParamArray("allowedTypes",[]);
-		
+	{		
 		if (allowedTypes.len() == 0)
 			return true;
 	
@@ -164,6 +164,7 @@ class rndOutput extends rndBase
 				SetData("placed",true);
 				PostMessage(source,"OutputSuccess",input,!container);
 				PrintDebug("	found suitable input " + input + " from " + source,4);
+				PostMessage(input,"Randomised",source);
 				Place(input,self);
 				return;
 			}

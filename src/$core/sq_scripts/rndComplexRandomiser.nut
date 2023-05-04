@@ -43,6 +43,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	noRespectJunk = null;
 	noSecret = null;
 	noCorpse = null;
+	noHighPriority = null;
 	timerID = null;
 	
 	function Setup()
@@ -60,6 +61,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		noSecret = getParam("noSecret",0);
 		noCorpse = getParam("noCorpse",0);
 		noRespectJunk = getParam("noRespectJunk",0);
+		noHighPriority = getParam("noHighPriority",0);
 		
 		//Setup variables
 		outputLoop = 0;
@@ -200,7 +202,10 @@ class rndComplexRandomiser extends rndBaseRandomiser
 			lowPrio = Shuffle(lowPrio,seed);
 			highPrio = Shuffle(highPrio,seed);
 			
-			outputs = Combine(highPrio,lowPrio);
+			if (noHighPriority)
+				outputs = lowPrio;
+			else
+				outputs = Combine(highPrio,lowPrio);
 		}
 	}
 	
