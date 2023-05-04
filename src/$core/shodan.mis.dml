@@ -1,0 +1,82 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+////I'm feeling lazy, just randomise everything
+
+//Create an object collection for the majority of the map.
+Create "rndObjectCollection" "rndMainObjects"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+////Healing Suite
+
+//Med Hypo
++Link 1247 "rndMainObjects" "Target"
+{
+}
+
+//Small Crate
++Link 1251 "rndMainObjects" "Target"
+{
+}
+
+////Storage Room
+
+//Small Crate
++Link 1253 "rndMainObjects" "Target"
+{
+}
+//Small Crate
++Link 1254 "rndMainObjects" "Target"
+{
+}
+//Small Crate
++Link 1255 "rndMainObjects" "Target"
+{
+}
+//Small Crate
++Link 1256 "rndMainObjects" "Target"
+{
+}
+
+////Research Lab
+
+//Medical Kit
++Link 1265 "rndMainObjects" "Target"
+{
+}
+
+////Old Cyberjack room
+
+//Psi Hypo
++Link 1268 "rndMainObjects" "Target"
+{
+}
+
+////Trap Corner
+
+//Speed Booster
++Link 1273 "rndMainObjects" "Target"
+{
+}
+
+////Small Maintenance Corridoor
+
+//Psi Hypo
++MetaProp 1270 "Object Randomiser - High Priority Output"
++MetaProp 1270 "Object Randomiser - Secret"
++Link 1270 "rndMainObjects" "Target"
+{
+}
+
+////Energy Recharger near main hall
++Link 1271 "rndMainObjects" "Target"
+{
+}

@@ -1,0 +1,505 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+////This is a complicated map, it's not really split into "areas", except at the end
+
+//Create an object collection for the majority of the map.
+Create "rndObjectCollection" "rndMainObjects"
+{
+}
+
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Before first sphincter	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 94 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	First Loop, going left	=====\\\\\\\\\\\\\\\\\
+
+//Crystal Shard
++Link 79 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 78 "rndMainObjects" "Target"
+{
+}
+
+//Body Bag
++Link 917 "rndMainObjects" "Target"
+{
+}
+
+//Prox Grenade
++Link 309 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 916 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	First Human Area	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 552 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 839 "rndMainObjects" "Target"
+{
+}
+
+//Desk
++Link 758 "rndMainObjects" "Target"
+{
+}
+
+//Vacc Suit
++Link 1695 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Down the hallway after the loop, with a fork	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 329 "rndMainObjects" "Target"
+{
+}
+
+//Audio Log
++Link 757 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 80 "rndMainObjects" "Target"
+{
+}
+
+//Viral Prolif
++Link 95 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Left Fork (human area)	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 245 "rndMainObjects" "Target"
+{
+}
+
+//Maintenance Tool
++Link 244 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Second Left Fork (radiation pool)	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 686 "rndMainObjects" "Target"
+{
+}
+
+//Desk
++Link 140 "rndMainObjects" "Target"
+{
+}
+
+//Medical Kit
++Link 273 "rndMainObjects" "Target"
+{
+}
+
+////Next Room
+
+//Corpse
++Link 275 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 276 "rndMainObjects" "Target"
+{
+}
+
+//Medical Kit
++Link 274 "rndMainObjects" "Target"
+{
+}
+
+//WormBlend
++Link 42 "rndMainObjects" "Target"
+{
+}
+
+////Near the Nerve Cluster
+
+//Corpse
++Link 135 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 768 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Forward (past the membrane)	=====\\\\\\\\\\\\\\\\\
+
+//Corpse in fort
++Link 305 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 919 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Left Path (human section past eggs)	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 287 "rndMainObjects" "Target"
+{
+}
+
+//Audio Log
++Link 590 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 234 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
+//Booby Trapped
++MetaProp 169 "Object Randomiser - High Priority Output"
++Link 169 "rndMainObjects" "Target"
+{
+}
+
+//Beaker
++Link 778 "rndMainObjects" "Target"
+{
+}
+
+//Crystal Shard
++Link 171 "rndMainObjects" "Target"
+{
+}
+
+//Desk
++Link 272 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Forward Path (past Sphyncter)	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 332 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 328 "rndMainObjects" "Target"
+{
+}
+
+////First Tooth Room
+
+//Corpse in pool
+//Booby Trapped
++MetaProp 294 "Object Randomiser - High Priority Output"
++Link 294 "rndMainObjects" "Target"
+{
+}
+
+//Prisms in Fort
++Link 294 "rndMainObjects" "Target"
+{
+}
+
+//INT Boost
++Link 982 "rndMainObjects" "Target"
+{
+}
+
+//Timed Grenades in Fort
++Link 310 "rndMainObjects" "Target"
+{
+}
+
+//Corpse in Fort
++Link 312 "rndMainObjects" "Target"
+{
+}
+
+//Audio Log
++Link 333 "rndMainObjects" "Target"
+{
+}
+
+//Corpse after Tooth
++Link 331 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Tooth Puzzle Room	=====\\\\\\\\\\\\\\\\\
+
+//Corpse in Secret Area
++MetaProp 885 "Object Randomiser - Secret"
++MetaProp 885 "Object Randomiser - High Priority Output"
++Link 885 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	After the Tooth Puzzle Room	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 263 "rndMainObjects" "Target"
+{
+}
+
+////Big loop area, Center
+
+//Crystal Shard
++Link 285 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 283 "rndMainObjects" "Target"
+{
+}
+
+//Desk
++Link 759 "rndMainObjects" "Target"
+{
+}
+
+//Guy in secret jump area
++MetaProp 1485 "Object Randomiser - Secret"
++MetaProp 1485 "Object Randomiser - High Priority Output"
++Link 1485 "rndMainObjects" "Target"
+{
+}
+
+////Big loop area, left path (human section)
+
+//Corpse
+//The entire room is trapped, so we will mark 2 random inputs as high priority
++MetaProp 45 "Object Randomiser - High Priority Output"
++Link 45 "rndMainObjects" "Target"
+{
+}
+
+//Waste Barrel
++Link 921 "rndMainObjects" "Target"
+{
+}
+
+//Crate
+//The entire room is trapped, so we will mark 2 random inputs as high priority
++MetaProp 71 "Object Randomiser - High Priority Output"
++Link 71 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 35 "rndMainObjects" "Target"
+{
+}
+
+//Crate
++Link 47 "rndMainObjects" "Target"
+{
+}
+
+//Crate
++Link 69 "rndMainObjects" "Target"
+{
+}
+
+//Desk
++Link 746 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Egg Hatching Rooms, anticlockwise from entrance, then the birthing room	=====\\\\\\\\\\\\\\\\\
+
+////Make these high priority since we need a reason to come here
+
+//Corpse
++MetaProp 226 "Object Randomiser - High Priority Output"
++Link 226 "rndMainObjects" "Target"
+{
+}
+
+////Second egg room
+
+//Corpse
++MetaProp 887 "Object Randomiser - High Priority Output"
++Link 887 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 214 "Object Randomiser - High Priority Output"
++Link 214 "rndMainObjects" "Target"
+{
+}
+
+////Big birthing chamber, first egg room
+
+//Beaker
++MetaProp 214 "Object Randomiser - High Priority Output"
++Link 774 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 210 "Object Randomiser - High Priority Output"
++Link 210 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 1429 "Object Randomiser - High Priority Output"
++Link 1429 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 214 "Object Randomiser - High Priority Output"
++Link 214 "rndMainObjects" "Target"
+{
+}
+
+/*
+//Ice Pick
+//Keep as a reward
++MetaProp 1389 "Object Randomiser - High Priority Output"
++Link 1389 "rndMainObjects" "Target"
+{
+}
+*/
+
+////Big birthing chamber, second egg room
+
+//Corpse
++MetaProp 209 "Object Randomiser - High Priority Output"
++Link 209 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 1430 "Object Randomiser - High Priority Output"
++Link 1430 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++MetaProp 958 "Object Randomiser - High Priority Output"
++Link 958 "rndMainObjects" "Target"
+{
+}
+
+//Wrench
+//+MetaProp 156 "Object Randomiser - No Auto Output"
++Link 156 "rndMainObjects" "Target"
+{
+}
+
+
+
+/////////////////=====	Path to the Brain	=====\\\\\\\\\\\\\\\\\
+
+////First room after Rumbler hallway
+
+//Corpse
++Link 299 "rndMainObjects" "Target"
+{
+}
+
+//Crate
++Link 736 "rndMainObjects" "Target"
+{
+}
+
+//Audio Log
++Link 761 "rndMainObjects" "Target"
+{
+}
+
+////After the big drop
+
+//Floating Corpse
++Link 747 "rndMainObjects" "Target"
+{
+}
+
+//Floating Corpse
++Link 392 "rndMainObjects" "Target"
+{
+}
+
+//Pistol
++Link 1350 "rndMainObjects" "Target"
+{
+}
+
+//Beaker
++Link 775 "rndMainObjects" "Target"
+{
+}
+
+//Audio Log
++Link 330 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 662 "rndMainObjects" "Target"
+{
+}
+
+//Corpse
++Link 688 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Security Crate
++Link 1414 "rndSecurityCrates" "Target"
+{
+}
+
+//Security Crate
++Link 1418 "rndSecurityCrates" "Target"
+{
+}
+
+//Security Crate
++Link 1423 "rndSecurityCrates" "Target"
+{
+}

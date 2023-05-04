@@ -1,0 +1,17 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for The whole map, since we are only dealing with weapons
+//we have seen before, and which don't matter all that much.
+Create "rndWeaponRandomiser" "rndManyWeaponRandomiser"
+{
+}
+//Inputs
++Link "rndMainObjects" "rndManyWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndMainObjects" "rndManyWeaponRandomiser" "~SwitchLink"
+{
+}

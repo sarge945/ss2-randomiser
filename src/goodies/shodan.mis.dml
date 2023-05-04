@@ -1,0 +1,18 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Shodan.
+Create "rndComplexRandomiser" "rndGoodiesRandomiser"
+{
+}
+
+//Inputs
++Link "rndMainObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMainObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
