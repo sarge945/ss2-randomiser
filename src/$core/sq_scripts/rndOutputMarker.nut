@@ -30,7 +30,6 @@ class rndOutputMarker extends rndOutput
 		FixPhysics(item);
 		DebugPrint ("output " + self + " moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
-		blocked = true;
 		Object.Destroy(self);
 	}
 }

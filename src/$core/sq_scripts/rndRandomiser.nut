@@ -14,6 +14,7 @@ class rndRandomiser extends rndBase
 	allowedTypes = null;
 	autoOutputs = null;
 	autoInputs = null;
+	maxItems = null;
 	
 	currentOutputIndex = null;
 	
@@ -47,6 +48,7 @@ class rndRandomiser extends rndBase
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		autoOutputs = getParam("autoOutputs",true);
 		autoInputs = getParam("autoInputs",true);
+		maxItems = 999;
 		currentOutputIndex = 0;
 	
 		DebugPrint (self + " has AutoInputs set to: " + autoInputs);
@@ -71,12 +73,13 @@ class rndRandomiser extends rndBase
 		//================
 		
 		//We need a slight delay here, otherwise Squirrel explodes
-		SetOneShotTimer("InitTimer",Data.RandFlt0to1 * 0.2);
+		SetOneShotTimer("InitTimer",Data.RandFlt0to1() * 0.02);
 	}
 	
 	function OnTimer()
 	{
-		SetOutputMetaprops();
+		if (message().name == "InitTimer")
+			SetOutputMetaprops();
 		SignalReady();
 	}
 
@@ -94,10 +97,18 @@ class rndRandomiser extends rndBase
 	
 	function SignalReady()
 	{
-		foreach (output in outputs)
-		{
-			SendMessage(output,"ReadyForOutput",inputs.len(),outputs.len());
-		}
+		DebugPrint("remaining items: " + inputs.len());
+	
+		if (outputs.len() == 0 || inputs.len() == 0)
+			return;
+	
+		if (currentOutputIndex >= outputs.len())
+			currentOutputIndex == 0;
+			
+		DebugPrint("Signalling ready for " + outputs[currentOutputIndex]);
+		
+		SendMessage(outputs[currentOutputIndex],"ReadyForOutput",inputs.len(),outputs.len());
+		currentOutputIndex++;
 	}
 	
 	//Send an item to an output
@@ -119,6 +130,10 @@ class rndRandomiser extends rndBase
 				SendMessage(message().from,"ReceiveItem",inputs[index]);
 				maxItems--;
 				inputs.remove(index);
+				
+				//This is required otherwise we get a stack overflow
+				SetOneShotTimer("StandardTimer",0.01);
+				//SignalReady();
 			}
 		}
 	}
@@ -172,11 +187,20 @@ class rndRandomiser extends rndBase
 
 	function ProcessOutput(obj)
 	{
+		/*
 		local isContainer = isArchetype(obj,-379) || isArchetype(obj,-118);
 		local isMarker = ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
+		local noInherit = Property.Get(input, "Scripts", "Don't Inherit") == 1;
+		
+		if (noInherit)
+		{
+			DebugPrint(obj + " has script inheritance disabled, cannot be an output...");
+			return;
+		}
 	
 		if (isContainer || isMarker)
 			outputs.append(obj);
+		*/
 	}
 
 	//Inputs will be either items or containers directly, or item lists
@@ -184,15 +208,20 @@ class rndRandomiser extends rndBase
 	{
 		local isContainer = isArchetype(input,-379) || isArchetype(input,-118);
 		local isMarker = ShockGame.GetArchetypeName(input) == "rndOutputMarker";
+		local noInherit = Property.Get(input, "Scripts", "Don't Inherit") == 1;
 	
 		//Add linked objecf it it's a valid type
 		if (!shouldValidate || IsValidInput(input))
 			inputs.append(input);
 		
 		//if it's a container, a marker or a corpse, it's also an output
-		if (isContainer || isMarker) 
+		if (isContainer || isMarker)
 		{
-			if (autoOutputs == true)
+			if (noInherit == true)
+			{
+				DebugPrint(input + " has script inheritance disabled, cannot be an output...");
+			}
+			else if (autoOutputs == true)
 				outputs.append(input);
 		}
 		
