@@ -108,7 +108,7 @@ class IOManager
 	
 	function AddOutput(item,prioritize)
 	{
-		local highPriority = (prioritize && Data.RandInt(0,3) == 0)
+		local highPriority = (prioritize && Data.RandInt(0,5) == 0)
 			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		
 		if (highPriority)
