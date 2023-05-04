@@ -130,11 +130,15 @@ class rndComplexRandomiser extends rndBase
 			do
 			{
 				currentOutput++;
+				
+				if (currentOutput >= manager.outputs.len())
+					break;
+				
 				output = manager.outputs[currentOutput];
-				success = output.HandleMove(input.item,nosecret);
+				success = output.HandleMove(input,nosecret);
 				//DebugPrint("Attemptiny to move " + input.item + " to output " + output.output + " (success: " + success + ")");
 			}
-			while (!success && currentOutput <= manager.outputs.len())
+			while (!success)
 			
 			if (success)
 			{

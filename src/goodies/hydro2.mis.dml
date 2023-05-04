@@ -33,9 +33,6 @@ Create "rndComplexRandomiser" "rndHydroRandomiser"
 +Link "rndSectorBMedical" "rndHydroRandomiser" "SwitchLink"
 {
 }
-+Link "rndSectorBSecret" "rndHydroRandomiser" "SwitchLink"
-{
-}
 
 //Outputs
 +Link "rndAdminObjects" "rndHydroRandomiser" "~SwitchLink"
@@ -57,9 +54,6 @@ Create "rndComplexRandomiser" "rndHydroRandomiser"
 {
 }
 +Link "rndSectorDObjects" "rndHydroRandomiser" "~SwitchLink"
-{
-}
-+Link "rndSectorBSecret" "rndHydroRandomiser" "~SwitchLink"
 {
 }
 

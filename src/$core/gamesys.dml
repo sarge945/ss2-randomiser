@@ -75,8 +75,24 @@ CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
 {
 }
 
+//Use this for somewhat valuable spots.
+//These outputs will not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
+//Please note that randomisers with noSecret=1 will still use these outputs - they are not hidden, only valuable
+CreateArch "Misc Metaprops" "Object Randomiser - No Junk"
+{
+}
+
 //Use this for particularly devious spots. Randomisers set to noSecret=1 won't use them.
 //Use for making things like key items not be super hidden and block progress
+//These outputs will also not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
 CreateArch "Misc Metaprops" "Object Randomiser - Secret"
 {
 }
+
+/*	USE AN ARRAY INSTEAD DAMMIT
+//Items with this metaprop will never be placed in "Secret" outputs
+//Use this to prevent highly devious spots from containing garbage like mugs etc.
+CreateArch "Misc Metaprops" "Object Randomiser - Low Value Item"
+{
+}
+*/

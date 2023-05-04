@@ -43,11 +43,6 @@ Create "rndObjectCollection" "rndSectorBObjects"
 {
 }
 
-//Create an object collection for the Sector B Observation area
-Create "rndObjectCollection" "rndSectorBSecret"
-{
-}
-
 //Create an object collection for the Sector B Biological Survey Labs Medbeds (for hypos only)
 Create "rndObjectCollection" "rndSectorBMedical"
 {
@@ -424,6 +419,7 @@ Create "rndObjectCollection" "rndEggs"
 
 //Rad hypo in pool
 //+MetaProp 1106 "Object Randomiser - No Auto Output"
++MetaProp 1106 "Object Randomiser - Secret"
 +Link 1106 "rndSectorBObjects" "Target"
 {
 }
@@ -465,19 +461,20 @@ Create "rndOutputMarker" "rndSectorBBox"
 /////////////////=====	Sector B Secret Area	=====\\\\\\\\\\\\\\\\\
 
 //Guy on top of observation area
-+Link 1413 "rndSectorBSecret" "Target"
++MetaProp 1413 "Object Randomiser - Secret"
++Link 1413 "rndSectorBObjects" "Target"
 {
 }
 
 //Nanites in secret area through vent above observation area
 +MetaProp 407 "Object Randomiser - No Auto Output"
-+Link 407 "rndSectorBSecret" "Target"
++Link 407 "rndSectorBObjects" "Target"
 {
 }
 
 //Maintenance tool in secret area through vent above observation area
 +MetaProp 1048 "Object Randomiser - No Auto Output"
-+Link 1048 "rndSectorBSecret" "Target"
++Link 1048 "rndSectorBObjects" "Target"
 {
 }
 
@@ -494,7 +491,8 @@ Create "rndOutputMarker" "rndSectorB407Replacer"
 	}
 }
 +MetaProp "rndSectorB407Replacer" "Object Randomiser - High Priority Output"
-+Link "rndSectorB407Replacer" "rndSectorBSecret" "Target"
++MetaProp "rndSectorB407Replacer" "Object Randomiser - Secret"
++Link "rndSectorB407Replacer" "rndSectorBObjects" "Target"
 {
 }
 Create "rndOutputMarker" "rndSectorB1048Replacer"
@@ -508,7 +506,8 @@ Create "rndOutputMarker" "rndSectorB1048Replacer"
 	}
 }
 +MetaProp "rndSectorB1048Replacer" "Object Randomiser - High Priority Output"
-+Link "rndSectorB1048Replacer" "rndSectorBSecret" "Target"
++MetaProp "rndSectorB1048Replacer" "Object Randomiser - Secret"
++Link "rndSectorB1048Replacer" "rndSectorBObjects" "Target"
 {
 }
 

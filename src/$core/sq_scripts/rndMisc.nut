@@ -201,12 +201,49 @@ class Input
 	valid = null;
 	item = null;
 	name = null;
+	containerOnly = null;
+	isJunk = null;
 	
 	constructor(cItem)
 	{
 		item = cItem;
 		name = ShockGame.GetArchetypeName(cItem);
 		valid = true;
+		containerOnly = Object.HasMetaProperty(cItem,"Object Randomiser - Container Only");
+		isJunk = checkIsJunk(cItem);
+	}
+	
+	//Items with these archetypes will be counted as junk.
+	static junkArchetypes = [
+		-68, //Plant #1
+		-69, //Plant #2
+		-1221, //Mug
+		-1398, //Heart Pillow
+		-1214, //Ring Buoy
+		-1255, //Magazines
+		-4286, //Basketball
+		
+		//Controversial Ones, might remove
+		-91, //Soda
+		-92, //Chips
+		-964, //Vodka
+		-965, //Champagne
+		-966, //Juice
+		-967, //Liquor
+		-1396, //Cigarettes
+		-3864, //GamePig
+		-3865, //GamePig Cartridges
+		-1105, //Beaker
+	];
+	
+	function checkIsJunk(item)
+	{
+		foreach(type in junkArchetypes)
+		{
+			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
+				return true;
+		}
+		return false;
 	}
 }
 
@@ -215,36 +252,43 @@ class Output
 	output = null;
 	name = null;
 	valid = null;
+	secret = null;
+	noJunk = null;
 	
 	constructor(cOutput)
 	{
 		output = cOutput;
 		name = ShockGame.GetArchetypeName(cOutput);
 		valid = true;
+		secret = Object.HasMetaProperty(cOutput,"Object Randomiser - Secret");
+		noJunk = Object.HasMetaProperty(cOutput,"Object Randomiser - No Junk");
 	}
 	
-	function checkHandleMove(item,nosecret)
+	function checkHandleMove(input,nosecret)
 	{
 		if (!valid)
 			return false;
 			
 		//handle "secret" outputs
-		if (nosecret && Object.HasMetaProperty(output,"Object Randomiser - Secret"))
+		if (nosecret && secret)
+			return false;
+			
+		if ((secret || noJunk) && input.isJunk)
 			return false;
 		
 		return true;
 	}
 	
-	function HandleMove(item,nosecret)
+	function HandleMove(input,nosecret)
 	{
-		if (!checkHandleMove(item,nosecret))
+		if (!checkHandleMove(input,nosecret))
 			return false;
 	
-		//print ("moving " + item + " to container " + output);
+		//print ("moving " + input.item + " to container " + output);
 	
-		Container.Remove(item);
-		Link.Create(10,output,item); //Contains. We can't use linkkind in on SqRootScript classes
-		Property.SetSimple(item, "HasRefs", FALSE);
+		Container.Remove(input.item);
+		Link.Create(10,output,input.item); //Contains. We can't use linkkind in on SqRootScript classes
+		Property.SetSimple(input.item, "HasRefs", FALSE);
 		return true;
 	}
 }
@@ -257,71 +301,69 @@ class PhysicalOutput extends Output
 
 	facing = null;
 	position = null;
+	exactPosition = null;
+	noFacing = null;
 	
 	constructor(cOutput)
 	{
-		output = cOutput;
+		base.constructor(cOutput);
 		facing = Object.Facing(cOutput);
 		position = Object.Position(cOutput);
-		name = ShockGame.GetArchetypeName(cOutput);
-		valid = true;
+		exactPosition = Object.HasMetaProperty(cOutput,"Object Randomiser - Exact Positioning");
+		noFacing = Object.HasMetaProperty(cOutput,"Object Randomiser - No Facing");
 	}
 	
-	function checkHandleMove(item,nosecret)
+	function checkHandleMove(input,nosecret)
 	{
-		local check = base.checkHandleMove(item,nosecret);
+		local check = base.checkHandleMove(input,nosecret);
 		
 		if (!check)
 			return false;
 			
-		if (Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
+		if (input.containerOnly)
 			return false;
 		
 		return true;
 	}
 	
-	function HandleMove(item, nosecret)
+	function HandleMove(input, nosecret)
 	{
-		if (!checkHandleMove(item,nosecret))
+		if (!checkHandleMove(input,nosecret))
 			return false;
 			
-		//if (Object.IsTransient(output))
-		//if (Property.Get(item,"DoorOpenSound") == "output_used")
 		if (!Link.AnyExist(LINK_TARGET,output))
 			return false;
 		
 		/* Broken currently - do not use!
-		if (!Physics.HasPhysics(item))
+		if (!Physics.HasPhysics(input.item))
 			return false;
 		*/
 			
 		//prevent output from being used again
-		//Object.SetTransience(output, true);
-		//Property.SetSimple(item,"DoorOpenSound","output_used");
 		foreach(target in Link.GetAll(LINK_TARGET,output))
 			Link.Destroy(target);
 	
 		//Move object into position
-		Container.Remove(item);
+		Container.Remove(input.item);
 		
-		if (Object.HasMetaProperty(output,"Object Randomiser - Exact Positioning"))
+		if (exactPosition)
 		{
-			Object.Teleport(item, position, facing);
+			Object.Teleport(input.item, position, facing);
 		}
 		else
 		{
 			local position_up = vector(position.x, position.y, position.z + 0.2);
-			Object.Teleport(item, position_up, FixItemFacing(item));
+			Object.Teleport(input.item, position_up, FixItemFacing(input.item));
 			
 			//Fix up physics
-			Property.Set(item, "PhysControl", "Controls Active", "");
-			Physics.SetVelocity(item,vector(0,0,10));
+			Property.Set(input.item, "PhysControl", "Controls Active", "");
+			Physics.SetVelocity(input.item,vector(0,0,10));
 		}
 		
-		Physics.Activate(item);
+		Physics.Activate(input.item);
 		
 		//Make object render
-		Property.SetSimple(item, "HasRefs", TRUE);
+		Property.SetSimple(input.item, "HasRefs", TRUE);
 		return true;
 	}
 	
@@ -335,7 +377,7 @@ class PhysicalOutput extends Output
 	
 	function FixItemFacing(item)
 	{
-		if (Object.HasMetaProperty(output,"Object Randomiser - No Facing"))
+		if (noFacing)
 			return vector(0, facing.y, 0);
 	
 		foreach (archetype in fixArchetypes)
