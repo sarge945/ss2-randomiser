@@ -10,28 +10,17 @@ class rndBase extends SqRootScript
 		if (!initialised)
 		{
 			debug = getParam("debug",false);
-			SetOneShotTimer("InitTimer",GetTimerValue());
-			//Init();
+			//SetOneShotTimer("InitTimer",GetTimerValue());
+			Init();
 			initialised = true;
 			//Object.Destroy(self);
 		}
 	}
 	
-	function GetTimerValue()
-	{
-		return 0.05;
-	}
-	
-	function OnTimer()
-	{
-		if (message().name == "InitTimer")
-			Init();
-	}
-	
 	function DebugPrint(msg)
 	{
 		if (debug)
-			print(msg);
+			print(">" + self + ": " + msg);
 	}
 
 	//override this

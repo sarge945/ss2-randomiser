@@ -265,6 +265,11 @@ Create "rndObjectCollection" "rndHackableObjects"
 
 ////Loose Items
 
+//Wine Bottle in Store Room with Bed
++Link 1516 "rndMedicalObjects" "Target"
+{
+}
+
 //Nanites near bioopsy lab
 +Link 1221 "rndMedicalObjects" "Target"
 {
@@ -272,6 +277,11 @@ Create "rndObjectCollection" "rndHackableObjects"
 
 //Medbed Key on upstairs table
 +Link 332 "rndMedicalObjects" "Target"
+{
+}
+
+//Med Hypo in Biopsy Lab
++Link 1569 "rndMedicalObjects" "Target"
 {
 }
 
@@ -358,9 +368,15 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 +Link 1587 "rndCrewObjectsKitchen" "Target"
 {
 }
++Link 1587 "rndCrewObjectsBar" "Target"
+{
+}
 
 //Small Crate in Cafeteria Storage
 +Link 776 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 776 "rndCrewObjectsBar" "Target"
 {
 }
 

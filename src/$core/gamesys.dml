@@ -63,6 +63,11 @@ CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 {
 }
 
+//Set a particular output to reset the facing of an object. This prevents items looking weird
+CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
+{
+}
+
 /*
 //FakePhysics
 CreateArch "Misc Metaprops" "Object Randomiser - Add Physics"

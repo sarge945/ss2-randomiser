@@ -1,5 +1,6 @@
 class Input
 {
+	valid = null;
 	item = null;
 	name = null;
 	
@@ -7,25 +8,96 @@ class Input
 	{
 		item = cItem;
 		name = ShockGame.GetArchetypeName(cItem);
+		valid = true;
 	}
 }
 
 class Output
 {
-	item = null;
+	output = null;
 	name = null;
+	valid = null;
+	
+	constructor(cOutput)
+	{
+		output = cOutput;
+		name = ShockGame.GetArchetypeName(cOutput);
+		valid = true;
+	}
+	
+	function HandleMove(item)
+	{
+		if (!valid)
+			return false;
+	
+		Container.Remove(item);
+		Link.Create(10,output,item); //Contains. We can't use linkkind in on SqRootScript classes
+		Property.SetSimple(item, "HasRefs", FALSE);
+		return true;
+	}
+}
 
+class PhysicalOutput extends Output
+{
 	facing = null;
 	position = null;
-	isContainer = null;
 	
-	constructor(cItem, cIsContainer)
+	constructor(cOutput)
 	{
-		item = cItem;
-		facing = Object.Facing(cItem);
-		position = Object.Position(cItem);
-		isContainer = cIsContainer;
-		name = ShockGame.GetArchetypeName(cItem);
+		output = cOutput;
+		facing = Object.Facing(cOutput);
+		position = Object.Position(cOutput);
+		name = ShockGame.GetArchetypeName(cOutput);
+		valid = true;
+	}
+	
+	function HandleMove(item)
+	{
+		if (!valid || Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
+			return false;
+		
+		if (!Physics.HasPhysics(item))
+			return false;
+			
+		if (!CheckPosition())
+			return false;
+	
+		//GenerateOutput(item);
+		Object.Teleport(item, position, FixItemFacing(item));
+		Container.Remove(item);
+		Property.SetSimple(item, "HasRefs", TRUE);
+		Physics.Activate(item);
+		Physics.SetVelocity(item,vector(0,0,10));
+		valid = false;
+		return true;
+	}
+	
+	//Items with these archetypes will have their X and Z facing set to the specified value
+	static fixArchetypes = [
+		[-938,0,0], //Cyber Modules
+		[-85,0,0], //Nanites
+		[-1396,3000,0], //Ciggies
+	];
+	
+	function CheckPosition()
+	{
+		return position.y != Object.Position(output).y && position.x != Object.Position(output).x;
+	}
+	
+	function FixItemFacing(item)
+	{
+		if (Object.HasMetaProperty(output,"Object Randomiser - No Facing"))
+			return vector(0, facing.y, 0);
+	
+		foreach (archetype in fixArchetypes)
+		{
+			local type = archetype[0];
+			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
+			{
+				return vector(archetype[1], facing.y, archetype[2]);
+			}
+		}
+		return facing;
 	}
 }
 
@@ -35,6 +107,7 @@ class rndObjectPool extends rndBase
 		//-49, //Goodies
 		//-12, //Weapons
 		//-156, //Keys
+		//-76, //Audio Logs
 		-30, //Ammo
 		-51, //Patches
 		-70, //Devices (portable batteries etc)
@@ -61,14 +134,18 @@ class rndObjectPool extends rndBase
 	{
 		inputs = [];
 		outputs = [];
-	
-		DebugPrint ("I'm here: " + self + "!");
+
 		ProcessLinks();
 		
 		Array_Shuffle(inputs);
 		//Array_Shuffle(outputs);
 		
 		currentOutput = 0;
+		SetOneShotTimer("ProcessTimer",0.01);
+	}
+	
+	function OnTimer()
+	{
 		ProcessRandomisers();
 	}
 	
@@ -95,19 +172,25 @@ class rndObjectPool extends rndBase
 	function ProcessLinks()
 	{
 		DebugPrint ("Processing Targets for " + self);
+		
+		local count = 0;
 	
 		//Process each linked object
 		foreach (link in Link.GetAll(linkkind("~Target"),self))
 		{
+			count++;
 			local target = sLink(link).dest;
 			ProcessTarget(target);
 			Link.Destroy(link);
 		}
+		
+		DebugPrint ("Processed " + count + " Targets");
+		DebugPrint ("(" + inputs.len() + " Inputs and " + outputs.len() + " Outputs)");
 	}
 	
-	function AddOutput(output)
+	function AddOutput(output, forceHighPriority = false)
 	{
-		if (Object.HasMetaProperty(output.item,"Object Randomiser - High Priority Output"))
+		if (forceHighPriority || Object.HasMetaProperty(output.output,"Object Randomiser - High Priority Output"))
 		{
 			if (outputs.find(output) == null)
 				outputs.insert(0,output);
@@ -127,8 +210,8 @@ class rndObjectPool extends rndBase
 		if (isMarker)
 		{
 			DebugPrint (ShockGame.GetArchetypeName(target) + " is a marker. Adding as output");
-			local output = Output(target,false);
-			AddOutput(output);
+			local output = PhysicalOutput(target);
+			AddOutput(output,true);
 		}
 		else if (isContainer)
 		{
@@ -150,7 +233,7 @@ class rndObjectPool extends rndBase
 			if (!Object.HasMetaProperty(target,"Object Randomiser - No Auto Output"))
 			{
 				//Add the container as an output
-				local output = Output(target,true);
+				local output = Output(target);
 				DebugPrint ("-> Adding " + ShockGame.GetArchetypeName(target) + " (" + target + ") as output");
 				AddOutput(output);
 			}
@@ -163,42 +246,51 @@ class rndObjectPool extends rndBase
 				local input = Input(target);
 				inputs.append(input);
 			}
-		}
 			
-		//if (Object.HasMetaProperty(target,"Object Randomiser - No Auto Input"))
-			//continue;
+			if (!Object.HasMetaProperty(target,"Object Randomiser - No Auto Output"))
+			{
+				//Add the item as an output
+				local output = PhysicalOutput(target);
+				DebugPrint ("Adding " + ShockGame.GetArchetypeName(target) + " (" + target + ") as output");
+				AddOutput(output,true);
+			}
+		}
 	}
 	
 	function OnRandomise()
 	{
-		DebugPrint ("Received OnRandomise: " + message().data + " " + message().data2 + " " + message().data3);
+		DebugPrint ("Received OnRandomise: " + message().data + " " + message().data2 + " " + message().data3 + " - " + inputs.len() + ", " + outputs.len());
 		
 		//We have already done everything
 		if (inputs.len() == 0)
 			return;
-		
+				
 		local allowedTypes;
 		
 		if (message().data2 == null && message().data3 == null)
 		{
 			allowedTypes = allowedTypesDefault;
+			DebugPrint("Allowed Types: Default");
 		}
 		else
 		{
 			allowedTypes = [message().data2,message().data3];
-			DebugPrint ("ALLOWEDTYPES: " + allowedTypes[0] + " " + allowedTypes[1]);
+			DebugPrint ("Allowed Types: " + allowedTypes[0] + ", " + allowedTypes[1]);
 		}
+		
+		DebugPrint("Getting valid types...");
 		
 		local index = GetFirstValidType(allowedTypes);
 		
 		if (index != -1)
 		{		
 			local item = inputs[index].item;
-			inputs.remove(index);
+			inputs[index].valid = false;
 			SendMessage(message().data,"RandomiseItem",item);
 		}
 		
-		ProcessLinks();
+		DebugPrint("Got valid types at index " + index + "...");
+		
 		ProcessRandomisers();
 	}
 	
@@ -210,54 +302,27 @@ class rndObjectPool extends rndBase
 			return;
 		
 		local item = message().data;
-		local output = outputs[currentOutput];
 		
-		DebugPrint("Moving " + item + " to " + output.item);
+		local success;
+		local output;
+		local tries = 0;
 		
-		local handled = HandleItemMove(item,output,currentOutput);
-		local tempOutput = 0;
-		
-		while (handled == false && tempIndex < outputs.len())
+		do
 		{
-			output = outputs[tempOutput];
-			handled = HandleItemMove(item,output,tempOutput);
-			tempOutput++;
-		}
-		
-		currentOutput++;
+			DebugPrint("currentOutput is " + currentOutput);
+			output = outputs[currentOutput];
+			success = output.HandleMove(item);
+			currentOutput++;
+			tries++;
 			
-		//Loop around
-		if (currentOutput >= outputs.len())
-			currentOutput = 0;
+			//Loop around if needed
+			if (currentOutput >= outputs.len())
+				currentOutput = 0;
+		}
+		while (!success && tries < outputs.len());		
+		DebugPrint("Moving " + item + " to " + output.output + " (currentOutput: " + currentOutput + ")");
 		
-		ProcessLinks();
 		ProcessRandomisers();
-	}
-	
-	function HandleItemMove(item,output,index)
-	{
-		if (output.isContainer)
-		{
-			Container.Remove(item);
-			Link.Create(linkkind("Contains"),output.item,item);
-			Property.SetSimple(item, "HasRefs", FALSE);
-			return true;
-		}
-		else if (Object.HasMetaProperty(item,"Object Randomiser - Container Only"))
-		{
-			return false;
-		}
-		else
-		{
-			Property.SetSimple(item, "HasRefs", FALSE);
-			//Object.Teleport(item, output.position, vector(0,output.facing.y,0));
-			Object.Teleport(item, output.position, output.facing);
-			Property.SetSimple(item, "HasRefs", TRUE);
-			Physics.Activate(item);
-			Physics.SetVelocity(item,vector(0,0,5));
-			outputs.remove(index);
-			return true;
-		}
 	}
 	
 	function GetFirstValidType(allowedTypes)
@@ -268,7 +333,7 @@ class rndObjectPool extends rndBase
 			foreach (archetype in allowedTypes)
 			{
 				//DebugPrint(" -> Checking " + archetype + " for object " + input.item);
-				if (isArchetype(input.item,archetype))
+				if (isArchetype(input.item,archetype) && input.valid)
 					return index;
 				//else
 					//DebugPrint(" -> Check failed!");
