@@ -1,0 +1,8 @@
+// ================================================================================
+// 								RSD Compatibility
+// ================================================================================
+
+//Nanites near recharging station.
+//No longer usable as an output
+//because RSD puts some prisms there instead
++MetaProp 1665 "Object Randomiser - No Auto Output"

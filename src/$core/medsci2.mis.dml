@@ -27,13 +27,43 @@ Create "rndObjectCollection" "rndMedicalObjects"
 {
 }
 
+//Create an object collection for the easy Radiation Room
+Create "rndObjectCollection" "rndMedicalRadiation1Objects"
+{
+}
+
+//Create an object collection for the hard Radiation Room
+Create "rndObjectCollection" "rndMedicalRadiation2Objects"
+{
+}
+
 //Create an object collection for the Crew Sector
 Create "rndObjectCollection" "rndCrewObjects"
 {
 }
 
+//Create an object collection for the Crew Sector Kitchen
+Create "rndObjectCollection" "rndCrewObjectsKitchen"
+{
+}
+
+//Create an object collection for the Crew Sector Bar
+Create "rndObjectCollection" "rndCrewObjectsBar"
+{
+}
+
+//Create an object collection for the Crew Sector Forcefield Area
+Create "rndObjectCollection" "rndCrewObjectsForcefield"
+{
+}
+
 //Create an object collection for the MedSci Armoury
 Create "rndObjectCollection" "rndArmouryObjects"
+{
+}
+
+//Create an object collection for the Hackable Crates
+Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
@@ -43,19 +73,113 @@ Create "rndObjectCollection" "rndArmouryObjects"
 // 							Plus any loose items in the map
 // ================================================================================
 
+/////////////////=====	Medical Sector Radiation Rooms	=====\\\\\\\\\\\\\\\\\
+
+//Easy Room
+
+//Guy in MRI Machine in irradiated area
++Link 1225 "rndMedicalRadiation1Objects" "Target"
+{
+}
+
+//Crate in Irradiated Room
++Link 339 "rndMedicalRadiation1Objects" "Target"
+{
+}
+
+//Crate in Irradiated Room
++Link 211 "rndMedicalRadiation1Objects" "Target"
+{
+}
+
+//Rad Hypo on bench
++Link 1495 "rndMedicalRadiation1Objects" "Target"
+{
+}
+
+//Hard Room
+
+//Guy in MRI Machine in ICU
++Link 609 "rndMedicalRadiation2Objects" "Target"
+{
+}
+
+//Desk in ICU
++Link 1613 "rndMedicalRadiation2Objects" "Target"
+{
+}
+
+//Plant on floor in ICU
++Link 624 "rndMedicalRadiation2Objects" "Target"
+{
+}
+
+/////////////////=====	Crew Sector Forcefield Sector	=====\\\\\\\\\\\\\\\\\
+
+//Champagne bottle behind the forcefield
++Link 1674 "rndCrewObjectsForcefield" "Target"
+{
+}
+
+//Medical Kit behind the forcefield
++Link 1764 "rndCrewObjectsForcefield" "Target"
+{
+}
+
+//Armour behind the forcefield
++Link 1838 "rndCrewObjectsForcefield" "Target"
+{
+}
+
+/////////////////=====	Crew Sector Bar	=====\\\\\\\\\\\\\\\\\
+
+//Magazine on Bar
++Link 1411 "rndCrewObjectsBar" "Target"
+{
+}
+//Plant on Windowsill
++Link 1030 "rndCrewObjectsBar" "Target"
+{
+}
+//Plant on Bar
++Link 715 "rndCrewObjectsBar" "Target"
+{
+}
+//Second Plant on Bar
++Link 716 "rndCrewObjectsBar" "Target"
+{
+}
+//Cigarettes
++Link 1410 "rndCrewObjectsBar" "Target"
+{
+}
+//Champagne
++Link 680 "rndCrewObjectsBar" "Target"
+{
+}
++Link 684 "rndCrewObjectsBar" "Target"
+{
+}
++Link 691 "rndCrewObjectsBar" "Target"
+{
+}
++Link 689 "rndCrewObjectsBar" "Target"
+{
+}
+//Vodka
++Link 686 "rndCrewObjectsBar" "Target"
+{
+}
+//Juice
++Link 687 "rndCrewObjectsBar" "Target"
+{
+}
+
 /////////////////=====	Medical Sector	=====\\\\\\\\\\\\\\\\\
 
 ////Corpses
 
-//Guy in MRI Machine in irradiated area
-+Link 1225 "rndMedicalObjects" "Target"
-{
-}
 
-//Guy in MRI Machine in ICU
-+Link 609 "rndMedicalObjects" "Target"
-{
-}
 
 //Guy in Store Room with Bed
 +Link 497 "rndMedicalObjects" "Target"
@@ -99,11 +223,6 @@ Create "rndObjectCollection" "rndArmouryObjects"
 {
 }
 
-//Desk in ICU
-+Link 1613 "rndMedicalObjects" "Target"
-{
-}
-
 //Desk in Vivisection room (with med-bed key on top)
 +Link 1189 "rndMedicalObjects" "Target"
 {
@@ -116,16 +235,6 @@ Create "rndObjectCollection" "rndArmouryObjects"
 
 //Desk in QBR room
 +Link 1501 "rndMedicalObjects" "Target"
-{
-}
-
-//Crate in Irradiated Room
-+Link 339 "rndMedicalObjects" "Target"
-{
-}
-
-//Crate in Irradiated Room
-+Link 211 "rndMedicalObjects" "Target"
 {
 }
 
@@ -155,6 +264,34 @@ Create "rndObjectCollection" "rndArmouryObjects"
 }
 
 ////Loose Items
+
+//Nanites near bioopsy lab
++Link 1221 "rndMedicalObjects" "Target"
+{
+}
+
+//Medbed Key on upstairs table
++Link 332 "rndMedicalObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//In front of the turret near the Monkeys that smash glass
+Create "rndOutputMarker" "rndTurretNearMonkeys"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-123.851, -283.565, -14.864"
+		"Heading" 5cc
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndTurretNearMonkeys" "Object Randomiser - High Priority Output"
++Link "rndTurretNearMonkeys" "rndMedicalObjects" "Target"
+{
+}
 
 /////////////////=====	Crew Sector	=====\\\\\\\\\\\\\\\\\
 
@@ -218,12 +355,12 @@ Create "rndObjectCollection" "rndArmouryObjects"
 }
 
 //Crate in Cafeteria Storage
-+Link 1587 "rndCrewObjects" "Target"
++Link 1587 "rndCrewObjectsKitchen" "Target"
 {
 }
 
 //Small Crate in Cafeteria Storage
-+Link 776 "rndCrewObjects" "Target"
++Link 776 "rndCrewObjectsKitchen" "Target"
 {
 }
 
@@ -244,33 +381,23 @@ Create "rndObjectCollection" "rndArmouryObjects"
 
 ////Loose Items
 
-//Cafeteria Storage chips
-+Link 1609 "rndCrewObjects" "Target"
+//Pistol on the ramp at the top of the room near the camera
++Link 1431 "rndCrewObjects" "Target"
 {
 }
 
 //Cafeteria Storage chips
-+Link 1611 "rndCrewObjects" "Target"
++Link 1609 "rndCrewObjectsKitchen" "Target"
 {
 }
 
 //Cafeteria Storage chips
-+Link 1607 "rndCrewObjects" "Target"
++Link 1611 "rndCrewObjectsKitchen" "Target"
 {
 }
 
-//Champagne bottle behind the forcefield
-+Link 1674 "rndCrewObjects" "Target"
-{
-}
-
-//Medical Kit behind the forcefield
-+Link 1764 "rndCrewObjects" "Target"
-{
-}
-
-//Armour behind the forcefield
-+Link 1838 "rndCrewObjects" "Target"
+//Cafeteria Storage chips
++Link 1607 "rndCrewObjectsKitchen" "Target"
 {
 }
 
@@ -288,82 +415,69 @@ Create "rndObjectCollection" "rndArmouryObjects"
 +Link 1840 "rndCrewObjects" "Target"
 {
 }
+//Plant in top apartment
++Link 1843 "rndCrewObjects" "Target"
+{
+}
 
 //Items in the main bar section (with the grenade launcher)
 //Soda Cans
-+Link 1027 "rndCrewObjects" "Target"
++Link 1027 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 950 "rndCrewObjects" "Target"
++Link 950 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 953 "rndCrewObjects" "Target"
++Link 953 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1022 "rndCrewObjects" "Target"
++Link 1022 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1023 "rndCrewObjects" "Target"
++Link 1023 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1024 "rndCrewObjects" "Target"
++Link 1024 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Chips
-+Link 1048 "rndCrewObjects" "Target"
++Link 1048 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1050 "rndCrewObjects" "Target"
++Link 1050 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1050 "rndCrewObjects" "Target"
++Link 1050 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Vodka
-+Link 1041 "rndCrewObjects" "Target"
++Link 1041 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1044 "rndCrewObjects" "Target"
++Link 1044 "rndCrewObjectsKitchen" "Target"
 {
 }
 //Liquour
-+Link 1037 "rndCrewObjects" "Target"
++Link 1037 "rndCrewObjectsKitchen" "Target"
 {
 }
-+Link 1029 "rndCrewObjects" "Target"
-{
-}
-
-//Items in the bar looking out into space
-//Cigarettes
-+Link 1410 "rndCrewObjects" "Target"
-{
-}
-//Champagne
-+Link 680 "rndCrewObjects" "Target"
-{
-}
-+Link 684 "rndCrewObjects" "Target"
-{
-}
-+Link 691 "rndCrewObjects" "Target"
-{
-}
-+Link 689 "rndCrewObjects" "Target"
-{
-}
-//Vodka
-+Link 686 "rndCrewObjects" "Target"
-{
-}
-//Juice
-+Link 687 "rndCrewObjects" "Target"
++Link 1029 "rndCrewObjectsKitchen" "Target"
 {
 }
 
 //Chips floating in water in dark room near Watts office
 +MetaProp 83 "Object Randomiser - No Auto Output"
 +Link 83 "rndCrewObjects" "Target"
+{
+}
+
+//Nanites at top of dark room near Watts office
++Link 949 "rndCrewObjects" "Target"
+{
+}
+
+//Shotgun at top of dark room near Watts office
++Link 607 "rndCrewObjects" "Target"
 {
 }
 
@@ -393,5 +507,27 @@ Create "rndObjectCollection" "rndArmouryObjects"
 
 //Crate
 +Link 595 "rndArmouryObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Biopsy Lab top level
++Link 135 "rndHackableObjects" "Target"
+{	
+}
+
+//ICU
++Link 137 "rndHackableObjects" "Target"
+{	
+}
+
+//Room near ICU
++Link 143 "rndHackableObjects" "Target"
+{
+}
+
+//Forcefield Room
++Link 150 "rndHackableObjects" "Target"
 {
 }

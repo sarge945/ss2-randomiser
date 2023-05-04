@@ -3,15 +3,116 @@
 // ================================================================================
 
 //Create a randomiser for the Medical and Crew Quarters sections
-Create "rndRandomiser" "rndMedicalRandomiser"
+Create "rndComplexRandomiser" "rndMedicalRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "debug=true;"
 }
-//Link the Medical Items to it
+//Inputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
 {
 }
-//Link the Crew Quarters Items to it
 +Link "rndCrewObjects" "rndMedicalRandomiser" "SwitchLink"
+{
+}
+/*
++Link "rndCrewObjectsKitchen" "rndMedicalRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjectsBar" "rndMedicalRandomiser" "SwitchLink"
+{
+}
+*/
+//Outputs
++Link "rndMedicalObjects" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
+
+
+
+
+//Create a randomiser for the Medical and Crew Quarters kitchen and bar items (chips, drinks etc)
+Create "rndComplexRandomiser" "rndMedicalKitchenRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "debug=true; allowedTypes0=-90; allowedTypes1=-51; maxtimes=15"
+}
+//Inputs
+/*
++Link "rndMedicalObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjects" "rndMedicalKitchenRandomiser" "SwitchLink"
+{
+}
+*/
++Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewObjectsBar" "rndMedicalKitchenRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndCrewObjectsKitchen" "rndMedicalKitchenRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewObjectsBar" "rndMedicalKitchenRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the First Irradiated Area
+Create "rndComplexRandomiser" "rndIrradiated1Randomiser"
+{
+}
+//Inputs
++Link "rndMedicalRadiation1Objects" "rndIrradiated1Randomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndMedicalRadiation1Objects" "rndIrradiated1Randomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Second Irradiated Area
+Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
+{
+}
+//Inputs
++Link "rndMedicalRadiation2Objects" "rndIrradiated2Randomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndMedicalRadiation2Objects" "rndIrradiated2Randomiser" "~SwitchLink"
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+}
+
+//Inputs
++Link "rndHackableObjects" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHackableObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
 {
 }

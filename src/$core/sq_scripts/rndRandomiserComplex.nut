@@ -15,8 +15,9 @@ class rndComplexRandomiser extends rndRandomiser
 		-938, //Cyber Modules
 		-3863, //GamePig Games
 		-90, //Decorative items like mugs etc
-		-68, //potted plants
-		-69, //potted plants
+		-1255, //magazines
+		//-68, //potted plants
+		//-69, //potted plants
 	];
 	
 	allowedTypes = null;
@@ -104,9 +105,10 @@ class rndComplexRandomiser extends rndRandomiser
 			local isContainer = isArchetype(linkedObject,-379) || isArchetype(linkedObject,-118) || isArchetype(linkedObject,-551);
 			local isMarker = ShockGame.GetArchetypeName(linkedObject) == "rndOutputMarker";
 			
+			DebugPrint(" -> " + ShockGame.GetArchetypeName(linkedObject) + " " + linkedObject);
+			
 			if (isContainer || isMarker || IsValidType(linkedObject))
 			{
-				DebugPrint(" -> " + ShockGame.GetArchetypeName(linkedObject) + " " + linkedObject);
 				ProcessOutput(linkedObject,isContainer);
 			}
 		}
@@ -117,9 +119,13 @@ class rndComplexRandomiser extends rndRandomiser
 		//DebugPrint("Checking archetypes for object " + item);
 		foreach (archetype in allowedTypes)
 		{
-			//DebugPrint(" -> Checking " + archetype + " for object " + item);
+			DebugPrint(" -> Checking " + archetype + " for object " + item);
 			if (isArchetype(item,archetype))
 				return true;
+			else
+			{
+				DebugPrint(" -> Check failed!");
+			}
 		}
 		return false;
 	}

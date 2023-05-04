@@ -395,12 +395,13 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Potted plant in trap room
++MetaProp 473 "Object Randomiser - No Auto Output"
 +Link 473 "rndScienceObjects" "Target"
 {
 }
 
 //Potted plant on desk near Medical entrance
-//+MetaProp 840 "Object Randomiser - No Auto Output"
++MetaProp 840 "Object Randomiser - No Auto Output"
 +Link 840 "rndScienceObjects" "Target"
 {
 }
@@ -598,6 +599,7 @@ Create "rndOutputMarker" "SargeRandomXerxesChair"
 {
 }
 
+/*
 //Gurney in the Morgue
 Create "rndOutputMarker" "SargeRandomMorgueGurney"
 {
@@ -613,6 +615,7 @@ Create "rndOutputMarker" "SargeRandomMorgueGurney"
 +Link "SargeRandomMorgueGurney" "rndScienceObjects" "Target"
 {
 }
+*/
 
 //Chemical Storeroom
 Create "rndOutputMarker" "SargeRandomChemicalStoreroom"

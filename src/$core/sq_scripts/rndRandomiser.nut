@@ -127,6 +127,9 @@ class rndRandomiser extends rndBase
 	
 	function Randomise()
 	{
+		DebugPrint ("Total Inputs: " + inputs.len());
+		DebugPrint ("Total Outputs: " + outputs.len());
+	
 		if (inputs.len() == 0)
 		{
 			print("WARNING! No inputs defined for " + self + "!");
@@ -161,6 +164,8 @@ class rndRandomiser extends rndBase
 		
 		local times = 0;
 		
+		local safety_count = 0;
+		
 		if (maxTimes > inputs.len())
 			maxTimes = inputs.len();
 		
@@ -170,8 +175,10 @@ class rndRandomiser extends rndBase
 		
 		local minimum = Data.RandInt(minTimes,maxTimes);
 		
-		while (true && times < maxTimes && minimum > 0)
+		while (true && times < maxTimes && minimum > 0 && safety_count < 9999)
 		{
+			safety_count++;
+		
 			//DebugPrint (curInput + " curInput");
 			//DebugPrint (curOutput + " curOutput");
 		
@@ -222,6 +229,8 @@ class rndRandomiser extends rndBase
 			if (curOutput >= outputs.len())
 				curOutput = 0;
 		}
+		
+		DebugPrint("Randomising took " + safety_count + " attempts")
 	}
 	
 	function LinkInputToOutput(input, output)
@@ -236,10 +245,10 @@ class rndRandomiser extends rndBase
 		//}
 		
 		//Stop issues with the occasional duplicated link when multiple randomisers work on the same containers
-		foreach(link in Link.GetAll(linkkind("Target"),input.item))
-		{
-			Link.Destroy(link);
-		}
+		//foreach(link in Link.GetAll(linkkind("Target"),input.item))
+		//{
+		//	Link.Destroy(link);
+		//}
 		
 		if (output.isContainer)
 		{
