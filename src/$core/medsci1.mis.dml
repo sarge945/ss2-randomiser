@@ -160,6 +160,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+/*
+//Mug near corpse at exploding computer
++MetaProp 439 "Object Randomiser - No Auto Output"
++Link 439 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
+*/
+
 ////Markers and other spawn points
 
 //inside the smashable glass section

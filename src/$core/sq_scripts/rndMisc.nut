@@ -217,8 +217,8 @@ class PhysicalOutput extends Output
 		if (Object.IsTransient(output))
 			return false;
 		
-		//if (!Physics.HasPhysics(item))
-		//	return false;
+		if (!Physics.HasPhysics(item))
+			return false;
 			
 		//prevent output from being used again
 		//Object.AddMetaProperty(output, "Object Randomiser - Internal - Output Used");
