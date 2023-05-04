@@ -7,6 +7,6 @@ Packaged releases are usually posted on the forum thread. This repo exists as a 
 
 ## Info for Modders
 
-This mod was made using [makedml](https://github.com/tunbridgep/ss2-makedml). This means the DML files are split into multiple different files.
+This mod was made using [makedml](https://github.com/sarge945/ss2-makedml). This means the DML files are split into multiple different files.
 
 If you wish to make your own build (say, without plot items randomised), you can do so by downloading the archive, deleting the relevant folder in **src/**, and then building using makedml.
