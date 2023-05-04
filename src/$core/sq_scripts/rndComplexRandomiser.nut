@@ -51,7 +51,7 @@ class rndComplexRandomiser extends rndBase
 		SetData("Priority",priority);
 		
 		//Initial print
-		print("Randomiser Init: " + Object.GetName(self) + " [" + self + "] (seed: " + seed + ") (startDelay: " + startDelay + ") (Priority: " + priority + ")");
+		print("Randomiser Init: " + Object.GetName(self) + " (" + self + ") [seed: " + seed + ", startDelay: " + startDelay + ", Priority: " + priority + "]");
 		
 		SetOneShotTimer("StartTimer",0.1 + startDelay);
 	}
