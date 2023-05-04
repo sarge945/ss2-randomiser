@@ -6,7 +6,7 @@
 //This will cover everything before Core Control, the Nacelles, and the service tube area
 Create "rndComplexRandomiser" "rndPreCoreWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 //Inputs
 +Link "rndTubeObjects" "rndPreCoreWeaponRandomiser" "SwitchLink"
@@ -37,7 +37,7 @@ Create "rndComplexRandomiser" "rndPreCoreWeaponRandomiser"
 //This will cover everything from Core Control, the Nacelles, and the service tube area
 Create "rndComplexRandomiser" "rndCoreWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

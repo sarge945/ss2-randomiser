@@ -1,11 +1,11 @@
 // ================================================================================
-// 								Add Keycard to Randomiser
+// 								Add Keycards to Randomiser
 // ================================================================================
 
-//Create a randomiser for the Sector D Keycard
+//Create a randomiser for the Sector A and D Keycards
 Create "rndComplexRandomiser" "rndKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Items to it as Input

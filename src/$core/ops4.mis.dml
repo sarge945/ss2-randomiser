@@ -1,0 +1,525 @@
+DML1
+
+FINGERPRINT
+{
+   811 [38 -222 -28]
+   812 [43 -222 -28]
+   813 [48 -222 -28]
+   814 [53 -222 -28]
+   815 [58 -222 -28]
+   816 [64 -225 -28]
+   817 [64 -219 -28]
+   835 [47.7996 -213.929 -28]
+   836 [55.8961 -210.736 -28]
+   483 [63.1055 -208.245 -28]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the System Ops area
+Create "rndObjectCollection" "rndSystemOpsObjects"
+{
+}
+
+//Create an object collection for the Power Operations area
+Create "rndObjectCollection" "rndPowerOpsObjects"
+{
+}
+
+//Create an object collection for the Barracks area
+Create "rndObjectCollection" "rndBarracksObjects"
+{
+}
+
+//Create an object collection for the Barracks Shooting Range area
+Create "rndObjectCollection" "rndBarracksShootingRangeObjects"
+{
+}
+
+//Create an object collection for the Command Center (aka Security)
+Create "rndObjectCollection" "rndCommandCenterObjects"
+{
+}
+
+//Create an object collection for the Locked Security area
+Create "rndObjectCollection" "rndSecurityLockedObjects"
+{
+}
+
+//Create an object collection for the Armoury
+Create "rndObjectCollection" "rndArmouryObjects"
+{
+}
+
+//Create an object collection for the Brig
+Create "rndObjectCollection" "rndBrigObjects"
+{
+}
+
+//Create an object collection for the Brig Cells
+Create "rndObjectCollection" "rndBrigCellsObjects"
+{
+}
+
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	System Ops	=====\\\\\\\\\\\\\\\\\
+
+//Male Corpse in main area
++Link 528 "rndSystemOpsObjects" "Target"
+{
+}
+
+//Auto Repair Tool next to Corpse
++Link 387 "rndSystemOpsObjects" "Target"
+{
+}
+
+//Corpse with Stasis Field Generator
+//Trapped, so make it important
++MetaProp 326 "Object Randomiser - High Priority Output"
++Link 326 "rndSystemOpsObjects" "Target"
+{
+}
+
+//Make the Stasis Field Generatot itself never mode, since for a lot of people, this will be their first one
++MetaProp 406 "Object Randomiser - No Auto Input"
+
+/////////////////=====	Power Ops	=====\\\\\\\\\\\\\\\\\
+////Enter through door on the left, then clockwise...
+
+////First Office
+
+//Contains Nothing, so add something
+Create "rndOutputMarker" "rndPowerOpsOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "57.1294, -24.3887, -23.7807"
+		"Heading" 8c4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerOpsOffice" "rndPowerOpsObjects" "Target"
+{
+}
+
+////Second Office
+
+//Desk
++Link 408 "rndPowerOpsObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 1474 "rndPowerOpsObjects" "Target"
+{
+}
+
+////Third Office
+
+//Desk
++Link 382 "rndPowerOpsObjects" "Target"
+{
+}
+
+////Other Rooms
+
+//Small corner room near Turret
+Create "rndOutputMarker" "rndPowerOpsCornerRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "3.97163, -71.3414, -23.7795"
+		"Heading" 23fc
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerOpsCornerRoom" "rndPowerOpsObjects" "Target"
+{
+}
+
+//Bottom of the Ladder room
+Create "rndOutputMarker" "rndPowerOpsLadderRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "17.2599, -108.497, -39.7915"
+		"Heading" 41c0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndPowerOpsLadderRoom" "Object Randomiser - No Junk"
++Link "rndPowerOpsLadderRoom" "rndPowerOpsObjects" "Target"
+{
+}
+
+////Trapped Sim Unit Room
+
+//Corpse in front of Sim unit
++Link 557 "rndPowerOpsObjects" "Target"
+{
+}
+
+//French-Epstein Device
++Link 386 "rndPowerOpsObjects" "Target"
+{
+}
+
+//Pistol
++MetaProp 121 "Object Randomiser - No Junk"
++Link 121 "rndPowerOpsObjects" "Target"
+{
+}
+
+/////////////////=====	Barracks	=====\\\\\\\\\\\\\\\\\
+
+//Corpse near the upgrade station
++Link 699 "rndBarracksObjects" "Target"
+{
+}
+
+////Bedroom
+
+//Lockers
++Link 139 "rndBarracksObjects" "Target"
+{
+}
++Link 138 "rndBarracksObjects" "Target"
+{
+}
++Link 139 "rndBarracksObjects" "Target"
+{
+}
++Link 135 "rndBarracksObjects" "Target"
+{
+}
++Link 131 "rndBarracksObjects" "Target"
+{
+}
++Link 152 "rndBarracksObjects" "Target"
+{
+}
++Link 151 "rndBarracksObjects" "Target"
+{
+}
++Link 150 "rndBarracksObjects" "Target"
+{
+}
++Link 140 "rndBarracksObjects" "Target"
+{
+}
+
+/*
+//Ring Buoy
++MetaProp 1417 "Object Randomiser - No Auto Output"
++Link 1417 "rndBarracksObjects" "Target"
+{
+}
+*/
+
+////Shooting Range
+
+//Anti-Pers Bullets
++Link 559 "rndBarracksShootingRangeObjects" "Target"
+{
+}
+
+////Replicator Area
+
+//Shotgun Slugs on the floor
++Link 1188 "rndBarracksObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 1320 "rndBarracksObjects" "Target"
+{
+}
+
+////Second Bedroom
+//Lockers
++Link 364 "rndBarracksObjects" "Target"
+{
+}
++Link 365 "rndBarracksObjects" "Target"
+{
+}
++Link 369 "rndBarracksObjects" "Target"
+{
+}
++Link 370 "rndBarracksObjects" "Target"
+{
+}
++Link 396 "rndBarracksObjects" "Target"
+{
+}
++MetaProp 397 "Object Randomiser - High Priority Output"
+//This one spawns worms
++Link 397 "rndBarracksObjects" "Target"
+{
+}
++Link 399 "rndBarracksObjects" "Target"
+{
+}
++Link 400 "rndBarracksObjects" "Target"
+{
+}
++Link 402 "rndBarracksObjects" "Target"
+{
+}
+
+//Corpses
++Link 690 "rndBarracksObjects" "Target"
+{
+}
++Link 686 "rndBarracksObjects" "Target"
+{
+}
+
+//Cyber Modules
++Link 739 "rndBarracksObjects" "Target"
+{
+}
+
+////Hallway
+
+//Corpse near entrance to Command Center
++Link 85 "rndBarracksObjects" "Target"
+{
+}
+
+/////////////////=====	Armoury	=====\\\\\\\\\\\\\\\\\
+
+//Fusion Cannon
++Link 1261 "rndArmouryObjects" "Target"
+{
+}
+
+//Assault Rifle
++Link 407 "rndArmouryObjects" "Target"
+{
+}
+
+//Crates
++Link 467 "rndArmouryObjects" "Target"
+{
+}
++Link 348 "rndArmouryObjects" "Target"
+{
+}
++Link 351 "rndArmouryObjects" "Target"
+{
+}
++Link 352 "rndArmouryObjects" "Target"
+{
+}
++Link 353 "rndArmouryObjects" "Target"
+{
+}
+
+/////////////////=====	Command Center (aka Security)	=====\\\\\\\\\\\\\\\\\
+
+////Entrance Room
+
+//Corpse in entrance to Command Center with the 2 turrets
++Link 85 "rndCommandCenterObjects" "Target"
+{
+}
+
+//Near the broken turret in the entrance room
+Create "rndOutputMarker" "rndCommandCenterTurretCorner"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-182.069, -227.483, -26.6387"
+		"Heading" d8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndCommandCenterTurretCorner" "rndCommandCenterObjects" "Target"
+{
+}
+
+////Broken Pipe Room
+
+//Medical Kit
++Link 360 "rndCommandCenterObjects" "Target"
+{
+}
+
+//Cyber Modules under the floor
++MetaProp 949 "Object Randomiser - High Priority Output"
++Link 949 "rndCommandCenterObjects" "Target"
+{
+}
+
+
+////Ops Override Room
+
+//Next to the Ops Override room door
+Create "rndOutputMarker" "rndCommandCenterOpsOverride"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-169.027, -306.615, -26.6387"
+		"Heading" 2478
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndCommandCenterOpsOverride" "rndCommandCenterObjects" "Target"
+{
+}
+
+////Rooms Under Ops Override Room
+//Going clockwise from the entrance...
+
+///Medical Room
+///Normally Empty. Add an item
+Create "rndOutputMarker" "rndCommandCenterMedRoom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-166.934, -324.645, -35.0488"
+		"Heading" 3a6c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndCommandCenterMedRoom" "rndCommandCenterObjects" "Target"
+{
+}
+
+///Worm Room
+///Full of worm piles, items are hard to get. Give them priority
+
+//Maintenance Tool on the Floor
++MetaProp 433 "Object Randomiser - High Priority Output"
++Link 433 "rndCommandCenterObjects" "Target"
+{
+}
+
+//Shotgun Slugs on the Floor
++MetaProp 416 "Object Randomiser - High Priority Output"
++Link 416 "rndCommandCenterObjects" "Target"
+{
+}
+
+///Third Room
+
+//Corpse on Table
++Link 749 "rndCommandCenterObjects" "Target"
+{
+}
+
+///Fourth Room
+
+//Chips on Floor
++Link 1327 "rndCommandCenterObjects" "Target"
+{
+}
++Link 1349 "rndCommandCenterObjects" "Target"
+{
+}
+
+//Juice
++Link 1350 "rndCommandCenterObjects" "Target"
+{
+}
+
+//PSI Booster
++Link 375 "rndCommandCenterObjects" "Target"
+{
+}
+
+//Corpse in entrance to Locked Security area
++Link 1465 "rndCommandCenterObjects" "Target"
+{
+}
+
+/////////////////=====	Brig =====\\\\\\\\\\\\\\\\\
+
+//Desk
++Link 1331 "rndBrigObjects" "Target"
+{
+}
+
+//Mug
++Link 1344 "rndBrigObjects" "Target"
+{
+}
+
+////Cells
+
+/*
+//Dying Guy
+//Don't do anything since this is a very scripted, weird corpse.
++Link 546 "rndBrigCellsObjects" "Target"
+{
+}
+*/
+
+//Dead guy in cell
++Link 434 "rndBrigCellsObjects" "Target"
+{
+}
+
+//Ciggies on floor
++MetaProp 1303 "Object Randomiser - No Auto Output"
++Link 1303 "rndBrigCellsObjects" "Target"
+{
+}
+
+//Trapped Guy in Cell
++MetaProp 544 "Object Randomiser - High Priority Output"
++Link 544 "rndBrigCellsObjects" "Target"
+{
+}
+
+/////////////////=====	Security Block =====\\\\\\\\\\\\\\\\\
+
+//Lockers
++Link 426 "rndSecurityLockedObjects" "Target"
+{
+}
++Link 427 "rndSecurityLockedObjects" "Target"
+{
+}
+
+//Desk
++Link 378 "rndSecurityLockedObjects" "Target"
+{
+}
+
+//Corpses
++Link 195 "rndSecurityLockedObjects" "Target"
+{
+}
++Link 395 "rndSecurityLockedObjects" "Target"
+{
+}
+//Guy on table
++Link 415 "rndSecurityLockedObjects" "Target"
+{
+}
+//Bronson
++Link 146 "rndSecurityLockedObjects" "Target"
+{
+}

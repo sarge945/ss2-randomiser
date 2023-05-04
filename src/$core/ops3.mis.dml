@@ -1,0 +1,624 @@
+DML1
+
+FINGERPRINT
+{
+   1369 [-75.6622 478.468 -18.5647]
+   1370 [-69.1622 478.468 -18.5647]
+   1371 [-62.6622 478.468 -18.5647]
+   1372 [-56.1622 478.468 -18.5647]
+   1373 [-49.4084 482.74 -18.5647]
+   1374 [-49.4412 474.365 -18.5647]
+   1383 [-43.0707 464.585 -12.5578]
+   1380 [-43.4606 491.324 -12.5578]
+   1379 [-38.4532 483.08 -12.5578]
+   1378 [-38.5104 473.873 -12.5578]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main Hallway area
+Create "rndObjectCollection" "rndHallwayObjects"
+{
+}
+
+//Create an object collection for the Lounge area
+Create "rndObjectCollection" "rndLoungeObjects"
+{
+}
+
+//Create an object collection for the Data Storage area
+Create "rndObjectCollection" "rndDataStorageObjects"
+{
+}
+
+//Create an object collection for the Power Admin area
+Create "rndObjectCollection" "rndPowerAdminObjects"
+{
+}
+
+//Create an object collection for the Mess Hall area
+Create "rndObjectCollection" "rndMessHallObjects"
+{
+}
+
+//Create an object collection for the Mess Hall Kitchen
+Create "rndObjectCollection" "rndMessHallKitchenObjects"
+{
+}
+
+//Create an object collection for the Mess Hall Bathrooms
+Create "rndObjectCollection" "rndMessHallBathroomObjects"
+{
+}
+
+//Create an object collection for Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Main Hallway	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//TriOp crates near the Lounge door
++Link 798 "rndHallwayObjects" "Target"
+{
+}
+
++Link 799 "rndHallwayObjects" "Target"
+{
+}
+
++Link 800 "rndHallwayObjects" "Target"
+{
+}
+
+////Corpses
+
+//Dead woman near the main bulkhead entrance
++Link 1262 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead man in the hallway to Data Storage
++Link 1254 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead guy in front of QBRM
++Link 938 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead guy in radiation hallway
++Link 790 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead woman in the alternate radiation pathway
++Link 733 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead guy in front of Replicator
++Link 779 "rndHallwayObjects" "Target"
+{
+}
+
+//Hanging Upside-Down Guy
++MetaProp 1288 "Object Randomiser - High Priority Output"
++Link 1288 "rndHallwayObjects" "Target"
+{
+}
+
+//Dead Woman right outside Power Admin
++Link 1730 "rndHallwayObjects" "Target"
+{
+}
+
+////Loose Items
+
+/*
+//Disabled due to being visible when entering the map
+//Dead woman's Shotgun
++Link 1263 "rndHallwayObjects" "Target"
+{
+}
+*/
+
+//Shotgun in alternate path from radiation room
++Link 734 "rndHallwayObjects" "Target"
+{
+}
+
+//Pistol next to Replicator guy
++Link 785 "rndHallwayObjects" "Target"
+{
+}
+
+//Psi Hypo on the floor near hanging guy
++Link 724 "rndHallwayObjects" "Target"
+{
+}
+
+/////////////////=====	Small Room with Eggs in the Radiation Hallway	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//TriOp crates
+//Make one a high-priority crate, since we always want something in this room because it's a challenge
++MetaProp 699 "Object Randomiser - High Priority Output"
++Link 699 "rndHallwayObjects" "Target"
+{
+}
+
++MetaProp 700 "Object Randomiser - No Junk"
++Link 700 "rndHallwayObjects" "Target"
+{
+}
+
+/////////////////=====	Data Storage	=====\\\\\\\\\\\\\\\\\
+
+//Crates
++Link 766 "rndDataStorageObjects" "Target"
+{
+}
++Link 782 "rndDataStorageObjects" "Target"
+{
+}
++Link 768 "rndDataStorageObjects" "Target"
+{
+}
++Link 771 "rndDataStorageObjects" "Target"
+{
+}
++Link 780 "rndDataStorageObjects" "Target"
+{
+}
++Link 781 "rndDataStorageObjects" "Target"
+{
+}
++Link 776 "rndDataStorageObjects" "Target"
+{
+}
+
+//Corpse
++Link 718 "rndDataStorageObjects" "Target"
+{
+}
+
+//WormMind
++Link 1811 "rndDataStorageObjects" "Target"
+{
+}
+
+//EMP Rifle
++Link 731 "rndDataStorageObjects" "Target"
+{
+}
+
+//Medkit
++Link 775 "rndDataStorageObjects" "Target"
+{
+}
+
+//Inside Broken Elevator
+Create "rndOutputMarker" "rndDataStorageElevator"
+{
+	+ObjProp "Position"
+	{
+		"Location" "30.0158, 133.304, -23.8242"
+		"Heading" d150
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndDataStorageElevator" "rndDataStorageObjects" "Target"
+{
+}
+
+/////////////////=====	Power Admin	=====\\\\\\\\\\\\\\\\\
+
+////Main Hallway
+
+//Nanites Under the egg trap
++MetaProp 778 "Object Randomiser - High Priority Output"
++Link 778 "rndPowerAdminObjects" "Target"
+{
+}
+
+//Main Hallway corner
+Create "rndOutputMarker" "rndPowerAdminMainHallwayCorner"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-131.688, 396.358, -25.8242"
+		"Heading" 1464
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerAdminMainHallwayCorner" "rndPowerAdminObjects" "Target"
+{
+}
+
+////Going Clockwise from Entrance...
+
+//First Office
+//Contains nothing, add a marker
+
+Create "rndOutputMarker" "rndPowerAdminFirstOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-141.364, 409.771, -23.7788"
+		"Heading" 7b8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerAdminFirstOffice" "rndPowerAdminObjects" "Target"
+{
+}
+
+//Second Office
+//Contains nothing except sim unit, add a marker
+
+Create "rndOutputMarker" "rndPowerAdminSecondOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-118.437, 410.369, -23.7788"
+		"Heading" fb88
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerAdminSecondOffice" "rndPowerAdminObjects" "Target"
+{
+}
+
+//Third Office
+
+Create "rndOutputMarker" "rndPowerAdminThirdOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-62.9772, 421.608, -23.7788"
+		"Heading" e290
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerAdminThirdOffice" "rndPowerAdminObjects" "Target"
+{
+}
+
+//Desk
++Link 171 "rndPowerAdminObjects" "Target"
+{
+}
+
+//Fourth Office
+
+//Desk
++Link 151 "rndPowerAdminObjects" "Target"
+{
+}
+
+//Fifth Office
+
+//Corpse
++Link 772 "rndPowerAdminObjects" "Target"
+{
+}
+
+/*
+//Crystal Shard
+//Ignore because a log is associated with it
++Link 773 "rndPowerAdminObjects" "Target"
+{
+}
+*/
+
+//Sixth Office
+//Contains nothing, add a marker
+
+Create "rndOutputMarker" "rndPowerAdminSixthOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-118.063, 359.591, -23.7108"
+		"Heading" 2e0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndPowerAdminSixthOffice" "rndPowerAdminObjects" "Target"
+{
+}
+
+/////////////////=====	Mess Hall	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy near the line of corpses
++Link 877 "rndMessHallObjects" "Target"
+{
+}
+
+//Line of Corpses
++Link 726 "rndMessHallObjects" "Target"
+{
+}
++Link 878 "rndMessHallObjects" "Target"
+{
+}
++Link 875 "rndMessHallObjects" "Target"
+{
+}
++Link 876 "rndMessHallObjects" "Target"
+{
+}
+
+//Dead guy near turret
++Link 1173 "rndMessHallObjects" "Target"
+{
+}
+
+//Dead woman near the turret
++Link 1168 "rndMessHallObjects" "Target"
+{
+}
+
+////Markers
+
+//Marker on Table
+Create "rndOutputMarker" "rndMessHallTable1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "48.0995, 319.236, -26.9231"
+		"Heading" 43c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndMessHallTable1" "rndMessHallObjects" "Target"
+{
+}
+
+//Marker on Table
+Create "rndOutputMarker" "rndMessHallTable2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-13.4632, 336.871, -23.6231"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndMessHallTable2" "rndMessHallObjects" "Target"
+{
+}
+
+//Marker on Table
+Create "rndOutputMarker" "rndMessHallTable3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-9.86727, 280.069, -23.6231"
+		"Heading" 0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndMessHallTable3" "rndMessHallObjects" "Target"
+{
+}
+
+//Small Alcove near Turrets
+Create "rndOutputMarker" "rndMessHallAlcove"
+{
+	+ObjProp "Position"
+	{
+		"Location" "21.6565, 303.888, -23.6788"
+		"Heading" f3c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndMessHallAlcove" "rndMessHallObjects" "Target"
+{
+}
+
+/////////////////=====	Bathrooms	=====\\\\\\\\\\\\\\\\\
+
+////Bathrooms Hallway
+
+//Dead woman in corner
++Link 227 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+//Dead guy with Wrench
++Link 1163 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+//Wrench
++Link 1176 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+////Female Bathroom
+
+//Dead woman in cubicle
++Link 749 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+//Pistol
++Link 765 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+////Male Bathroom
+
+//Nanites
++Link 770 "rndMessHallBathroomObjects" "Target"
+{
+}
+
+/////////////////=====	Kitchen	=====\\\\\\\\\\\\\\\\\
+
+////Main Kitchen Area
+
+//Corpse
++Link 1189 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+//A Table
++Link 231 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+//Bags of Chips
++MetaProp 1177 "Object Randomiser - No Auto Output"
++Link 1177 "rndMessHallKitchenObjects" "Target"
+{
+}
++MetaProp 1178 "Object Randomiser - No Auto Output"
++Link 1178 "rndMessHallKitchenObjects" "Target"
+{
+}
++MetaProp 1179 "Object Randomiser - No Auto Output"
++Link 1179 "rndMessHallKitchenObjects" "Target"
+{
+}
++MetaProp 1180 "Object Randomiser - No Auto Output"
++Link 1180 "rndMessHallKitchenObjects" "Target"
+{
+}
++MetaProp 1181 "Object Randomiser - No Auto Output"
++Link 1181 "rndMessHallKitchenObjects" "Target"
+{
+}
++MetaProp 1182 "Object Randomiser - No Auto Output"
++Link 1182 "rndMessHallKitchenObjects" "Target"
+{
+}
+//+MetaProp 1183 "Object Randomiser - No Auto Output"
++Link 1183 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+////Food Storage
+
+//In a Freezer
+Create "rndOutputMarker" "rndMessHallFreezer1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-21.8154, 430.185, -24.9193"
+		"Heading" c378
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndMessHallFreezer1" "rndMessHallKitchenObjects" "Target"
+{
+}
+
+//Corpse in freezer
++Link 1136 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+//Corpse in corner
++Link 1124 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+//Shotgun in corner
++Link 1125 "rndMessHallKitchenObjects" "Target"
+{
+}
+
+
+/////////////////=====	Lounge	=====\\\\\\\\\\\\\\\\\
+
+/*
+//Crystal Shard
+//Ignore because a log is associated with it
++Link 748 "rndLoungeObjects" "Target"
+{
+}
+*/
+
+//Crystal Shard corpse
++Link 743 "rndLoungeObjects" "Target"
+{
+}
+
+
+//Maintenance Tool under Seat
+//This is a secret item in vanilla, we want to maintain that
++MetaProp 789 "Object Randomiser - High Priority Output"
++Link 789 "rndLoungeObjects" "Target"
+{
+}
+
+//Cyber Modules
+//Cannot use these as a standard output as they are stuck inside a physics object
++MetaProp 1351 "Object Randomiser - Exact Positioning"
++Link 1351 "rndLoungeObjects" "Target"
+{
+}
+
+////Upper Level
+
+//Worm Corpse
+//He should always contain something
++MetaProp 767 "Object Randomiser - High Priority Output"
++Link 767 "rndLoungeObjects" "Target"
+{
+}
+
+//Cola Can
++Link 966 "rndLoungeObjects" "Target"
+{
+}
+
+//Liquor
++Link 967 "rndLoungeObjects" "Target"
+{
+}
+
+/////////////////=====	Hackable Crates	=====\\\\\\\\\\\\\\\\\
+
+//In the radiation hallway
++Link 1032 "rndSecurityCrates" "Target"
+{
+}
+
+//In a Power Admin office
++Link 1031 "rndSecurityCrates" "Target"
+{
+}

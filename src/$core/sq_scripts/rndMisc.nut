@@ -11,30 +11,38 @@ class IOManager
 	outputsLow = null;
 
 	seed = null;
+	ignorePriority = null;
+	randomiser = null;
+	allowedTypes = null;
+	prioritizeWorldObjects = null;
 	
-	constructor(cSeed)
+	constructor(cRandomiser, cSeed, cIgnorePriority, cAllowedTypes, cPrioritizeWorld)
 	{
 		inputs = [];
 		outputs = [];
 		outputsLow = [];
 		
+		randomiser = cRandomiser;
 		seed = cSeed;
+		ignorePriority = cIgnorePriority;
+		allowedTypes = cAllowedTypes;
+		prioritizeWorldObjects = cPrioritizeWorld;
 	}
 	
-	function GetInputsAndOutputsForAllObjectPools(obj, validInputTypes, prioritizeWorldObjects)
+	function GetInputsAndOutputsForAllObjectPools()
 	{
-		//print ("Prioritising world objects for " + obj + " set to " + prioritizeWorldObjects);
+		//print ("Prioritising world objects for " + randomiser + " set to " + prioritizeWorldObjects);
 	
-		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
+		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,randomiser))
 		{
 			local objectPool = sLink(ilink).dest;
 			foreach (link in Link.GetAll(-LINK_TARGET,objectPool))
 			{
 				local target = sLink(link).dest;
-				ProcessInput(target,validInputTypes);
+				ProcessInput(target);
 			}
 		}
-		foreach (olink in Link.GetAll(LINK_SWITCHLINK,obj))
+		foreach (olink in Link.GetAll(LINK_SWITCHLINK,randomiser))
 		{
 			local objectPool = sLink(olink).dest;
 			foreach (link in Link.GetAll(-LINK_TARGET,objectPool))
@@ -76,7 +84,7 @@ class IOManager
 		return Property.Get(item,"ContainDims","Width") != 0 || Property.Get(item,"ContainDims","Height") != 0;
 	}
 	
-	function ProcessInput(item, validInputTypes)
+	function ProcessInput(item)
 	{
 		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
 			return;
@@ -86,21 +94,21 @@ class IOManager
 			foreach (link in Link.GetAll(LINK_CONTAINS,item))
 			{
 				local contained = sLink(link).dest;
-				if (IsInputValid(contained,validInputTypes))
+				if (IsInputValid(contained))
 				{
 					local input = Input(contained);
 					inputs.append(input);
 				}
 			}
 		}
-		else if (IsInputValid(item,validInputTypes))
+		else if (IsInputValid(item))
 		{
 			local input = Input(item);
 			inputs.append(input);
 		}
 	}
 	
-	function IsInputValid(item,types)
+	function IsInputValid(item)
 	{
 		//Check that the item can actually be an input
 		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
@@ -114,7 +122,7 @@ class IOManager
 		}
 	
 		//Check archetypes
-		foreach (archetype in types)
+		foreach (archetype in allowedTypes)
 		{
 			if (isArchetype(item,archetype))
 				return true;
@@ -145,11 +153,9 @@ class IOManager
 	function AddOutput(item,prioritize)
 	{
 		srand(seed + item.output);
-		local highPriority = (prioritize && (rand() % 4) == 0)
-			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
-		//local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		local highPriority = (prioritize && (rand() % 4) == 0) || item.highPriority;
 		
-		if (highPriority)
+		if (highPriority && !ignorePriority)
 		{
 			//print (item.output + " was high priority");
 			outputs.append(item);
@@ -254,6 +260,7 @@ class Output
 	valid = null;
 	secret = null;
 	noJunk = null;
+	highPriority = null;
 	
 	constructor(cOutput)
 	{
@@ -261,19 +268,21 @@ class Output
 		name = ShockGame.GetArchetypeName(cOutput);
 		valid = true;
 		secret = Object.HasMetaProperty(cOutput,"Object Randomiser - Secret");
-		noJunk = Object.HasMetaProperty(cOutput,"Object Randomiser - No Junk");
+		highPriority = Object.HasMetaProperty(cOutput,"Object Randomiser - High Priority Output");
+		noJunk = Object.HasMetaProperty(cOutput,"Object Randomiser - No Junk") || highPriority || secret;
 	}
 	
 	function checkHandleMove(input,nosecret)
-	{
+	{	
 		if (!valid)
 			return false;
 			
 		//handle "secret" outputs
 		if (nosecret && secret)
 			return false;
-			
-		if ((secret || noJunk) && input.isJunk)
+		
+		//handle junk items
+		if (noJunk && input.isJunk)
 			return false;
 		
 		return true;
@@ -349,6 +358,7 @@ class PhysicalOutput extends Output
 		if (exactPosition)
 		{
 			Object.Teleport(input.item, position, facing);
+			Physics.ControlCurrentLocation(input.item);
 		}
 		else
 		{
@@ -369,9 +379,11 @@ class PhysicalOutput extends Output
 	
 	//Items with these archetypes will have their X, Y and Z facing set to the specified value
 	static fixArchetypes = [
-		[-938,-1,0,-1], //Cyber Modules
+		[-938,0,0,-1], //Cyber Modules
 		[-85,0,0,-1], //Nanites
 		[-1396,4000,0,-1], //Ciggies
+		[-99,-1,0,4500], //Implants
+		[-320,0,0,-1], //Softs
 		//[-964,-1,-1,-1], //Vodka
 	];
 	

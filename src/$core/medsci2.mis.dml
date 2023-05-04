@@ -232,6 +232,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 }
 
 //Nanites near bioopsy lab
++MetaProp 1221 "Object Randomiser - No Junk"
 +Link 1221 "rndMedicalObjects" "Target"
 {
 }
@@ -467,11 +468,13 @@ Create "rndOutputMarker" "rndRadiationShelves"
 {
 }
 
+/*
 //Shotgun at top of dark room near Watts office
 +MetaProp 607 "Object Randomiser - No Auto Output"
 +Link 607 "rndCrewObjects" "Target"
 {
 }
+*/
 
 
 ////Markers and other spawn points

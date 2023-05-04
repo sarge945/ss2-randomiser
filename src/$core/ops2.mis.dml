@@ -502,10 +502,12 @@ Create "rndOutputMarker" "rndAdminRamp"
 //Items in the pit
 //Cybermodules
 +MetaProp 1097 "Object Randomiser - High Priority Output"
++MetaProp 1097 "Object Randomiser - Secret"
 +Link 1097 "rndSystemsAdminObjects" "Target"
 {
 }
 //Nanites
++MetaProp 479 "Object Randomiser - Secret"
 +MetaProp 479 "Object Randomiser - High Priority Output"
 +Link 479 "rndSystemsAdminObjects" "Target"
 {

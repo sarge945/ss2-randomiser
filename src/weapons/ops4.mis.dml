@@ -1,0 +1,47 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for The whole map, since we are only dealing with weapons
+//we have seen before, and which don't matter all that much.
+//NOTE: The Stasis Field Generator is specifically not an input,
+//so don't worry about it.
+Create "rndComplexRandomiser" "rndOpsWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
+}
+//Inputs
++Link "rndBarracksObjects" "rndOpsWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndSystemOpsObjects" "rndOpsWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndBarracksObjects" "rndOpsWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsWeaponRandomiser" "~SwitchLink"
+{
+}
+/*
+//Already has SFG
++Link "rndSystemOpsObjects" "rndOpsWeaponRandomiser" "~SwitchLink"
+{
+}
+*/
++Link "rndPowerOpsObjects" "rndOpsWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsWeaponRandomiser" "~SwitchLink"
+{
+}

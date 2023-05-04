@@ -183,7 +183,6 @@ Create "rndOutputMarker" "rndCryoGlassChamber"
 	}
 }
 +MetaProp "rndCryoGlassChamber" "Object Randomiser - High Priority Output"
-+MetaProp "rndCryoGlassChamber" "Object Randomiser - No Junk"
 +Link "rndCryoGlassChamber" "rndCryoObjectsAfterAirlock" "Target"
 {
 }
@@ -216,6 +215,8 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Overturned Crate in turret ramp room
+//Dangerous, so make it more valuable
++MetaProp 1432 "Object Randomiser - No Junk"
 +Link 1432 "rndScienceObjects" "Target"
 {
 }
@@ -276,6 +277,8 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Corpse near Power Recharger
+//Dangerous, so make it more valuable
++MetaProp 1182 "Object Randomiser - No Junk"
 +Link 1182 "rndScienceObjects" "Target"
 {
 }
@@ -316,6 +319,8 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Corpse in the Turret Ramp room
+//Dangerous, so make it more valuable
++MetaProp 702 "Object Randomiser - No Junk"
 +Link 702 "rndScienceObjects" "Target"
 {
 }
@@ -377,12 +382,15 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Some AP Ammo in the Turret Ramp room
-+MetaProp 225 "Object Randomiser - No Auto Output"
+//+MetaProp 225 "Object Randomiser - No Auto Output"
 +Link 225 "rndScienceObjects" "Target"
 {
 }
 
 //Some Bullets behind Turret in Ramp Room
+//Really dangerous, so mark it as a secret - don't want the power cell there
++MetaProp 79 "Object Randomiser - High Priority Output"
++MetaProp 79 "Object Randomiser - Secret"
 +Link 79 "rndScienceObjects" "Target"
 {
 }
@@ -393,6 +401,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Med Hypo under a piece of Debris in a Computer Room near the R and D Entrance
+//We use a marker for this to move it further away from the wall, so don't use this as an output
 +MetaProp 1113 "Object Randomiser - No Auto Output"
 +Link 1113 "rndScienceObjects" "Target"
 {
@@ -403,17 +412,17 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 {
 }
 
+/*
 //Potted plant in trap room
-+MetaProp 473 "Object Randomiser - No Auto Output"
 +Link 473 "rndScienceObjects" "Target"
 {
 }
 
 //Potted plant on desk near Medical entrance
-+MetaProp 840 "Object Randomiser - No Auto Output"
 +Link 840 "rndScienceObjects" "Target"
 {
 }
+*/
 
 
 

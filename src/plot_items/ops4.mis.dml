@@ -1,0 +1,26 @@
+// ================================================================================
+// 								Add Keycards to Randomiser
+// ================================================================================
+
+//Create a randomiser for the Security Keycard
+Create "rndComplexRandomiser" "rndKeycardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; debug=1;"
+}
+//Input
++Link "rndBrigObjects" "rndKeycardRandomiser" "SwitchLink"
+{
+}
+//Output
++Link "rndBrigObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}

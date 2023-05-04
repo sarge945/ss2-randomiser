@@ -1,0 +1,49 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the Mess Hall
+Create "rndComplexRandomiser" "rndMessHallWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
+}
+//Inputs
++Link "rndMessHallObjects" "rndMessHallWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndMessHallWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndMessHallWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndMessHallObjects" "rndMessHallWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndMessHallWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndMessHallWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the Main Hallway
+Create "rndComplexRandomiser" "rndMainWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
+}
+//Inputs
++Link "rndHallwayObjects" "rndMainWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndMainWeaponRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndHallwayObjects" "rndMainWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndMainWeaponRandomiser" "~SwitchLink"
+{
+}

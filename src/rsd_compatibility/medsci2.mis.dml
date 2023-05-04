@@ -1,0 +1,10 @@
+// ================================================================================
+// 								RSD Compatibility
+// ================================================================================
+
+//There's a crate near the biopsy lab in the turret hallway.
+//Usually it has armor in it, making it worth it.
+//But RSD removes that armour (for good reason),
+//so there's not much point going down there anymore.
+//Let's change that.
++MetaProp 1476 "Object Randomiser - High Priority Output"

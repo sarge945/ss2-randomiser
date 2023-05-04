@@ -7,7 +7,7 @@
 //it will always appear in the little window section since that is always classed as a high priority input.
 Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Cryo Items to it as Input
@@ -27,7 +27,7 @@ Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"
 //Create a randomiser for the Science Sector Weapons
 Create "rndComplexRandomiser" "rndScienceWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Science Items to it as Input
@@ -43,7 +43,7 @@ Create "rndComplexRandomiser" "rndScienceWeaponRandomiser"
 //Create a randomiser for the R and D Weapons
 Create "rndComplexRandomiser" "rndRandDWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

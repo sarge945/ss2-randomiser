@@ -29,9 +29,7 @@ class rndComplexRandomiser extends rndBase
 	];
 	
 	function Init()
-	{
-		DebugPrint ("Randomiser Init " + self);
-	
+	{	
 		//Configure the number of times we will randomise
 		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
 		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
@@ -40,6 +38,9 @@ class rndComplexRandomiser extends rndBase
 		SetData("Times",Data.RandInt(minTimes,maxTimes));
 		local seed = Data.RandInt(0,10000);
 		SetData("Seed",seed);
+		
+		//Initial print
+		print("Randomiser Init: " + Object.GetName(self) + " [" + self + "] (seed: " + seed + ")");
 		
 		//Add a delay to the timer to put less stress on the game when loading new areas
 		local priority = getParam("priority",0);
@@ -53,12 +54,15 @@ class rndComplexRandomiser extends rndBase
 	{
 		local seed = GetData("Seed");
 		local startDelay = GetData("startDelay");
+		local ignorePriority = getParam("ignorePriority",false);
+		local prioritizeWorld = getParam("prioritizeWorldObjects",false);
+		
 		DebugPrint ("Randomiser Setup (seed: " + seed + ")");
 			
 		ConfigureAllowedTypes();
 	
-		manager = IOManager(seed);
-		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
+		manager = IOManager(self,seed,ignorePriority,allowedTypes,prioritizeWorld);
+		manager.GetInputsAndOutputsForAllObjectPools();
 		
 		if (debug)
 		{

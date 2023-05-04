@@ -1,0 +1,80 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for all locations
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndOpsRandomiser"
+{
+}
+//Inputs
++Link "rndSystemOpsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBarracksShootingRangeObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigCellsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndSystemOpsObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndBrigCellsObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for the shooting range
+//Only allow Ammo
+Create "rndComplexRandomiser" "rndOpsShootingRangeRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-30; priority=1;"
+}
+//Inputs
++Link "rndSystemOpsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigCellsObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
+//Output
++Link "rndBarracksShootingRangeObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}

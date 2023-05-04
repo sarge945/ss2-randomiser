@@ -5,7 +5,7 @@
 //Create a randomiser for the Sector B Keycard
 Create "rndComplexRandomiser" "rndKeycardRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; noSecret=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
 }
 
 //Link the Sector B items to it

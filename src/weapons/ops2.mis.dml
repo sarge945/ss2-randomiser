@@ -5,7 +5,7 @@
 //Create a randomiser for the Crew Quarters Weapons
 Create "rndComplexRandomiser" "rndCrewQuartersWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs
@@ -24,7 +24,7 @@ Create "rndComplexRandomiser" "rndCrewQuartersWeaponRandomiser"
 //Create a randomiser for the Systems Administration Weapons
 Create "rndComplexRandomiser" "rndSystemsWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1;"
 }
 
 //Inputs

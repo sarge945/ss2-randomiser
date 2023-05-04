@@ -1,0 +1,70 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Main Hallway Power Administration, Lounge and Mess Hall
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndOpsRandomiser"
+{
+}
+
+//Inputs
++Link "rndHallwayObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerAdminObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndHallwayObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerAdminObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}
