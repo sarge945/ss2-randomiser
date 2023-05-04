@@ -95,7 +95,7 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 //Only allow it to appear in the main office area
 Create "rndComplexRandomiser" "rndLabAssistRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-969; priority=1; debug=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-969; priority=1;"
 }
 
 //Inputs

@@ -10,13 +10,14 @@ class IOManager
 	outputs = null;
 	outputsLow = null;
 
-	seed = null;
-	ignorePriority = null;
-	randomiser = null;
-	allowedTypes = null;
-	prioritizeWorldObjects = null;
+	seed = null; //The random seed we are using to generate.
+	ignorePriority = null; //Ignore all priority, give all outputs equal weight.
+	randomiser = null; //The randomiser object that created this
+	allowedTypes = null; //Archetypes that are allowed to randomise
+	prioritizeWorldObjects = null; //Should world objects get priority (1 in 4 chance)
+	fuzzy = null; //Whether or not items can "bubble" into the same containers, rather than simply iterating the entire list. Fuzzy will result in less sets where everything always has 1-2 items, and gives more variation.
 	
-	constructor(cRandomiser, cSeed, cIgnorePriority, cAllowedTypes, cPrioritizeWorld)
+	constructor(cRandomiser, cSeed, cIgnorePriority, cAllowedTypes, cPrioritizeWorld, cFuzzy)
 	{
 		inputs = [];
 		outputs = [];
@@ -27,17 +28,18 @@ class IOManager
 		ignorePriority = cIgnorePriority;
 		allowedTypes = cAllowedTypes;
 		prioritizeWorldObjects = cPrioritizeWorld;
+		fuzzy = cFuzzy;
 	}
 	
 	function GetInputsAndOutputsForAllObjectPools()
 	{
 		//print ("Prioritising world objects for " + randomiser + " set to " + prioritizeWorldObjects);
-	
+		
 		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,randomiser))
-		{
+		{	
 			local objectPool = sLink(ilink).dest;
 			foreach (link in Link.GetAll(-LINK_TARGET,objectPool))
-			{
+			{			
 				local target = sLink(link).dest;
 				ProcessInput(target);
 			}
@@ -57,7 +59,19 @@ class IOManager
 		outputs = GetOutputsArray();
 	}
 	
-	function RefreshOutput(currentOutput, fuzzy)
+	//Check if an input exists for a given output
+	//This will only be true if it's a physical output
+	function InputExistsForOutput(output)
+	{
+		foreach (input in inputs)
+		{	
+			if (input.item == output.output)
+				return true;
+		}
+		return false;
+	}
+	
+	function RefreshOutput(currentOutput)
 	{
 		local output = outputs[currentOutput];
 		srand(seed + currentOutput + output.output);
@@ -69,7 +83,7 @@ class IOManager
 		if (fuzzy)
 		{
 			local min = outputs.len() * 0.35;
-			local range = outputs.len() - 1 - min;
+			local range = outputs.len() - min;
 			local index = rand() % range + min;
 			outputs.insert(index,output);
 		}
@@ -103,7 +117,7 @@ class IOManager
 		}
 		else if (IsInputValid(item))
 		{
-			local input = Input(item);
+			local input = Input(item);		
 			inputs.append(input);
 		}
 	}
@@ -120,33 +134,37 @@ class IOManager
 			if (input.item == item)
 				return false;
 		}
-	
+		
 		//Check archetypes
 		foreach (archetype in allowedTypes)
 		{
 			if (isArchetype(item,archetype))
 				return true;
 		}
+		
 		return false;
 	}
 	
 	function ProcessOutput(item,prioritizeWorldObjects)
 	{		
 		//local isContainer = isArchetype(item,-379) || isArchetype(item,-118);
-		//local isMarker = ShockGame.GetArchetypeName(item) == "rndOutputMarker";
+		local isMarker = ShockGame.GetArchetypeName(item) == "rndOutputMarker";
 		
 		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Output"))
 			return;
 		
 		if (IsContainer(item))
 		{
-			local output = Output(item);
+			local output = Output(item,randomiser);
 			AddOutput(output,false);
 		}
 		else if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
 		{
-			local output = PhysicalOutput(item);
+			local output = PhysicalOutput(item,randomiser);
 			AddOutput(output,prioritizeWorldObjects);
+			
+			if (InputExistsForOutput(output) || isMarker)
+				output.Setup();
 		}
 	}
 
@@ -167,7 +185,7 @@ class IOManager
 		}
 	}
 	
-	function isArchetype(obj,type)
+	static function isArchetype(obj,type)
 	{
 		return obj == type || Object.Archetype(obj) == type || Object.InheritsFrom(obj,type);
 	}
@@ -246,7 +264,7 @@ class Input
 	{
 		foreach(type in junkArchetypes)
 		{
-			if (item == type || Object.Archetype(item) == type || Object.InheritsFrom(item,type))
+			if (IOManager.isArchetype(item,type))
 				return true;
 		}
 		return false;
@@ -261,8 +279,9 @@ class Output
 	secret = null;
 	noJunk = null;
 	highPriority = null;
+	randomiser = null;
 	
-	constructor(cOutput)
+	constructor(cOutput, cRandomiser)
 	{
 		output = cOutput;
 		name = ShockGame.GetArchetypeName(cOutput);
@@ -270,10 +289,11 @@ class Output
 		secret = Object.HasMetaProperty(cOutput,"Object Randomiser - Secret");
 		highPriority = Object.HasMetaProperty(cOutput,"Object Randomiser - High Priority Output");
 		noJunk = Object.HasMetaProperty(cOutput,"Object Randomiser - No Junk") || highPriority || secret;
+		randomiser = cRandomiser;
 	}
 	
 	function checkHandleMove(input,nosecret)
-	{	
+	{
 		if (!valid)
 			return false;
 			
@@ -288,8 +308,12 @@ class Output
 		return true;
 	}
 	
-	function HandleMove(input,nosecret)
+	function Setup()
 	{
+	}
+	
+	function HandleMove(input,nosecret)
+	{	
 		if (!checkHandleMove(input,nosecret))
 			return false;
 	
@@ -310,16 +334,16 @@ class PhysicalOutput extends Output
 
 	facing = null;
 	position = null;
-	exactPosition = null;
 	noFacing = null;
+	physicsControls = null;
 	
-	constructor(cOutput)
+	constructor(cOutput, cRandomiser)
 	{
-		base.constructor(cOutput);
+		base.constructor(cOutput, cRandomiser);
 		facing = Object.Facing(cOutput);
 		position = Object.Position(cOutput);
-		exactPosition = Object.HasMetaProperty(cOutput,"Object Randomiser - Exact Positioning");
 		noFacing = Object.HasMetaProperty(cOutput,"Object Randomiser - No Facing");
+		physicsControls = Property.Get(cOutput, "PhysControl", "Controls Active");
 	}
 	
 	function checkHandleMove(input,nosecret)
@@ -335,30 +359,73 @@ class PhysicalOutput extends Output
 		return true;
 	}
 	
+	function Setup()
+	{	
+		//Mark output as usable
+		Link.Create(LINK_TARGET,randomiser,output);
+	}
+	
+	//Items in this table will be considered the same archetype for the SameItemType function
+	static similarArchetypes = [
+		[-964, -965, -967], //Vodka, Champagne, Liquor
+		[-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
+	];
+	
+	function SameItemType(input)
+	{		
+		if (IOManager.isArchetype(input.item,output))
+			return true;
+			
+		local iArch = Object.Archetype(input.item);
+		local oArch = Object.Archetype(output);
+			
+		//Similar Archetypes count for the same
+		foreach (archList in similarArchetypes)
+		{
+			local iValid = false;
+			local oValid = false;
+			foreach (arch in archList)
+			{
+				if (iArch == arch)
+					iValid = true;
+				if (oArch == arch)
+					oValid = true;
+			}
+			if (iValid && oValid)
+				return true;
+		}
+	}
+	
 	function HandleMove(input, nosecret)
-	{
+	{	
 		if (!checkHandleMove(input,nosecret))
 			return false;
 			
-		if (!Link.AnyExist(LINK_TARGET,output))
+		if (!Link.AnyExist(LINK_TARGET,0,output))
 			return false;
 		
 		/* Broken currently - do not use!
 		if (!Physics.HasPhysics(input.item))
 			return false;
 		*/
-			
-		//prevent output from being used again
-		foreach(target in Link.GetAll(LINK_TARGET,output))
-			Link.Destroy(target);
-	
-		//Move object into position
+		
+		//Set output as unusable
+		foreach (ilink in Link.GetAll(LINK_TARGET,0,output))
+			Link.Destroy(ilink);
+		
+		//Move object out of container
 		Container.Remove(input.item);
 		
-		if (exactPosition)
+		//Make object render
+		Property.SetSimple(input.item, "HasRefs", TRUE);
+		
+		//If we are the same archetype, don't bother doing any of the physics stuff, and don't remove controls
+		//Instead, we need to just teleport the item to the output,
+		//and give it the same physics controls, so that it looks the same
+		if (SameItemType(input))
 		{
 			Object.Teleport(input.item, position, facing);
-			Physics.ControlCurrentLocation(input.item);
+			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
 		}
 		else
 		{
@@ -368,12 +435,9 @@ class PhysicalOutput extends Output
 			//Fix up physics
 			Property.Set(input.item, "PhysControl", "Controls Active", "");
 			Physics.SetVelocity(input.item,vector(0,0,10));
+			Physics.Activate(input.item);
 		}
 		
-		Physics.Activate(input.item);
-		
-		//Make object render
-		Property.SetSimple(input.item, "HasRefs", TRUE);
 		return true;
 	}
 	

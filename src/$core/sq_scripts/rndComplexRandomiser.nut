@@ -29,7 +29,10 @@ class rndComplexRandomiser extends rndBase
 	];
 	
 	function Init()
-	{	
+	{
+		//ONLY UNCOMMENT FOR TEST
+		//debug = true;
+	
 		//Configure the number of times we will randomise
 		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
 		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
@@ -39,29 +42,34 @@ class rndComplexRandomiser extends rndBase
 		local seed = Data.RandInt(0,10000);
 		SetData("Seed",seed);
 		
-		//Initial print
-		print("Randomiser Init: " + Object.GetName(self) + " [" + self + "] (seed: " + seed + ")");
-		
 		//Add a delay to the timer to put less stress on the game when loading new areas
-		local priority = getParam("priority",0);
 		local startDelay = (self % 1000) * 0.0001;
-		SetData("startDelay",startDelay);
-		DebugPrint("startDelay for " + Object.GetName(self) + " (" + self + ") is " + startDelay + " (Priority: " + priority + ")");
-		SetOneShotTimer("StartTimer",0.1 + startDelay + (priority * 0.1));
+		SetData("StartDelay",startDelay);
+		
+		//Set up priority
+		local priority = getParam("priority",0);
+		SetData("Priority",priority);
+		
+		//Initial print
+		print("Randomiser Init: " + Object.GetName(self) + " [" + self + "] (seed: " + seed + ") (startDelay: " + startDelay + ") (Priority: " + priority + ")");
+		
+		SetOneShotTimer("StartTimer",0.1 + startDelay);
 	}
 	
 	function Setup()
 	{
 		local seed = GetData("Seed");
-		local startDelay = GetData("startDelay");
+		local startDelay = GetData("StartDelay");
+		local priority = GetData("Priority");
 		local ignorePriority = getParam("ignorePriority",false);
 		local prioritizeWorld = getParam("prioritizeWorldObjects",false);
+		local fuzzy = getParam("variedOutput",true);
 		
 		DebugPrint ("Randomiser Setup (seed: " + seed + ")");
 			
 		ConfigureAllowedTypes();
 	
-		manager = IOManager(self,seed,ignorePriority,allowedTypes,prioritizeWorld);
+		manager = IOManager(self,seed,ignorePriority,allowedTypes,prioritizeWorld,fuzzy);
 		manager.GetInputsAndOutputsForAllObjectPools();
 		
 		if (debug)
@@ -78,7 +86,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.1 + startDelay); //DO NOT change this timer value, otherwise things start to break
+		SetOneShotTimer("RandomizeTimer",0.1 + startDelay + (priority * 0.1)); //DO NOT change this timer value, otherwise things start to break
 	}
 	
 	function ConfigureAllowedTypes()
@@ -108,19 +116,14 @@ class rndComplexRandomiser extends rndBase
 	
 	function Randomize()
 	{
-		DebugPrint("Randomizing");
-		
-		local times = GetData("Times");
-		times = Min(times,manager.inputs.len());
-		
 		local count = 0;
-		
-		local fuzzy = getParam("variedOutput",true);
 		local nosecret = getParam("noSecret",false);
+		local successes = 0;
+		local times = Min(manager.inputs.len(),GetData("Times"));
 		
-		DebugPrint ("Fuzzy enabled: " + getParam("variedOutput",true));
+		DebugPrint("Randomizing " + times + " times");
 
-		while (count < times)
+		while (count < manager.inputs.len() && successes < times)
 		{		
 			if (manager.inputs.len() == 0 || manager.outputs.len() == 0)
 				break;
@@ -139,23 +142,22 @@ class rndComplexRandomiser extends rndBase
 					break;
 				
 				output = manager.outputs[currentOutput];
-				success = output.HandleMove(input,nosecret);
-				//DebugPrint("Attemptiny to move " + input.item + " to output " + output.output + " (success: " + success + ")");
+				success = output.HandleMove(input,nosecret);				
+				DebugPrint("Attempting to move " + input.item + " to output " + output.output + " (success: " + success + ")");
 			}
 			while (!success)
 			
 			if (success)
 			{
-				manager.RefreshOutput(currentOutput,fuzzy);
+				successes++;
+				manager.RefreshOutput(currentOutput);
+				DebugPrint("Sending " + input.item + " to " + output.output);
 			}
-			
-			//print ("Sending " + input.item + " to " + output.output);
-			
 			
 			count++;
 		}
 		
-		DebugPrint("Randomize: Rolled " + count + " times");
+		DebugPrint("Randomize: Rolled " + count + " times (" + successes + " were successful)");
 		srand(time());
 		Object.Destroy(self);
 	}

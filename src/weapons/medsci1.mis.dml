@@ -2,7 +2,7 @@
 // 								Add Weapons to Randomisers
 // ================================================================================
 
-//Create a randomiser for the Cryo Sector Weapons (only PsiAmp)
+//Create a randomiser for the Cryo Sector Weapons (only PsiAmp and a Wrench)
 //priority 1 tells it to go after everything else. Since we only have 1 item to randomise,
 //it will always appear in the little window section since that is always classed as a high priority input.
 Create "rndComplexRandomiser" "rndCryoWeaponRandomiser"

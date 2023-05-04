@@ -110,12 +110,11 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
-/*
+
 //Plant on floor in ICU
 +Link 624 "rndMedicalRadiation2Objects" "Target"
 {
 }
-*/
 
 /////////////////=====	Crew Sector Forcefield Sector	=====\\\\\\\\\\\\\\\\\
 
@@ -226,8 +225,13 @@ Create "rndObjectCollection" "rndHackableObjects"
 ////Loose Items
 
 //Wine Bottle in Store Room with Bed
-+MetaProp 1516 "Object Randomiser - No Auto Output"
+//+MetaProp 1516 "Object Randomiser - No Auto Output"
 +Link 1516 "rndMedicalObjects" "Target"
+{
+}
+
+//Plant in Store Room with Bed
++Link 1522 "rndMedicalObjects" "Target"
 {
 }
 
@@ -449,12 +453,11 @@ Create "rndOutputMarker" "rndRadiationShelves"
 +Link 1840 "rndCrewObjects" "Target"
 {
 }
-/*
+
 //Plant in top apartment
 +Link 1843 "rndCrewObjects" "Target"
 {
 }
-*/
 
 //Chips floating in water in dark room near Watts office
 +MetaProp 83 "Object Randomiser - No Auto Output"
@@ -475,6 +478,21 @@ Create "rndOutputMarker" "rndRadiationShelves"
 {
 }
 */
+
+//Plant in flooded apartment
++Link 564 "rndCrewObjects" "Target"
+{
+}
+
+//Plant on Desk in flooded apartment
++Link 847 "rndCrewObjects" "Target"
+{
+}
+
+//Plant on Desk in different flooded apartment
++Link 852 "rndCrewObjects" "Target"
+{
+}
 
 
 ////Markers and other spawn points
@@ -547,9 +565,13 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 1411 "rndCrewObjectsBar" "Target"
 {
 }
-/*
+
 //Plant on Windowsill
 +Link 1030 "rndCrewObjectsBar" "Target"
+{
+}
+//Plant on Bar
++Link 630 "rndCrewObjects" "Target"
 {
 }
 //Plant on Bar
@@ -560,7 +582,7 @@ Create "rndOutputMarker" "rndArmouryAccess"
 +Link 716 "rndCrewObjectsBar" "Target"
 {
 }
-*/
+
 //Cigarettes
 +Link 1410 "rndCrewObjectsBar" "Target"
 {
