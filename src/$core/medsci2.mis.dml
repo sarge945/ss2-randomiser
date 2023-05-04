@@ -109,10 +109,12 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
+/*
 //Plant on floor in ICU
 +Link 624 "rndMedicalRadiation2Objects" "Target"
 {
 }
+*/
 
 /////////////////=====	Crew Sector Forcefield Sector	=====\\\\\\\\\\\\\\\\\
 
@@ -137,6 +139,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 +Link 1411 "rndCrewObjectsBar" "Target"
 {
 }
+/*
 //Plant on Windowsill
 +Link 1030 "rndCrewObjectsBar" "Target"
 {
@@ -149,6 +152,7 @@ Create "rndObjectCollection" "rndHackableObjects"
 +Link 716 "rndCrewObjectsBar" "Target"
 {
 }
+*/
 //Cigarettes
 +Link 1410 "rndCrewObjectsBar" "Target"
 {
@@ -431,10 +435,12 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 +Link 1840 "rndCrewObjects" "Target"
 {
 }
+/*
 //Plant in top apartment
 +Link 1843 "rndCrewObjects" "Target"
 {
 }
+*/
 
 //Items in the main bar section (with the grenade launcher)
 //Soda Cans

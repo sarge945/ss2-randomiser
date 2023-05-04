@@ -60,11 +60,14 @@ class PhysicalOutput extends Output
 			return false;
 	
 		//GenerateOutput(item);
-		Object.Teleport(item, position, FixItemFacing(item));
 		Container.Remove(item);
+		local position_up = vector(position.x, position.y, position.z + 0.2)
+		Object.Teleport(item, position_up, FixItemFacing(item));
+		Physics.DeregisterModel(item); //Fixes issues with "controlled" models
 		Property.SetSimple(item, "HasRefs", TRUE);
 		Physics.Activate(item);
 		Physics.SetVelocity(item,vector(0,0,10));
+		Property.Set(item, "PhysAttr", "Flags", "[None]");
 		valid = false;
 		return true;
 	}
@@ -74,6 +77,7 @@ class PhysicalOutput extends Output
 		[-938,0,0], //Cyber Modules
 		[-85,0,0], //Nanites
 		[-1396,3000,0], //Ciggies
+		[-964,0,0], //Vodka
 	];
 	
 	function FixItemFacing(item)
