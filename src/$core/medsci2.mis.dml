@@ -168,10 +168,13 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
+/*
 //Monkey Corpse on Medical Bed
+//Disabled due to being far too silly
 +Link 167 "rndMedicalObjects" "Target"
 {
 }
+*/
 
 ////Containers
 
@@ -233,12 +236,10 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
-/*
 //Medbed Key on upstairs table
 +Link 332 "rndMedicalObjects" "Target"
 {
 }
-*/
 
 //Med Hypo in Biopsy Lab
 +Link 1569 "rndMedicalObjects" "Target"

@@ -304,7 +304,7 @@ class PhysicalOutput extends Output
 	static fixArchetypes = [
 		[-938,-1,0,-1], //Cyber Modules
 		[-85,0,0,-1], //Nanites
-		[-1396,3000,-1,-1], //Ciggies
+		[-1396,4000,0,-1], //Ciggies
 		//[-964,-1,-1,-1], //Vodka
 	];
 	

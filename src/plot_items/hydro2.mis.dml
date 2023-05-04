@@ -1,0 +1,24 @@
+// ================================================================================
+// 								Add Keycard to Randomiser
+// ================================================================================
+
+//Create a randomiser for the Sector B Keycard
+Create "rndComplexRandomiser" "rndKeycardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157;"
+}
+
+//Link the Sector B items to it
++Link "rndSectorBObjects" "rndKeycardRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndKeycardRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndSectorBObjects" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndKeycardRandomiser" "~SwitchLink"
+{
+}

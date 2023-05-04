@@ -2,18 +2,18 @@
 // 								Add Keycard to Randomiser
 // ================================================================================
 
-//Create a randomiser for the Science Sector Power Cell
+//Create a randomiser for the Sector D Keycard
 Create "rndComplexRandomiser" "rndKeycardRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-157;"
 }
 
-//Link the Science Items to it as Input
+//Link the Items to it as Input
 +Link "rndHydro1Objects" "rndKeycardRandomiser" "SwitchLink"
 {
 }
 
-//Link the Science Items to it as Output
+//Link the Items to it as Output
 +Link "rndHydro1Objects" "rndKeycardRandomiser" "~SwitchLink"
 {
 }

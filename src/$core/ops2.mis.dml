@@ -1,0 +1,577 @@
+DML1
+
+FINGERPRINT
+{
+   122 [-244 85 -22]
+   123 [-244 90 -22]
+   125 [-244 95 -22]
+   341 [-244 100 -22]
+   540 [-66.44 38.9 -18.84]
+   538 [-71.73 38.92 -21.98]
+   995 [-69.86 49.07 -21.98]
+   993 [-74.98 48.94 -19.75]
+   542 [-45.49 29.57 -18.84]
+   1000 [-45.39 35.26 -22]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main Lobby area
+Create "rndObjectCollection" "rndLobbyObjects"
+{
+}
+
+//Create an object collection for Systems Administration
+Create "rndObjectCollection" "rndSystemsAdminObjects"
+{
+}
+
+//Create an object collection for the Lounge area
+Create "rndObjectCollection" "rndLoungeObjects"
+{
+}
+
+//Create an object collection for Crew Quarters
+Create "rndObjectCollection" "rndCrewQuartersObjects"
+{
+}
+
+//Create an object collection for Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Main Lobby	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Small Tri-Op crates near the Shodan reveal door
++Link 503 "rndLobbyObjects" "Target"
+{
+}
++Link 504 "rndLobbyObjects" "Target"
+{
+}
++Link 505 "rndLobbyObjects" "Target"
+{
+}
++Link 506 "rndLobbyObjects" "Target"
+{
+}
++Link 507 "rndLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Crew Quarters	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy in the lobby near shotgun
++Link 672 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Dead guy next to replicator full of worms.
+//Make high priority, since he is trapped
++MetaProp 1485 "Object Randomiser - High Priority Output"
++Link 1485 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Dead guy in the lobby's shotgun
++Link 1494 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Nanites on a beam overlooking a pool
++MetaProp 1463 "Object Randomiser - No Auto Output"
++Link 1463 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Instead, create a marker for it
+Create "rndOutputMarker" "rndApartmentBeam"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-166.171, 140.2, -26.2385"
+		"Heading" 83b4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndApartmentBeam" "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//inside the empty room
+Create "rndOutputMarker" "rndChemicalStoreroomShelf"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-149.246, 338.015, -24.7712"
+		"Heading" 903c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndChemicalStoreroomShelf" "rndCrewQuartersObjects" "Target"
+{
+}
+
+/////////////////=====	First set of Apartments	=====\\\\\\\\\\\\\\\\\
+//Going clockwise from the grav shafts to each apartment...
+
+////First Apartment
+
+//Dead guy on the bed
++Link 976 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker
++Link 552 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//DO NOT INCLUDE LOCKER 966!
+
+////Second Apartment
+
+/*
+//Medium Armour
++Link 475 "rndCrewQuartersObjects" "Target"
+{
+}
+*/
+
+//Locker
++Link 546 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Third Apartment (straight ahead, the trapped one with the spiders)
+
+//Auto Repair Tool
++Link 845 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker
++Link 495 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Put something in the empty apartment on the right
+Create "rndOutputMarker" "rndApartmentTrapSpot"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-182.526, 97.4229, -39.2295"
+		"Heading" 640
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndApartmentTrapSpot" "Object Randomiser - High Priority Output"
++Link "rndApartmentTrapSpot" "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Put something in the empty apartment on the left
+Create "rndOutputMarker" "rndApartmentTrapSpot2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-146.077, 106.283, -39.2295"
+		"Heading" b45c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndApartmentTrapSpot2" "Object Randomiser - High Priority Output"
++Link "rndApartmentTrapSpot2" "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Fourth Apartment
+
+//Locker
++Link 500 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Fifth Apartment
+
+//Locker
++Link 497 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Corpse
++Link 978 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Pistol
++Link 981 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Central Pool
+
+Create "rndOutputMarker" "rndApartmentPool"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-165.741, 158.274, -35.8385"
+		"Heading" 83b4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndApartmentPool" "rndCrewQuartersObjects" "Target"
+{
+}
+
+/////////////////=====	Second set of Apartments	=====\\\\\\\\\\\\\\\\\
+//Going clockwise from the grav shafts to each apartment...
+
+////First Apartment
+
+//Locker
++Link 524 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Second Apartment (actually a complex)
+
+//Locker
++Link 685 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker 2
++Link 550 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//AP Rounds
++Link 1491 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Rafters
+Create "rndOutputMarker" "rndApartment2Rafters"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-140.35, 235.659, -28.354"
+		"Heading" 3414
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndApartment2Rafters" "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Third Apartment (actually a complex)
+
+//Locker
++Link 492 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker 2
+//Make high priority since this is a tough room, there should always be SOMETHING worthwhile in here
++MetaProp 526 "Object Randomiser - High Priority Output"
++Link 526 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Fourth Apartment (actually a complex)
+
+//Locker 1
++Link 472 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker 2
++Link 724 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Fifth Apartment (actually a complex)
+
+//Locker 1
++Link 290 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Locker 2
++Link 490 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Corpse
++Link 548 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Fifth Apartment
+
+//Locker
++Link 702 "rndCrewQuartersObjects" "Target"
+{
+}
+
+////Lobby
+
+//On a bench near eggs
+Create "rndOutputMarker" "rndApartment2Lobby"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-184.014, 261.183, -37.0428"
+		"Heading" 266c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndApartment2Lobby" "rndCrewQuartersObjects" "Target"
+{
+}
+
+/////////////////=====	Lounge	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
+//Make high priority so there's always SOMETHING of value in the lounge
++MetaProp 638 "Object Randomiser - High Priority Output"
++Link 638 "rndLoungeObjects" "Target"
+{
+}
+
+//On a table
+Create "rndOutputMarker" "rndLoungeTable"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-158.082, 150.744, -6.31061"
+		"Heading" 66c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndLoungeTable" "rndLoungeObjects" "Target"
+{
+}
+
+//In a dark corner
+Create "rndOutputMarker" "rndLoungeCorner"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-143.485, 105.289, -9.13518"
+		"Heading" bd78
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndLoungeCorner" "rndLoungeObjects" "Target"
+{
+}
+
+/////////////////=====	Systems Administration	=====\\\\\\\\\\\\\\\\\
+//Going clockwise from the door to each office...
+
+//////Downstairs
+
+////Lobby
+
+//Garbage Bin
++Link 150 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////First Office
+
+//Desk
++Link 383 "rndSystemsAdminObjects" "Target"
+{
+}
+
+//Under the egg trap
+Create "rndOutputMarker" "rndAdminEggTrap"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-165.244, -33.2935, -20.2965"
+		"Heading" b588
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++MetaProp "rndAdminEggTrap" "Object Randomiser - High Priority Output"
++Link "rndAdminEggTrap" "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Second Office
+
+//Desk
++Link 483 "rndSystemsAdminObjects" "Target"
+{
+}
+
+//Desk 2
++Link 756 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Third Office (Board Room)
+
+//Corner of room
+Create "rndOutputMarker" "rndAdminBoardroom"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-213.817, -105.478, -23.3127"
+		"Heading" 53a4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndAdminBoardroom" "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Fourth Office
+
+//Desk
++Link 519 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Fifth Office
+
+//Desk
++Link 398 "rndSystemsAdminObjects" "Target"
+{
+}
+
+//Down the ramp out of view
+Create "rndOutputMarker" "rndAdminRamp"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-213.867, -18.693, -27.1164"
+		"Heading" f990
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndAdminRamp" "rndSystemsAdminObjects" "Target"
+{
+}
+
+////First Upstairs Office
+
+//Desk
++Link 763 "rndSystemsAdminObjects" "Target"
+{
+}
+
+//Items in the pit
+//Cybermodules
++MetaProp 1097 "Object Randomiser - High Priority Output"
++Link 1097 "rndSystemsAdminObjects" "Target"
+{
+}
+//Nanites
++MetaProp 479 "Object Randomiser - High Priority Output"
++Link 479 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Second Upstairs Office
+
+//Desk
++Link 158 "rndSystemsAdminObjects" "Target"
+{
+}
+
+//In the observation area
+Create "rndOutputMarker" "rndAdminObservationOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-171.178, -104.422, -9.30769"
+		"Heading" ffa8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndAdminObservationOffice" "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Third Upstairs Office
+
+//Desk
++Link 454 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Fourth Upstairs Office
+
+//Desk
++Link 488 "rndSystemsAdminObjects" "Target"
+{
+}
+
+////Fifth Upstairs Office
+
+Create "rndOutputMarker" "rndAdminUpstairsEmptyOffice"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-217.041, -20.3089, -11.3194"
+		"Heading" bba0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndAdminUpstairsEmptyOffice" "rndSystemsAdminObjects" "Target"
+{
+}
+
+
+/////////////////=====	Hackable Crates	=====\\\\\\\\\\\\\\\\\
+
+//Near chemical storeroom
++Link 1541 "rndSecurityCrates" "Target"
+{
+}
+
+//Inside apartments
++Link 1540 "rndSecurityCrates" "Target"
+{
+}

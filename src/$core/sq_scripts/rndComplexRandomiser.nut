@@ -23,12 +23,13 @@ class rndComplexRandomiser extends rndBase
 		-90, //Decorative items like mugs etc
 		-1255, //magazines
 		-4105, //Annelid Healing Gland
+		-1676, //Medbed Key
 		//-68, //potted plants
 		//-69, //potted plants
 	];
 	
 	function Init()
-	{	
+	{
 		DebugPrint ("Randomiser Init " + self);
 	
 		//Configure the number of times we will randomise
@@ -73,7 +74,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",startDelay); //DO NOT change this timer value, otherwise things start to break
+		SetOneShotTimer("RandomizeTimer",0.1 + startDelay); //DO NOT change this timer value, otherwise things start to break
 	}
 	
 	function ConfigureAllowedTypes()

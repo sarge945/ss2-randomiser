@@ -6,7 +6,7 @@
 +MetaProp "rndSectorBEmptyCloset" "Object Randomiser - No Auto Output"
 
 //In RSD, the laser pistol and the grenade launcher are going to be the first 2 we really find that are usable, so leave them alone
-+MetaProp 1014 "Object Randomiser - No Auto Input" //Laser Pistol
-+MetaProp 1012 "Object Randomiser - No Auto Input" //Grenade Launcher
-+MetaProp 1037 "Object Randomiser - No Auto Input" //Grenade Ammo
-+MetaProp 1038 "Object Randomiser - No Auto Input" //Grenade Ammo
+//+MetaProp 1014 "Object Randomiser - No Auto Input" //Laser Pistol
+//+MetaProp 1012 "Object Randomiser - No Auto Input" //Grenade Launcher
+//+MetaProp 1037 "Object Randomiser - No Auto Input" //Grenade Ammo
+//+MetaProp 1038 "Object Randomiser - No Auto Input" //Grenade Ammo

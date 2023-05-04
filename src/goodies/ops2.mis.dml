@@ -1,0 +1,52 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Systems Administration, Lounge and Crew Quarters
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndOpsRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndSystemsAdminObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewQuartersObjects" "rndOpsRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndLobbyObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndSystemsAdminObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewQuartersObjects" "rndOpsRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}
