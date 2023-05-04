@@ -39,6 +39,11 @@ CreateArch "Misc Metaprops" "Object Randomiser - Container"
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
 
+//Prevent automatically generated world markers from applying the "z fix" (adding 0.5 to their z position value)
+CreateArch "Misc Metaprops" "Object Randomiser - No Z Fix"
+{
+}
+
 //Prevent a world-object from automatically creating a marker
 CreateArch "Misc Metaprops" "Object Randomiser - No Auto Create Marker"
 {

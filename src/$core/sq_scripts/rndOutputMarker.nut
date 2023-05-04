@@ -21,11 +21,17 @@ class rndOutputMarker extends rndOutput
 		FixPhysics();
 	}
 
-	//Sometimes objects get stuck in the air
+	//Move our linked item up by .5 units in the z direction
 	function FixPhysics()
 	{
 		Physics.Activate(linkedItem);
-		Physics.SetVelocity(linkedItem, vector(0.0,0.0,-1.0));
+		Physics.SetVelocity(linkedItem,vector(0,0,10));
+		
+		if (!Physics.ValidPos(linkedItem))
+		{
+			//Physics.Activate(linkedItem);
+			print("OUTPUT " + self + " HAS BAD OBJECT POSITION FOR OBJECT " + linkedItem);
+		}
 	}
 
 	function ProcessItem(item)
@@ -33,9 +39,12 @@ class rndOutputMarker extends rndOutput
 		linkedItem = CloneContainedItem(item);
 		
 		DebugPrint ("output " + self + " moving item " + linkedItem + " to position " + Object.Position(self));
-		Object.Teleport(linkedItem, Object.Position(self), Object.Facing(self));
-		//Object.Destroy(self);
+		
+		local facing = Object.Facing(self);
+		Object.Teleport(linkedItem, Object.Position(self), vector(facing.x,0,0));
+		
 		Object.SetTransience(self,true);
+		//Object.Destroy(self);
 		SetOneShotTimer("StandardTimer",0.01);
 	}
 	

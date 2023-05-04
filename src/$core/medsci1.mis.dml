@@ -119,6 +119,7 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 ////Loose Items
 
 //Med hypo in the upper level
++MetaProp 234 "Object Randomiser - No Auto Create Marker"
 +Link 234 "rndCryoObjects" "Target"
 {
 }
@@ -130,10 +131,12 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 
 //Add the 2 items from the computer station smashable glass area
 //Shotgun Ammo
++MetaProp 607 "Object Randomiser - No Auto Create Marker"
 +Link 607 "rndCryoObjects" "Target"
 {
 }
 //Psi Hypo
++MetaProp 599 "Object Randomiser - No Auto Create Marker"
 +Link 599 "rndCryoObjects" "Target"
 {
 }
@@ -162,7 +165,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 {
 	+ObjProp "Position"
 	{
-		"Location" "58.015, -158.769, -3.55719"
+		"Location" "58.015, -158.769, -2.05719"
 		"Heading" 0
 		"Pitch" 0
 		"Bank" 0
@@ -312,6 +315,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A bag of chips in the Security Closet
++MetaProp 551 "Object Randomiser - No Auto Create Marker"
 +Link 551 "rndScienceObjects" "Target"
 {
 }
@@ -337,6 +341,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Rad Patch in nook near Medical Lobby Desk
++MetaProp 835 "Object Randomiser - No Auto Create Marker"
 +Link 835 "rndScienceObjects" "Target"
 {
 }
@@ -347,6 +352,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //Some AP Ammo in the Turret Ramp room
++MetaProp 225 "Object Randomiser - No Auto Create Marker"
 +Link 225 "rndScienceObjects" "Target"
 {
 }
@@ -362,6 +368,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Med Hypo under a piece of Debris in a Computer Room near the R and D Entrance
++MetaProp 1113 "Object Randomiser - No Auto Create Marker"
 +Link 1113 "rndScienceObjects" "Target"
 {
 }
@@ -379,7 +386,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 
 
 
-
+/*
 //On the floor near the first power charger (with the turrets)
 Create "rndOutputMarker" "SargeRechargerInput"
 {
@@ -396,6 +403,7 @@ Create "rndOutputMarker" "SargeRechargerInput"
 +Link "SargeRechargerInput" "rndScienceObjects" "Target"
 {
 }
+*/
 
 //Bench in small area with trashcan and observation window to Watts lab
 Create "rndOutputMarker" "SargeRandomObservationRoom"
@@ -454,6 +462,7 @@ Create "rndOutputMarker" "SargeRandomTrapRoomGrating"
 +Link "SargeRandomTrapRoomGrating" "rndScienceObjects" "Target"
 {
 }
+
 /*
 //Trap room floor area
 Create "rndOutputMarker" "SargeRandomTrapRoomFloor"
@@ -486,7 +495,6 @@ Create "rndOutputMarker" "SargeRandomSecurityRoomClosetDesk"
 {
 }
 
-
 //Medical lobby desk
 Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk"
 {
@@ -514,34 +522,40 @@ Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk2"
 +Link "SargeRandomMedicalLobbyDesk2" "rndScienceObjects" "Target"
 {
 }
-Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk3"
+
+//Nook in the Medical Lobby
+//Moved slightly compared to object 835 so that more objects can fit
+Create "rndOutputMarker" "SargeRandomMedicalLobbyDeskNook"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-67.5565, -194.652, 0.830598"
-		"Heading" a98
+		"Location" "-74.7359, -207.633, 9.05272"
+		"Heading" 36b3
 		"Pitch" 0
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMedicalLobbyDesk3" "rndScienceObjects" "Target"
++Link "SargeRandomMedicalLobbyDeskNook" "rndScienceObjects" "Target"
 {
 }
 
-//Medical lobby nook above the desk
-Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk4"
+//Under the grating in the Computer Room near R&D Entrance
+//This has to be done specially because the hypo is too close to the wall
+Create "rndOutputMarker" "SargeRandomComputerRoom"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-74.899, -208.508, 8.6306"
-		"Heading" a98
+		"Location" "12.423, -5.5672, -2.93785"
+		"Heading" ea39
 		"Pitch" 0
 		"Bank" 0
 	}
+	+ObjProp "DesignNoteSS" = "limitType=-51;"
 }
-+Link "SargeRandomMedicalLobbyDesk4" "rndScienceObjects" "Target"
++Link "SargeRandomMorgueGurney" "rndScienceObjects" "Target"
 {
 }
+
 
 //Chair in the main Xerxes room
 Create "rndOutputMarker" "SargeRandomXerxesChair"
@@ -568,23 +582,9 @@ Create "rndOutputMarker" "SargeRandomMorgueGurney"
 		"Pitch" 0
 		"Bank" 0
 	}
+	+ObjProp "DesignNoteSS" = "limitType=-51;"
 }
 +Link "SargeRandomMorgueGurney" "rndScienceObjects" "Target"
-{
-}
-
-//Computer Room near R&D
-Create "rndOutputMarker" "SargeRandomComputerRoom"
-{
-	+ObjProp "Position"
-	{
-		"Location" "12.423, -5.5672, -2.93785"
-		"Heading" ea39
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomComputerRoom" "rndScienceObjects" "Target"
 {
 }
 
@@ -600,21 +600,6 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 	}
 }
 +Link "SargeRandomChemicalStoreroom" "rndScienceObjects" "Target"
-{
-}
-
-//On top of box in turret/recharger room
-Create "rndOutputMarker" "SargeRandomTurretRoomBox"
-{
-	+ObjProp "Position"
-	{
-		"Location" "3.89734, 13.2885, -4.88342"
-		"Heading" f508
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomTurretRoomBox" "rndScienceObjects" "Target"
 {
 }
 
@@ -671,6 +656,7 @@ Create "rndOutputMarker" "SargeRandomTurretRoomBox"
 }
 
 //A Med Hypo
++MetaProp 114 "Object Randomiser - No Auto Create Marker"
 +Link 114 "rndRNDObjects" "Target"
 {
 }
@@ -691,6 +677,7 @@ Create "rndOutputMarker" "SargeRandomTurretRoomBox"
 }
 
 //AP Clip on the Bench in the Power Cell Room
++MetaProp 1345 "Object Randomiser - No Auto Create Marker"
 +Link 1345 "rndRNDObjects" "Target"
 {
 }
@@ -700,46 +687,13 @@ Create "rndOutputMarker" "SargeRandomTurretRoomBox"
 
 ////Extra Markers
 
-
-
-
-
-
-//Dr Watts room gurneys
-Create "rndOutputMarker" "SargeRandomWattsRoomOutput2"
-{
-	+ObjProp "Position"
-	{
-		"Location" "12.9051, 110.403, -12.073"
-		"Heading" 3580
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomWattsRoomOutput2" "rndRNDObjects" "Target"
-{
-}
-Create "rndOutputMarker" "SargeRandomWattsRoomOutput3"
-{
-	+ObjProp "Position"
-	{
-		"Location" "43.0566, 106.801, -12.073"
-		"Heading" b3e0
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomWattsRoomOutput3" "rndRNDObjects" "Target"
-{
-}
-
 //Table in R&D Room with power charger
 Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-26.0393, 110.423, -8.06447"
-		"Heading" e0be
+		"Location" "-23.2229, 95.1905, -6.86447"
+		"Heading" 2590
 		"Pitch" 0
 		"Bank" 0
 	}
@@ -752,43 +706,13 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-23.2229, 95.1905, -8.06447"
-		"Heading" 2590
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomRandDPowerRoomDesk2" "rndRNDObjects" "Target"
-{
-}
-//Table in R&D Room with power charger
-Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk3"
-{
-	+ObjProp "Position"
-	{
 		"Location" "-30.1695, 52.4995, 0.515529"
 		"Heading" 1fc
 		"Pitch" 0
 		"Bank" 0
 	}
 }
-+Link "SargeRandomRandDPowerRoomDesk3" "rndRNDObjects" "Target"
-{
-}
-
-
-//Gurney in main R&D Hallway
-Create "rndOutputMarker" "SargeRandomRandDHallway1"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-23.676, 45.1518, 0.115529"
-		"Heading" 844
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomRandDHallway1" "rndRNDObjects" "Target"
++Link "SargeRandomRandDPowerRoomDesk2" "rndRNDObjects" "Target"
 {
 }
 

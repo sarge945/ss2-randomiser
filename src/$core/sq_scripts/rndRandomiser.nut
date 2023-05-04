@@ -16,7 +16,6 @@ class rndRandomiser extends rndBase
 	allowedTypes = null;
 	autoOutputs = null;
 	autoInputs = null;
-	maxItems = null;
 	allowMonsters = null;
 	
 	currentOutputIndex = null;
@@ -56,7 +55,6 @@ class rndRandomiser extends rndBase
 		autoInputs = getParam("autoInputs",true);
 		allowMonsters = getParam("allowMonsters",false); //for safety
 		
-		maxItems = 999;
 		currentOutputIndex = 0;
 	
 		//DebugPrint (self + " has AutoInputs set to: " + autoInputs);
@@ -85,7 +83,6 @@ class rndRandomiser extends rndBase
 	{
 		if (message().name == "InitTimer")
 		{
-			//create automarkers
 			CreateAutoMarkers();
 		
 			Array_Shuffle(inputs);
@@ -119,7 +116,7 @@ class rndRandomiser extends rndBase
 			
 		while (Object.IsTransient(outputs[currentOutputIndex]))
 		{
-			print (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>output is transient, removing..");
+			//DebugPrint ("output " + outputs[currentOutputIndex] + " is transient, removing..");
 			outputs.remove(currentOutputIndex);
 		}
 		
@@ -138,14 +135,14 @@ class rndRandomiser extends rndBase
 			if (input[INPUT_CREATE_MARKER])
 			{
 				local worldItem = input[INPUT_OBJECT];
-				local designNote = Property.Get(worldItem,"DesignNoteSS");
 		
 				DebugPrint(self + ": input " + worldItem + " is pickupable, creating auto marker");
 				local marker = Object.BeginCreate("rndOutputMarker");
-				//Object.Teleport(marker, Object.Position(worldItem), Object.Facing(worldItem));
-				Object.Teleport(marker, Object.Position(worldItem), vector(0,0,0));
-				Property.SetSimple(marker,"DesignNoteSS",designNote);
+				local position = Object.Position(worldItem);			
+				Object.Teleport(marker, position, Object.Facing(worldItem));				
+				//Object.Teleport(marker, Object.Position(worldItem), vector(0,0,0));
 				Object.EndCreate(marker);
+				print ("Auto Marker " + marker + " created from input " + input[INPUT_OBJECT]);
 				outputs.append(marker);
 			}
 		}
@@ -154,9 +151,9 @@ class rndRandomiser extends rndBase
 	//Send an item to an output
 	function OnGetItem()
 	{
-		DebugPrint (self + " received GetItem from " + message().from + " (maxitems: " + maxItems + ")");
+		DebugPrint (self + " received GetItem from " + message().from);
 	
-		if (inputs.len() > 0 && maxItems > 0 && outputs.len() > 0)
+		if (inputs.len() > 0 && outputs.len() > 0)
 		{
 			local index = 0;
 			if (message().data)
@@ -170,7 +167,6 @@ class rndRandomiser extends rndBase
 			
 				DebugPrint (self + " sending ReceiveItem to " + message().from);
 				SendMessage(message().from,"ReceiveItem",input);
-				maxItems--;
 				inputs.remove(index);
 				
 				//SignalReady();
@@ -289,22 +285,6 @@ class rndRandomiser extends rndBase
 			else if (autoOutputs == true)
 				outputs.append(input);
 		}
-		
-		/*
-		//If it's a "world object", we can create a marker at it's position
-		if (isPickupable && isAllowedToCreateMarkers && !isContained)
-		{
-			local designNote = Property.Get(input,"DesignNoteSS");
-		
-			DebugPrint(self + ": input " + input + " is pickupable, creating auto marker");
-			//local marker = Object.BeginCreate("rndOutputMarker");
-			//Object.Teleport(marker, Object.Position(input), Object.Facing(input));
-			//Object.Teleport(marker, Object.Position(input), vector(0,0,0));
-			//Property.SetSimple(marker,"DesignNoteSS",designNote);
-			//Object.EndCreate(marker);
-			
-		}
-		*/
 		
 		if (autoInputs == true)
 		{

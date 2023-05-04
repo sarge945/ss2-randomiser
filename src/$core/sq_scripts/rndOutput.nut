@@ -5,14 +5,13 @@ class rndOutput extends rndBase
 
 	function Init()
 	{
-		limitType = getParam("limitType",null);
 		onceOnly = false;
 	}
 
 	function OnReceiveItem()
 	{
 		local item = message().data;
-		DebugPrint("output " + self + " received " + item);
+		DebugPrint("output " + self + " received " + item);		
 		ProcessItem(item);
 	}
 	

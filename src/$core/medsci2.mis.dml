@@ -362,7 +362,7 @@ Create "rndObjectCollection" "rndArmouryObjects"
 }
 
 //Chips floating in water in dark room near Watts office
-+ObjProp 83 "DesignNoteSS" = "noAutoMarker=true;"
++MetaProp 83 "Object Randomiser - No Auto Create Marker"
 +Link 83 "rndCrewObjects" "Target"
 {
 }
