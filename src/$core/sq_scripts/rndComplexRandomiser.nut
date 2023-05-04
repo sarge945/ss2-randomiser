@@ -135,12 +135,16 @@ class rndComplexRandomiser extends rndBase
 		//Shuffle and filter inputs by type
 		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
 		
-		//Remove outputs that are items that don't match with any input
-		local outputItems = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
-		outputs = rndFilterCombine(outputItems,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
+		outputs = rndFilterCombine(IOcollection.outputsItems,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
 		
-		//prepare each output
-		foreach (output in outputs)
+		//Even though we have a lot of possible outputs,
+		//We need to signal which ones are usable
+		//So we get a list of inputs which are either containers, markers, or an input
+		local validOutputs = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
+		validOutputs = rndFilterCombine(validOutputs,IOcollection.outputsMarkers,IOcollection.outputsContainers).results;
+		
+		//prepare each of our filtered outputs
+		foreach (output in validOutputs)
 			output.Setup(self);
 		
 		if (ignorePriority)

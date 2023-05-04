@@ -64,7 +64,7 @@ CreateArch "Misc Metaprops" "Object Randomiser - Container Only"
 }
 
 //Set a particular output to be "high priority" - it will be filled with items first
-//Also implies No Junk
+//Also implies No Junk, unless Junk Only is set
 CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 {
 }
@@ -98,6 +98,8 @@ CreateArch "Misc Metaprops" "Object Randomiser - No Junk"
 //Use this for junk.
 //These spots will only allow junk. Use for bars, etc.
 //Cancelled out by Secret
+//If used with High-Priority Output, will cancel out it's "No Junk" rule, and only allow junk
+//If used with Secret output, will cancel out it's "No Junk" rule, and only allow junk
 CreateArch "Misc Metaprops" "Object Randomiser - Junk Only"
 {
 }
@@ -105,7 +107,8 @@ CreateArch "Misc Metaprops" "Object Randomiser - Junk Only"
 //Use this for particularly devious spots. Randomisers set to noSecret=1 won't use them.
 //Use for making things like key items not be super hidden and block progress
 //It's also useful for highly dangerous areas, like near turrets, to stop key items being placed in insanely hard locations
-//These outputs will also not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
+//These outputs will also not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots,
+//Unless you use Junk Only, which counteracts that setting
 CreateArch "Misc Metaprops" "Object Randomiser - Secret"
 {
 }
