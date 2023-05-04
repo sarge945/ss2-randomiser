@@ -43,10 +43,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	noRespectJunk = null;
 	noSecret = null;
 	noCorpse = null;
+	timerID = null;
 	
 	function Setup()
 	{
 		base.Setup();
+		
+		/*
+		if (name == "rndEngineeringRandomiser")
+			debugLevel = 999;
+		*/
 		
 		//Populate configuration
 		fuzzy = getParam("variedOutput",1);
@@ -78,11 +84,12 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
 	function OnOutputSuccess()
 	{
-		if (inputs.len() == 0 || outputs.len() == 0 || outputs[0] != message().from)
-			return;
-		
 		local output = message().from;
 		local input = message().data;
+		local pos = inputs.find(input);
+	
+		if (inputs.len() == 0 || outputs.len() == 0 || pos == null)
+			return;
 	
 		//print("OnOutputSuccess received");
 		currentRolls++;
@@ -91,23 +98,26 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		PrintDebug("	Output Successful for " + input + " to " + output,4);
 		
 		RemoveInput(input);
-		ReplaceOutput();
+		ReplaceOutput(output);
 		Randomise();
 	}
 	
 	function OnOutputFailed()
-	{	
-		if (inputs.len() == 0 || outputs.len() == 0 || outputs[0] != message().from)
+	{
+		local output = message().from;
+		local pos = outputs.find(output);
+		
+		if (inputs.len() == 0 || outputs.len() == 0 || pos == null)
 			return;
 		
 		failures++;
 			
 		//print("OnOutputFailed received");
-		PrintDebug("	Output Failed for output " + message().from,4);
-				
-		outputs.remove(0);
-		//ReplaceOutput(true);
+		PrintDebug("	Output Failed for output " + output,4);
+		
+		outputs.remove(pos);
 		Randomise();
+		//ReplaceOutput(output,true);
 	}
 
 	function Randomise(outputDebugText = true)
@@ -132,6 +142,22 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		
 		PrintDebug("	Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
 		PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),currentRolls);
+		if (timerID != null)
+			KillTimer(timerID);
+		timerID = SetOneShotTimer("RandomiseTimer",0.1);
+	}
+
+	function OnTimer()
+	{
+		base.OnTimer()
+		if (message().name == "RandomiseTimer")
+		{
+			//we're stuck!
+			PrintDebug("contingency timer activated...",4);
+			ShowDebug("contingency timer activated...",4);
+			outputs.remove(0);
+			Randomise();
+		}
 	}
 
 	function RemoveInput(input)
@@ -183,9 +209,11 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	//possibly contain more than one, or nothing,
 	//since they are reinserted from the bubble index to the end,
 	//rather than always at the end
-	function ReplaceOutput(forceEnd = false)
+	function ReplaceOutput(output,forceEnd = false)
 	{
-		local output = outputs[0];
+		local pos = outputs.find(output);
+		if (pos == null)
+			return;
 	
 		if (fuzzy && !forceEnd)
 		{
@@ -193,12 +221,12 @@ class rndComplexRandomiser extends rndBaseRandomiser
 			local max = outputs.len() - 1;
 			
 			local insertIndex = RandBetween(seed + output,min,max);
-			outputs.remove(0);
+			outputs.remove(pos);
 			outputs.insert(insertIndex,output);
 		}
 		else
 		{
-			outputs.remove(0);
+			outputs.remove(pos);
 			outputs.append(output);
 		}
 	}

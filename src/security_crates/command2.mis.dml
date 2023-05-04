@@ -3,9 +3,8 @@
 // ================================================================================
 
 //Create a Randomiser for the Super Crates
-Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+Create "rndCrateRandomiser" "rndSecurityCratesRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "variedOutput=0;"
 }
 
 //Inputs

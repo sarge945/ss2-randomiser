@@ -4,10 +4,7 @@ class rndOutput extends rndBase
 	corpse = null;
 
 	function Init(reloaded)
-	{
-		if (name == "SargeRandomMedicalLobbyDesk")
-			debugLevel = 999;
-	
+	{	
 		container = isContainer(self);
 		corpse = isCorpse(self);
 		SetData("position",Object.Position(self));
@@ -148,9 +145,12 @@ class rndOutput extends rndBase
 	function OnRandomiseOutput()
 	{
 		local source = message().from;
+		
+		if (IsPlaced())
+			PostMessage(source,"OutputFailed");
+		
 		local inputs = message().data;
 		local config = message().data2;
-		local timerSetting = message().data3;
 		
 		local inputArr = StrToIntArray(DeStringify(inputs));
 		local configArr = StrToIntArray(DeStringify(config));
@@ -162,9 +162,9 @@ class rndOutput extends rndBase
 			if (IsValid(input,configArr) == 0)
 			{
 				SetData("placed",true);
+				PostMessage(source,"OutputSuccess",input,!container);
 				PrintDebug("	found suitable input " + input + " from " + source,4);
 				Place(input,self);
-				PostMessage(source,"OutputSuccess",input);
 				return;
 			}
 		}
@@ -208,20 +208,16 @@ class rndOutput extends rndBase
 		//Just remain in place.
 		if (output == input)
 		{
-			PrintDebug("1",99);
 		}
 		//If we are the same archetype, "lock" into position and adopt physics controls
 		else if (SameItemType(input,output))
 		{
 			Property.Set(input, "PhysControl", "Controls Active", physicsControls);
 			Object.Teleport(input, position, facing);
-			PrintDebug("2: " + physicsControls,99);
 		}
 		//Different objects, need to "jiggle" the object to fix physics issues
 		else
-		{
-			PrintDebug("3",99);
-		
+		{		
 			Object.Teleport(input, position_up, FixItemFacing(input,facing));
 			
 			//Fix up physics
@@ -229,7 +225,7 @@ class rndOutput extends rndBase
 			
 			Physics.Activate(input);
 			
-			if (Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
+			if (!Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
 				Physics.SetVelocity(input,vector(0,0,10));
 		}
 	}

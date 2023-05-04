@@ -313,7 +313,7 @@ class rndBaseRandomiser extends rndBase
 		maxTimes = getParam("maxTimes",9999);
 		minTimes = getParam("minTimes",9999);
 		allowOriginalLocations = getParam("allowOriginalLocations",1);
-		//SetAllowedTypes();
+		SetAllowedTypes();
 	
 		//Setup variables
 		seed = GetData("Seed");
@@ -329,12 +329,12 @@ class rndBaseRandomiser extends rndBase
 		outputs = DeDuplicateArray(outputs);
 		
 		//Show startup message
-		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + "]");
+		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + ", inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
 	}
 	
 	function GetStartTime()
 	{
-		return 0.25;
+		return 0.25 + (seed % 1000 * 0.0001);
 	}
 	
 	function SetSeed()

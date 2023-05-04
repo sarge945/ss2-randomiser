@@ -71,8 +71,8 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 		//Set data
 		copyLinks(output,input,"SwitchLink");
 		copyLinks(output,input,"~SwitchLink");
-		copyLinks(output,input,"Contains");
-		copyLinks(output,input,"~Contains");
+		//copyLinks(output,input,"Contains");
+		//copyLinks(output,input,"~Contains");
 		
 		Object.Teleport(input,Object.Position(output),Object.Facing(output));
 		
