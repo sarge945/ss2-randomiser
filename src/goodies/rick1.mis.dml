@@ -1,0 +1,94 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Rick1.
+Create "rndComplexRandomiser" "rndGoodiesRandomiser"
+{
+}
+
+//Inputs
++Link "rndUmbilicalObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndGoodiesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndUmbilicalObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndGoodiesRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

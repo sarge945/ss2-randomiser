@@ -245,7 +245,9 @@ class rndComplexRandomiser extends rndBase
 		if (fuzzy)
 		{
 			local min = outputs.len() * 0.35;
-			local insertIndex = rndUtil.RandBetween(seed + output.obj,min,outputs.len() - 1);
+			local max = outputs.len() - 1;
+			
+			local insertIndex = rndUtil.RandBetween(seed + output.obj,min,max);
 			outputs.remove(index);
 			outputs.insert(insertIndex,output);
 		}

@@ -1,0 +1,120 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+////Areas are based off the Rickenbacker Automaps mod
+
+//Everything in the main area
+Create "rndObjectCollection" "rndMainObjects"
+{
+}
+
+//Diego's Quarters
+Create "rndObjectCollection" "rndDiegoObjects"
+{
+}
+
+//Escape Pod Bay and Escape Pod
+Create "rndObjectCollection" "rndEscapeObjects"
+{
+}
+
+//Bridge
+Create "rndObjectCollection" "rndBridgeObjects"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Main Area	=====\\\\\\\\\\\\\\\\\
+
+//Corpse in Security Station
++Link 501 "rndMainObjects" "Target"
+{
+}
+
+//Floor Nanites
++Link 668 "rndMainObjects" "Target"
+{
+}
+
+////Tall Tower
+
+//Maintenance Tool
+//There should always be something up here
++MetaProp 772 "Object Randomiser - High Priority Output"
++Link 772 "rndMainObjects" "Target"
+{
+}
+
+////Weapons Rack
+
+//Grenades
++Link 500 "rndMainObjects" "Target"
+{
+}
+
+//Grenades
++Link 498 "rndMainObjects" "Target"
+{
+}
+
+//Grenades
++Link 496 "rndMainObjects" "Target"
+{
+}
+
+//Beaker
++Link 789 "rndMainObjects" "Target"
+{
+}
+
+//Beaker
++Link 788 "rndMainObjects" "Target"
+{
+}
+
+////Behind the nav console thing
+
+//Floor Nanites
++Link 667 "rndMainObjects" "Target"
+{
+}
+
+/////////////////=====	Bridge	=====\\\\\\\\\\\\\\\\\
+
+//Floor Nanites
++Link 666 "rndBridgeObjects" "Target"
+{
+}
+
+/////////////////=====	Diego's Quarters	=====\\\\\\\\\\\\\\\\\
+
+//Desk
++Link 792 "rndDiegoObjects" "Target"
+{
+}
+
+/*
+//Worm Launcher
+//Plot item, don't move!
++Link 510 "rndDiegoObjects" "Target"
+{
+}
+*/
+
+//Locker
++Link 662 "rndDiegoObjects" "Target"
+{
+}
+
+/////////////////=====	Escape Pod Area	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 506 "rndEscapeObjects" "Target"
+{
+}

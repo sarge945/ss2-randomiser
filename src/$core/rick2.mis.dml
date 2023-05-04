@@ -1,0 +1,231 @@
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+////Areas are based off the Rickenbacker Automaps mod
+
+//Elevator and main Lobby, and "woop woop woop" room
+Create "rndObjectCollection" "rndElevatorLobbyObjects"
+{
+}
+
+//Pipe Shaft Access A
+Create "rndObjectCollection" "rndShaftObjects"
+{
+}
+
+//Chapel
+Create "rndObjectCollection" "rndChapelObjects"
+{
+}
+
+//Medical Station
+Create "rndObjectCollection" "rndMedicalObjects"
+{
+}
+
+//Final Area (elevator to Rick3)
+Create "rndObjectCollection" "rndFinalAreaObjects"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Elevator Lobby	=====\\\\\\\\\\\\\\\\\
+
+//Nanites near elevator
++Link 725 "rndElevatorLobbyObjects" "Target"
+{
+}
+
+//Maintenance Tool
++Link 116 "rndElevatorLobbyObjects" "Target"
+{
+}
+
+//Shotgun
++Link 713 "rndElevatorLobbyObjects" "Target"
+{
+}
+
+//Maintenance Tool
++Link 126 "rndElevatorLobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Pipe Shaft Access A	=====\\\\\\\\\\\\\\\\\
+
+//Floor Nanites next to Turret
++Link 723 "rndShaftObjects" "Target"
+{
+}
+
+//Beaker in ladder room
++Link 813 "rndShaftObjects" "Target"
+{
+}
+
+//Cyber Modules in ladder room
++Link 246 "rndShaftObjects" "Target"
+{
+}
+
+//Corpse after ladder room
++Link 144 "rndShaftObjects" "Target"
+{
+}
+
+//AP Rounds near corpse
++Link 146 "rndShaftObjects" "Target"
+{
+}
+
+/////////////////=====	Chapel	=====\\\\\\\\\\\\\\\\\
+
+//Corpse near entrance
++Link 149 "rndChapelObjects" "Target"
+{
+}
+
+//Corpse near entrance
++Link 149 "rndChapelObjects" "Target"
+{
+}
+
+//Repair Soft V3
++Link 148 "rndChapelObjects" "Target"
+{
+}
+
+//Corpse on floor near cross
++Link 704 "rndChapelObjects" "Target"
+{
+}
+
+//clippy (Anti-Pers bullets)
++Link 702 "rndChapelObjects" "Target"
+{
+}
+
+//Audio Log
++Link 117 "rndChapelObjects" "Target"
+{
+}
+
+//Cyber-Modules
++Link 746 "rndChapelObjects" "Target"
+{
+}
+
+//Assault Rifle
++Link 705 "rndChapelObjects" "Target"
+{
+}
+
+//Champagne
++Link 477 "rndChapelObjects" "Target"
+{
+}
+
+/////////////////=====	Medical Station	=====\\\\\\\\\\\\\\\\\
+
+//Corpse near entrance
++Link 155 "rndMedicalObjects" "Target"
+{
+}
+
+//Research Soft V3
++Link 154 "rndMedicalObjects" "Target"
+{
+}
+
+//Medical Hypo
++Link 153 "rndMedicalObjects" "Target"
+{
+}
+
+////Second Level
+
+//Juice Bottle
++Link 522 "rndMedicalObjects" "Target"
+{
+}
+
+//Ciggies
++Link 520 "rndMedicalObjects" "Target"
+{
+}
+
+//Ciggies
++Link 521 "rndMedicalObjects" "Target"
+{
+}
+
+//Vodka Bottle
++Link 519 "rndMedicalObjects" "Target"
+{
+}
+
+//Waste Barrel
++Link 518 "rndMedicalObjects" "Target"
+{
+}
+
+////Bottom Level
+
+//Diego Corpse
++Link 85 "rndMedicalObjects" "Target"
+{
+}
+
+/*
+//WormHeart
+//Disabled as it's a reward item
++Link 158 "rndMedicalObjects" "Target"
+{
+}
+*/
+
+/*
+//Audio Log
+//Disabled due to being plot relevant ("You'll find it on....my body")
++Link 336 "rndMedicalObjects" "Target"
+{
+}
+*/
+
+//Beaker
++Link 252 "rndMedicalObjects" "Target"
+{
+}
+
+/////////////////=====	Final Section	=====\\\\\\\\\\\\\\\\\
+
+//Medical Kit
++Link 164 "rndFinalAreaObjects" "Target"
+{
+}
+
+//Rad Hypo
++Link 160 "rndFinalAreaObjects" "Target"
+{
+}
+
+//Corpse next to Toxin Hypo
++Link 159 "rndFinalAreaObjects" "Target"
+{
+}
+
+//Toxin Hypo next to corpse
++Link 163 "rndFinalAreaObjects" "Target"
+{
+}
+
+//Toxin Hypo near exit door
++Link 162 "rndFinalAreaObjects" "Target"
+{
+}

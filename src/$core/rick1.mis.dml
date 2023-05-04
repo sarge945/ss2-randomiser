@@ -1,3 +1,527 @@
 // ================================================================================
 // 								Object Collections
 // ================================================================================
+
+////Areas are based off the Rickenbacker Automaps mod
+
+//Umbilical
+Create "rndObjectCollection" "rndUmbilicalObjects"
+{
+}
+
+//Support Control A Before Crane
+Create "rndObjectCollection" "rndSupportAObjectsBeforeCrane"
+{
+}
+
+//Support Control A After Crane
+Create "rndObjectCollection" "rndSupportAObjectsAfterCrane"
+{
+}
+
+//Ventilation Area
+Create "rndObjectCollection" "rndVentilationObjects"
+{
+}
+
+//Support Control A After Ventilation (Other side of the room blocked by pipes and the top office
+Create "rndObjectCollection" "rndSupportAObjectsAfterVentilation"
+{
+}
+
+//Pod 2 Lobby Area
+Create "rndObjectCollection" "rndPod2LobbyObjects"
+{
+}
+
+//Engine Nacelle A. Also contains the assault rifle in the morgue
+Create "rndObjectCollection" "rndNacelleAObjects"
+{
+}
+
+//Bodybags
+Create "rndObjectCollection" "rndMorgueBodybags"
+{
+}
+
+//Nacelle B Hallway
+Create "rndObjectCollection" "rndNacelleBHallwayObjects"
+{
+}
+
+//Nacelle B
+Create "rndObjectCollection" "rndNacelleBObjects"
+{
+}
+
+//Pod 2 Hallway - everything before the Missile Control Room
+Create "rndObjectCollection" "rndPod2HallwayObjects"
+{
+}
+
+//Pod 2 Missile Control Room
+Create "rndObjectCollection" "rndPod2MissileObjects"
+{
+}
+
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Umbilical	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 1458 "rndUmbilicalObjects" "Target"
+{
+}
+
+//Audio Log
++Link 1794 "rndUmbilicalObjects" "Target"
+{
+}
+
+/////////////////=====	Support Control A	=====\\\\\\\\\\\\\\\\\
+
+//Corpse
++Link 1053 "rndSupportAObjectsBeforeCrane" "Target"
+{
+}
+
+//AP Ammo
++Link 1464 "rndSupportAObjectsBeforeCrane" "Target"
+{
+}
+
+//Corpse
++Link 1567 "rndSupportAObjectsBeforeCrane" "Target"
+{
+}
+
+//Audio Log
++Link 1795 "rndSupportAObjectsBeforeCrane" "Target"
+{
+}
+
+//Nanites
++Link 1403 "rndSupportAObjectsBeforeCrane" "Target"
+{
+}
+
+/////////////////=====	Support Control A After Crane	=====\\\\\\\\\\\\\\\\\
+
+////In the sections with the big yellow tanks
+
+//Waste Container
++Link 1554 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+//Corpse
++Link 1565 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+//Grenades
++Link 1608 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+////Near the blown-out floor
+
+//Corpse
++Link 1761 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+//Medical Kit
++Link 2096 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+/*
+//Grenades
+//Psi Pull only
++Link 2192 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+*/
+
+////In the office near the blown out floor
+
+//Crate
++Link 2178 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+//Audio Log
++Link 468 "rndSupportAObjectsAfterCrane" "Target"
+{
+}
+
+/////////////////=====	Ventilation	=====\\\\\\\\\\\\\\\\\
+
+//Maintenance Tool
++Link 1781 "rndVentilationObjects" "Target"
+{
+}
+
+/////////////////=====	Support A after Ventilation	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 1796 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Nanites
++Link 2172 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Medbed Key
++Link 2121 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Corpse with Armour - Secret
++MetaProp 1611 "Object Randomiser - Secret"
++Link 1611 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Fusion Cannon (Foo-shun!!)
++MetaProp 1612 "Object Randomiser - Secret"
++Link 1612 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Corpse near entrance to Pod 2 Ladder
++Link 1619 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Second Corpse near entrance to Pod 2 Ladder
++Link 1621 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Corpse in room you need to jump to.
++MetaProp 1636 "Object Randomiser - High Priority Output"
+//+MetaProp 1636 "Object Randomiser - Greedy"
++Link 1636 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+//Viral Proliferator in room you need to jump to.
++MetaProp 1771 "Object Randomiser - High Priority Output"
++Link 1771 "rndSupportAObjectsAfterVentilation" "Target"
+{
+}
+
+/////////////////=====	Pod 2 Lobby	=====\\\\\\\\\\\\\\\\\
+
+//Dead body next to black egg
++Link 1623 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Anti-Pers bullets next to black egg
++Link 1627 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Corpse in small room
++Link 342 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Second Corpse in small room
++Link 1413 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Desk in small room
++Link 328 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Desk in small room
++Link 329 "rndPod2LobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Nacelle A	=====\\\\\\\\\\\\\\\\\
+
+//Nanites in Chemical Storeroom
++Link 2163 "rndNacelleAObjects" "Target"
+{
+}
+
+//Beaker in Chemical Storeroom
++MetaProp 1313 "Object Randomiser - Junk Only"
++Link 1313 "rndNacelleAObjects" "Target"
+{
+}
+
+//Second Beaker in Chemical Storeroom
++MetaProp 1312 "Object Randomiser - Junk Only"
++Link 1312 "rndNacelleAObjects" "Target"
+{
+}
+
+/*
+//Audio Log - Manifest
++Link 427 "rndNacelleAObjects" "Target"
+{
+}
+*/
+
+//Audio Log near Collapsed Area
++Link 471 "rndNacelleAObjects" "Target"
+{
+}
+
+//PSI Hypo inside egg
++Link 914 "rndNacelleAObjects" "Target"
+{
+}
+
+//Assault Rifle in Morgue
++Link 1481 "rndNacelleAObjects" "Target"
+{
+}
+
+/////////////////=====	Morgue	=====\\\\\\\\\\\\\\\\\
+
+//Body Bag near Incinerator
++Link 360 "rndMorgueBodybags" "Target"
+{
+}
+
+//Body Bag in bottom row
++Link 2162 "rndMorgueBodybags" "Target"
+{
+}
+
+//Second Body Bag in bottom row
++Link 2154 "rndMorgueBodybags" "Target"
+{
+}
+
+/////////////////=====	Nacelle B Hallway	=====\\\\\\\\\\\\\\\\\
+
+//Viral Proliferator on floor next to corpse
++Link 1782 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+//Corpse next to Viral Proliferator
++Link 1669 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+////Observation Area
+
+//FE Device
++Link 1783 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+//Maintenance Tool
++Link 1785 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+//AP Ammo
++Link 2130 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+////Entrance to Nacelle B
+
+//Nanites
++Link 2153 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+//Small Crate near Turret
++Link 2155 "rndNacelleBHallwayObjects" "Target"
+{
+}
+
+/////////////////=====	Nacelle B	=====\\\\\\\\\\\\\\\\\
+
+//Waste Bin near QBRM
++Link 584 "rndNacelleBObjects" "Target"
+{
+}
+
+//Nanites behind posts
++Link 1387 "rndNacelleBObjects" "Target"
+{
+}
+
+//Wrench near Nacelle B Airlock
++Link 490 "rndNacelleBObjects" "Target"
+{
+}
+
+/////////////////=====	Pod 2 Lobby	=====\\\\\\\\\\\\\\\\\
+
+//Dead guy next to 3 turrets
++Link 1786 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//ICE PICK on Floor next to 3 turrets
++Link 1787 "rndPod2LobbyObjects" "Target"
+{
+}
+
+////Medicine Room
+
+//Waste Barrel next to desk
++Link 824 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Waste Barrel next to desk
++Link 824 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Waste Barrel in corner
++Link 811 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Audio Log on Floor
++Link 1799 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Waste Barrel near gurneys
++Link 812 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Battery on Gurney
++MetaProp 2120 "Object Randomiser - Output Self Only"
++Link 2120 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Medkit in pipe room
++Link 1727 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Corpse just past low-hanging head-smash beam
++Link 1800 "rndPod2LobbyObjects" "Target"
+{
+}
+
+//Audio Log just past low-hanging head-smash beam
++Link 1801 "rndPod2LobbyObjects" "Target"
+{
+}
+
+/////////////////=====	Pod 2 Missile Control	=====\\\\\\\\\\\\\\\\\
+
+//Grenades near Replicator
++Link 2191 "rndPod2MissileObjects" "Target"
+{
+}
+
+////Upper Level
+
+//PSI Hypo near worm trap
++MetaProp 2198 "Object Randomiser - No Junk"
++Link 2198 "rndPod2MissileObjects" "Target"
+{
+}
+
+//Corpse near worm trap
++MetaProp 2197 "Object Randomiser - High Priority Output"
++Link 2197 "rndPod2MissileObjects" "Target"
+{
+}
+
+/*
+//Nanites in Missile room
+//Psi-Pull object
++Link 2125 "rndPod2MissileObjects" "Target"
+{
+}
+*/
+
+////After the first Missile room
+
+//Waste Barrel after Ladder room
++Link 1255 "rndPod2MissileObjects" "Target"
+{
+}
+
+//PSI Hypo in Water
++Link 1038 "rndPod2MissileObjects" "Target"
+{
+}
+
+//Cyber Modules under grating at the entrance to Missile Launch room
++Link 1362 "rndPod2MissileObjects" "Target"
+{
+}
+
+////After Launching the Missiles
+
+//Wrench after launching the missiles
++Link 1304 "rndPod2MissileObjects" "Target"
+{
+}
+
+//// Secret Room
+
+//Waste Barrel next to desk
++Link 1294 "rndPod2MissileObjects" "Target"
+{
+}
+
+//Cyber Modules on floor
++Link 1365 "rndPod2MissileObjects" "Target"
+{
+}
+
+////Final area before entering Pod 2
+
+//Corpse on Floor after Ladder Climb
++Link 1724 "rndPod2MissileObjects" "Target"
+{
+}
+
+//PSI Hypo on floor after Ladder Climb
++Link 1039 "rndPod2MissileObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Next to Pod 2 door
++Link 2211 "rndSecurityCrates" "Target"
+{
+}
+
+//In the room before the missile firing "puzzle"
++Link 2181 "rndSecurityCrates" "Target"
+{
+}
+
+//Support Control A
++Link 2164 "rndSecurityCrates" "Target"
+{
+}
