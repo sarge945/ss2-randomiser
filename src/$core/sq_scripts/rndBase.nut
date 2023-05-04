@@ -209,14 +209,10 @@ class rndBase extends SqRootScript
 	{
 		local results = [];
 		
-		foreach(val in array1)
-			results.append(val);
-		foreach(val in array2)
-			results.append(val);
-		foreach(val in array3)
-			results.append(val);
-		foreach(val in array4)
-			results.append(val);
+		results.extend(array1);
+		results.extend(array2);
+		results.extend(array3);
+		results.extend(array4);
 			
 		return results;
 	}
@@ -235,5 +231,88 @@ class rndBase extends SqRootScript
 		}
 		
 		return results;
+	}
+}
+
+class rndBaseRandomiser extends rndBase
+{
+	//Configuration
+	allowedTypes = null;	
+	seed = null;
+	minTimes = null;
+	maxTimes = null;
+	allowOriginalLocations = null;
+	priority = null;
+	
+	//State
+	totalRolls = null;
+	currentRolls = null;
+	totalItems = null;
+	
+	function Init()
+	{	
+		//Populate configuration
+		priority = getParam("priority",0);
+		SetSeed();
+		SetAllowedTypes();
+		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		maxTimes = getParam("maxTimes",9999);
+		minTimes = getParam("minTimes",9999);
+		
+		//Setup variables
+		totalRolls = RandBetween(seed,minTimes,maxTimes);
+		currentRolls = 0;
+		totalRolls = RandBetween(seed,minTimes,maxTimes);
+		currentRolls = 0;
+		
+		//Show startup message
+		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetStartTime() + "]");
+		
+		SetOneShotTimer("StartTimer",GetStartTime());
+	}
+	
+	function GetStartTime()
+	{
+		local seedDelay = (seed % 1000) * 0.00001;
+		return 0.0 + (0.05 - 0.01 * priority) + seedDelay;
+	}
+	
+	function SetSeed()
+	{
+		seed = getParam("forceSeed",-1);
+		if (seed == -1)
+			seed = Data.RandInt(0,999);
+	}
+	
+		function SetAllowedTypes()
+	{
+		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
+		local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
+		foreach (add in addAllowedTypes)
+			allowedTypes.append(add);
+	}
+	
+	function CheckAllowedTypes(input)
+	{
+		foreach(type in allowedTypes)
+		{
+			if (isArchetype(input,type))
+				return true;
+		}
+		return false;
+	}
+	
+	function IsInputValid(input)
+	{
+		//Check allowed types
+		if (!CheckAllowedTypes(input))
+			return false;
+	
+		return true;
+	}
+	
+	function IsOutputValid(output)
+	{
+		return true;
 	}
 }

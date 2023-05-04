@@ -70,6 +70,17 @@ CreateArch "Marker" "rndComplexRandomiser"
 	}
 }
 
+//"Replacer" Randomiser. Replaces each Input with a random one of it's allowed types
+//Has no outputs
+CreateArch "Marker" "rndReplacerRandomiser"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndReplacerRandomiser"
+		"Don't inherit" false
+	}
+}
+
 //Randomiser Types (for convenience)
 
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"

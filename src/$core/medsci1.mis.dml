@@ -823,6 +823,10 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 +Link 268 "rndScienceObjects" "Target"
 {
 }
++ObjProp 268 "PhysControl"
+{
+	"Controls Active" "Location, Rotation"
+}
 
 //Log on desk outside medical sector entrance
 +Link 270 "rndScienceObjects" "Target"

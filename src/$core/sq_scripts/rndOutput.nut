@@ -27,17 +27,17 @@ class rndOutput extends rndBase
 		return false;
 	}
 
-	function JunkCheck(input,RnoRespectJunk)
+	static function JunkCheck(input,output,RnoRespectJunk)
 	{
 		if (RnoRespectJunk == 1)
 			return true;
 		
 		local isJunk = IsJunk(input);
 		
-		local junkOnlyM = Object.HasMetaProperty(self,"Object Randomiser - Junk Only");
-		local noJunkM = Object.HasMetaProperty(self,"Object Randomiser - No Junk");
-		local highPrioM = Object.HasMetaProperty(self,"Object Randomiser - High Priority Output");
-		local secretM = Object.HasMetaProperty(self,"Object Randomiser - Secret");
+		local junkOnlyM = Object.HasMetaProperty(output,"Object Randomiser - Junk Only");
+		local noJunkM = Object.HasMetaProperty(output,"Object Randomiser - No Junk");
+		local highPrioM = Object.HasMetaProperty(output,"Object Randomiser - High Priority Output");
+		local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
 		
 		if (junkOnlyM && !isJunk)
 			return false;
@@ -49,41 +49,42 @@ class rndOutput extends rndBase
 		else if (noJunkM && isJunk)
 			return false;
 		
-		print("junk check pass");
-		
 		return true;
 	}
 
-	function ContainerOnlyCheck(input)
+	static function ContainerOnlyCheck(input,output)
 	{
 		if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
-			return isContainer(self);
-		print("container only check pass");
+			return isContainer(output);
 		return true;
 	}
 
-	function SameTypeCheck(input)
+	static function SameTypeCheck(input,output)
 	{		
-		if (Object.HasMetaProperty(self,"Object Randomiser - Output Self Only"))
-			return isContainer(self) || SameItemType(self,input);
-		print("same type check pass");
+		if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only"))
+			return isContainer(output) || SameItemType(output,input);
 		return true;
 	}
 	
-	function SecretCheck(input,RnoSecret)
+	static function SecretCheck(output,RnoSecret)
 	{
-		local secretM = Object.HasMetaProperty(self,"Object Randomiser - Secret");
+		local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
 		if (secretM && RnoSecret)
 			return false;
-		print("secret check pass");
 		return true;
 	}
 	
-	function CorpseCheck(input,RnoCorpse)
+	static function CorpseCheck(output,RnoCorpse)
 	{
-		if (isCorpse(self) && RnoCorpse)
+		if (isCorpse(output) && RnoCorpse)
 			return false;
-		print("corpse check pass");
+		return true;
+	}
+
+	static function AllowOriginal(input,self,RallowOriginalLocations)
+	{
+		if (!RallowOriginalLocations && isArchetype(input,self))
+			return false;
 		return true;
 	}
 
@@ -94,31 +95,68 @@ class rndOutput extends rndBase
 		local RnoCorpse = randomiserSettings[2].tointeger();
 		local RallowOriginalLocations = randomiserSettings[3].tointeger();
 	
-		return !GetData("placed") && IsVerified() && CheckAllowedTypes(input)
-		&& SameTypeCheck(input) && ContainerOnlyCheck(input) && JunkCheck(input,RnoRespectJunk)
-		&& SecretCheck(input,RnoSecret) && CorpseCheck(input,RnoCorpse);
+		if (GetData("placed") || !IsVerified())
+			return 1;
+			
+		if (!CheckAllowedTypes(input))
+			return 2;
+		
+		if (!SameTypeCheck(input,self))
+			return 3;
+			
+		if (!ContainerOnlyCheck(input,self))
+			return 4;
+			
+		if (!JunkCheck(input,self,RnoRespectJunk))
+			return 5;
+			
+		if (!SecretCheck(self,RnoSecret))
+			return 6;
+			
+		if (!CorpseCheck(self,RnoCorpse))
+			return 7;
+			
+		if (!AllowOriginal(input,self,RallowOriginalLocations))
+			return 8;
+			
+		return 0;
 	}
 
 	//Called by Randomisers and returns if this was succesfully moved or not
 	function OnRandomiseOutput()
 	{
-		local input = message().data;
+		local inputs = DeStringify(message().data);
 		local randomiser = message().from;
 		local randomiserSettings = DeStringify(message().data2);
-	
-		if (IsValid(input,randomiserSettings))
+		
+		foreach(input in inputs)
 		{
-			Place(input);
-			//PostMessage(input,"InputPlaced",self);
-			PostMessage(randomiser,"OutputSuccess",input,GetData("placed"));
+			input = input.tointeger();
+			local errorCode = IsValid(input,randomiserSettings);
+			PrintDebug("checking input: " + input + " (error code: " + errorCode + ")",4);
+			
+			if (errorCode == 1) //We will never work if it returns 1
+			{
+				PostMessage(randomiser,"OutputFailed");
+				return;
+			}
+		
+			if (errorCode == 0)
+			{
+				Place(input);
+				//PostMessage(input,"InputPlaced",self);
+				PostMessage(randomiser,"OutputSuccess",input,errorCode);
+				return;
+			}
 		}
-		else
-			PostMessage(randomiser,"OutputFailed",input,GetData("placed"));
+		PostMessage(randomiser,"OutputFailed");
 	}
 	
 	function Place(input)
 	{
-		Container.Remove(input);
+		foreach (link in Link.GetAll(linkkind("~Contains"),input))
+			Link.Destroy(link);
+		//Container.Remove(input);
 		//Property.SetSimple(input, "HasRefs", FALSE);
 	
 		if (isContainer(self))
@@ -160,8 +198,8 @@ class rndOutput extends rndBase
 		//If we are the same archetype, "lock" into position
 		else if (SameItemType(input,self))
 		{
-			Object.Teleport(input, position, facing);
 			Property.Set(input, "PhysControl", "Controls Active", GetData("physicsControls"));
+			Object.Teleport(input, position, facing);
 		}
 		//Different objects, need to "jiggle" the object to fix physics issues
 		else
