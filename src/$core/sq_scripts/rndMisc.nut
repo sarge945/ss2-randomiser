@@ -355,6 +355,14 @@ class PhysicalOutput extends Output
 			
 		if (input.containerOnly)
 			return false;
+			
+		if (!Link.AnyExist(LINK_TARGET,0,output))
+			return false;
+		
+		/* Broken currently - do not use!
+		if (!Physics.HasPhysics(input.item))
+			return false;
+		*/
 		
 		return true;
 	}
@@ -400,14 +408,6 @@ class PhysicalOutput extends Output
 	{	
 		if (!checkHandleMove(input,nosecret))
 			return false;
-			
-		if (!Link.AnyExist(LINK_TARGET,0,output))
-			return false;
-		
-		/* Broken currently - do not use!
-		if (!Physics.HasPhysics(input.item))
-			return false;
-		*/
 		
 		//Set output as unusable
 		foreach (ilink in Link.GetAll(LINK_TARGET,0,output))
