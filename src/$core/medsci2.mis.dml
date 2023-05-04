@@ -576,13 +576,28 @@ Create "rndOutputMarker" "rndApartmentBroken"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-33.6461, -169.112, 0.3"
-		"Heading" b3b4
+		"Location" "-126.646, -120.041, -3.3"
+		"Heading" 29b8
 		"Pitch" 0
-		"Bank" 60
+		"Bank" 0
 	}
 }
 +Link "rndApartmentBroken" "rndCrewObjects" "Target"
+{
+}
+
+//In the sub-armoury access area
+Create "rndOutputMarker" "rndArmouryAccess"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-83.2787, -85.1526, -0.3"
+		"Heading" 4c4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndArmouryAccess" "rndCrewObjects" "Target"
 {
 }
 
