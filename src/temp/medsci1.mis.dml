@@ -1,3 +1,5 @@
+/*
+
 //Create a randomiser for the items in Cryo
 Create "rndRandomiser" "rndCryoRandomiser"
 {
@@ -17,7 +19,7 @@ Create "rndRandomiser" "rndCryoRandomiser"
 
 
 
-
+*/
 
 
 //Create a randomiser for the Science and R&D Sector
@@ -51,14 +53,14 @@ Create "rndRandomiser" "rndScienceRandomiser"
 
 
 
-
+/*
 
 
 
 //Create a randomiser for the Science Sector Bodybags (Only allow hypos)
 Create "rndRandomiser" "rndScienceBodybagsRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedInputs0=-51; totalItems=4;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51; totalItems=4;"
 }
 //Add Inputs - Note, while it's only allowed hypos, it can still pull from the entire item pool, which contains hypos
 +Link "rndScienceBodybagsRandomiser" "rndScienceSector" "Target"
@@ -75,3 +77,5 @@ Create "rndRandomiser" "rndScienceBodybagsRandomiser"
 +Link "rndScienceBodybagsRandomiser" "rndScienceSectorBodybags" "~Target"
 {
 }
+
+*/

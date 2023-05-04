@@ -1,9 +1,14 @@
 DML1
 
 //Input data for the randomiser system. Acts as a "collection" of objects,
-//based on Target links
+//based on Target links. Will automatically get all items from inventories
 CreateArch "Marker" "rndObjectCollection"
 {
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndObjectCollection"
+		"Don't inherit" false
+	}
 }
 
 //Takes one or more Object Collections and acts on them, based on conditions
@@ -12,7 +17,6 @@ CreateArch "Marker" "rndRandomiser"
 	+ObjProp "Scripts"
 	{
 		"Script 0" "rndRandomiser"
-		//"Script 0" "nuts"
 		"Don't inherit" false
 	}
 }

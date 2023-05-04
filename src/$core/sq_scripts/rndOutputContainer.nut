@@ -6,7 +6,7 @@ class rndOutputContainer extends rndOutput
 			
 		local item = message().data;
 		
-		print ("adding " + item + " to inventory for " + self);
+		//print ("adding " + item + " to inventory for " + self);
 		
 		//Remove previous Contains links on item
 		foreach(containsLink in Link.GetAll(linkkind("~Contains"),item))

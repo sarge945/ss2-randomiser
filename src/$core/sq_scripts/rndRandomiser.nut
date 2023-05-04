@@ -1,12 +1,9 @@
 class rndRandomiser extends rndBase
 {
-	inputs = null;
-	outputs = null;
-
-	//Default allowed inputs.
+	//Default allowed inputItemLists.
 	//We can replace this
-	//Randomisers AND outputs have input filters
-	static allowedInputsDefault = [
+	//Randomisers AND outputItemLists have input filters
+	static allowedTypesDefault = [
 		//-49, //Goodies
 		//-12, //Weapons
 		//-156, //Keys
@@ -23,173 +20,135 @@ class rndRandomiser extends rndBase
 		-90, //Decorative items like mugs etc
 	];
 
-	allowedInputs = null;
+	totalReady = null;
+
+	allowedTypes = null;
+	outputItemLists = null;
+	inputItemLists = null;
+	
+	currentItem = null;
+	currentOutput = null;
+	
+	totalTime = null;
 	totalItems = null;
 
 	function Init()
-	{
-		//Squirrel has an issue with global variables being shared across isntances
-		//so we need to instantiate them here
-		//See note under section 2.9.2 at http://squirrel-lang.org/squirreldoc/reference/language/classes.html
-		inputs = [];
-		outputs = [];
-		
+	{	
 		//copy the array so we can modify it
-		allowedInputs = getParamArray("allowedInputs",allowedInputsDefault);
-		totalItems = getParam("totalItems",-1);
+		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		
-		ProcessLinks();
+		totalItems = getParam("totalItems",100);
+		totalTime = 0;
+		totalReady = 0;
 		
-		Array_Shuffle(outputs);
-		Array_Shuffle(inputs);
+		outputItemLists = [];
+		inputItemLists = [];
 		
-		//DEBUG CODE
-		//================
-		print ("ALL INPUTS FOR " + self);
-		foreach (input in inputs)
-		{
-			print ("   <- " + input);
-		}
-		print ("ALL OUTPUTS FOR " + self);
-		foreach (obj in outputs)
-		{
-			print ("   -> " + obj);
-		}
-		//================
-		
-		//We need a small delay because Squirrel is weird and doesn't like to attach metaprops during the first frame or so
-		SetOneShotTimer("start timer", 0.02);
+		GetInputItemLists();
+		GetOutputItemLists();
+				
+		//if (inputItemLists.len() > 0 && outputItemLists.len() > 0)
+			//SetTimer(0.05);
 	}
 	
-	//This has to be done in a timer or Squirrel breaks horribly
+	function OnObjectListReady()
+	{
+		print ("item list " + message().from + " ready");
+		
+		foreach(list in outputItemLists)
+		{
+			if (list[0] == message().from)
+				list[1] = message().data;
+		}
+		
+		totalReady++;
+		
+		if (totalReady >= (outputItemLists.len() + inputItemLists.len()))
+			SetTimer();
+		else
+			print ("Waiting on more lists");
+	}
+	
+	function SetTimer(extra = 0.0)
+	{
+		//print ("timer finished");
+		local timer = Data.RandFlt0to1() * 0.002;
+		totalTime += timer + extra;
+		SetOneShotTimer("RandomiserWait", timer + extra);
+	}
+	
 	function OnTimer()
 	{
-		//if container or corpse, we need to add a metaprop to allow it to work as an output
-		//if it's a marker, it should already have the script applied directly as part of it's DML spec
-		foreach (obj in outputs)
+		if (currentItem == null)
 		{
-			if (isArchetype(obj,-379) || isArchetype(obj,-118))
-			{
-				if (!Object.HasMetaProperty(obj,"Object Randomiser - Container"))
-					Object.AddMetaProperty(obj,"Object Randomiser - Container");
-			}
+			local roll = Data.RandInt(0,inputItemLists.len() - 1);
+			local itemList = inputItemLists[roll];
+			local typeRoll = Data.RandInt(0,allowedTypes.len() - 1);
+			local type = allowedTypes[typeRoll];
+		
+			SendMessage(itemList,"GetInput",type);
 		}
-		SignalReady();
+		else if (currentOutput == null)
+		{
+			local roll = Data.RandInt(0,outputItemLists.len() - 1);
+			local itemList = outputItemLists[roll];
+		
+			SendMessage(itemList[0],"GetOutput");
+		}
+		else
+			Randomise();
+		
+		if (totalItems > 0)
+		//if (totalTime < 2.0 && totalItems > 0) //stop asking for items after 2 seconds or if we run out of items
+			SetTimer();
 	}
 	
-	//Turns all target links and their inventories into usable input and output links
-	function ProcessLinks()
+	function OnGetItem()
 	{
-		//All ~Target Links are outputs, which may be of multiple types
-		foreach (outLink in Link.GetAll(linkkind("~Target"),self))
+		//print ("reply with item: " + message().data);
+		currentItem = message().data;
+		
+		Randomise();
+	}
+	
+	function OnGetOutput()
+	{
+		//print ("reply with output: " + message().data);
+		currentOutput = message().data;
+		
+		//We need to apply metaprop to containers and corpses that don't have it
+		if (isArchetype(currentOutput,-379) || isArchetype(currentOutput,-118))
 		{
-			local obj = sLink(outLink).dest;
-			ProcessOutput(obj);
+			if (!Object.HasMetaProperty(currentOutput,"Object Randomiser - Container"))
+				Object.AddMetaProperty(currentOutput,"Object Randomiser - Container");
 		}
 		
-		//All Target Links are inputs, which may be of multiple types
-		foreach (inLink in Link.GetAll(linkkind("Target"),self))
-		{
-			local obj = sLink(inLink).dest;
-			ProcessInput(obj,inLink);
-		}
+		Randomise();
 	}
 	
-	//returns true if an item is in the valid items table, false otherwise
-	function IsInputValid(input)
+	function Randomise()
 	{
-		foreach (archetype in allowedInputs)
+		if (currentItem && currentOutput)
 		{
-			print ("checking " + archetype + " against " + input);
-			if (isArchetype(input,archetype))
-				return true;
-			print ("check failed");
-		}
-		return false;
-	}
-
-	//Inputs will be either items or containers directly, or item lists
-	function ProcessInput(input,inLink)
-	{
-		//If item list, get all it's ~targets
-		foreach (targetLink in Link.GetAll(linkkind("~Target"),input))
-		{
-			//Add it's targets to the inputs
-			local target = sLink(targetLink).dest;
-			if (IsInputValid(target))
-				inputs.append(target);
-			
-			//Also get the contents of it's inventory and add them as well
-			foreach (containsLink in Link.GetAll(linkkind("Contains"),target))
-			{
-				local contained = sLink(containsLink).dest;			
-				if (IsInputValid(contained))
-					inputs.append(contained);
-			}
-		}
-		
-		//we have been given a valid input item directly, like an item from the floor
-		if (IsInputValid(input))
-			inputs.append(input);
-	}
-	
-	function ProcessOutput(output)
-	{
-		//If item list, get all it's targets
-		foreach (targetLink in Link.GetAll(linkkind("~Target"),output))
-		{
-			local obj = sLink(targetLink).dest;
-			if (obj == self || output == self)
-				return;
-			
-			print ("item collection " + output + " has output " + obj);	
-			outputs.append(obj);
-		}
-
-		//in case we were given a container directly as a link, add it to the outputs
-		outputs.append(output);
-	}
-	
-	//Continually give out items until we have none left
-	function SignalReady()
-	{
-		foreach(obj in outputs)
-		{
-			print (self + "Sending ready message to " + obj);
-			
-			SendMessage(obj, "RandomiserReady", self);
-		}
-	}
-	
-	//We have been asked for an ite, give out a random one
-	//Array was shuffled so no need to randomise here
-	function OnOutputItemRequest()
-	{
-		if (totalItems == 0)
-		{
-			print("total items reached for randomiser " + self);
-			return;
-		}
-			
-		print (message().data + " asked for an item");
-		
-		if (inputs.len() > 0)
-		{
-			local index = Data.RandInt(0,inputs.len() - 1);
-			local item = inputs[index];
-			SendMessage(message().data, "ReceiveItem", item);
-			inputs.remove(index);
+			print (">>>Randomiser " + self + " randomising item " + currentItem + " at output " + currentOutput)
+			SendMessage(currentOutput,"ReceiveItem",currentItem);
 			totalItems--;
-
-			/*
-			//remove all links
-			foreach (inputLink in Link.GetAll(linkkind("Target"),item))
-			{
-				local inputLinkInfo = sLink(inputLink);
-				print ("removing link: " + item + " -> " + inputLinkInfo.dest);
-				Link.Destroy(inputLink);
-			}
-			*/
+			currentItem = null;
+			currentOutput = null;
 		}
+	}
+	
+	function GetInputItemLists()
+	{
+		//All Target Links are Input Object Collections
+		foreach (iLink in Link.GetAll(linkkind("Target"),self))
+			inputItemLists.append(sLink(iLink).dest);
+	}
+	
+	function GetOutputItemLists()
+	{
+		//All ~Target Links are Output Object Collections
+		foreach (oLink in Link.GetAll(linkkind("~Target"),self))
+			outputItemLists.append([sLink(oLink).dest,0]);
 	}
 }

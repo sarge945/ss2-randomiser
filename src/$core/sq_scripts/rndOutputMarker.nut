@@ -18,7 +18,7 @@ class rndOutputMarker extends rndOutput
 	function OnReceiveItem()
 	{
 		local item = CloneContainedItem(message().data);
-		print ("moving item " + item + " to position " + Object.Position(self));
+		//print ("moving item " + item + " to position " + Object.Position(self));
 		Object.Teleport(item, Object.Position(self), Object.Facing(self));
 		Object.Destroy(self);
 	}
