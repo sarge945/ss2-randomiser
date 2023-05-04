@@ -244,7 +244,7 @@ class Output
 	}
 	
 	//Get the first valid output location for a given input
-	function GetValidOutputLocation(noSecret,input)
+	function GetValidOutputLocation(noSecret,noRespectJunk,input)
 	{
 		foreach(location in outputLocations)
 		{		
@@ -252,11 +252,11 @@ class Output
 				continue;
 		
 			//don't allow junk
-			if (location.noJunk && input.isJunk)
+			if (location.noJunk && input.isJunk && !noRespectJunk)
 				continue;
 				
 			//only allow junk
-			if (location.onlyJunk && !input.isJunk)
+			if (location.onlyJunk && !input.isJunk && !noRespectJunk)
 				continue;
 		
 			//don't allow secrets
@@ -268,7 +268,7 @@ class Output
 		return null;
 	}
 	
-	function CanMove(input,noSecret,allowOriginalLocation,debug = false)
+	function CanMove(input,noSecret,noRespectJunk,allowOriginalLocation,debug = false)
 	{
 		//Check if the input is already moved
 		if (!input.IsValid())
@@ -283,7 +283,7 @@ class Output
 		//if (selfOnly && !(rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
 			return false;
 	
-		currentOutputLocation = GetValidOutputLocation(noSecret,input);
+		currentOutputLocation = GetValidOutputLocation(noSecret,noRespectJunk,input);
 		
 		if (currentOutputLocation == null)
 			return false;

@@ -45,6 +45,7 @@ class rndComplexRandomiser extends rndBase
 	rolls = null;
 	ignorePriority = null;
 	prioritizeWorld = null;
+	noRespectJunk = null;
 	noSecret = null;
 	allowOriginalLocations = null;
 
@@ -90,9 +91,6 @@ class rndComplexRandomiser extends rndBase
 		//Set our random seed
 		SetSeed();
 		
-		//testing
-		local totalTime = GetStartTimer() + GetRandomiseTimer();
-		
 		//We need to delay right at the start to give everything time to properly init,
 		//plus the game has a tendency to crash on loading otherwise	
 		SetOneShotTimer("StartTimer",GetStartTimer());
@@ -127,6 +125,7 @@ class rndComplexRandomiser extends rndBase
 		ignorePriority = getParam("ignorePriority",false);
 		prioritizeWorld = getParam("prioritizeWorldObjects",false);
 		noSecret = getParam("noSecret",false);
+		noRespectJunk = getParam("noRespectJunk",false);
 		allowOriginalLocations = getParam("allowOriginalLocations",false);
 		SetAllowedTypes();
 			
@@ -190,7 +189,7 @@ class rndComplexRandomiser extends rndBase
 		//This was a REALLY long line, so I broke it up a bit
 		local nameString = name + " Init";
 		local startTimerString = "startTimer: " + GetStartTimer();
-		local randomTimerString = "randomiseTimer: " + (GetStartTimer()+GetRandomiseTimer());
+		local randomTimerString = "randomiseTimer: " + (GetStartTimer()+GetRandomiseTimer() + "(start+" + GetRandomiseTimer() + ")");
 		local seedString = "seed: " + seed;
 		local timeString = "times: " + GetTimes();
 		debugger.LogAlways(nameString + " [" + startTimerString + ", " + randomTimerString + ", " + seedString + ", " + timeString + "]");
@@ -262,7 +261,7 @@ class rndComplexRandomiser extends rndBase
 			
 			foreach(index, output in outputs)
 			{		
-				if (output.CanMove(input,noSecret,allowOriginalLocations))
+				if (output.CanMove(input,noSecret,noRespectJunk,allowOriginalLocations))
 				{
 					input.SetInvalid(self);
 					output.HandleMove(input);
