@@ -221,22 +221,28 @@ class PhysicalOutput extends Output
 			return false;
 			
 		//prevent output from being used again
-		//Object.AddMetaProperty(output, "Object Randomiser - Internal - Output Used");
 		Object.SetTransience(output, true);
-			
-		//print ("moving " + item + " to physical output " + output);
 	
-		//GenerateOutput(item);
+		//Move object into position
 		Container.Remove(item);
-		local position_up = vector(position.x, position.y, position.z + 0.2)
+		local position_up = vector(position.x, position.y, position.z + 0.2);
 		Object.Teleport(item, position_up, FixItemFacing(item));
-		Physics.DeregisterModel(item); //Fixes issues with "controlled" models
-		Property.Set(item, "PhysAttr", "Flags", "[None]"); //Ditto
-		Property.SetSimple(item, "HasRefs", TRUE);
+		
+		//Fix up physics
+		Property.Set(item, "PhysControl", "Controls Active", "");
 		Physics.Activate(item);
 		Physics.SetVelocity(item,vector(0,0,10));
-		valid = false;
+		
+		//Make object render
+		Property.SetSimple(item, "HasRefs", TRUE);
 		return true;
+	}
+	
+	function CloneObject(item)
+	{
+		local item2 = Object.BeginCreate(item);
+		Object.Destroy(item);
+		return item2;
 	}
 	
 	//Items with these archetypes will have their X and Z facing set to the specified value
