@@ -1,4 +1,50 @@
 // ================================================================================
+//					Make a Simple Randomiser for the first Power Cell
+// ================================================================================
+
+//Create a randomiser for the Cryo Power Cell
+Create "rndSimpleRandomiser" "rndCryoPowercellRandomiser"
+{
+}
+
++Link 1767 "rndCryoPowercellRandomiser" "Target"
+{
+}
++Link 1767 "rndCryoPowercellRandomiser" "~Target"
+{
+}
+
+//Under the wedge wall section
+Create "Marker" "rndCryoPowerRoom1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "54.2908, -73.8022, -19.6579"
+		"Heading" fbc7
+		"Pitch" c000
+		"Bank" 4000
+	}
+}
++Link "rndCryoPowerRoom1" "rndCryoPowercellRandomiser" "~Target"
+{
+}
+
+//Near the recharger
+Create "Marker" "rndCryoPowerRoom2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "34.7908, -74.4022, -19.0579"
+		"Heading" 2cb7
+		"Pitch" dc
+		"Bank" d8f8
+	}
+}
++Link "rndCryoPowerRoom2" "rndCryoPowercellRandomiser" "~Target"
+{
+}
+
+// ================================================================================
 // 								Add Keycard to Randomisers
 // ================================================================================
 

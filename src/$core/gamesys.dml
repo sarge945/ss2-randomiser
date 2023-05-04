@@ -54,17 +54,18 @@ CreateArch "Marker" "rndObjectCollection"
 }
 
 
-/*
+//Super simple randomiser
+//Has NO checking, messages etc.
+//Simply moves all inputs to outputs.
 //Treats all Targets as inputs, and ~Targets as outputs
-CreateArch "Marker" "rndRandomiser"
+CreateArch "Marker" "rndSimpleRandomiser"
 {
 	+ObjProp "Scripts"
 	{
-		"Script 0" "rndRandomiser"
+		"Script 0" "rndSimpleRandomiser"
 		"Don't inherit" false
 	}
 }
-*/
 
 //Same as standard Randomiser, but uses SwitchLinks to add ObjectCollections as inputs and outputs
 CreateArch "Marker" "rndComplexRandomiser"
@@ -99,11 +100,6 @@ CreateArch "Marker" "rndSwitchLinkOutputHandler"
 }
 
 //Randomiser Types (for convenience)
-
-CreateArch "rndComplexRandomiser" "rndCorpseRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-503; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
-}
 
 CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
 {

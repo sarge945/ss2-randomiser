@@ -19,14 +19,59 @@ Create "rndCardRandomiser" "rndWattsKeycardRandomiser"
 // 								Move Grassi's Body
 // ================================================================================
 
-Create "rndCorpseRandomiser" "rndGrassiRandomiser"
+//Create a randomiser for Grassi's Body
+Create "rndSimpleRandomiser" "rndGrassiRandomiser"
 {
 }
-//Inputs
-+Link "rndGrassiLocations" "rndGrassiRandomiser" "SwitchLink"
+
++Link 105 "rndGrassiRandomiser" "Target"
 {
 }
-//Outputs
-+Link "rndGrassiLocations" "rndGrassiRandomiser" "~SwitchLink"
++Link 105 "rndGrassiRandomiser" "~Target"
+{
+}
+
+//Near Turret
+Create "Marker" "rndGrassiTurretMarker"
+{
+	+ObjProp "Position"
+	{
+		"Location" "70.4835, -281.712, -3.88594"
+		"Heading" ef6c
+		"Pitch" fe80
+		"Bank" fe00
+	}
+}
++Link "rndGrassiTurretMarker" "rndGrassiRandomiser" "~Target"
+{
+}
+
+//In Airlock
+Create "Marker" "rndGrassiAirlockMarker"
+{
+	+ObjProp "Position"
+	{
+		"Location" "56.9835, -281.712, -3.88594"
+		"Heading" ef6c
+		"Pitch" fe80
+		"Bank" fe00
+	}
+}
++Link "rndGrassiAirlockMarker" "rndGrassiRandomiser" "~Target"
+{
+}
+
+//Top Floor of Biopsy Lab
+Create "Marker" "rndGrassiBiopsyTopFloorMarker"
+{
+	+ObjProp "Position"
+	{
+		"Location" "21.3335, -284.562, 9.20406"
+		"Heading" ef6c
+		"Pitch" fe80
+		"Bank" fe00
+	}
+}
++Link "rndGrassiBiopsyTopFloorMarker" "rndGrassiRandomiser" "~Target"
 {
 }

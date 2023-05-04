@@ -217,11 +217,6 @@ class rndOutput extends rndBase
 		if (input == output)
 		{
 		}
-		//If we are placing a container (usually a corpse), just place it without moving it up or enabling physics
-		else if (isContainer(input))
-		{
-			Object.Teleport(input, position, facing);
-		}
 		//If we are the same archetype, "lock" into position and adopt physics controls
 		else if (SameItemType(input,output))
 		{

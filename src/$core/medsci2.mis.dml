@@ -52,11 +52,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-//Create an object collection for the Grassi Body locations
-Create "rndObjectCollection" "rndGrassiLocations"
-{
-}
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -696,56 +691,3 @@ Create "rndOutputMarker" "rndArmouryAccess"
 {
 }
 */
-
-/////////////////=====	Grassi Body Locations	=====\\\\\\\\\\\\\\\\\
-
-//Grassi's Corpse
-+Link 105 "rndGrassiLocations" "Target"
-{
-}
-
-//Near Turret
-Create "rndOutputMarker" "rndGrassiTurretMarker"
-{
-	+ObjProp "Position"
-	{
-		"Location" "70.4835, -281.712, -3.88594"
-		"Heading" ef6c
-		"Pitch" fe80
-		"Bank" fe00
-	}
-}
-+Link "rndGrassiTurretMarker" "rndGrassiLocations" "Target"
-{
-}
-
-//In Airlock
-Create "rndOutputMarker" "rndGrassiAirlockMarker"
-{
-	+ObjProp "Position"
-	{
-		"Location" "56.9835, -281.712, -3.88594"
-		"Heading" ef6c
-		"Pitch" fe80
-		"Bank" fe00
-	}
-}
-+Link "rndGrassiAirlockMarker" "rndGrassiLocations" "Target"
-{
-}
-
-//Top Floor of Biopsy Lab
-Create "rndOutputMarker" "rndGrassiBiopsyTopFloorMarker"
-{
-	+ObjProp "Position"
-	{
-		"Location" "21.3335, -284.562, 9.20406"
-		"Heading" ef6c
-		"Pitch" fe80
-		"Bank" fe00
-	}
-}
-+Link "rndGrassiBiopsyTopFloorMarker" "rndGrassiLocations" "Target"
-{
-}
-
