@@ -7,4 +7,4 @@
 call build/makedml.cmd -f "%~dp0\src" "%~dp0\out" "vanilla" "scp"
 @del Randomiser.7z
 7z a Randomiser.7z "%~dp0\out\*"
-pause
+::pause

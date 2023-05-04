@@ -3,28 +3,28 @@
 // ================================================================================
 
 //Create a randomiser for the Weapons for Admin, Security and any area that doesn't require a keycard
-Create "rndWeaponRandomiser" "rndWeaponRandomiser"
+Create "rndWeaponRandomiser" "rndMainWeaponRandomiser"
 {
 }
 //Inputs
-+Link "rndAdminObjects" "rndWeaponRandomiser" "SwitchLink"
++Link "rndAdminObjects" "rndMainWeaponRandomiser" "SwitchLink"
 {
 }
-+Link "rndSecurityObjects" "rndWeaponRandomiser" "SwitchLink"
++Link "rndSecurityObjects" "rndMainWeaponRandomiser" "SwitchLink"
 {
 }
-+Link "rndSurveyObjects" "rndWeaponRandomiser" "SwitchLink"
++Link "rndSurveyObjects" "rndMainWeaponRandomiser" "SwitchLink"
 {
 }
 
 //Outputs
-+Link "rndAdminObjects" "rndWeaponRandomiser" "~SwitchLink"
++Link "rndAdminObjects" "rndMainWeaponRandomiser" "~SwitchLink"
 {
 }
-+Link "rndSecurityObjects" "rndWeaponRandomiser" "~SwitchLink"
++Link "rndSecurityObjects" "rndMainWeaponRandomiser" "~SwitchLink"
 {
 }
-+Link "rndSurveyObjects" "rndWeaponRandomiser" "~SwitchLink"
++Link "rndSurveyObjects" "rndMainWeaponRandomiser" "~SwitchLink"
 {
 }
 

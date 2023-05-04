@@ -122,17 +122,39 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Loose Objects
 
-/*
 //Radiation Hypo near start of map
++MetaProp 1482 "Object Randomiser - No Auto Output"
 +Link 1482 "rndTubeObjects" "Target"
 {
 }
 
+//Replace the Rad Hypo above,
+//But we need to rotate it slightly so that large items (such as wrenches) can fit.
+//TODO: Remove this and use the hypo instead, just disallow the wrench
+Create "rndOutputMarker" "rndStartingCabinShelf"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-111.004, -89.8555, -38.5121"
+		"Heading" 3a8
+		"Pitch" 0
+		"Bank" 4000
+	}
+}
++MetaProp "rndStartingCabinShelf" "Object Randomiser - No Position Fix"
++MetaProp "rndStartingCabinShelf" "Object Randomiser - High Priority Output"
++Link "rndStartingCabinShelf" "rndTubeObjects" "Target"
+{
+}
+
 //Vodka near start of map
++MetaProp 681 "Object Randomiser - No Position Fix"
++MetaProp 681 "Object Randomiser - Junk Only"
 +Link 681 "rndTubeObjects" "Target"
 {
 }
 
+/*
 //Mug near start of map
 +Link 560 "rndTubeObjects" "Target"
 {

@@ -1,3 +1,53 @@
+//Attached to all Inputs
+CreateArch "Misc Metaprops" "Object Randomiser Input"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndInput"
+		"Don't inherit" false
+	}
+}
+
+//Attached to all Outputs
+CreateArch "Misc Metaprops" "Object Randomiser Output"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutput"
+		"Don't inherit" false
+	}
+}
+
+//Shorthand for a Body Bag output
+CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85"
+}
+
+//Acts as an output
+//Link this to an Item Pool and it will behave like any regular output
+CreateArch "Marker" "rndOutputMarker"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutput"
+		"Don't inherit" false
+	}
+}
+
+//Object Pool
+//SwitchLink to a Randomiser to have all linked Targets added as inputs
+//~SwitchLink to a Randomiser to have all linked Targets added as outputs
+CreateArch "Marker" "rndObjectCollection"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndObjectPool"
+		"Don't inherit" false
+	}
+}
+
+
 /*
 //Treats all Targets as inputs, and ~Targets as outputs
 CreateArch "Marker" "rndRandomiser"
@@ -20,11 +70,22 @@ CreateArch "Marker" "rndComplexRandomiser"
 	}
 }
 
+//"Replacer" Randomiser. Replaces each Output with a random one of it's allowed types
+//Has no inputs
+CreateArch "Marker" "rndReplacerRandomiser"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndReplacerRandomiser"
+		"Don't inherit" false
+	}
+}
+
 //Randomiser Types (for convenience)
 
-CreateArch "rndComplexRandomiser" "rndBodybagRandomiser"
+CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85; maxTimes=5; minTimes=2; priority=1;"
+	+ObjProp "DesignNoteSS" = "ignorePriority=1; variedOutput=0;"
 }
 
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
@@ -52,29 +113,15 @@ CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; ignorePriority=1; variedOutput=0; priority=1;"
 }
 
-
-//Acts as an output
-//TargetLink this to a Randomiser, exactly like an item, and items will spawn in this location.
-CreateArch "Marker" "rndOutputMarker"
+//NOT THE BEES!
+CreateArch "rndReplacerRandomiser" "rndHydroEggRandomiser"
 {
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476"
 }
 
-//Nothing spawns at a relocation marker.
-//Instead, it's SwitchLinked to a number of rndOutputMarkers or items (which should be inputs).
-//TargetLink this to a randomiser as normal, and it will act only as 1 output,
-//but will instead redirect the output to one of many connected objects which target it.
-//This is useful for eg having 10+ markers in a room, but not wanting them to bias the randomisation by appearing
-//as 10 inputs that can accept 10 items, possibly bloating a room with lots of items.
-//Note: Multiple Relocators can share markers
-//Instead, only one input will be sent to it, and will appear at one of the 10+ linked markers.
-CreateArch "Marker" "rndOutputRelocator"
+CreateArch "rndReplacerRandomiser" "rndEggRandomiser"
 {
-}
-
-//SwitchLink to a Randomiser to have all linked Targets added as inputs
-//~SwitchLink to a Randomiser to have all linked Targets added as outputs
-CreateArch "Marker" "rndObjectCollection"
-{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;"
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
@@ -102,24 +149,12 @@ CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 {
 }
 
-//Set a particular output to reset the facing of an object. This prevents items looking weird
-CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
-{
-}
-
 //Set a physical output to only accept itself as an input. This is used for objects which have been placed in specific places.
 //Gives them a chance to be there or not. Either the original object will be where it was, or nothing will be there.
 //Implies No Auto Output
 CreateArch "Misc Metaprops" "Object Randomiser - Output Self Only"
 {
 }
-
-/*
-//Set a particular output to freeze any items and not give them velocity. This means items can be frozen in specific spots without flying around
-CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
-{
-}
-*/
 
 //Use this for somewhat valuable spots.
 //These outputs will not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
@@ -146,7 +181,11 @@ CreateArch "Misc Metaprops" "Object Randomiser - Secret"
 {
 }
 
-//Internal metaprop used to signal "validated" inputs (IE those which will be randomised) to allow them to be used as outputs
-CreateArch "Misc Metaprops" "Object Randomiser - Validated (Internal)"
+//Most items are "jiggled" into place, by being spawned slightly above the original object location
+//This prevents large items (ie nanites) from falling through the floor when replacing smaller items like hypos.
+//However, this also means the player can visually see the item "fall" when starting the map, if within eyesight.
+//Some items, like the first vodka bottle in eng1, are visible almost instantly when starting a new map, and this setting exists
+//to give an output a more smooth transition and so spawned items look less obviously like they are "falling" when starting the map.
+CreateArch "Misc Metaprops" "Object Randomiser - No Position Fix"
 {
 }
