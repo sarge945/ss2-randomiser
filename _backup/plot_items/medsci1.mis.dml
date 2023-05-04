@@ -9,7 +9,6 @@
 }
 */
 
-/*
 //Create a randomiser for the Science Sector Power Cell
 Create "rndRandomiser" "rndSciencePowercellRandomiser"
 {
@@ -19,4 +18,3 @@ Create "rndRandomiser" "rndSciencePowercellRandomiser"
 +Link "rndScienceObjects" "rndSciencePowercellRandomiser" "SwitchLink"
 {
 }
-*/

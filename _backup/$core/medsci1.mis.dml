@@ -141,7 +141,6 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 {
 }
 
-/*
 ////Markers and other spawn points
 
 //inside the smashable glass section
@@ -175,7 +174,6 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 +Link "rndCryoFloorSpot" "rndCryoObjects" "Target"
 {
 }
-*/
 
 /////////////////=====	Science Sector	=====\\\\\\\\\\\\\\\\\
 

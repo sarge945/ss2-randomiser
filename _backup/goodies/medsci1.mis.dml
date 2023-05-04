@@ -12,8 +12,6 @@ Create "rndRandomiser" "rndCryoRandomiser"
 {
 }
 
-/*
-
 //Create a randomiser for the Science and R&D Sector
 Create "rndRandomiser" "rndScienceRandomiser"
 {
@@ -36,4 +34,3 @@ Create "rndRandomiser" "rndScienceRandomiser"
 Create "rndRandomiser" "rndScienceRandomiserSecure"
 {
 }
-*/

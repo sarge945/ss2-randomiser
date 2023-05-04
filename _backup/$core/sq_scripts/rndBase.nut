@@ -2,17 +2,17 @@ class rndBase extends SqRootScript
 {
 
 	debug = null;
-	initialised = null;
 
 	//Run Once.
-	function OnSim()
+	//Can't use OnCreate or OnSim as they run before the object has finished creating
+	//making inventory manipulation impossible.
+	function OnBeginScript()
 	{
-		if (!initialised)
+		if (!GetData("Started"))
 		{
 			debug = getParam("debug",false);
 			Init();
-			initialised = true;
-			Object.Destroy(self);
+			SetData("Started");
 		}
 	}
 	
