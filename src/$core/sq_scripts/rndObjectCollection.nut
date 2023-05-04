@@ -45,11 +45,11 @@ class rndObjectCollection extends rndBase
 	{
 		//Send to all Inputs
 		foreach (iLink in Link.GetAll(linkkind("Target"),self))
-			SendMessage(sLink(iLink).dest,"ObjectListReady",outputs.len());
+			SendMessage(sLink(iLink).dest,"ObjectListReady",outputs);
 		
 		//Send to all Outputs
 		foreach (iLink in Link.GetAll(linkkind("~Target"),self))
-			SendMessage(sLink(iLink).dest,"ObjectListReady",outputs.len());
+			SendMessage(sLink(iLink).dest,"ObjectListReady",outputs);
 	}
 	
 	//Return an input of a given type when asked for one
