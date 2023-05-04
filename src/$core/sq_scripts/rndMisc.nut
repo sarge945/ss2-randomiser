@@ -9,12 +9,16 @@ class IOManager
 	inputs = null;
 	outputs = null;
 	outputsLow = null;
+
+	seed = null;
 	
-	constructor()
+	constructor(cSeed)
 	{
 		inputs = [];
 		outputs = [];
 		outputsLow = [];
+		
+		seed = cSeed;
 	}
 	
 	function GetInputsAndOutputsForAllObjectPools(obj, validInputTypes, prioritizeWorldObjects)
@@ -40,8 +44,36 @@ class IOManager
 			}
 		}
 		
+		srand(seed);
 		inputs = Array_Shuffle(inputs);
 		outputs = GetOutputsArray();
+	}
+	
+	function RefreshOutput(currentOutput, fuzzy)
+	{
+		local output = outputs[currentOutput];
+		
+		srand(seed + output.output);
+		
+		//print ("refreshing array position " + currentOutput);
+		outputs.remove(currentOutput);
+		
+		//Add a little variation to the output, otherwise each container gets exactly 1 item
+		if (fuzzy)
+		{
+			local min = outputs.len() * 0.35;
+			
+			local range = outputs.len() - 1 - min;
+			rand() % range + min
+			
+			local index = rand() % range + min;
+			//local index = Data.RandInt(min,manager.outputs.len() - 1);
+			outputs.insert(index,output);
+		}
+		else
+		{
+			outputs.append(output);
+		}
 	}
 	
 	function IsContainer(item)
@@ -155,10 +187,10 @@ class IOManager
 	//Shuffles an array
 	//https://en.wikipedia.org/wiki/Knuth_shuffle
 	function Array_Shuffle(shuffle = [])
-	{
-		for (local position = shuffle.len() - 1;position >= 0;position--)
+	{		
+		for (local position = shuffle.len() - 1;position > 0;position--)
 		{
-			local val = Data.RandInt(0, position);
+			local val = rand() % position;		
 			local temp = shuffle[position];
 			shuffle[position] = shuffle[val];
 			shuffle[val] = temp;
@@ -272,7 +304,7 @@ class PhysicalOutput extends Output
 		return true;
 	}
 	
-	//Items with these archetypes will have their X and Z facing set to the specified value
+	//Items with these archetypes will have their X, Y and Z facing set to the specified value
 	static fixArchetypes = [
 		[-938,0,0,0], //Cyber Modules
 		[-85,0,0,0], //Nanites

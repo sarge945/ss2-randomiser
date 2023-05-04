@@ -4,7 +4,7 @@ class rndComplexRandomiser extends rndBase
 	
 	manager = null;
 	delay = null;
-	
+		
 	static allowedTypesDefault = [
 		//-49, //Goodies
 		//-12, //Weapons
@@ -28,19 +28,28 @@ class rndComplexRandomiser extends rndBase
 	];
 	
 	function Init()
-	{
-		DebugPrint ("Randomiser Init");
-		SetOneShotTimer("StartTimer",0.1);
+	{	
+		//Configure the number of times we will randomise
+		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
+		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
+		if (minTimes > maxTimes)
+			minTimes = maxTimes;
+		SetData("Times",Data.RandInt(minTimes,maxTimes));
+	
+		local seed = Data.RandInt(0,10000);		
+		DebugPrint ("Randomiser Init (seed: " + seed + ")");
+		SetData("Seed",seed);
+		SetOneShotTimer("StartTimer",0.01);
+		
 	}
 	
 	function Setup()
-	{		
+	{	
 		delay = getParam("priority",0) * 0.02;
-		//delay += (Data.RandInt(0,1) * 0.01); //add some randomness so that randomisers go in a non-deterministic order
 		
 		ConfigureAllowedTypes();
 	
-		manager = IOManager();
+		manager = IOManager(GetData("Seed"));
 		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
 		
 		if (debug)
@@ -89,13 +98,7 @@ class rndComplexRandomiser extends rndBase
 	{
 		DebugPrint("Randomizing");
 		
-		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
-		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
-		
-		if (minTimes > maxTimes)
-			minTimes = maxTimes;
-		
-		local times = Data.RandInt(minTimes,maxTimes);
+		local times = GetData("Times");
 		times = Min(times,manager.inputs.len());
 		
 		local count = 0;
@@ -125,20 +128,7 @@ class rndComplexRandomiser extends rndBase
 			
 			if (success)
 			{
-				//print ("refreshing array position " + currentOutput);
-				manager.outputs.remove(currentOutput);
-				
-				//Add a little variation to the output, otherwise each container gets exactly 1 item
-				if (fuzzy)
-				{
-					local min = Max(manager.outputs.len() * 0.35,0);
-					local index = Data.RandInt(min,manager.outputs.len() - 1);
-					manager.outputs.insert(index,output);
-				}
-				else
-				{
-					manager.outputs.append(output);
-				}
+				manager.RefreshOutput(currentOutput,fuzzy);
 			}
 			
 			//print ("Sending " + input.item + " to " + output.output);
@@ -148,6 +138,7 @@ class rndComplexRandomiser extends rndBase
 		}
 		
 		DebugPrint("Randomize: Rolled " + count + " times");
+		srand(time());
 		Object.Destroy(self);
 	}
 }
