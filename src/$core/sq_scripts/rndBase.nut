@@ -334,17 +334,15 @@ class rndBaseRandomiser extends rndBase
 	
 	function GetStartTime()
 	{
-		return 0.2;
+		return 0.25;
 	}
 	
 	function SetSeed()
 	{
 		seed = getParam("forceSeed",-1);
 		if (seed == -1)
-		{
 			seed = Data.RandInt(0,99999);
-			SetData("Seed",seed);
-		}
+		SetData("Seed",seed);
 	}
 	
 	function SetAllowedTypes()

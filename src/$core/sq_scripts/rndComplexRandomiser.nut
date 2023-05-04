@@ -47,7 +47,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	function Setup()
 	{
 		base.Setup();
-
 		
 		//Populate configuration
 		fuzzy = getParam("variedOutput",1);
@@ -84,7 +83,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		
 		local output = message().from;
 		local input = message().data;
-		local container = message().data2;
 	
 		//print("OnOutputSuccess received");
 		currentRolls++;
@@ -149,12 +147,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		return noRespectJunk + ";" + noSecret + ";" + noCorpse + ";" + allowOriginalLocations + ";";
 	}
 
-	function Complete()
-	{
-		PrintDebug("Randomiser Completed. Randomised " + currentRolls + " of " + totalItems + " items (" + failures + " rerolls)");
-		Object.Destroy(self);
-	}
-
 	function VerifyInputs()
 	{
 		foreach (input in inputs)
@@ -165,7 +157,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	
 	function ShuffleBothArrays()
 	{
-		local seed = GetData("Seed");
 		inputs = Shuffle(inputs,seed);
 		
 		//If we are set to have high-priority outputs, then we are going to need
@@ -194,7 +185,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	//rather than always at the end
 	function ReplaceOutput(forceEnd = false)
 	{
-		local seed = GetData("Seed");
 		local output = outputs[0];
 	
 		if (fuzzy && !forceEnd)

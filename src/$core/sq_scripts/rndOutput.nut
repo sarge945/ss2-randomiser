@@ -5,6 +5,8 @@ class rndOutput extends rndBase
 
 	function Init(reloaded)
 	{
+		if (name == "SargeRandomMedicalLobbyDesk")
+			debugLevel = 999;
 	
 		container = isContainer(self);
 		corpse = isCorpse(self);
@@ -56,6 +58,9 @@ class rndOutput extends rndBase
 
 	static function ContainerOnlyCheck(input,output)
 	{
+		if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && SameItemType(output,input))
+			return true;
+	
 		if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
 			return isContainer(output);
 		return true;
@@ -159,7 +164,7 @@ class rndOutput extends rndBase
 				SetData("placed",true);
 				PrintDebug("	found suitable input " + input + " from " + source,4);
 				Place(input,self);
-				PostMessage(source,"OutputSuccess",input,container);
+				PostMessage(source,"OutputSuccess",input);
 				return;
 			}
 		}
@@ -168,14 +173,15 @@ class rndOutput extends rndBase
 	
 	function Place(input,output)
 	{
+		Container.Remove(input);
 		if (isContainer(output))
 		{
-			PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",0);
+			PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",2);
 			PlaceInContainer(input,output);
 		}
 		else
 		{
-			PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",0);
+			PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
 			PlacePhysical(input,output);
 		}
 	}
@@ -193,7 +199,7 @@ class rndOutput extends rndBase
 		local facing = GetData("facing");
 		local physicsControls = GetData("physicsControls");
 		
-		local position_up = vector(position.x, position.y, position.z + 0.2);
+		local position_up = vector(position.x, position.y, position.z + 0.35);
 		
 		//Make object render
 		Property.SetSimple(input, "HasRefs", TRUE);
@@ -202,22 +208,29 @@ class rndOutput extends rndBase
 		//Just remain in place.
 		if (output == input)
 		{
+			PrintDebug("1",99);
 		}
-		//If we are the same archetype, "lock" into position
+		//If we are the same archetype, "lock" into position and adopt physics controls
 		else if (SameItemType(input,output))
 		{
 			Property.Set(input, "PhysControl", "Controls Active", physicsControls);
 			Object.Teleport(input, position, facing);
+			PrintDebug("2: " + physicsControls,99);
 		}
 		//Different objects, need to "jiggle" the object to fix physics issues
 		else
 		{
+			PrintDebug("3",99);
+		
 			Object.Teleport(input, position_up, FixItemFacing(input,facing));
 			
 			//Fix up physics
 			Property.Set(input, "PhysControl", "Controls Active", "");
-			Physics.SetVelocity(input,vector(0,0,10));
+			
 			Physics.Activate(input);
+			
+			if (Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
+				Physics.SetVelocity(input,vector(0,0,10));
 		}
 	}
 	

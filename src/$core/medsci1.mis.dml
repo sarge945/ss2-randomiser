@@ -820,6 +820,7 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 
 //Log on gurney outside R&D entrance
 +MetaProp 268 "Object Randomiser - Output Self Only"
++MetaProp 268 "Object Randomiser - Container Only"
 +Link 268 "rndScienceObjects" "Target"
 {
 }
