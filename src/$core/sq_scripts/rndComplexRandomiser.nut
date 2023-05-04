@@ -34,6 +34,11 @@ class rndComplexRandomiser extends rndBase
 	priority = null;
 	fuzzy = null;
 	seed = null;
+	rolls = null;
+	ignorePriority = null;
+	prioritizeWorld = null;
+	noSecret = null;
+	allowOriginalLocations = null;
 
 	function SetSeed()
 	{
@@ -42,14 +47,30 @@ class rndComplexRandomiser extends rndBase
 			seed = Data.RandInt(0,99999);
 		SetData("Seed",seed);
 	}
+	
+	function SetRolls()
+	{
+		local maxTimes = getParam("maxTimes",99);
+		local minTimes = getParam("minTimes",99);
+		
+		if (minTimes > maxTimes)
+			minTimes = maxTimes;
+		
+		local times = Data.RandInt(minTimes,maxTimes);
+		
+		SetData("Times",times);
+	}
 
 	function Init()
 	{
 		//just testing
-		debugger.debugLevel = 999;
+		//debugger.debugLevel = 999;
 		
 		//Set our random seed
 		SetSeed();
+		
+		//Set our number of rolls
+		SetRolls();
 		
 		//We need to delay right at the start to give everything time to properly init,
 		//plus the game has a tendency to crash on loading otherwise
@@ -71,6 +92,14 @@ class rndComplexRandomiser extends rndBase
 		}
 	}
 	
+	function SetAllowedTypes()
+	{
+		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
+		local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
+		foreach (add in addAllowedTypes)
+			allowedTypes.append(add);
+	}
+	
 	//Set up our input and output arrays
 	function Setup()
 	{		
@@ -79,35 +108,53 @@ class rndComplexRandomiser extends rndBase
 		seed = GetData("Seed");
 		startDelay = GetData("StartDelay");
 		priority = getParam("priority",0);
+		ignorePriority = getParam("ignorePriority",false);
+		prioritizeWorld = getParam("prioritizeWorldObjects",false);
+		noSecret = getParam("noSecret",false);
+		allowOriginalLocations = getParam("allowOriginalLocations",false);
+		SetAllowedTypes();
 		
 		debugger.LogAlways("Complex Randomier " + name + " Init (startDelay: " + startDelay + ", seed: " + seed + ")");
 	
 		local IOcollection = rndIOCollection(self);
 		
 		//Shuffle and filter inputs by type
-		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		inputs = rndFilterShuffle(rndTypeFilter(IOcollection.inputs,allowedTypes).results,seed).results;
 		
 		//Remove outputs that are items that don't match with any input
 		local outputItems = rndFilterMatching(inputs,IOcollection.outputsItems).results_output;
 		outputs = rndFilterCombine(rndFilterCombine(outputItems,IOcollection.outputsMarkers).results,IOcollection.outputsContainers).results;
-				
-		//shuffle and filter outputs by priority
-		local out = rndPriorityFilter(outputs);
-		local high = rndFilterShuffle(out.high_priority_outputs,seed).results;
-		local low = rndFilterShuffle(out.low_priority_outputs,seed).results;
-			
-		foreach(h in high)
-			debugger.Log("H -> " + h.obj);
-		foreach(l in low)
-			debugger.Log("L -> " + l.obj);
 		
-		//combine all outputs into one list again
-		outputs = rndFilterCombine(high,low).results;
+		if (ignorePriority)
+		{
+			outputs = rndFilterShuffle(outputs,seed).results;
+		}
+		else
+		{
+		
+			//shuffle and filter outputs by priority
+			local out = rndPriorityFilter(outputs,prioritizeWorld);
+			local high = rndFilterShuffle(out.high_priority_outputs,seed).results;
+			local low = rndFilterShuffle(out.low_priority_outputs,seed).results;
+				
+			//combine all outputs into one list again
+			outputs = rndFilterCombine(high,low).results;
+		}
 		
 		//Remove duplicates from inputs and outputs
 		inputs = rndFilterRemoveDuplicates(inputs).results;
 		outputs = rndFilterRemoveDuplicates(outputs).results;
+		
+		if (debugger.debugLevel > 0)
+		{
+			debugger.Log("Inputs: ");
+			foreach (input in inputs)
+				debugger.Log(" -> " + input.obj);
+				
+			debugger.Log("Outputs: ");
+			foreach (output in outputs)
+				debugger.Log(" -> " + output.obj);
+		}
 			
 		debugger.Log("Total Inputs: " + inputs.len());
 		debugger.Log("Total Outputs: " + outputs.len());
@@ -136,14 +183,23 @@ class rndComplexRandomiser extends rndBase
 	
 	function Randomise()
 	{
+		local count = 0;
+		local total = GetData("Times");
+	
 		foreach (input in inputs)
 		{
+			if (count >= total)
+				return;
+			
 			foreach(index, output in outputs)
 			{
-				if (output.CanMove(input))
+				if (output.CanMove(input,noSecret,allowOriginalLocations))
 				{
 					output.HandleMove(input);
 					ReplaceOutput(index,output);
+					count++;
+					debugger.Log(count + ") Moving input " + input.obj + " to output " + output.obj);
+					debugger.Log(count + ") Replacing output: " + output.obj + " at index " + index);
 					break;
 				}
 			}

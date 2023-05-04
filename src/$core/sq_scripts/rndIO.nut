@@ -56,9 +56,9 @@ class rndIOCollection
 			foreach (link in Link.GetAll(LINK_CONTAINS,obj))
 			{
 				local contained = sLink(link).dest;
-				if (ValidateInput(contained))
+				if (ValidateInput(contained) && ValidateInput(obj))
 				{
-					local input = Input(contained);
+					local input = Input(contained,obj);
 					inputs.append(input);
 				}
 			}
@@ -97,6 +97,8 @@ class rndIOCollection
 		outputs.append(output);
 	}
 	
+	//Note: This is checked for both items AND containers.
+	//If this returns false, containers will not be searched for items
 	function ValidateInput(obj)
 	{
 		if (Object.HasMetaProperty(obj,"Object Randomiser - No Auto Input"))
@@ -159,11 +161,15 @@ class Input
 
 	obj = null;
 	isJunk = null;
+	containerOnly = null;
+	originalContainer = null;
 
-	constructor(cObj)
+	constructor(cObj,cOriginalContainer = null)
 	{
 		obj = cObj;
 		isJunk = GetIsJunk();
+		containerOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Container Only");
+		originalContainer = cOriginalContainer;
 	}
 }
 
@@ -177,6 +183,7 @@ class Output
 	highPriority = null;
 	isMarker = null;
 	isContainer = null;
+	selfOnly = null;
 	secret = null;
 	noJunk = null;
 
@@ -186,13 +193,20 @@ class Output
 		highPriority = Object.HasMetaProperty(cObj,"Object Randomiser - High Priority Output");
 		secret = Object.HasMetaProperty(cObj,"Object Randomiser - Secret");
 		noJunk = Object.HasMetaProperty(cObj,"Object Randomiser - No Junk") || secret || highPriority;
+		selfOnly = Object.HasMetaProperty(cObj,"Object Randomiser - Output Self Only");
 		isContainer = false;
 		isMarker = false;
 	}
 	
-	function CanMove(input)
-	{
+	function CanMove(input,noSecret,allowOriginalLocation)
+	{	
+		if (selfOnly && (rndUtil.isArchetype(input.obj,obj) || input.originalContainer == obj))
+			return false;
+	
 		if (noJunk && input.isJunk)
+			return false;
+			
+		if (noSecret && secret)
 			return false;
 	
 		return true;
@@ -200,7 +214,7 @@ class Output
 	
 	function HandleMove(input)
 	{
-		print ("Moving " + input.obj + " to " + obj);
+		//print ("Moving " + input.obj + " to " + obj);
 	}
 }
 
@@ -226,18 +240,23 @@ class PhysicalOutput extends Output
 	position = null;
 	facing = null;
 	physicsControls = null;
+	noFacing = null;
 
 	constructor(cObj)
 	{
 		base.constructor(cObj);
-		position = Object.Position(obj);
-		facing = Object.Facing(obj);
-		physicsControls = Property.Get(obj, "PhysControl", "Controls Active");
+		position = Object.Position(cObj);
+		facing = Object.Facing(cObj);
+		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
+		noFacing = Object.HasMetaProperty(cObj,"Object Randomiser - No Facing");
 	}
 	
-	function CanMove(input)
+	function CanMove(input,noSecret,allowOriginalLocation)
 	{
-		if (!base.CanMove(input))
+		if (!base.CanMove(input,noSecret,allowOriginalLocation))
+			return false;
+			
+		if (!selfOnly && input.containerOnly)
 			return false;
 	
 		if (!Link.AnyExist(LINK_TARGET,obj))
@@ -258,7 +277,10 @@ class PhysicalOutput extends Output
 	];
 	
 	function FixItemFacing(item)
-	{	
+	{
+		if (noFacing)
+			return vector(0,0,0);
+	
 		foreach (archetype in fixArchetypes)
 		{
 			local type = archetype[0];

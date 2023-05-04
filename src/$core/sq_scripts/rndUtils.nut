@@ -70,7 +70,7 @@ class rndPriorityFilter
 	high_priority_outputs = null;
 	low_priority_outputs = null;
 
-	constructor(outputs)
+	constructor(outputs,priotitizeWorld = false)
 	{
 		high_priority_outputs = [];
 		low_priority_outputs = [];
@@ -78,6 +78,8 @@ class rndPriorityFilter
 		foreach(output in outputs)
 		{
 			if (output.highPriority)
+				high_priority_outputs.append(output);
+			else if (!output.isContainer && priotitizeWorld)
 				high_priority_outputs.append(output);
 			else
 				low_priority_outputs.append(output);
