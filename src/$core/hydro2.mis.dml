@@ -335,6 +335,8 @@ Create "rndObjectCollection" "rndEggs"
 }
 
 //Dead woman in snowy egg room
+//Trapped (next to egg), so give good stuff
++MetaProp 1297 "Object Randomiser - High Priority Output"
 +Link 1297 "rndSectorBObjects" "Target"
 {
 }
@@ -344,6 +346,7 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 //Another another Dead guy in snowy egg room
++MetaProp 936 "Object Randomiser - High Priority Output"
 +Link 936 "rndSectorBObjects" "Target"
 {
 }
@@ -387,6 +390,7 @@ Create "rndObjectCollection" "rndEggs"
 
 //Cyber Modules in the water
 +MetaProp 634 "Object Randomiser - Secret"
++MetaProp 634 "Object Randomiser - High Priority Output"
 +Link 634 "rndSectorBObjects" "Target"
 {
 }
@@ -642,5 +646,103 @@ Create "rndOutputMarker" "rndSectorC632Replacer"
 
 //EMP Grenades on ground
 +Link 1034 "rndSectorDObjects" "Target"
+{
+}
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
+////Lobby Eggs
+
++Link 1000 "rndEggs" "Target"
+{
+}
+
++Link 991 "rndEggs" "Target"
+{
+}
+
++Link 999 "rndEggs" "Target"
+{
+}
+
++Link 992 "rndEggs" "Target"
+{
+}
+
+////Snow Room
+
++Link 1352 "rndEggs" "Target"
+{
+}
+
++Link 1353 "rndEggs" "Target"
+{
+}
+
++Link 1354 "rndEggs" "Target"
+{
+}
+
++Link 1355 "rndEggs" "Target"
+{
+}
+
++Link 1356 "rndEggs" "Target"
+{
+}
+
++Link 1358 "rndEggs" "Target"
+{
+}
+
++Link 1359 "rndEggs" "Target"
+{
+}
+
++Link 1360 "rndEggs" "Target"
+{
+}
+
++Link 1362 "rndEggs" "Target"
+{
+}
+
++Link 1363 "rndEggs" "Target"
+{
+}
+
+////Sector B
+
++Link 952 "rndEggs" "Target"
+{
+}
+
++Link 905 "rndEggs" "Target"
+{
+}
+
++Link 904 "rndEggs" "Target"
+{
+}
+
++Link 874 "rndEggs" "Target"
+{
+}
+
++Link 875 "rndEggs" "Target"
+{
+}
+
+////Sector C
+
++Link 70 "rndEggs" "Target"
+{
+}
+
++Link 80 "rndEggs" "Target"
+{
+}
+
++Link 287 "rndEggs" "Target"
 {
 }

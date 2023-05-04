@@ -236,6 +236,8 @@ class rndBase extends SqRootScript
 
 class rndBaseRandomiser extends rndBase
 {
+	static allowedTypesDefault = [];
+
 	//Configuration
 	allowedTypes = null;	
 	seed = null;
@@ -243,11 +245,14 @@ class rndBaseRandomiser extends rndBase
 	maxTimes = null;
 	allowOriginalLocations = null;
 	priority = null;
+	failures = null;
 	
 	//State
 	totalRolls = null;
 	currentRolls = null;
 	totalItems = null;
+	inputs = null;
+	outputs = null;
 	
 	function Init()
 	{	
@@ -264,6 +269,9 @@ class rndBaseRandomiser extends rndBase
 		currentRolls = 0;
 		totalRolls = RandBetween(seed,minTimes,maxTimes);
 		currentRolls = 0;
+		failures = 0;
+		inputs = [];
+		outputs = [];
 		
 		//Show startup message
 		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetStartTime() + "]");
@@ -284,7 +292,7 @@ class rndBaseRandomiser extends rndBase
 			seed = Data.RandInt(0,999);
 	}
 	
-		function SetAllowedTypes()
+	function SetAllowedTypes()
 	{
 		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
 		local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
@@ -314,5 +322,43 @@ class rndBaseRandomiser extends rndBase
 	function IsOutputValid(output)
 	{
 		return true;
+	}
+	
+	function OnSetOutputs()
+	{
+		local expandedOutputs = DeStringify(message().data);
+		PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
+		
+		foreach(val in expandedOutputs)
+		{
+			local vali = val.tointeger();
+		
+			if (outputs.find(vali) == null && IsOutputValid(vali))
+			{
+				outputs.append(vali);
+			}
+		}
+	}
+	
+	function OnSetInputs()
+	{
+		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
+		local expandedInputs = DeStringify(message().data);
+		
+		foreach(val in expandedInputs)
+		{
+			local vali = val.tointeger();
+		
+			if (inputs.find(vali) == null && IsInputValid(vali))
+			{
+				inputs.append(vali);
+			}
+		}
+	}
+	
+	function Complete()
+	{
+		PrintDebug("Randomiser Completed. Randomised " + currentRolls + " of " + totalItems + " items (" + failures + " rerolls)");
+		Object.Destroy(self);
 	}
 }

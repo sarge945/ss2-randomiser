@@ -35,11 +35,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	];
 	
 	//state
-	inputs = null;
-	outputs = null;
-	currentInput = null;
 	outputLoop = null;
-	failures = null;
 	
 	//Settings
 	fuzzy = null;
@@ -59,11 +55,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		noRespectJunk = getParam("noRespectJunk",0);
 		
 		//Setup variables
-		currentInput = 0;
 		outputLoop = 0;
-		inputs = [];
-		outputs = [];
-		failures = 0;
 	}
 	
 	function OnTimer()
@@ -124,7 +116,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		if (inputs.len() == 0 || outputs.len() == 0)
 		{
 			Complete();
-			Object.Destroy(self);
 			return;
 		}
 	
@@ -190,38 +181,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
 			highPrio = Shuffle(highPrio,seed);
 			
 			outputs = Combine(highPrio,lowPrio);
-		}
-	}
-	
-	function OnSetInputs()
-	{
-		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
-		local expandedInputs = DeStringify(message().data);
-		
-		foreach(val in expandedInputs)
-		{
-			local vali = val.tointeger();
-		
-			if (inputs.find(vali) == null && IsInputValid(vali))
-			{
-				inputs.append(vali);
-			}
-		}
-	}
-	
-	function OnSetOutputs()
-	{
-		local expandedOutputs = DeStringify(message().data);
-		PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
-		
-		foreach(val in expandedOutputs)
-		{
-			local vali = val.tointeger();
-		
-			if (outputs.find(vali) == null && IsOutputValid(vali))
-			{
-				outputs.append(vali);
-			}
 		}
 	}
 	

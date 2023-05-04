@@ -70,8 +70,8 @@ CreateArch "Marker" "rndComplexRandomiser"
 	}
 }
 
-//"Replacer" Randomiser. Replaces each Input with a random one of it's allowed types
-//Has no outputs
+//"Replacer" Randomiser. Replaces each Output with a random one of it's allowed types
+//Has no inputs
 CreateArch "Marker" "rndReplacerRandomiser"
 {
 	+ObjProp "Scripts"
@@ -106,6 +106,17 @@ CreateArch "rndComplexRandomiser" "rndArtTerminalRandomiser"
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; ignorePriority=1; variedOutput=0; priority=1;"
+}
+
+//NOT THE BEES!
+CreateArch "rndReplacerRandomiser" "rndHydroEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476"
+}
+
+CreateArch "rndReplacerRandomiser" "rndEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;"
 }
 
 ////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
