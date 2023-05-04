@@ -1,0 +1,482 @@
+DML1
+
+FINGERPRINT
+{
+   306 [-172.1 -516.553 4.75]
+   307 [-173.146 -531.749 4.75]
+   308 [-171.055 -543.889 4.75]
+   176 [-131.124 -526.953 8.91155]
+   170 [-215.822 -502.854 2.78125]
+   305 [-172.824 -482.623 4.75]
+   186 [-183.935 -451.218 0.485492]
+   212 [-200.637 -438.315 0.833361]
+   514 [-209.873 -436.506 -11]
+   492 [-190.469 -251.048 -11]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//The Galleria
+Create "rndObjectCollection" "rndMallObjects"
+{
+}
+
+//The Theatre
+Create "rndObjectCollection" "rndTheatreObjects"
+{
+}
+
+//Security
+Create "rndObjectCollection" "rndSecurityObjects"
+{
+}
+
+//The Sensual Sim Center
+Create "rndObjectCollection" "rndSensualSimObjects"
+{
+}
+
+//The Casino
+Create "rndObjectCollection" "rndCasinoObjects"
+{
+}
+
+//Create an object collection for the Art Terminals.
+Create "rndObjectCollection" "rndArtObjects"
+{
+}
+
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+/////////////////=====	Galleria	=====\\\\\\\\\\\\\\\\\
+
+////Toilets
+
+//Garbage Bin
++Link 1405 "rndMallObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 1370 "rndMallObjects" "Target"
+{
+}
+
+//Corpse
++Link 451 "rndMallObjects" "Target"
+{
+}
+
+//Liquor Bottle
++MetaProp 450 "Object Randomiser - Junk Only"
++Link 450 "rndMallObjects" "Target"
+{
+}
+
+//Liquor Bottle
++MetaProp 455 "Object Randomiser - Junk Only"
++Link 455 "rndMallObjects" "Target"
+{
+}
+
+//Pistol
++Link 453 "rndMallObjects" "Target"
+{
+}
+
+////Mall Lower Level
+
+//Corpse
++Link 320 "rndMallObjects" "Target"
+{
+}
+
+//Corpse
+//Trapped behind eggs, so guarantee an item
++MetaProp 81 "Object Randomiser - High Priority Output"
++Link 81 "rndMallObjects" "Target"
+{
+}
+
+//Mug
++MetaProp 99 "Object Randomiser - Junk Only"
++Link 99 "rndMallObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 101 "Object Randomiser - Junk Only"
++Link 101 "rndMallObjects" "Target"
+{
+}
+
+//Mug
+//Too close to cigarettes, so disable
++MetaProp 98 "Object Randomiser - No Auto Output"
++Link 98 "rndMallObjects" "Target"
+{
+}
+
+//Durries
++MetaProp 100 "Object Randomiser - Junk Only"
++Link 100 "rndMallObjects" "Target"
+{
+}
+
+//Corpse
++Link 91 "rndMallObjects" "Target"
+{
+}
+
+//Vodka
++Link 1255 "rndMallObjects" "Target"
+{
+}
+
+////Mall Upper Level
+
+//Psi Hypo
++Link 234 "rndMallObjects" "Target"
+{
+}
+
+//Laser Pistol
++Link 394 "rndMallObjects" "Target"
+{
+}
+
+//Corpse
++Link 259 "rndMallObjects" "Target"
+{
+}
+
+//Corpse
++Link 480 "rndMallObjects" "Target"
+{
+}
+
+/////////////////=====	Sensual Sim Center =====\\\\\\\\\\\\\\\\\
+
+//Champagne
++MetaProp 221 "Object Randomiser - Junk Only"
++Link 221 "rndSensualSimObjects" "Target"
+{
+}
+
+//Vodka
++MetaProp 219 "Object Randomiser - Junk Only"
++Link 219 "rndSensualSimObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 1641 "Object Randomiser - Junk Only"
++Link 1641 "rndSensualSimObjects" "Target"
+{
+}
+
+//Ciggies
++MetaProp 893 "Object Randomiser - Junk Only"
++Link 893 "rndSensualSimObjects" "Target"
+{
+}
+
+//Vodka
++MetaProp 1605 "Object Randomiser - Junk Only"
++Link 1605 "rndSensualSimObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 1633 "Object Randomiser - Junk Only"
++Link 1633 "rndSensualSimObjects" "Target"
+{
+}
+
+//Liquor
++MetaProp 74 "Object Randomiser - Junk Only"
++Link 74 "rndSensualSimObjects" "Target"
+{
+}
+
+//Liquor
++MetaProp 76 "Object Randomiser - Junk Only"
++Link 76 "rndSensualSimObjects" "Target"
+{
+}
+
+//Desk
++Link 300 "rndSensualSimObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 1501 "Object Randomiser - Junk Only"
++Link 1501 "rndSensualSimObjects" "Target"
+{
+}
+
+//Liquor
++MetaProp 383 "Object Randomiser - Junk Only"
++Link 383 "rndSensualSimObjects" "Target"
+{
+}
+
+///Lance Room - Nothing
+
+///Nikki Room
+
+//Vodka
++MetaProp 276 "Object Randomiser - Junk Only"
++Link 276 "rndSensualSimObjects" "Target"
+{
+}
+
+//Cigarettes
++MetaProp 322 "Object Randomiser - Junk Only"
++Link 322 "rndSensualSimObjects" "Target"
+{
+}
+
+/*
+//LOTS of nanites
++MetaProp 312 "Object Randomiser - High Priority Output"
++Link 312 "rndSensualSimObjects" "Target"
+{
+}
+*/
+
+//Cyber Modules
++MetaProp 457 "Object Randomiser - High Priority Output"
++Link 457 "rndSensualSimObjects" "Target"
+{
+}
+
+///Lance
+
+//Corpse
++Link 669 "rndSensualSimObjects" "Target"
+{
+}
+
+//Cigarettes
++MetaProp 275 "Object Randomiser - Junk Only"
++Link 275 "rndSensualSimObjects" "Target"
+{
+}
+
+///Candy
+
+/*
+//Heart Pillow
++MetaProp 1226 "Object Randomiser - Junk Only"
++Link 1226 "rndSensualSimObjects" "Target"
+{
+}
+*/
+
+/////////////////=====	Security Station =====\\\\\\\\\\\\\\\\\
+
+//Proximity Grenades
++Link 1940 "rndSecurityObjects" "Target"
+{
+}
+
+//Shotgun Slugs
++Link 1948 "rndSecurityObjects" "Target"
+{
+}
+
+//Corpse
++Link 1214 "rndSecurityObjects" "Target"
+{
+}
+
+////Prison Room
+
+/*
+//Crystal Shard
+//Disabled because of script related issues
++Link 1941 "rndSecurityObjects" "Target"
+{
+}
+*/
+
+//Corpse
++Link 287 "rndSecurityObjects" "Target"
+{
+}
+
+//Magazine
++Link 1266 "rndSecurityObjects" "Target"
+{
+}
+
+//Corpse in locked cell with egg
++MetaProp 142 "Object Randomiser - High Priority Output"
++Link 142 "rndSecurityObjects" "Target"
+{
+}
+
+////Toilets Near Casino
+
+//Garbage Bin
++Link 1305 "rndSecurityObjects" "Target"
+{
+}
+
+//Maintenance Tool behind egg
++MetaProp 1123 "Object Randomiser - High Priority Output"
++Link 1123 "rndSecurityObjects" "Target"
+{
+}
+
+/////////////////=====	Theatre	=====\\\\\\\\\\\\\\\\\
+
+//Cola on the Floor
++Link 1289 "rndTheatreObjects" "Target"
+{
+}
+
+/*
+//Cola in display case
++Link 504 "rndTheatreObjects" "Target"
+{
+}
+
++Link 503 "rndTheatreObjects" "Target"
+{
+}
++Link 502 "rndTheatreObjects" "Target"
+{
+}
+
+//Chips in display case
++Link 507 "rndTheatreObjects" "Target"
+{
+}
++Link 505 "rndTheatreObjects" "Target"
+{
+}
++Link 1293 "rndTheatreObjects" "Target"
+{
+}
+*/
+
+//Corpse
++Link 566 "rndTheatreObjects" "Target"
+{
+}
+
+//Psi Hypo
++Link 233 "rndTheatreObjects" "Target"
+{
+}
+
+//Corpse near theatre screen
++Link 271 "rndTheatreObjects" "Target"
+{
+}
+
+/////////////////=====	Casino	=====\\\\\\\\\\\\\\\\\
+
+//Vodka on the Floor
++MetaProp 261 "Object Randomiser - Junk Only"
++Link 261 "rndCasinoObjects" "Target"
+{
+}
+
+//Champagne at the bar
++MetaProp 384 "Object Randomiser - Junk Only"
++Link 384 "rndCasinoObjects" "Target"
+{
+}
+
+//Champagne at the bar
++MetaProp 385 "Object Randomiser - Junk Only"
++Link 385 "rndCasinoObjects" "Target"
+{
+}
+
+//Corpse on floor
++Link 1813 "rndCasinoObjects" "Target"
+{
+}
+
+//Nanites on the floor
++Link 2230 "rndCasinoObjects" "Target"
+{
+}
+
+////Downstairs Bar
+
+//Corpse on floor
++Link 446 "rndCasinoObjects" "Target"
+{
+}
+
+//Liquor next to corpse
++MetaProp 448 "Object Randomiser - Junk Only"
++Link 448 "rndCasinoObjects" "Target"
+{
+}
+
+//Liquor next to corpse
++MetaProp 449 "Object Randomiser - Junk Only"
++Link 449 "rndCasinoObjects" "Target"
+{
+}
+
+/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
+
+//Mall Upper Level
++Link 251 "rndArtObjects" "Target"
+{
+}
+
+//Mall Upper Level - 4
++Link 117 "rndArtObjects" "Target"
+{
+}
+
+//Mall Upper Level
++Link 250 "rndArtObjects" "Target"
+{
+}
+
+//Mall Upper Level
++Link 252 "rndArtObjects" "Target"
+{
+}
+
+//Mall Upper Level
++Link 253 "rndArtObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Galleria
++Link 178 "rndSecurityCrates" "Target"
+{
+}
+
+//Casino, behind the bar
++Link 181 "rndSecurityCrates" "Target"
+{
+}
+
+//Galleria next to Replicator
++Link 183 "rndSecurityCrates" "Target"
+{
+}

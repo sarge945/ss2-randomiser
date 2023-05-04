@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Add Plot Items to Randomiser
+// ================================================================================
+
+//Create a randomiser for the Crew Quarters keycard
+//It should aonly appear in the Garden Trapped area
+Create "rndComplexRandomiser" "rndKeycardRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1;"
+}
+
+//Inputs
++Link "rndGargenObjectsTrapped" "rndKeycardRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndGargenObjectsTrapped" "rndKeycardRandomiser" "~SwitchLink"
+{
+}
+
+/////////////////////////////////////////////////
+
+//Create a randomiser for the Art Terminals
+Create "rndComplexRandomiser" "rndArtRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
+}
+
+//Inputs
++Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+{
+}

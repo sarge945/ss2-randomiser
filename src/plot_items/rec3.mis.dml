@@ -1,0 +1,18 @@
+// ================================================================================
+// 								Add Plot Items to Randomiser
+// ================================================================================
+
+//Create a randomiser for the Art Terminals
+Create "rndComplexRandomiser" "rndArtRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-2936; allowedTypes1=-1277;"
+}
+
+//Inputs
++Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+{
+}

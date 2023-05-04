@@ -1,0 +1,57 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for rec3.
+Create "rndComplexRandomiser" "rndRecRandomiser"
+{
+}
+
+//Inputs
++Link "rndMallObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndTheatreObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndSensualSimObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
++Link "rndCasinoObjects" "rndRecRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndMallObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndTheatreObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndSensualSimObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
++Link "rndCasinoObjects" "rndRecRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

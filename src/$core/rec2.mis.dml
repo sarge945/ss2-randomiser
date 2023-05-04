@@ -1,0 +1,496 @@
+DML1
+
+FINGERPRINT
+{
+   503 [-233.682 -212.545 -23]
+   1289 [-239.076 -202.044 -21.9052]
+   1333 [-201.658 -177.397 -19.1932]
+   1293 [-254.531 -140.747 -24.928]
+   714 [-258.127 -135.928 -19.8609]
+   233 [8.15881 -163.446 -3.16406]
+   171 [-239.419 -134.798 -23]
+   721 [-244.437 -144.387 -6.56267]
+   760 [-78.9117 -52.1386 -19.5113]
+   761 [-85.0766 -52.0627 -19.5113]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Security Area.
+Create "rndObjectCollection" "rndSecurityObjects"
+{
+}
+
+//Create an object collection for the Maintenance Area
+Create "rndObjectCollection" "rndMaintenanceObjects"
+{
+}
+
+//Create an object collection for the Bonne-Chance Lounge.
+Create "rndObjectCollection" "rndLoungeObjects"
+{
+}
+
+//Create an object collection for the Dining/Mess area.
+Create "rndObjectCollection" "rndDiningObjects"
+{
+}
+
+//Create an object collection for the Garden area
+Create "rndObjectCollection" "rndGargenObjects"
+{
+}
+
+//Create an object collection for the Garden area Trapped room (with all the bodies and eggs)
+Create "rndObjectCollection" "rndGargenObjectsTrapped"
+{
+}
+
+//Create an object collection for the Garden area behind the locked keypad door
+Create "rndObjectCollection" "rndGargenObjectsLocked"
+{
+}
+
+//Create an object collection for the Art Terminals.
+Create "rndObjectCollection" "rndArtObjects"
+{
+}
+
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Security Section	=====\\\\\\\\\\\\\\\\\
+
+//Corpse near door to Bonne Chance Lounge entrance
++Link 1288 "rndSecurityObjects" "Target"
+{
+}
+
+/////////////////=====	Maintenance Section	=====\\\\\\\\\\\\\\\\\
+
+////Maintenance Access Office
+
+//Desk
++Link 1728 "rndMaintenanceObjects" "Target"
+{
+}
+
+//EMP Rifle
++Link 1730 "rndMaintenanceObjects" "Target"
+{
+}
+
+////Maintanance Tunnels
+
+//Corpse
++Link 618 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Egg Corpse.
+//Set to High Priority because this corpse needs some reason to be searched
+//Since the eggs are dangerous and there's no other reason to go in here
++MetaProp 1914 "Object Randomiser - High Priority Output"
++Link 1914 "rndMaintenanceObjects" "Target"
+{
+}
+
+////End of the Maintenance Tunnels, in the big open area
+
+//Chippies
++Link 1614 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Juice
++Link 1615 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Juice
++Link 1615 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Ciggies
++Link 1610 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Medical Kit
++Link 483 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Juice
++Link 1615 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Nanites
++Link 661 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Juice
++Link 1607 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Ciggies
++Link 1606 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Cola
++Link 1603 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Juice
++Link 1615 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Chippies
++Link 1604 "rndMaintenanceObjects" "Target"
+{
+}
+
+/////////////////=====	Bonne-Chance Lounge	=====\\\\\\\\\\\\\\\\\
+
+////Security Station
+
+//Laser Pistol
++Link 742 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse
++Link 464 "rndLoungeObjects" "Target"
+{
+}
+
+//Desk
++Link 327 "rndLoungeObjects" "Target"
+{
+}
+
+////Pool Room
+
+//Cigarettes on Pool Table
++MetaProp 1212 "Object Randomiser - Junk Only"
++Link 1212 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse
++Link 254 "rndLoungeObjects" "Target"
+{
+}
+
+//Mug
++MetaProp 1000 "Object Randomiser - Junk Only"
++Link 1000 "rndLoungeObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 869 "Object Randomiser - Junk Only"
++Link 869 "rndLoungeObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 1311 "Object Randomiser - Junk Only"
++Link 1311 "rndLoungeObjects" "Target"
+{
+}
+
+//Magazine
++Link 1310 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse on Top Level
++Link 484 "rndLoungeObjects" "Target"
+{
+}
+
+////Piano Room
+
+//Liquor
++MetaProp 177 "Object Randomiser - Junk Only"
++Link 177 "rndLoungeObjects" "Target"
+{
+}
+
+//Liquor
++MetaProp 175 "Object Randomiser - Junk Only"
++Link 175 "rndLoungeObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 172 "Object Randomiser - Junk Only"
++Link 172 "rndLoungeObjects" "Target"
+{
+}
+
+//Vodka
++MetaProp 162 "Object Randomiser - Junk Only"
++Link 162 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse
++Link 110 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse on top level
++Link 435 "rndLoungeObjects" "Target"
+{
+}
+
+////Dance Floor
+
+//Headless Corpse
++Link 415 "rndLoungeObjects" "Target"
+{
+}
+
+//Corpse
++Link 612 "rndLoungeObjects" "Target"
+{
+}
+
+//Above the Dance Floor
++Link 405 "rndLoungeObjects" "Target"
+{
+}
+
+/////////////////=====	Dining/Mess Area	=====\\\\\\\\\\\\\\\\\
+
+////Dining Area
+
+//Nanites
++Link 665 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse
++Link 1352 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse
++Link 593 "rndDiningObjects" "Target"
+{
+}
+
+////Mess Hall
+
+//Garbage Bin
++Link 103 "rndDiningObjects" "Target"
+{
+}
+
+//Garbage Bin
++Link 709 "rndDiningObjects" "Target"
+{
+}
+
+//Shotgun
++Link 601 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse
++Link 596 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse
++Link 388 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse behind the OH YEAHH!!!! wall
++Link 770 "rndDiningObjects" "Target"
+{
+}
+
+////Conference Room
+
+//Mug
++Link 198 "rndDiningObjects" "Target"
+{
+}
+
+//Mug
++Link 1052 "rndDiningObjects" "Target"
+{
+}
+
+//Durries
++Link 182 "rndDiningObjects" "Target"
+{
+}
+
+////Kitchen
+
+//Garbage Bin
++Link 1119 "rndDiningObjects" "Target"
+{
+}
+
+////Food Storage
+
+//A Crate
++Link 413 "rndDiningObjects" "Target"
+{
+}
+
+//A Crate
++Link 2087 "rndDiningObjects" "Target"
+{
+}
+
+//A Crate
++Link 1032 "rndDiningObjects" "Target"
+{
+}
+
+//A Small Crate
++Link 1037 "rndDiningObjects" "Target"
+{
+}
+
+//Corpse
++Link 784 "rndDiningObjects" "Target"
+{
+}
+
+////Chemical Storeroom
+
+//Nothing
+
+/////////////////=====	Garden	=====\\\\\\\\\\\\\\\\\
+
+////Top Level
+
+//Grenade Launcher
++Link 1575 "rndGargenObjects" "Target"
+{
+}
+
+//Corpse
++Link 1299 "rndGargenObjects" "Target"
+{
+}
+
+////Under the Garden
+
+//Corpse in small graveyard room
++Link 445 "rndGargenObjects" "Target"
+{
+}
+
+//Corpse in Graveyard Room
++Link 459 "rndGargenObjects" "Target"
+{
+}
+
+//Corpse in Graveyard Room
++Link 453 "rndGargenObjects" "Target"
+{
+}
+
+////Trapped Room (Big graveyard room)
+
+//Corpse with Crew Keycard
++Link 419 "rndGargenObjectsTrapped" "Target"
+{
+}
+
+//Corpse
++Link 1091 "rndGargenObjectsTrapped" "Target"
+{
+}
+
+//Corpse under the floor
++Link 1092 "rndGargenObjectsTrapped" "Target"
+{
+}
+
+//Corpse under the floor
++Link 440 "rndGargenObjectsTrapped" "Target"
+{
+}
+
+//Corpse under the floor
++Link 1088 "rndGargenObjectsTrapped" "Target"
+{
+}
+
+////Behind the Security Keypad Door
+
+//Corpse
++Link 1095 "rndGargenObjectsLocked" "Target"
+{
+}
+
+//Corpse
++Link 1099 "rndGargenObjectsLocked" "Target"
+{
+}
+
+//Corpse
++Link 1098 "rndGargenObjectsLocked" "Target"
+{
+}
+
+/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
+
+//Bonne Chance pool room - [1
++Link 211 "rndArtObjects" "Target"
+{
+}
+
+//Dining Area
++Link 164 "rndArtObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+//Crate in Bonne-Chance Security Station
++Link 526 "rndSecurityCrates" "Target"
+{
+}
+
+//Crate in Chemical Storeroom
++Link 199 "rndSecurityCrates" "Target"
+{
+}
+
+//Crate in Chemical Storeroom
++Link 195 "rndSecurityCrates" "Target"
+{
+}
