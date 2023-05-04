@@ -301,6 +301,7 @@ class Output
 			return;
 	
 		//print ("Moving " + input.obj + " to " + obj);		
+		
 		Container.Remove(input.obj);
 		
 		currentOutputLocation.HandleMove(input);
@@ -393,6 +394,8 @@ class ContainerLocation extends LocationBase
 	{
 		base.HandleMove(input);
 		Link.Create(LINK_CONTAINS,obj,input.obj);
+		//Container.Add(input.obj,obj); //This kills the crab...
+		
 		Property.SetSimple(input.obj, "HasRefs", FALSE);
 	}
 }

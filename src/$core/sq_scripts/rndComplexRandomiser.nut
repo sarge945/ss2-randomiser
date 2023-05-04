@@ -173,28 +173,7 @@ class rndComplexRandomiser extends rndBase
 		//Remove duplicates from inputs and outputs
 		inputs = rndFilterRemoveDuplicates(inputs).results;
 		outputs = rndFilterRemoveDuplicates(outputs).results;
-		
-		if (debugger.debugLevel >= 4)
-		{
-			debugger.Log("Inputs: ");
-			foreach (input in inputs)
-				debugger.Log(" -> " + input.obj);
-				
-			debugger.Log("Outputs: ");
-			foreach (output in outputs)
-				debugger.Log(" -> " + output.obj + " (is corpse: " + output.isCorpse + ")");
-		}
-		
-		if (inputs.len() == 0)
-			debugger.LogWarning(name + " has no inputs defined!");
-		else if (outputs.len() == 0)
-			debugger.LogWarning(name + " has no outputs defined!");
-		else
-		{
-			debugger.Log(name + " total Inputs: " + inputs.len());
-			debugger.Log(name + " total Outputs: " + outputs.len());
-		}
-		
+			
 		//This was a REALLY long line, so I broke it up a bit
 		local nameString = name + " Init";
 		local startTimerString = "startTimer: " + GetStartTimer();
@@ -203,7 +182,20 @@ class rndComplexRandomiser extends rndBase
 		local timeString = "times: " + GetTimes();
 		debugger.LogAlways(nameString + " [" + startTimerString + ", " + randomTimerString + ", " + seedString + ", " + timeString + "]");
 		
-		if (debugger.debugLevel >= 5)
+		if (debugger.debugLevel >= 1)
+		{
+			if (inputs.len() == 0)
+				debugger.LogWarning(name + " has no inputs defined!");
+			else if (outputs.len() == 0)
+				debugger.LogWarning(name + " has no outputs defined!");
+			else
+			{
+				debugger.Log(name + " total Inputs: " + inputs.len());
+				debugger.Log(name + " total Outputs: " + outputs.len());
+			}
+		}
+		
+		if (debugger.debugLevel >= 2)
 		{
 			local items = inputs.len();
 			local physical = 0.0;
@@ -232,6 +224,17 @@ class rndComplexRandomiser extends rndBase
 			debugger.LogAlways("===========");
 		}
 		
+		if (debugger.debugLevel >= 3)
+		{
+			debugger.Log("Inputs: ");
+			foreach (input in inputs)
+				debugger.Log(" -> " + input.obj);
+				
+			debugger.Log("Outputs: ");
+			foreach (output in outputs)
+				debugger.Log(" -> " + output.obj + " (is corpse: " + output.isCorpse + ")");
+		}
+				
 		SetOneShotTimer("Randomise",GetRandomiseTimer());
 	}
 	
