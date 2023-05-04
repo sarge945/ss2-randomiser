@@ -437,7 +437,7 @@ Create "rndOutputMarker" "rndSectorBEmptyCloset"
 		"Bank" 0
 	}
 }
-+MetaProp "rndSectorBEmptyCloset" "Object Randomiser - High Priority Output"
++MetaProp "rndSectorBEmptyCloset" "Object Randomiser - No Junk"
 +Link "rndSectorBEmptyCloset" "rndSectorBObjects" "Target"
 {
 }
@@ -505,7 +505,6 @@ Create "rndOutputMarker" "rndSectorB1048Replacer"
 		"Bank" 0
 	}
 }
-+MetaProp "rndSectorB1048Replacer" "Object Randomiser - High Priority Output"
 +MetaProp "rndSectorB1048Replacer" "Object Randomiser - Secret"
 +Link "rndSectorB1048Replacer" "rndSectorBObjects" "Target"
 {

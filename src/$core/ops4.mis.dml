@@ -269,8 +269,8 @@ Create "rndOutputMarker" "rndPowerOpsLadderRoom"
 +Link 396 "rndBarracksObjects" "Target"
 {
 }
-+MetaProp 397 "Object Randomiser - High Priority Output"
 //This one spawns worms
++MetaProp 397 "Object Randomiser - High Priority Output"
 +Link 397 "rndBarracksObjects" "Target"
 {
 }
@@ -365,7 +365,7 @@ Create "rndOutputMarker" "rndCommandCenterTurretCorner"
 }
 
 //Cyber Modules under the floor
-+MetaProp 949 "Object Randomiser - High Priority Output"
++MetaProp 949 "Object Randomiser - No Junk"
 +Link 949 "rndCommandCenterObjects" "Target"
 {
 }

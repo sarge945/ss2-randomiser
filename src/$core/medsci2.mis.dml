@@ -260,7 +260,7 @@ Create "rndOutputMarker" "rndTurretNearMonkeys"
 		"Bank" 0
 	}
 }
-+MetaProp "rndTurretNearMonkeys" "Object Randomiser - High Priority Output"
++MetaProp "rndTurretNearMonkeys" "Object Randomiser - No Junk"
 +Link "rndTurretNearMonkeys" "rndMedicalObjects" "Target"
 {
 }
@@ -463,7 +463,7 @@ Create "rndOutputMarker" "rndRadiationShelves"
 }
 
 //Nanites at top of dark room near Watts office
-+MetaProp 949 "Object Randomiser - High Priority Output"
++MetaProp 949 "Object Randomiser - No Junk"
 +Link 949 "rndCrewObjects" "Target"
 {
 }
@@ -490,6 +490,7 @@ Create "rndOutputMarker" "rndApartmentBroken"
 		"Bank" 0
 	}
 }
++MetaProp "rndApartmentBroken" "Object Randomiser - No Junk"
 +Link "rndApartmentBroken" "rndCrewObjects" "Target"
 {
 }
@@ -505,6 +506,7 @@ Create "rndOutputMarker" "rndArmouryAccess"
 		"Bank" 0
 	}
 }
++MetaProp "rndArmouryAccess" "Object Randomiser - No Junk"
 +Link "rndArmouryAccess" "rndCrewObjects" "Target"
 {
 }

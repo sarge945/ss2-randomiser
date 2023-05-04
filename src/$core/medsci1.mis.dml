@@ -172,6 +172,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 ////Markers and other spawn points
 
 //inside the smashable glass section
+//Make this high priority so there's some reason to break the glass
 Create "rndOutputMarker" "rndCryoGlassChamber"
 {
 	+ObjProp "Position"
@@ -389,7 +390,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 
 //Some Bullets behind Turret in Ramp Room
 //Really dangerous, so mark it as a secret - don't want the power cell there
-+MetaProp 79 "Object Randomiser - High Priority Output"
++MetaProp 79 "Object Randomiser - No Junk"
 +MetaProp 79 "Object Randomiser - Secret"
 +Link 79 "rndScienceObjects" "Target"
 {
@@ -431,25 +432,6 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 
 
 
-
-/*
-//On the floor near the first power charger (with the turrets)
-Create "rndOutputMarker" "SargeRechargerInput"
-{
-	+ObjProp "Position"
-	{
-		"Location" "2.54925, -25.0458, -13.2326"
-		"Heading" 0
-		"Pitch" 0
-		"Bank" 0
-	}
-	
-	+ObjProp "DesignNoteSS" = "highPriority=true;"
-}
-+Link "SargeRechargerInput" "rndScienceObjects" "Target"
-{
-}
-*/
 
 //Bench in small area with trashcan and observation window to Watts lab
 Create "rndOutputMarker" "SargeRandomObservationRoom"

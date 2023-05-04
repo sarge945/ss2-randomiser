@@ -190,7 +190,7 @@ Create "rndOutputMarker" "rndApartmentTrapSpot"
 		"Bank" 0
 	}
 }
-+MetaProp "rndApartmentTrapSpot" "Object Randomiser - High Priority Output"
++MetaProp "rndApartmentTrapSpot" "Object Randomiser - No Junk"
 +Link "rndApartmentTrapSpot" "rndCrewQuartersObjects" "Target"
 {
 }
@@ -206,7 +206,7 @@ Create "rndOutputMarker" "rndApartmentTrapSpot2"
 		"Bank" 0
 	}
 }
-//+MetaProp "rndApartmentTrapSpot2" "Object Randomiser - High Priority Output"
++MetaProp "rndApartmentTrapSpot2" "Object Randomiser - No Junk"
 +Link "rndApartmentTrapSpot2" "rndCrewQuartersObjects" "Target"
 {
 }

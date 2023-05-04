@@ -258,7 +258,7 @@ Create "rndOutputMarker" "rndHydro1Pool"
 		"Bank" 0
 	}
 }
-+MetaProp "rndHydro1Pool" "Object Randomiser - High Priority Output"
++MetaProp "rndHydro1Pool" "Object Randomiser - No Junk"
 +Link "rndHydro1Pool" "rndHydro1Objects" "Target"
 {
 }
