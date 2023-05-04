@@ -13,7 +13,6 @@ Create "rndWeaponRandomiser" "rndCryoWeaponRandomiser"
 +Link "rndCryoObjectsAfterAirlock" "rndCryoWeaponRandomiser" "SwitchLink"
 {
 }
-//Inputs
 +Link "rndCryoObjects" "rndCryoWeaponRandomiser" "SwitchLink"
 {
 }
@@ -24,7 +23,6 @@ Create "rndWeaponRandomiser" "rndCryoWeaponRandomiser"
 +Link "rndCryoObjectsAfterAirlock" "rndCryoWeaponRandomiser" "~SwitchLink"
 {
 }
-//Outputs
 +Link "rndCryoObjectsPowerRoom" "rndCryoWeaponRandomiser" "~SwitchLink"
 {
 }
@@ -58,7 +56,6 @@ Create "rndWeaponRandomiser" "rndRandDWeaponRandomiser"
 +Link "rndRNDObjects" "rndRandDWeaponRandomiser" "~SwitchLink"
 {
 }
-//Outputs
 +Link "rndMaintenanceObjects" "rndRandDWeaponRandomiser" "~SwitchLink"
 {
 }

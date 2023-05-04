@@ -32,11 +32,6 @@ Create "rndObjectCollection" "rndMaintenanceObjects"
 {
 }
 
-//Create an object collection for the Body Bags
-Create "rndObjectCollection" "rndBodybags"
-{
-}
-
 //Create an object collection for the Security Crates
 Create "rndObjectCollection" "rndSecurityCrates"
 {
@@ -250,24 +245,29 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A Body Bag
-+Link 794 "rndBodybags" "Target"
++Link 794 "rndScienceObjects" "Target"
 {
 }
++MetaProp 794 "Object Randomiser - Body Bag Output"
+
 
 //A Body Bag
-+Link 798 "rndBodybags" "Target"
++Link 798 "rndScienceObjects" "Target"
 {
 }
++MetaProp 798 "Object Randomiser - Body Bag Output"
 
 //A Body Bag
-+Link 828 "rndBodybags" "Target"
++Link 828 "rndScienceObjects" "Target"
 {
 }
++MetaProp 828 "Object Randomiser - Body Bag Output"
 
 //A Body Bag
-+Link 684 "rndBodybags" "Target"
++Link 684 "rndScienceObjects" "Target"
 {
 }
++MetaProp 684 "Object Randomiser - Body Bag Output"
 
 //Corpse near Power Recharger
 //Dangerous, so make it more valuable

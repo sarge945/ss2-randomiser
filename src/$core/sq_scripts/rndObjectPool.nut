@@ -10,7 +10,7 @@ class rndObjectPool extends rndBase
 	{
 		currentInput = 0;
 		currentOutput = 0;
-		SetOneShotTimer("StartTimer",0.01);
+		SetOneShotTimer("StartTimer",0.001);
 	}
 	
 	function OnTimer()
@@ -27,21 +27,71 @@ class rndObjectPool extends rndBase
 	
 		//print (name + " adding metaproperties to " + inputs[currentInput] + " and " + outputs[currentOutput] + "(" + currentInput + ", " + currentOutput + ")");
 		//print (name + " adding metaproperties");
-	
+			
 		if (canInput)
 		{
-			Object.AddMetaProperty(inputs[currentInput],"Object Randomiser Input");
+			//Object.AddMetaProperty(inputs[currentInput],"Object Randomiser Input");
 		}
+		
 		if (canOutput)
 		{
-			Object.AddMetaProperty(outputs[currentOutput],"Object Randomiser Output");
+			local out = outputs[currentOutput];
+		
+			PrintDebug("Property of " + out + ": " + Property.Get(out,"Scripts","Don't Inherit") + " (currentOutput == " + currentOutput + "/" + (outputs.len() - 1) + ")",99);
+			if (Property.Get(out,"Scripts","Don't Inherit") == 1)
+			{
+				PrintDebug("Adding script to " + out,2);
+				DynamicScriptAdd(out,"rndOutput");
+			}
+			else
+				Object.AddMetaProperty(out,"Object Randomiser Output");
+		}
+		else
+		{
+			PrintDebug("cant output. currentOutput == " + currentOutput + "/" + outputs.len(),99);
 		}
 		
 		currentInput++;
 		currentOutput++;
 		
-		if (canInput && canOutput)
+		if (canInput || canOutput)
 			AddMetaProperties();
+	}
+	
+	function DynamicScriptAdd(item,script)
+	{
+		local script1 = Property.Get(item,"Scripts","Script 0");
+		local script2 = Property.Get(item,"Scripts","Script 1");
+		local script3 = Property.Get(item,"Scripts","Script 2");
+		local script4 = Property.Get(item,"Scripts","Script 3");
+		
+		if (script1 == script || script2 == script || script3 == script || script4 == script)
+			return;
+		
+		if (script1 == "" || script1 == 0)
+		{
+			Property.Set(item,"Scripts","Script 0",script);
+			PrintDebug(script + " added to " + item + " in slot 0",2);
+		}
+		else if (script2 == "")
+		{
+			Property.Set(item,"Scripts","Script 1",script);
+			PrintDebug(script + " added to " + item + " in slot 1",2);
+		}
+		else if (script3 == "")
+		{
+			Property.Set(item,"Scripts","Script 2",script);
+			PrintDebug(script + " added to " + item + " in slot 2",2);
+		}
+		else if (script4 == "")
+		{
+			Property.Set(item,"Scripts","Script 3",script);
+			PrintDebug(script + " added to " + item + " in slot 3",2);
+		}
+		else
+		{
+			PrintDebug("Error: Object " + item + " (" + ShockGame.GetArchetypeName(item) + ") has no available script slots!");
+		}
 	}
 	
 	function Populate()
@@ -88,12 +138,14 @@ class rndObjectPool extends rndBase
 		foreach (ilink in Link.GetAll(linkkind("SwitchLink"),self))
 		{
 			local object = sLink(ilink).dest;
+			PrintDebug("Sending inputs '" + inputString + "' to " + object,4);
 			PostMessage(object,"SetInputs",inputString);
 		}
 		
 		foreach (olink in Link.GetAll(linkkind("~SwitchLink"),self))
 		{
 			local object = sLink(olink).dest;
+			PrintDebug("Sending outputs '" + outputString + "' to " + object,4);
 			PostMessage(object,"SetOutputs",outputString);
 		}
 	}

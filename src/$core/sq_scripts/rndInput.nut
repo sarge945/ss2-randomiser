@@ -1,0 +1,4 @@
+class rndInput extends rndBase
+{
+	
+}

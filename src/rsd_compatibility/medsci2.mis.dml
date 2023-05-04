@@ -24,6 +24,6 @@ Create "rndPowercellRandomiser" "rndEasyRadiationPowercellRandomiser"
 }
 
 //Link the Radiation Room items to it as Output
-+Link "rndMedicalRadiation1Objects" "rndEasyRadiationPowercellRandomiser" "SwitchLink"
++Link "rndMedicalRadiation1Objects" "rndEasyRadiationPowercellRandomiser" "~SwitchLink"
 {
 }

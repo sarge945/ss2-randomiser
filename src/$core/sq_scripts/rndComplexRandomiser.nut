@@ -34,9 +34,8 @@ class rndComplexRandomiser extends rndBase
 		//-69,	//Potted plants
 	];
 	
-	inputPools = null;
-	outputPools = null;
-	rolls = null;
+	totalRolls = null;
+	currentRolls = null;
 	inputs = null;
 	outputs = null;
 	currentInput = null;
@@ -49,33 +48,36 @@ class rndComplexRandomiser extends rndBase
 	fuzzy = null;
 	ignorePriority = null;
 	priority = null;
-	
-	//TODO
-	//prioritizeWorld = null;
+	minTimes = null;
+	maxTimes = null;
 	noRespectJunk = null;
 	noSecret = null;
 	noCorpse = null;
 	allowOriginalLocations = null;
 
 	function Init()
-	{
+	{	
+		//Configure Randomiser
+		priority = getParam("priority",0);
+		SetSeed();
+		SetAllowedTypes();
+		fuzzy = getParam("variedOutput",1);
+		ignorePriority = getParam("ignorePriority",0);
+		noSecret = getParam("noSecret",0);
+		noCorpse = getParam("noCorpse",0);
+		maxTimes = getParam("maxTimes",9999);
+		minTimes = getParam("minTimes",9999);
+		noRespectJunk = getParam("noRespectJunk",0);
+		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		
+		//Setup variables
 		currentOutput = 0;
 		currentInput = 0;
 		outputLoop = 0;
 		inputs = [];
 		outputs = [];
-		rolls = 0;
-		
-		//Configure Randomiser
-		priority = getParam("priority",0);
-		SetSeed();
-		SetAllowedTypes();
-		fuzzy = getParam("variedOutput",true);
-		ignorePriority = getParam("ignorePriority",false);
-		noSecret = getParam("noSecret",false);
-		noCorpse = getParam("noCorpse",false);
-		noRespectJunk = getParam("noRespectJunk",false);
-		allowOriginalLocations = getParam("allowOriginalLocations",true);
+		totalRolls = RandBetween(seed,minTimes,maxTimes);
+		currentRolls = 0;
 		
 		//Show startup message
 		PrintDebug("Randomiser Started. [seed: " + seed + ", startTime: " + GetStartTime() + "]");
@@ -86,34 +88,69 @@ class rndComplexRandomiser extends rndBase
 	function GetStartTime()
 	{
 		local seedDelay = (seed % 1000) * 0.00001;
-		return 0.05 + (0.1 - 0.02 * priority) + seedDelay;
+		return 0.0 + (0.05 - 0.01 * priority) + seedDelay;
+	}
+	
+	function OnTimer()
+	{
+		if (inputs.len() == 0 || outputs.len() == 0)
+		{
+			PrintDebug("Randomiser won't function! [inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
+			return;
+		}
+		
+		PrintDebug("[inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]",4);
+		
+		if (inputs.len() > 0 && outputs.len() > 0)
+		{
+			VerifyInputs();
+			ShuffleBothArrays();
+			Randomise();
+		}
 	}
 
 	function OnOutputSuccess()
 	{
+		if (currentInput >= inputs.len() || outputs[currentOutput] != message().from || inputs[currentInput] != message().data)
+			return;
+		
+		local randomise = false;
+	
+		//print("OnOutputSuccess received");
+		currentRolls++;
+	
 		//print("output successful");
-		PrintDebug("Randomising: Output Successful for " + message().data + " to " + message().from,4);
+		PrintDebug("	Output Successful for " + message().data + " to " + message().from + " (input " + (currentInput+1) + "/" + inputs.len() + ")",4);
 		ReplaceOutput(currentOutput);
-		
+
 		SetNextInput();
-		SetNextOutput();
+		SetNextOutput(message().data2);
 		
-		if (currentInput < inputs.len())
-			Randomise();
+		Randomise();
 	}
 	
 	function OnOutputFailed()
-	{
-		//print("output failed");
-		PrintDebug("Randomising: Output Failed for " + message().data + " to " + message().from,4);
-		SetNextOutput(false);
+	{	
+		if (currentInput >= inputs.len() || outputs[currentOutput] != message().from || inputs[currentInput] != message().data)
+			return;
+			
+		//print("OnOutputFailed received");
+		PrintDebug("	Output Failed for " + message().data + " to " + message().from + " (input " + (currentInput+1) + "/" + inputs.len() + ")",4);
 		
-		if (currentInput < inputs.len())
-			Randomise();
+		SetNextOutput(message().data2,false);
+		
+		Randomise(false);
 	}
 	
-	function SetNextOutput(success = true)
+	function SetNextOutput(remove,success = true)
 	{
+		if (remove)
+		{
+			print ("removing output " + currentOutput + "...");
+			outputs.remove(currentOutput);
+			return;
+		}
+	
 		if (success)
 		{
 			outputLoop = 0;
@@ -128,46 +165,64 @@ class rndComplexRandomiser extends rndBase
 		if (currentOutput >= outputs.len())
 			currentOutput = 0;
 		
-		PrintDebug("currentOutput is " + currentOutput,4);
-		
 		//Make sure we don't "loop around" our outputs multiple times for the same input
 		//If we fail for a full cycle, this input is invalid, and we should move on to the next one
 		if (outputLoop >= outputs.len())
 		{
-			PrintDebug("currentOutput looped, moving to next input",4);
+			PrintDebug("currentOutput looped, moving to next input");
 			SetNextInput();
 		}
+		
+		//PrintDebug("currentOutput is " + currentOutput,4);
+		//PrintDebug("currentInput is " + currentInput,4);
 	}
 	
 	function SetNextInput()
 	{
 		currentInput++;
 		if (currentInput >= inputs.len())
+		{
+			Complete();
 			Object.Destroy(self);
+		}
 	}
 
-	function Randomise()
+	function Randomise(outputDebugText = true)
 	{
+		if (currentInput >= inputs.len() || currentOutput >= outputs.len())
+			return;
+	
+		if (currentRolls >= totalRolls)
+		{
+			PrintDebug("Rolls exceeded",5);
+			return;
+		}
+	
 		local input = inputs[currentInput];
 		local output = outputs[currentOutput];
 		
-		PrintDebug("Randomising " + input + " to " + output);
+		if (outputDebugText)
+			PrintDebug("Randomising " + input + " to " + output + " (roll: " + currentRolls + ")",4);
 		
-		PostMessage(output,"RandomiseInput",input);
+		PrintDebug("	Sending RandomiseOutput to randomise " + input + " at " + input,4);
+		PostMessage(output,"RandomiseOutput",input,GetSettingsString());
 	}
 
-	function OnTimer()
+	function GetSettingsString()
 	{
-		if (inputs.len() == 0 || outputs.len() == 0)
+		return noRespectJunk + ";" + noSecret + ";" + noCorpse + ";" + allowOriginalLocations + ";";
+	}
+
+	function Complete()
+	{
+		PrintDebug("Randomiser Completed. Randomised " + currentRolls + " of " + inputs.len() + " items");
+	}
+
+	function VerifyInputs()
+	{
+		foreach (input in inputs)
 		{
-			PrintDebug(self + " has no inputs or outputs!");
-			return;
-		}
-		
-		if (inputs.len() > 0 && outputs.len() > 0)
-		{
-			ShuffleBothArrays();
-			Randomise();
+			PostMessage(input,"Verify");
 		}
 	}
 	

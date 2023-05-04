@@ -5,7 +5,6 @@
 //Create a randomiser for the Medical and Crew Quarters sections
 Create "rndComplexRandomiser" "rndMedicalRandomiser"
 {
-	//+ObjProp "DesignNoteSS" = "prioritizeWorldObjects=1"
 }
 //Inputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"

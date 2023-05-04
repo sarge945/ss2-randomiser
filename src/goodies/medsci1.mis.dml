@@ -60,10 +60,6 @@ Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 {
 }
 
-+Link "rndBodybags" "rndMedSci1Randomiser" "SwitchLink"
-{
-}
-
 +Link "rndMaintenanceObjects" "rndMedSci1Randomiser" "SwitchLink"
 {
 }
@@ -76,24 +72,5 @@ Create "rndComplexRandomiser" "rndMedSci1Randomiser"
 {
 }
 +Link "rndMaintenanceObjects" "rndMedSci1Randomiser" "~SwitchLink"
-{
-}
-
-//Create a randomiser for the Body Bags (only allow hypos)
-Create "rndBodybagRandomiser" "rndBodybagsRandomiser"
-{
-}
-//Inputs
-+Link "rndScienceObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndRNDObjects" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-+Link "rndBodybags" "rndBodybagsRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndBodybags" "rndBodybagsRandomiser" "~SwitchLink"
 {
 }

@@ -18,26 +18,15 @@ CreateArch "Misc Metaprops" "Object Randomiser Output"
 	}
 }
 
+//Shorthand for a Body Bag output
+CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85"
+}
+
 //Acts as an output
 //Link this to an Item Pool and it will behave like any regular output
 CreateArch "Marker" "rndOutputMarker"
-{
-}
-
-//Acts as an input, by "linking" to it's input item
-//This is designed for inputs with the "Don't Inherit" flag set
-CreateArch "Marker" "rndInputLinker"
-{
-	+ObjProp "Scripts"
-	{
-		"Script 0" "rndInput"
-		"Don't inherit" false
-	}
-}
-
-//Acts as an output, by "linking" to it's output item
-//This is designed for outputs with the "Don't Inherit" flag set
-CreateArch "Marker" "rndOutputLinker"
 {
 	+ObjProp "Scripts"
 	{
@@ -82,11 +71,6 @@ CreateArch "Marker" "rndComplexRandomiser"
 }
 
 //Randomiser Types (for convenience)
-
-CreateArch "rndComplexRandomiser" "rndBodybagRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-51;allowedTypes1=-85; maxTimes=5; minTimes=2; priority=1;"
-}
 
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
 {
@@ -138,24 +122,12 @@ CreateArch "Misc Metaprops" "Object Randomiser - High Priority Output"
 {
 }
 
-//Set a particular output to reset the facing of an object. This prevents items looking weird
-CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
-{
-}
-
 //Set a physical output to only accept itself as an input. This is used for objects which have been placed in specific places.
 //Gives them a chance to be there or not. Either the original object will be where it was, or nothing will be there.
 //Implies No Auto Output
 CreateArch "Misc Metaprops" "Object Randomiser - Output Self Only"
 {
 }
-
-/*
-//Set a particular output to freeze any items and not give them velocity. This means items can be frozen in specific spots without flying around
-CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
-{
-}
-*/
 
 //Use this for somewhat valuable spots.
 //These outputs will not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
@@ -179,10 +151,5 @@ CreateArch "Misc Metaprops" "Object Randomiser - Junk Only"
 //These outputs will also not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots,
 //Unless you use Junk Only, which counteracts that setting
 CreateArch "Misc Metaprops" "Object Randomiser - Secret"
-{
-}
-
-//Internal metaprop used to signal "validated" inputs (IE those which will be randomised) to allow them to be used as outputs
-CreateArch "Misc Metaprops" "Object Randomiser - Validated (Internal)"
 {
 }
