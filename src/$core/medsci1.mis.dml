@@ -711,6 +711,7 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 }
 
 //Wattsy
++MetaProp 734 "Object Randomiser - No Auto Input"
 +Link 734 "rndRNDObjects" "Target"
 {
 }
@@ -770,5 +771,58 @@ Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 
 //Crate near R and D Entrance
 +Link 471 "rndSecurityCrates" "Target"
+{
+}
+
+/////////////////=====	Audio Logs	=====\\\\\\\\\\\\\\\\\
+
+/*
+//Chemical Manifest
+//Don't move this.
++Link 1105 "rndScienceObjects" "Target"
+{
+}
+*/
+
+//Log on floor in Morgue
++Link 1338 "rndScienceObjects" "Target"
+{
+}
+
+//Log on table in R&D lab
++Link 253 "rndRNDObjects" "Target"
+{
+}
+
+//Log on crate in cryo
++Link 267 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
+
+//Log on chair in science sector
++Link 242 "rndScienceObjects" "Target"
+{
+}
+
+/*
+//Wattsy code log
+//DO NOT RANDOMISE
++Link 251 "rndRNDObjects" "Target"
+{
+}
+
+//Wattsy operation log
++Link 252 "rndRNDObjects" "Target"
+{
+}
+*/
+
+//Code on gurney outside R&D entrance
++Link 268 "rndScienceObjects" "Target"
+{
+}
+
+//Code on desk outside medical sector entrance
++Link 270 "rndScienceObjects" "Target"
 {
 }

@@ -1,0 +1,25 @@
+/////////////////=====	Audio Log Physics Fix	=====\\\\\\\\\\\\\\\\\
+
+////Audio Logs don't have physics properly set by default, meaning they will
+////float in the air when randomised. Add some basic physics to logs
+
+// Physics->Model->Type
++ObjProp -76 "PhysType"
+{
+	"Type" "Sphere"
+	"# Submodels" 1
+	"Remove on Sleep" FALSE
+	"Special" FALSE
+}
+
+// Physics->Model->Dimensions
++ObjProp -76 "PhysDims"
+{
+	"Size" 0.00, 0.00, 0.00
+	"Radius 1" 0.06
+	"Radius 2" 0.00
+	"Offset 1" 0.00, 0.00, 0.00
+	"Offset 2" 0.00, 0.00, 0.00
+	"Point vs Terrain" FALSE
+	"Point vs Not Special" FALSE
+}

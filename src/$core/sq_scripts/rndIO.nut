@@ -444,7 +444,7 @@ class ObjectPlacer
 		physicsControls = Property.Get(cObj, "PhysControl", "Controls Active");
 	}
 
-	function Place(input,noFacing = false)
+	function Place(input)
 	{	
 		//Make object render
 		Property.SetSimple(input.obj, "HasRefs", TRUE);
@@ -463,7 +463,7 @@ class ObjectPlacer
 		else
 		{
 			local position_up = vector(position.x, position.y, position.z + 0.2);
-			Object.Teleport(input.obj, position_up, FixItemFacing(input.obj,noFacing));
+			Object.Teleport(input.obj, position_up, FixItemFacing(input.obj));
 			
 			//Fix up physics
 			Property.Set(input.obj, "PhysControl", "Controls Active", "");
@@ -473,6 +473,8 @@ class ObjectPlacer
 	}
 	
 	//Items with these archetypes will have their X, Y and Z facing set to the specified value
+	//DO NOT use the values from the editor, they are in hex, whereas this is in degrees.
+	//So for instance, a pitch of 4000 will be equivalent to 90 degrees
 	static fixArchetypes = [
 		[-938,0,0,-1], //Cyber Modules
 		[-85,0,0,-1], //Nanites
@@ -480,14 +482,12 @@ class ObjectPlacer
 		[-99,90,0,-1], //Implants
 		[-91,0,-1,-1], //Cola
 		[-51,-1,0,-1], //Hypos
+		[-76,90,0,-1] //Audio Logs
 		//[-964,-1,-1,-1], //Vodka
 	];
 	
-	function FixItemFacing(item,noFacing)
+	function FixItemFacing(item)
 	{
-		if (noFacing)
-			return vector(0,0,0);
-	
 		foreach (archetype in fixArchetypes)
 		{
 			local type = archetype[0];
