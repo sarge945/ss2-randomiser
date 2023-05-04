@@ -102,6 +102,7 @@ Create "rndComplexRandomiser" "rndBodybagRandomiser"
 //Create a Randomiser for the Security Crates
 Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
 {
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
 }
 
 //Inputs

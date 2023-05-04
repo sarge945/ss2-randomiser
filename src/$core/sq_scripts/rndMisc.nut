@@ -19,6 +19,8 @@ class IOManager
 	
 	function GetInputsAndOutputsForAllObjectPools(obj, validInputTypes, prioritizeWorldObjects)
 	{
+		//print ("Prioritising world objects for " + obj + " set to " + prioritizeWorldObjects);
+	
 		foreach (ilink in Link.GetAll(-LINK_SWITCHLINK,obj))
 		{
 			local objectPool = sLink(ilink).dest;
@@ -42,37 +44,41 @@ class IOManager
 		outputs = GetOutputsArray();
 	}
 	
+	function IsContainer(item)
+	{
+		return Property.Get(item,"ContainDims","Width") != 0 || Property.Get(item,"ContainDims","Height") != 0;
+	}
+	
 	function ProcessInput(item, validInputTypes)
 	{
-		local isContainer = isArchetype(item,-379) || isArchetype(item,-118);
-		
-		if (isContainer)
+		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
+			return;
+	
+		if (IsContainer(item))
 		{
-			if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
+			foreach (link in Link.GetAll(LINK_CONTAINS,item))
 			{
-				foreach (link in Link.GetAll(LINK_CONTAINS,item))
+				local contained = sLink(link).dest;
+				if (IsInputValid(contained,validInputTypes))
 				{
-					local contained = sLink(link).dest;
-					if (IsInputValid(contained,validInputTypes))
-					{
-						local input = Input(contained);
-						inputs.append(input);
-					}
+					local input = Input(contained);
+					inputs.append(input);
 				}
 			}
 		}
-		else if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
+		else if (IsInputValid(item,validInputTypes))
 		{
-			if (IsInputValid(item,validInputTypes))
-			{
-				local input = Input(item);
-				inputs.append(input);
-			}
+			local input = Input(item);
+			inputs.append(input);
 		}
 	}
 	
 	function IsInputValid(item,types)
 	{
+		//Check that the item can actually be an input
+		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Input"))
+			return false;
+	
 		//Check existing inputs
 		foreach(input in inputs)
 		{
@@ -90,26 +96,30 @@ class IOManager
 	}
 	
 	function ProcessOutput(item,prioritizeWorldObjects)
-	{
-		local isContainer = isArchetype(item,-379) || isArchetype(item,-118);
+	{		
+		//local isContainer = isArchetype(item,-379) || isArchetype(item,-118);
 		//local isMarker = ShockGame.GetArchetypeName(item) == "rndOutputMarker";
 		
-		if (isContainer && !Object.HasMetaProperty(item,"Object Randomiser - No Auto Output"))
+		if (Object.HasMetaProperty(item,"Object Randomiser - No Auto Output"))
+			return;
+		
+		if (IsContainer(item))
 		{
 			local output = Output(item);
 			AddOutput(output,false);
 		}
-		else if (!Object.HasMetaProperty(item,"Object Randomiser - No Auto Output"))
+		else
 		{
 			local output = PhysicalOutput(item);
 			AddOutput(output,prioritizeWorldObjects);
 		}
 	}
-	
+
 	function AddOutput(item,prioritize)
 	{
-		local highPriority = (prioritize && Data.RandInt(0,5) == 0)
-			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		//local highPriority = (prioritize && Data.RandInt(0,5) == 0)
+		//	|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
+		local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		
 		if (highPriority)
 			outputs.append(item);
@@ -217,21 +227,32 @@ class PhysicalOutput extends Output
 		if (Object.IsTransient(output))
 			return false;
 		
+		/* Broken currently - do not use!
 		if (!Physics.HasPhysics(item))
 			return false;
+		*/
 			
 		//prevent output from being used again
 		Object.SetTransience(output, true);
 	
 		//Move object into position
 		Container.Remove(item);
-		local position_up = vector(position.x, position.y, position.z + 0.2);
-		Object.Teleport(item, position_up, FixItemFacing(item));
 		
-		//Fix up physics
-		Property.Set(item, "PhysControl", "Controls Active", "");
+		if (Object.HasMetaProperty(output,"Object Randomiser - Exact Positioning"))
+		{
+			Object.Teleport(item, position, facing);
+		}
+		else
+		{
+			local position_up = vector(position.x, position.y, position.z + 0.2);
+			Object.Teleport(item, position_up, FixItemFacing(item));
+			
+			//Fix up physics
+			Property.Set(item, "PhysControl", "Controls Active", "");
+			Physics.SetVelocity(item,vector(0,0,10));
+		}
+		
 		Physics.Activate(item);
-		Physics.SetVelocity(item,vector(0,0,10));
 		
 		//Make object render
 		Property.SetSimple(item, "HasRefs", TRUE);

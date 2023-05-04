@@ -1,0 +1,54 @@
+DML1
+
+FINGERPRINT
+{
+   1647 [-241 -12 0]
+   1646 [-241 -18 0]
+   1645 [-241 -24 0]
+   1489 [-241 -30 0]
+   1644 [-249 -12 0]
+   1643 [-249 -18 0]
+   1642 [-249 -24 0]
+   1494 [-249 -30 0]
+   426 [-249 -36 0]
+   425 [-249 -42 0]
+}
+
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main area (offices, security etc)
+Create "rndObjectCollection" "rndMainObjects"
+{
+}
+
+//Create an object collection for the Sector B area
+Create "rndObjectCollection" "rndSectorBObjects"
+{
+}
+
+//Create an object collection for the Sector B Biological Survey Labs
+Create "rndObjectCollection" "rndBiologicalSurveyLabs"
+{
+}
+
+//Create an object collection for the Sector B Biological Survey Labs Medbeds (for hypos only)
+Create "rndObjectCollection" "rndBiologicalSurveyLabsMedical"
+{
+}
+
+//Create an object collection for the Sector B Chemical Storeroom
+Create "rndObjectCollection" "rndSectorBStoreroom"
+{
+}
+
+//Create an object collection for the Eggs in the level
+Create "rndObjectCollection" "rndEggs"
+{
+}

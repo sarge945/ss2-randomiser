@@ -134,52 +134,6 @@ Create "rndObjectCollection" "rndHackableObjects"
 {
 }
 
-/////////////////=====	Crew Sector Bar	=====\\\\\\\\\\\\\\\\\
-
-//Magazine on Bar
-+Link 1411 "rndCrewObjectsBar" "Target"
-{
-}
-/*
-//Plant on Windowsill
-+Link 1030 "rndCrewObjectsBar" "Target"
-{
-}
-//Plant on Bar
-+Link 715 "rndCrewObjectsBar" "Target"
-{
-}
-//Second Plant on Bar
-+Link 716 "rndCrewObjectsBar" "Target"
-{
-}
-*/
-//Cigarettes
-+Link 1410 "rndCrewObjectsBar" "Target"
-{
-}
-//Champagne
-+Link 680 "rndCrewObjectsBar" "Target"
-{
-}
-+Link 684 "rndCrewObjectsBar" "Target"
-{
-}
-+Link 691 "rndCrewObjectsBar" "Target"
-{
-}
-+Link 689 "rndCrewObjectsBar" "Target"
-{
-}
-//Vodka
-+Link 686 "rndCrewObjectsBar" "Target"
-{
-}
-//Juice
-+Link 687 "rndCrewObjectsBar" "Target"
-{
-}
-
 /////////////////=====	Medical Sector	=====\\\\\\\\\\\\\\\\\
 
 ////Corpses
@@ -430,22 +384,6 @@ Create "rndOutputMarker" "rndRadiationShelves"
 {
 }
 
-//Crate in Cafeteria Storage
-+Link 1587 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1587 "rndCrewObjectsBar" "Target"
-{
-}
-
-//Small Crate in Cafeteria Storage
-+Link 776 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 776 "rndCrewObjectsBar" "Target"
-{
-}
-
 //Crate in Dark area near Watts room
 +Link 771 "rndCrewObjects" "Target"
 {
@@ -516,54 +454,6 @@ Create "rndOutputMarker" "rndRadiationShelves"
 }
 */
 
-//Items in the main bar section (with the grenade launcher)
-//Soda Cans
-+MetaProp 1027 "Object Randomiser - No Auto Output"
-+Link 1027 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 950 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 953 "rndCrewObjectsKitchen" "Target"
-{
-}
-+MetaProp 1022 "Object Randomiser - No Auto Output"
-+Link 1022 "rndCrewObjectsKitchen" "Target"
-{
-}
-+MetaProp 1023 "Object Randomiser - No Auto Output"
-+Link 1023 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1024 "rndCrewObjectsKitchen" "Target"
-{
-}
-//Chips
-+Link 1048 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1050 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1050 "rndCrewObjectsKitchen" "Target"
-{
-}
-//Vodka
-+Link 1041 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1044 "rndCrewObjectsKitchen" "Target"
-{
-}
-//Liquour
-+Link 1037 "rndCrewObjectsKitchen" "Target"
-{
-}
-+Link 1029 "rndCrewObjectsKitchen" "Target"
-{
-}
-
 //Chips floating in water in dark room near Watts office
 +MetaProp 83 "Object Randomiser - No Auto Output"
 +Link 83 "rndCrewObjects" "Target"
@@ -612,6 +502,130 @@ Create "rndOutputMarker" "rndArmouryAccess"
 	}
 }
 +Link "rndArmouryAccess" "rndCrewObjects" "Target"
+{
+}
+
+/////////////////=====	Crew Sector Bar	=====\\\\\\\\\\\\\\\\\
+
+////Containers
+
+//Crate in Cafeteria Storage
++Link 1587 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1587 "rndCrewObjectsBar" "Target"
+{
+}
+/*
++Link 1587 "rndCrewObjects" "Target"
+{
+}
+*/
+
+//Small Crate in Cafeteria Storage
++Link 776 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 776 "rndCrewObjectsBar" "Target"
+{
+}
+/*
++Link 776 "rndCrewObjects" "Target"
+{
+}
+*/
+
+////Loose Items
+
+//Magazine on Bar
++Link 1411 "rndCrewObjectsBar" "Target"
+{
+}
+/*
+//Plant on Windowsill
++Link 1030 "rndCrewObjectsBar" "Target"
+{
+}
+//Plant on Bar
++Link 715 "rndCrewObjectsBar" "Target"
+{
+}
+//Second Plant on Bar
++Link 716 "rndCrewObjectsBar" "Target"
+{
+}
+*/
+//Cigarettes
++Link 1410 "rndCrewObjectsBar" "Target"
+{
+}
+//Champagne
++Link 680 "rndCrewObjectsBar" "Target"
+{
+}
++Link 684 "rndCrewObjectsBar" "Target"
+{
+}
++Link 691 "rndCrewObjectsBar" "Target"
+{
+}
++Link 689 "rndCrewObjectsBar" "Target"
+{
+}
+//Vodka
++Link 686 "rndCrewObjectsBar" "Target"
+{
+}
+//Juice
++Link 687 "rndCrewObjectsBar" "Target"
+{
+}
+
+//Items in the main bar section (with the grenade launcher)
+//Soda Cans
++MetaProp 1027 "Object Randomiser - No Auto Output"
++Link 1027 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 950 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 953 "rndCrewObjectsKitchen" "Target"
+{
+}
++MetaProp 1022 "Object Randomiser - No Auto Output"
++Link 1022 "rndCrewObjectsKitchen" "Target"
+{
+}
++MetaProp 1023 "Object Randomiser - No Auto Output"
++Link 1023 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1024 "rndCrewObjectsKitchen" "Target"
+{
+}
+//Chips
++Link 1048 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1050 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1050 "rndCrewObjectsKitchen" "Target"
+{
+}
+//Vodka
++Link 1041 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1044 "rndCrewObjectsKitchen" "Target"
+{
+}
+//Liquour
++Link 1037 "rndCrewObjectsKitchen" "Target"
+{
+}
++Link 1029 "rndCrewObjectsKitchen" "Target"
 {
 }
 

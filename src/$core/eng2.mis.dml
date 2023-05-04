@@ -1,0 +1,945 @@
+DML1
+
+FINGERPRINT
+{
+   852 [119.58 -610.71 -27.35]
+   857 [121.51 -604.94 -27.35]
+   861 [124.51 -594.94 -27.35]
+   856 [131.63 -599.69 -27.35]
+   858 [131.72 -589.75 -27.35]
+   862 [125.51 -581.94 -27.35]
+   859 [127.68 -576.44 -27.35]
+   864 [121.51 -569.94 -27.35]
+   865 [118.51 -560.94 -27.35]
+   860 [126.45 -560.13 -28.35]
+}
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Create an object collection for the Main Hallway area
+Create "rndObjectCollection" "rndHallwayObjects"
+{
+}
+
+//Create an object collection for Command Control
+Create "rndObjectCollection" "rndCommandControlObjects"
+{
+}
+
+//Create an object collections for Cargo Bays
+Create "rndObjectCollection" "rndCargoBay1AObjects"
+{
+}
+Create "rndObjectCollection" "rndCargoBay1BObjects"
+{
+}
+Create "rndObjectCollection" "rndCargoBay2AObjects"
+{
+}
+Create "rndObjectCollection" "rndCargoBay2BObjects"
+{
+}
+
+//Create an object collection for the Hackable Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
+// ================================================================================
+// 								Add Objects to Object Collections
+// 					Note: Not all items are needed, only containers
+// 							Plus any loose items in the map
+// ================================================================================
+
+/////////////////=====	Main Hallway Area	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy immediately after many brain cutscene room
++Link 655 "rndHallwayObjects" "Target"
+{
+}
+
+////Containers
+
+//Boxes after the Many Brain cutscene room
++Link 868 "rndHallwayObjects" "Target"
+{
+}
++Link 882 "rndHallwayObjects" "Target"
+{
+}
++Link 868 "rndHallwayObjects" "Target"
+{
+}
++Link 869 "rndHallwayObjects" "Target"
+{
+}
+
+////Loose Items
+
+//BrawnBoost lying on the floor
+//We need to give it exact positioning so it doesn't obviously "spawn" in when we start the map
+//+MetaProp 653 "Object Randomiser - Exact Positioning"
++MetaProp 653 "Object Randomiser - No Auto Output"
++Link 653 "rndHallwayObjects" "Target"
+{
+}
+
+/////////////////=====	Command Control	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy immediately near waste barrels
++Link 91 "rndCommandControlObjects" "Target"
+{
+}
+
+//Dead guy immediately before Cargo Bay A
++Link 1376 "rndCommandControlObjects" "Target"
+{
+}
+
+////Containers
+
+//Crate in the hidey-hole
++Link 1676 "rndCommandControlObjects" "Target"
+{
+}
+
+//Crates on the weird lift thing
++Link 1029 "rndCommandControlObjects" "Target"
+{
+}
++Link 1032 "rndCommandControlObjects" "Target"
+{
+}
++Link 1030 "rndCommandControlObjects" "Target"
+{
+}
++Link 176 "rndCommandControlObjects" "Target"
+{
+}
++Link 83 "rndCommandControlObjects" "Target"
+{
+}
++Link 84 "rndCommandControlObjects" "Target"
+{
+}
++Link 953 "rndCommandControlObjects" "Target"
+{
+}
++Link 136 "rndCommandControlObjects" "Target"
+{
+}
++Link 87 "rndCommandControlObjects" "Target"
+{
+}
++Link 126 "rndCommandControlObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+//On a little alcove with some crates
+Create "rndOutputMarker" "rndCrateAlcove"
+{
+	+ObjProp "Position"
+	{
+		"Location" "34.3554, -705.882, -29.7008"
+		"Heading" 2e9c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCrateAlcove" "Object Randomiser - High Priority Output"
++Link "rndCrateAlcove" "rndCommandControlObjects" "Target"
+{
+}
+
+//Right next to the Shuttle forcefield
+Create "rndOutputMarker" "rndForcefieldCorner"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-12.7648, -732.701, -31.5008"
+		"Heading" f6f8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndForcefieldCorner" "rndCommandControlObjects" "Target"
+{
+}
+
+//Behind the Systems Override Unit
+Create "rndOutputMarker" "rndBehindOverride"
+{
+	+ObjProp "Position"
+	{
+		"Location" "3.80563, -729.418, 20.6992"
+		"Heading" 5f4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
++Link "rndBehindOverride" "rndCommandControlObjects" "Target"
+{
+}
+
+/////////////////=====	Cargo Bay 1A	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy on second level
++Link 923 "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Dead guy on third level
++Link 352 "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Dead woman with keycard for Cargo Bay 2
++Link 233 "rndCargoBay1AObjects" "Target"
+{
+}
+
+////Containers
+
+//Crates near the replicator in the entrance section
++Link 1524 "rndCargoBay1AObjects" "Target"
+{
+}
++Link 1522 "rndCargoBay1AObjects" "Target"
+{
+}
++Link 1526 "rndCargoBay1AObjects" "Target"
+{
+}
++Link 1536 "rndCargoBay1AObjects" "Target"
+{
+}
++Link 1523 "rndCargoBay1AObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Nanites on a Box near the protocol droid trap on the ground level
++Link 796 "rndCargoBay1AObjects" "Target"
+{
+}
+//AP Bullets on a Box near the protocol droid trap on the ground level
++Link 846 "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Bullets on a Box near the protocol droid trap on the second level
++Link 918 "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Nanites on a Box near the protocol droid trap on the second level
++Link 922 "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Cyber Modules on a Box near the protocol droid trap on the third level
+//We are making this high priority since there's usually not much reason to fight the turret on the third floor
++MetaProp 934 "Object Randomiser - High Priority Output"
++Link 934 "rndCargoBay1AObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+
+///Cargo Bay A levels 2 and 3 on boxes
+Create "rndOutputMarker" "rndCargoBay1ABox1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "109.064, -562.059, 14.1431"
+		"Heading" fbec
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox1" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox1" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "72.3721, -595.991, 14.1431"
+		"Heading" 4730
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox2" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox2" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "69.5299, -598.725, -12.5569"
+		"Heading" 4280
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox3" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox3" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox4"
+{
+	+ObjProp "Position"
+	{
+		"Location" "56.5674, -562.462, -12.5569"
+		"Heading" 5104
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox4" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox4" "rndCargoBay1AObjects" "Target"
+{
+}
+
+/*
+//This one is particularly mean! I may disable it
+Create "rndOutputMarker" "rndCargoBay1ABox5"
+{
+	+ObjProp "Position"
+	{
+		"Location" "53.2399, -647.359, -30.8569"
+		"Heading" 1ab8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+*/
+//+MetaProp "rndCargoBay1ABox5" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox5" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox6"
+{
+	+ObjProp "Position"
+	{
+		"Location" "78.2261, -669.753, -30.5569"
+		"Heading" 334
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox6" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox6" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox7"
+{
+	+ObjProp "Position"
+	{
+		"Location" "70.8388, -697.039, -21.2569"
+		"Heading" 5d84
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox7" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox7" "rndCargoBay1AObjects" "Target"
+{
+}
+
+//Second floor
+Create "rndOutputMarker" "rndCargoBay1ABox8"
+{
+	+ObjProp "Position"
+	{
+		"Location" "56.2815, -709.969, -12.6549"
+		"Heading" 4a2c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox8" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox8" "rndCargoBay1AObjects" "Target"
+{
+}
+
+Create "rndOutputMarker" "rndCargoBay1ABox9"
+{
+	+ObjProp "Position"
+	{
+		"Location" "88.8939, -702.811, -0.123922"
+		"Heading" af8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox9" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox9" "rndCargoBay1AObjects" "Target"
+{
+}
+
+/*
+//Disabled for being WAY too dark to see
+Create "rndOutputMarker" "rndCargoBay1ABox10"
+{
+	+ObjProp "Position"
+	{
+		"Location" "89.2263, -706.056, 13.3791"
+		"Heading" c68
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1ABox10" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1ABox10" "rndCargoBay1AObjects" "Target"
+{
+}
+*/
+
+/////////////////=====	Cargo Bay 1B	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Dead guy on third level
++Link 1531 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Dead guy on third level
++Link 360 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Monkey Trap corpse in middle section
++Link 21 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Corpse in middle section
++Link 1041 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Corpse on the second floor with pistol
++Link 24 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Dead woman on third level with shotgun
++Link 1357 "rndCargoBay1BObjects" "Target"
+{
+}
+
+////Containers
+
+//Desk near the security station in the middle section
++Link 31 "rndCargoBay1BObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Bullets on a Box near the entrance on the ground level
++Link 1678 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Nanites on a Box near the elevator on the ground level
+//Too dark to see any other item type, so not an output
++MetaProp 949 "Object Randomiser - No Auto Output"
++Link 949 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Bullets on a Box on the second level
++Link 538 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Psi Amp in middle section near corpse
++Link 1042 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Body Armour on the ground floor
++Link 317 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Nanites on the ground floor
++Link 939 "rndCargoBay1BObjects" "Target"
+{
+}
+
+//Pistol on the second floor
++Link 28 "rndCargoBay1BObjects" "Target"
+{
+}
+
+/*
+//Disabled due to making sense in that location
+//Shotgun on the third floor
++Link 323 "rndCargoBay1BObjects" "Target"
+{
+}
+*/
+
+////Markers and other spawn points
+
+
+//In a small alcove right near the entrance
+Create "rndOutputMarker" "rndCargoBay1BBox1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "91.4154, -540.911, -22.6215"
+		"Heading" 7724
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1BBox1" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1BBox1" "rndCargoBay1BObjects" "Target"
+{
+}
+
+//In a small alcove near the elevator on the first floor
+Create "rndOutputMarker" "rndCargoBay1BBox5"
+{
+	+ObjProp "Position"
+	{
+		"Location" "52.7794, -536.217, -30.1952"
+		"Heading" 7dfc
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1BBox5" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1BBox5" "rndCargoBay1BObjects" "Target"
+{
+}
+
+///Hanging off a box on the second floor
+Create "rndOutputMarker" "rndCargoBay1BBox2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "107.315, -531.528, -0.833161"
+		"Heading" 69c0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1BBox2" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1BBox2" "rndCargoBay1BObjects" "Target"
+{
+}
+
+///A box on the second floor near corpse with pistol
+Create "rndOutputMarker" "rndCargoBay1BBox3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "89.1616, -391.889, -0.599"
+		"Heading" 96c
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1BBox3" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1BBox3" "rndCargoBay1BObjects" "Target"
+{
+}
+
+///A box on the third floor near corpse with shotgun
+Create "rndOutputMarker" "rndCargoBay1BBox4"
+{
+	+ObjProp "Position"
+	{
+		"Location" "76.9663, -428.369, 13.801"
+		"Heading" e064
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay1BBox4" "Object Randomiser - High Priority Output"
++Link "rndCargoBay1BBox4" "rndCargoBay1BObjects" "Target"
+{
+}
+
+/////////////////=====	Cargo Bay 2A	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Guy next to turret on ground floor
++Link 45 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Guy next to elevator on ground floor
++Link 354 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Suicide Guy
++Link 67 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Guy on third floor
++Link 332 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Guy on ground floor
++Link 390 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Guy on third floor near terminal
++Link 57 "rndCargoBay2AObjects" "Target"
+{
+}
+
+////Loose Items
+
+/*
+//Disabled due to making sense in that location
+//Suicide Guy's shotgun
++Link 43 "rndCargoBay2AObjects" "Target"
+{
+}
+*/
+
+//Nanites on the second floor in an alcove near elevator
++Link 1516 "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Bullets on the second floor
++Link 1598 "rndCargoBay2AObjects" "Target"
+{
+}
+
+/*
+//Nanites on the second floor in an alcove near broken elevator
+//Might leave out because it's technically a psi-pull spot
++MetaProp 1515 "Object Randomiser - High Priority Output"
++Link 1515 "rndCargoBay2AObjects" "Target"
+{
+}
+*/
+
+/*
+//Broken elevator Nanites
+//Might leave out because it's technically a psi-pull spot
++MetaProp 391 "Object Randomiser - High Priority Output"
++Link 391 "rndCargoBay2AObjects" "Target"
+{
+}
+*/
+
+//Bullets on the second floor
++Link 975 "rndCargoBay2AObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+
+//On a box next to suicide guy
+Create "rndOutputMarker" "rndCargoBay2ABox1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-81.6785, -688.011, -18.6191"
+		"Heading" 4c4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox1" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox1" "rndCargoBay2AObjects" "Target"
+{
+}
+
+//On a box in the corner on the second floor
+Create "rndOutputMarker" "rndCargoBay2ABox2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-53.6797, -705.213, -0.785205"
+		"Heading" 2dac
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox2" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox2" "rndCargoBay2AObjects" "Target"
+{
+}
+
+//On a box in the corner on the third floor
+Create "rndOutputMarker" "rndCargoBay2ABox3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-51.511, -706.478, 14.2423"
+		"Heading" 4028
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox3" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox3" "rndCargoBay2AObjects" "Target"
+{
+}
+
+//On a box on the first floor
+Create "rndOutputMarker" "rndCargoBay2ABox4"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-80.6266, -606.088, -18.8174"
+		"Heading" 17c4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox4" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox4" "rndCargoBay2AObjects" "Target"
+{
+}
+
+//Asshole spot on Second floor behind big boxes
+Create "rndOutputMarker" "rndCargoBay2ABox5"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-112.055, -566.05, -11.8781"
+		"Heading" 17c4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox5" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox5" "rndCargoBay2AObjects" "Target"
+{
+}
+
+//In the darkness on the third floor
+Create "rndOutputMarker" "rndCargoBay2ABox6"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-79.6431, -607.022, 5.1957"
+		"Heading" fb18
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2ABox6" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2ABox6" "rndCargoBay2AObjects" "Target"
+{
+}
+
+/////////////////=====	Cargo Bay 2B	=====\\\\\\\\\\\\\\\\\
+
+////Corpses
+
+//Guy next to hackable crate on third floor
++Link 405 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Guy on broken elevator
++Link 426 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Woman on ground floor surrounded by shells
++Link 1424 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Woman on second floor with pistol
++Link 413 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Man on third floor inside box bunker
++Link 501 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Sanger
++Link 507 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Guy next to Sanger
+//Laser Pistol is special, so don't take it away
++MetaProp 508 "Object Randomiser - No Auto Input"
++Link 508 "rndCargoBay2BObjects" "Target"
+{
+}
+
+////Containers
+
+//Desk near the in the middle section
++Link 906 "rndCargoBay2BObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Mug on Table in middle area
++Link 911 "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Pistol next to corpse on second floor
++Link 715 "rndCargoBay2BObjects" "Target"
+{
+}
+
+////Markers and other spawn points
+
+
+//Small alcove on ground floor
+Create "rndOutputMarker" "rndCargoBay2BBox1"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-56.8211, -540.195, -30.7213"
+		"Heading" 2e50
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox1" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox1" "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Small alcove on second floor
+Create "rndOutputMarker" "rndCargoBay2BBox2"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-112.71, -536.491, -12.7771"
+		"Heading" 434
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox2" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox2" "rndCargoBay2BObjects" "Target"
+{
+}
+
+//On some boxes
+Create "rndOutputMarker" "rndCargoBay2BBox3"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-92.7192, -495.098, -0.4"
+		"Heading" fdf0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox3" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox3" "rndCargoBay2BObjects" "Target"
+{
+}
+
+//On big box on third floor
+Create "rndOutputMarker" "rndCargoBay2BBox4"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-92.9144, -495.229, 13.1705"
+		"Heading" f598
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox4" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox4" "rndCargoBay2BObjects" "Target"
+{
+}
+
+//Small alcove on first floor near broken lift
+Create "rndOutputMarker" "rndCargoBay2BBox5"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-68.9293, -395.387, -30.3446"
+		"Heading" 3b8
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox5" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox5" "rndCargoBay2BObjects" "Target"
+{
+}
+
+//On boxes near hole in the ground on second floor
+Create "rndOutputMarker" "rndCargoBay2BBox6"
+{
+	+ObjProp "Position"
+	{
+		"Location" "-76.9569, -391.559, -0.312406"
+		"Heading" fea4
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+//+MetaProp "rndCargoBay2BBox6" "Object Randomiser - High Priority Output"
++Link "rndCargoBay2BBox6" "rndCargoBay2BObjects" "Target"
+{
+}
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
++Link 428 "rndSecurityCrates" "Target"
+{
+}
+
++Link 339 "rndSecurityCrates" "Target"
+{
+}
+
++Link 168 "rndSecurityCrates" "Target"
+{
+}
+
++Link 205 "rndSecurityCrates" "Target"
+{
+}

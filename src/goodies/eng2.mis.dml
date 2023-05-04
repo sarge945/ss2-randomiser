@@ -1,0 +1,64 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Cargo Bay and Command Control
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndCargoBayRandomiser"
+{
+}
+
+//Inputs
++Link "rndHallwayObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay1AObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay2AObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndCargoBayRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndHallwayObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay1AObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay2AObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndCargoBayRandomiser" "~SwitchLink"
+{
+}
+
+//Create a Randomiser for the Security Crates
+Create "rndComplexRandomiser" "rndSecurityCratesRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "variedOutput=0;"
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}

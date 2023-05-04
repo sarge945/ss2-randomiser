@@ -70,9 +70,7 @@ CreateArch "Misc Metaprops" "Object Randomiser - No Facing"
 {
 }
 
-/*
 //Set a particular output to freeze any items and not give them velocity. This means items can be frozen in specific spots without flying around
 CreateArch "Misc Metaprops" "Object Randomiser - Exact Positioning"
 {
 }
-*/

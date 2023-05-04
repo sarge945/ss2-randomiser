@@ -101,6 +101,9 @@ class rndComplexRandomiser extends rndBase
 		times = Min(times,manager.inputs.len());
 		
 		local count = 0;
+		
+		local fuzzy = getParam("variedOutput",true);
+		//DebugPrint ("variedOutput: " + getParam("variedOutput",true));
 
 		while (count < times)
 		{		
@@ -118,6 +121,7 @@ class rndComplexRandomiser extends rndBase
 				currentOutput++;
 				output = manager.outputs[currentOutput];
 				success = output.HandleMove(input.item);
+				//DebugPrint("Attemptiny to move " + input.item + " to output " + output.output + " (success: " + success + ")");
 			}
 			while (!success && currentOutput <= manager.outputs.len())
 			
@@ -127,11 +131,16 @@ class rndComplexRandomiser extends rndBase
 				manager.outputs.remove(currentOutput);
 				
 				//Add a little variation to the output, otherwise each container gets exactly 1 item
-				local min = Max(manager.outputs.len() / 2,0);
-				local index = Data.RandInt(min,manager.outputs.len() - 1);
-				manager.outputs.insert(index,output);
-			
-				//manager.outputs.append(output);
+				if (fuzzy)
+				{
+					local min = Max(manager.outputs.len() / 2,0);
+					local index = Data.RandInt(min,manager.outputs.len() - 1);
+					manager.outputs.insert(index,output);
+				}
+				else
+				{
+					manager.outputs.append(output);
+				}
 			}
 			
 			//print ("Sending " + input.item + " to " + output.output);

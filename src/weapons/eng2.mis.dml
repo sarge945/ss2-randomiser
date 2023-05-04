@@ -1,0 +1,66 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the non Cargo Bay weapons
+Create "rndComplexRandomiser" "rndControlWeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+//Inputs
++Link "rndHallwayObjects" "rndControlWeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndControlWeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHallwayObjects" "rndControlWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndControlWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for Cargo Bay 1 Weapons
+Create "rndComplexRandomiser" "rndCargoBay1WeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+//Inputs
++Link "rndCargoBay1AObjects" "rndCargoBay1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndCargoBay1WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndCargoBay1AObjects" "rndCargoBay1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndCargoBay1WeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for Cargo Bay 2 Weapons
+Create "rndComplexRandomiser" "rndCargoBay2WeaponRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+//Inputs
++Link "rndCargoBay2AObjects" "rndCargoBay2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndCargoBay2WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndCargoBay2AObjects" "rndCargoBay2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndCargoBay2WeaponRandomiser" "~SwitchLink"
+{
+}

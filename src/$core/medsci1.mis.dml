@@ -13,6 +13,7 @@ FINGERPRINT
    476 [128.1 61.64 -2]
    365 [127.73 57.51 -2]
 }
+
 FINGERPRINT
 {
    QVAR "scplevel" == 1
@@ -332,7 +333,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 ////Loose Items
 
 //Power Cell needed to open Medical sector
-+MetaProp 1186 "Object Randomiser - No Auto Output"
+//+MetaProp 1186 "Object Randomiser - No Auto Output"
 +Link 1186 "rndScienceObjects" "Target"
 {
 }
