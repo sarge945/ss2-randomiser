@@ -1,3 +1,11 @@
+class rndUtil
+{
+	static function isArchetype(obj,type)
+	{
+		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
+	}
+}
+
 class rndDebugger
 {
 	debugLevel = null;
@@ -47,17 +55,12 @@ class rndTypeFilter
 		{
 			foreach (type in allowedTypes)
 			{
-				if (isArchetype(input.obj,type))
+				if (rndUtil.isArchetype(input.obj,type))
 				{
 					results.append(input);
 				}
 			}
 		}
-	}
-	
-	static function isArchetype(obj,type)
-	{
-		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 }
 

@@ -114,9 +114,9 @@ class rndComplexRandomiser extends rndBase
 	}
 	
 	//Move an input to the end after it's used
-	function ReplaceOutput(output)
+	function ReplaceOutput(index,output)
 	{
-		outputs.remove(0);
+		outputs.remove(index);
 		if (output.isContainer)
 		{
 			if (fuzzy)
@@ -124,8 +124,8 @@ class rndComplexRandomiser extends rndBase
 				srand(seed + output.obj);
 				local min = outputs.len() * 0.35;
 				local range = outputs.len() - min;
-				local index = rand() % range + min;
-				outputs.insert(index,output);
+				local insertIndex = rand() % range + min;
+				outputs.insert(insertIndex,output);
 			}
 			else
 			{
@@ -138,12 +138,12 @@ class rndComplexRandomiser extends rndBase
 	{
 		foreach (input in inputs)
 		{
-			foreach(output in outputs)
+			foreach(index, output in outputs)
 			{
 				if (output.CanMove(input))
 				{
 					output.HandleMove(input);
-					ReplaceOutput(output);
+					ReplaceOutput(index,output);
 					break;
 				}
 			}
