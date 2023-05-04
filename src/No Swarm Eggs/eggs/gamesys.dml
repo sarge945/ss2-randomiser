@@ -1,0 +1,11 @@
+////No Swarm Eggs Addon - Remove the Swarmers from the egg spawners
+
++ObjProp "rndNoGooEggRandomiser" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1335;"
+}
+
++ObjProp "rndEggRandomiser" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1335;allowedTypes1=-1476;"
+}

@@ -1,0 +1,6 @@
+////No Swarm Eggs Addon - Disable the egg log, since it's no longer relevant
++MetaProp 683 "Object Randomiser - No Auto Input"
++ObjProp 683 "HasRefs"
+{
+	"" "False"
+}
