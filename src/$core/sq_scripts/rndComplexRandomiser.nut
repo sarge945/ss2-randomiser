@@ -43,10 +43,41 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	noRespectJunk = null;
 	noSecret = null;
 	noCorpse = null;
-
-	function Init()
+	
+	//Debug
+	function SetSeed()
 	{
-		base.Init();
+		base.SetSeed();
+		if (self == 764)
+			seed = 5003;
+		else if (self == 648)
+			seed = 31184;
+		else if (self == 699)
+			seed = 20142;
+		else if (self == 744)
+			seed = 25465;
+		else if (self == 767)
+			seed = 606;
+		else if (self == 686)
+			seed = 9619;
+		else if (self == 795)
+			seed = 5742;
+		else if (self == 649)
+			seed = 24902;
+		else if (self == 727)
+			seed = 10904;
+		else if (self == 697)
+			seed = 28907;
+			
+		SetData("Seed",seed);
+	}
+	
+	function Setup()
+	{
+		base.Setup();
+
+		debugLevel = 999;
+		
 		//Populate configuration
 		fuzzy = getParam("variedOutput",1);
 		ignorePriority = getParam("ignorePriority",0);
@@ -56,10 +87,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		
 		//Setup variables
 		outputLoop = 0;
-	}
 	
-	function OnTimer()
-	{
 		if (inputs.len() == 0 || outputs.len() == 0)
 		{
 			PrintDebug("Randomiser won't function! [inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
@@ -68,7 +96,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		
 		totalItems = inputs.len();
 		
-		PrintDebug("[inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]",4);
+		PrintDebug("[inputs: " + inputs.len() + " (" + GetData("Inputs") + "), outputs: " + outputs.len() + " (" + GetData("Outputs") + ")]",4);
 		
 		if (inputs.len() > 0 && outputs.len() > 0)
 		{
@@ -83,13 +111,15 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		if (inputs.len() == 0 || outputs.len() == 0 || outputs[0] != message().from)
 			return;
 		
+		local output = message().from;
 		local input = message().data;
+		local container = message().data2;
 	
 		//print("OnOutputSuccess received");
 		currentRolls++;
 	
 		//print("output successful");
-		PrintDebug("	Output Successful for " + input + " to " + message().from,4);
+		PrintDebug("	Output Successful for " + input + " to " + output,4);
 		
 		RemoveInput(input);
 		ReplaceOutput();
@@ -132,7 +162,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		local inputString = Stringify(inputs);
 		
 		PrintDebug("	Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
-		PostMessage(output,"RandomiseOutput",inputString,GetSettingsString());
+		PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),currentRolls);
 	}
 
 	function RemoveInput(input)
@@ -163,6 +193,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	
 	function ShuffleBothArrays()
 	{
+		local seed = GetData("Seed");
 		inputs = Shuffle(inputs,seed);
 		
 		//If we are set to have high-priority outputs, then we are going to need
@@ -191,6 +222,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	//rather than always at the end
 	function ReplaceOutput(forceEnd = false)
 	{
+		local seed = GetData("Seed");
 		local output = outputs[0];
 	
 		if (fuzzy && !forceEnd)

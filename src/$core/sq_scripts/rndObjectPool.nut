@@ -6,18 +6,24 @@ class rndObjectPool extends rndBase
 	currentInput = null;
 	currentOutput = null;
 
-	function Init()
+	function Init(reloaded)
 	{
-		currentInput = 0;
-		currentOutput = 0;
-		SetOneShotTimer("StartTimer",0.001);
+		if (!reloaded)
+		{
+			SetOneShotTimer("StartTimer",0.01);
+		}
 	}
 	
 	function OnTimer()
 	{
-		Populate();
-		AddMetaProperties();
-		SendMessages();
+		if (message().name == "StartTimer")
+		{
+			currentInput = 0;
+			currentOutput = 0;
+			Populate();
+			AddMetaProperties();
+			SendMessages();
+		}
 	}
 	
 	function AddMetaProperties()
@@ -26,7 +32,6 @@ class rndObjectPool extends rndBase
 		local canOutput = currentOutput < outputs.len();
 	
 		//print (name + " adding metaproperties to " + inputs[currentInput] + " and " + outputs[currentOutput] + "(" + currentInput + ", " + currentOutput + ")");
-		//print (name + " adding metaproperties");
 			
 		if (canInput)
 		{
@@ -35,16 +40,23 @@ class rndObjectPool extends rndBase
 		
 		if (canOutput)
 		{
-			local out = outputs[currentOutput];
+			local out = outputs[currentOutput];		
 		
 			PrintDebug("Property of " + out + ": " + Property.Get(out,"Scripts","Don't Inherit") + " (currentOutput == " + currentOutput + "/" + (outputs.len() - 1) + ")",99);
-			if (Property.Get(out,"Scripts","Don't Inherit") == 1)
+			if (isMarker(out))
+			{
+				//do nothing
+			}
+			else if (Property.Get(out,"Scripts","Don't Inherit") == 1)
 			{
 				PrintDebug("Adding script to " + out,2);
 				DynamicScriptAdd(out,"rndOutput");
 			}
 			else
+			{
+				PrintDebug("Adding metaprop to " + out,2);
 				Object.AddMetaProperty(out,"Object Randomiser Output");
+			}
 		}
 		else
 		{

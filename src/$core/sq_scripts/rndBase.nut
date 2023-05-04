@@ -11,7 +11,14 @@ class rndBase extends SqRootScript
 		if (name == "")
 			name = ShockGame.GetArchetypeName(self);
 		//print (name + " (" + self + ") initialised");
-		Init();
+	
+		if (!GetData("Started"))
+		{
+			SetData("Started",true);
+			Init(false);
+		}
+		else
+			Init(true);
 	}
 	
 	function PrintDebug(msg,requiredDebugLevel = 0)
@@ -32,7 +39,7 @@ class rndBase extends SqRootScript
 		return "[" + self + "] " + name;
 	}
 	
-	function Init()
+	function Init(reloaded)
 	{
 	}
 
@@ -150,9 +157,32 @@ class rndBase extends SqRootScript
 		return str;
 	}
 	
-	static function DeStringify(str)
+	static function DeStringify(str,noDupes = true)
 	{
+		if (str == null || str == "")
+			return [];
 		return split(str,";");
+	}
+	
+	static function DeDuplicateArray(arr)
+	{
+		local temp = [];
+		foreach (val in arr)
+		{
+			if (temp.find(val) == null)
+				temp.append(val);
+		}
+		return temp;
+	}
+	
+	static function StrToIntArray(arr)
+	{
+		local re = [];
+		foreach (val in arr)
+		{
+			re.append(val.tointeger());
+		}
+		return re;
 	}
 
 	static function isArchetype(obj,type)
@@ -240,7 +270,6 @@ class rndBaseRandomiser extends rndBase
 
 	//Configuration
 	allowedTypes = null;	
-	seed = null;
 	minTimes = null;
 	maxTimes = null;
 	allowOriginalLocations = null;
@@ -253,43 +282,71 @@ class rndBaseRandomiser extends rndBase
 	totalItems = null;
 	inputs = null;
 	outputs = null;
+	seed = null;
 	
-	function Init()
+	function Init(reloaded)
+	{
+		if (!reloaded)
+		{
+			SetSeed();
+			//SetAllowedTypes();
+			priority = getParam("priority",0);
+			
+			//Set timer
+			local startTime = GetStartTime();
+			SetData("StartTime",startTime);
+			SetOneShotTimer("StartTimer",startTime);
+		}
+	}
+	
+	function OnTimer()
+	{
+		if (message().name == "StartTimer")
+		{
+			Setup();
+		}
+	}
+	
+	function Setup()
 	{	
-		//Populate configuration
-		priority = getParam("priority",0);
-		SetSeed();
-		SetAllowedTypes();
-		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		//Config
 		maxTimes = getParam("maxTimes",9999);
 		minTimes = getParam("minTimes",9999);
-		
+		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		//SetAllowedTypes();
+	
 		//Setup variables
+		seed = GetData("Seed");
 		totalRolls = RandBetween(seed,minTimes,maxTimes);
 		currentRolls = 0;
 		totalRolls = RandBetween(seed,minTimes,maxTimes);
 		currentRolls = 0;
 		failures = 0;
-		inputs = [];
-		outputs = [];
+		inputs = StrToIntArray(DeStringify(GetData("Inputs")));
+		outputs = StrToIntArray(DeStringify(GetData("Outputs")));
+		
+		inputs = DeDuplicateArray(inputs);
+		outputs = DeDuplicateArray(outputs);
 		
 		//Show startup message
-		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetStartTime() + "]");
-		
-		SetOneShotTimer("StartTimer",GetStartTime());
+		PrintDebug("Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + "]");
 	}
 	
 	function GetStartTime()
 	{
-		local seedDelay = (seed % 1000) * 0.00001;
-		return 0.0 + (0.05 - 0.01 * priority) + seedDelay;
+		return 0.2 + (seed % 999 * 0.0001);
+		//local seedDelay = (seed % 1000) * 0.0005;
+		//return 0.1 + (0.05 - 0.01 * priority) + seedDelay;
 	}
 	
 	function SetSeed()
 	{
 		seed = getParam("forceSeed",-1);
 		if (seed == -1)
-			seed = Data.RandInt(0,999);
+		{
+			seed = Data.RandInt(0,99999);
+			SetData("Seed",seed);
+		}
 	}
 	
 	function SetAllowedTypes()
@@ -326,34 +383,44 @@ class rndBaseRandomiser extends rndBase
 	
 	function OnSetOutputs()
 	{
+		local outputs = DeStringify(GetData("Outputs"));
 		local expandedOutputs = DeStringify(message().data);
 		PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
-		
+	
 		foreach(val in expandedOutputs)
 		{
 			local vali = val.tointeger();
 		
-			if (outputs.find(vali) == null && IsOutputValid(vali))
+			if (IsOutputValid(vali))
 			{
 				outputs.append(vali);
 			}
 		}
+		
+		SetData("Outputs",Stringify(outputs));
 	}
 	
 	function OnSetInputs()
 	{
-		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
+		local inputs = DeStringify(GetData("Inputs"));
 		local expandedInputs = DeStringify(message().data);
+		
+		if (allowedTypes == null || allowedTypes == [])
+			SetAllowedTypes();
+		
+		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
 		
 		foreach(val in expandedInputs)
 		{
 			local vali = val.tointeger();
 		
-			if (inputs.find(vali) == null && IsInputValid(vali))
+			if (IsInputValid(vali))
 			{
 				inputs.append(vali);
 			}
 		}
+		
+		SetData("Inputs",Stringify(inputs));
 	}
 	
 	function Complete()

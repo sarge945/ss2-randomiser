@@ -1,15 +1,18 @@
 class rndOutput extends rndBase
 {
-	placed = null;
-	position = null;
-	facing = null;
+	container = null;
+	corpse = null;
 
-	function Init()
+	function Init(reloaded)
 	{
-		SetData("placed",false);
+		debugLevel = 999;
+	
+		container = isContainer(self);
+		corpse = isCorpse(self);
 		SetData("position",Object.Position(self));
 		SetData("facing",Object.Facing(self));
-		SetData("physicsControls",Property.Get(self, "PhysControl", "Controls Active"));
+		SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
+		PrintDebug("Output Online [container: " + container + ", corpse: " + corpse + "]",4);
 	}
 
 	function CheckAllowedTypes(input)
@@ -95,7 +98,7 @@ class rndOutput extends rndBase
 		local RnoCorpse = randomiserSettings[2].tointeger();
 		local RallowOriginalLocations = randomiserSettings[3].tointeger();
 	
-		if (GetData("placed") || !IsVerified())
+		if (IsPlaced() || !IsVerified())
 			return 1;
 			
 		if (!CheckAllowedTypes(input))
@@ -122,55 +125,11 @@ class rndOutput extends rndBase
 		return 0;
 	}
 
-	//Called by Randomisers and returns if this was succesfully moved or not
-	function OnRandomiseOutput()
+	function IsPlaced()
 	{
-		local inputs = DeStringify(message().data);
-		local randomiser = message().from;
-		local randomiserSettings = DeStringify(message().data2);
-		
-		foreach(input in inputs)
-		{
-			input = input.tointeger();
-			local errorCode = IsValid(input,randomiserSettings);
-			PrintDebug("checking input: " + input + " (error code: " + errorCode + ")",4);
-			
-			if (errorCode == 1) //We will never work if it returns 1
-			{
-				PostMessage(randomiser,"OutputFailed");
-				return;
-			}
-		
-			if (errorCode == 0)
-			{
-				Place(input);
-				//PostMessage(input,"InputPlaced",self);
-				PostMessage(randomiser,"OutputSuccess",input,errorCode);
-				return;
-			}
-		}
-		PostMessage(randomiser,"OutputFailed");
+		return GetData("placed") && !isContainer(self);
 	}
-	
-	function Place(input)
-	{
-		foreach (link in Link.GetAll(linkkind("~Contains"),input))
-			Link.Destroy(link);
-		//Container.Remove(input);
-		//Property.SetSimple(input, "HasRefs", FALSE);
-	
-		if (isContainer(self))
-			PlaceContainer(input);
-		else
-			PlacePhysical(input);
-	}
-	
-	function PlaceContainer(input)
-	{	
-		Link.Create(linkkind("Contains"),self,input);		
-		Property.SetSimple(input, "HasRefs", FALSE);
-	}
-	
+
 	function IsVerified()
 	{
 		return GetData("verified") || isContainer(self) || isMarker(self);
@@ -180,32 +139,96 @@ class rndOutput extends rndBase
 	{
 		SetData("verified",true);
 	}
+
+	//Called by Randomisers and returns if this was succesfully moved or not
+	function OnRandomiseOutput()
+	{
+		local source = message().from;
+		local inputs = message().data;
+		local config = message().data2;
+		local timerSetting = message().data3;
+		
+		local inputArr = StrToIntArray(DeStringify(inputs));
+		local configArr = StrToIntArray(DeStringify(config));
 	
-	function PlacePhysical(input)
-	{	
+		PrintDebug("OnRandomiseOutput received from " + source + " contains: [" + inputs + ", " + config + "]",4);
+		
+		local success = null;
+		
+		foreach(input in inputArr)
+		{		
+			if (IsValid(input,configArr) == 0)
+			{
+				if (input == 1407)
+					debugLevel = 999;
+			
+				success = input;
+				break;
+			}
+		}
+		
+		if (success != null)
+		{
+			SetData("placed",true);
+			//local timer = success * 0.001;
+			local timer = timerSetting * 0.001 + (success * 0.01);
+			SetOneShotTimer("PlaceTimer",timer,success);
+			PrintDebug("	found suitable input " + success + " from " + source + ", outputting to " + self + " in " + timer,4);
+			PostMessage(source,"OutputSuccess",success,container);
+		}
+		else
+		{
+			PostMessage(source,"OutputFailed");
+		}
+	}
+	
+	function OnTimer()
+	{
+		if (message().name == "PlaceTimer")
+		{
+			local input = message().data;
+			local pc = message().data2;
+			//print("OnTimer: " + input);
+			if (isContainer(self))
+				PlaceInContainer(input,self);
+			else
+				PlacePhysical(input,self);
+		}
+	}
+	
+	function PlaceInContainer(input,output)
+	{
+		Property.SetSimple(input, "HasRefs", FALSE);
+		//Link.Create(linkkind("Contains"),output,input);
+		Container.Add(input,output);
+	}
+	
+	function PlacePhysical(input,output)
+	{
 		local position = GetData("position");
 		local facing = GetData("facing");
-		SetData("placed",1);
+		local physicsControls = GetData("physicsControls");
+		
+		local position_up = vector(position.x, position.y, position.z + 0.2);
 		
 		//Make object render
 		Property.SetSimple(input, "HasRefs", TRUE);
 				
 		//If we are the same object, don't bother doing anything.
 		//Just remain in place.
-		if (self == input)
+		if (output == input)
 		{
 		}
 		//If we are the same archetype, "lock" into position
-		else if (SameItemType(input,self))
+		else if (SameItemType(input,output))
 		{
-			Property.Set(input, "PhysControl", "Controls Active", GetData("physicsControls"));
+			Property.Set(input, "PhysControl", "Controls Active", physicsControls);
 			Object.Teleport(input, position, facing);
 		}
 		//Different objects, need to "jiggle" the object to fix physics issues
 		else
 		{
-			local position_up = vector(position.x, position.y, position.z + 0.2);
-			Object.Teleport(input, position_up, FixItemFacing(input));
+			Object.Teleport(input, position_up, FixItemFacing(input,facing));
 			
 			//Fix up physics
 			Property.Set(input, "PhysControl", "Controls Active", "");
@@ -228,10 +251,8 @@ class rndOutput extends rndBase
 		//[-964,-1,-1,-1], //Vodka
 	];
 	
-	function FixItemFacing(item)
+	function FixItemFacing(item,facing)
 	{
-		local facing = GetData("facing");
-	
 		foreach (archetype in fixArchetypes)
 		{
 			local type = archetype[0];

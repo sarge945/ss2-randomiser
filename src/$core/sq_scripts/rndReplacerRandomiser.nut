@@ -1,7 +1,8 @@
 class rndReplacerRandomiser extends rndBaseRandomiser
 {
-	function OnTimer()
-	{
+	function Setup()
+	{	
+		base.Setup();
 		if (outputs.len() == 0)
 		{
 			PrintDebug("Randomiser won't function! [outputs: " + outputs.len() + "]");
