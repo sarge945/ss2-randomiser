@@ -71,7 +71,7 @@ class IOManager
 		return false;
 	}
 	
-	function RefreshOutput(currentOutput)
+	function RefreshOutput(currentOutput, forceNoFuzzy)
 	{
 		local output = outputs[currentOutput];
 		srand(seed + currentOutput + output.output);
@@ -80,7 +80,7 @@ class IOManager
 		outputs.remove(currentOutput);
 		
 		//Add a little variation to the output, otherwise each container gets exactly 1 item
-		if (fuzzy)
+		if (fuzzy && !forceNoFuzzy)
 		{
 			local min = outputs.len() * 0.35;
 			local range = outputs.len() - min;
@@ -425,13 +425,17 @@ class PhysicalOutput extends Output
 		//Make object render
 		Property.SetSimple(input.item, "HasRefs", TRUE);
 		
+		//If we are the same object, don't do anything
+		if (input.item == output)
+		{
+		}
 		//If we are the same archetype, don't bother doing any of the physics stuff, and don't remove controls
 		//Instead, we need to just teleport the item to the output,
 		//and give it the same physics controls, so that it looks the same
-		if (SameItemType(input))
+		else if (SameItemType(input))
 		{
-			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
 			Object.Teleport(input.item, position, facing);
+			Property.Set(input.item, "PhysControl", "Controls Active", physicsControls);
 		}
 		else
 		{

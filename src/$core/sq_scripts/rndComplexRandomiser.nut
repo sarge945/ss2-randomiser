@@ -157,10 +157,10 @@ class rndComplexRandomiser extends rndBase
 			if (success)
 			{
 				successes++;
-				manager.RefreshOutput(currentOutput);
 				DebugPrint("Sending " + input.item + " to " + output.output);
 			}
 			
+			manager.RefreshOutput(currentOutput,!success);			
 			count++;
 		}
 		

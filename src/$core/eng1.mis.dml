@@ -361,11 +361,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Cabin Desk Items
 //Ciggies
++MetaProp 594 "Object Randomiser - Output Self Only"
 +Link 594 "rndEngineObjectsCabin" "Target"
 {
 }
 //Mug
-+MetaProp 588 "Object Randomiser - No Auto Output"
++MetaProp 588 "Object Randomiser - Output Self Only"
 +Link 588 "rndEngineObjectsCabin" "Target"
 {
 }
