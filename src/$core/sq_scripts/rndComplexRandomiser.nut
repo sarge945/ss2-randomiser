@@ -40,9 +40,6 @@ class rndComplexRandomiser extends rndBase
 		
 		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
 		
-		DebugPrint("total inputs: " + manager.inputs.len());
-		DebugPrint("total outputs: " + manager.outputs.len());
-		
 		if (debug)
 		{
 			DebugPrint("Inputs for " + self + ":")
@@ -86,9 +83,6 @@ class rndComplexRandomiser extends rndBase
 	{
 		DebugPrint("Randomizing");
 		
-		local inputs = manager.GetInputsArray();
-		local outputs = manager.GetOutputsArray();
-		
 		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
 		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
 		
@@ -96,13 +90,13 @@ class rndComplexRandomiser extends rndBase
 			minTimes = maxTimes;
 		
 		local times = Data.RandInt(minTimes,maxTimes);
-		times = Min(times,inputs.len());
+		times = Min(times,manager.inputs.len());
 		
 		local count = 0;
 
 		while (count < times)
 		{		
-			if (inputs.len() == 0 || outputs.len() == 0)
+			if (manager.inputs.len() == 0 || manager.outputs.len() == 0)
 				break;
 				
 			local input = manager.inputs[count];
@@ -117,7 +111,7 @@ class rndComplexRandomiser extends rndBase
 				output = manager.outputs[currentOutput];
 				success = output.HandleMove(input.item);
 			}
-			while (!success && currentOutput <= outputs.len())
+			while (!success && currentOutput <= manager.outputs.len())
 			
 			if (success)
 			{
@@ -125,8 +119,8 @@ class rndComplexRandomiser extends rndBase
 				manager.outputs.remove(currentOutput);
 				
 				//Add a little variation to the output, otherwise each container gets exactly 1 item
-				local min = Max(outputs.len() / 2,0);
-				local index = Data.RandInt(min,outputs.len() - 1);
+				local min = Max(manager.outputs.len() / 2,0);
+				local index = Data.RandInt(min,manager.outputs.len() - 1);
 				manager.outputs.insert(index,output);
 			
 				//manager.outputs.append(output);

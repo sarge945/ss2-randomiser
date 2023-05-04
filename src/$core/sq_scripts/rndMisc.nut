@@ -37,6 +37,9 @@ class IOManager
 				ProcessOutput(target,prioritizeWorldObjects);
 			}
 		}
+		
+		inputs = Array_Shuffle(inputs);
+		outputs = GetOutputsArray();
 	}
 	
 	function ProcessInput(item, validInputTypes)
@@ -117,13 +120,6 @@ class IOManager
 	function isArchetype(obj,type)
 	{
 		return obj == type || Object.Archetype(obj) == type || Object.InheritsFrom(obj,type);
-	}
-	
-	function GetInputsArray()
-	{
-		inputs = Array_Shuffle(inputs);
-		
-		return inputs;
 	}
 	
 	function GetOutputsArray()
