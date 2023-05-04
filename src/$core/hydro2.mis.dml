@@ -294,10 +294,12 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
+/*
 //Medbed Key under Desk 695
 +Link 1112 "rndSurveyObjects" "Target"
 {
 }
+*/
 
 /////////////////=====	Sector B =====\\\\\\\\\\\\\\\\\
 

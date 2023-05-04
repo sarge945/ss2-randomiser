@@ -17,12 +17,6 @@ Create "rndComplexRandomiser" "rndWeaponRandomiser"
 +Link "rndSurveyObjects" "rndWeaponRandomiser" "SwitchLink"
 {
 }
-+Link "rndSectorBObjects" "rndWeaponRandomiser" "SwitchLink"
-{
-}
-+Link "rndSectorBStoreroom" "rndWeaponRandomiser" "SwitchLink"
-{
-}
 
 //Outputs
 +Link "rndAdminObjects" "rndWeaponRandomiser" "~SwitchLink"
@@ -34,10 +28,24 @@ Create "rndComplexRandomiser" "rndWeaponRandomiser"
 +Link "rndSurveyObjects" "rndWeaponRandomiser" "~SwitchLink"
 {
 }
-+Link "rndSectorBObjects" "rndWeaponRandomiser" "~SwitchLink"
+
+//Create a randomiser for the Weapons for Sector B
+Create "rndComplexRandomiser" "rndWeaponSectorBRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; priority=1"
+}
+//Inputs
++Link "rndSectorBObjects" "rndWeaponSectorBRandomiser" "SwitchLink"
 {
 }
-+Link "rndSectorBStoreroom" "rndWeaponRandomiser" "~SwitchLink"
++Link "rndSectorBStoreroom" "rndWeaponSectorBRandomiser" "SwitchLink"
+{
+}
+//Outputs
++Link "rndSectorBObjects" "rndWeaponSectorBRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndWeaponSectorBRandomiser" "~SwitchLink"
 {
 }
 

@@ -43,17 +43,44 @@ class IOManager
 				ProcessOutput(target,prioritizeWorldObjects);
 			}
 		}
+	
+		/*
+		foreach(input in inputs)
+		{
+			print ("I---------------- " + input.item);
+		}
+		foreach(output in outputs)
+		{
+			print ("O---------------- " + output.output);
+		}
+		foreach(output in outputsLow)
+		{
+			print ("OL--------------- " + output.output);
+		}
+		*/
 		
 		srand(seed);
 		inputs = Array_Shuffle(inputs);
 		outputs = GetOutputsArray();
+		
+		/*
+		print ("------------AFTER SORT::");
+		
+		foreach(input in inputs)
+		{
+			print ("IS--------------- " + input.item);
+		}
+		foreach(output in outputs)
+		{
+			print ("OS--------------- " + output.output);
+		}
+		*/
 	}
 	
 	function RefreshOutput(currentOutput, fuzzy)
 	{
 		local output = outputs[currentOutput];
-		
-		srand(seed + output.output);
+		srand(seed + currentOutput + output.output);
 		
 		//print ("refreshing array position " + currentOutput);
 		outputs.remove(currentOutput);
@@ -62,12 +89,8 @@ class IOManager
 		if (fuzzy)
 		{
 			local min = outputs.len() * 0.35;
-			
 			local range = outputs.len() - 1 - min;
-			rand() % range + min
-			
 			local index = rand() % range + min;
-			//local index = Data.RandInt(min,manager.outputs.len() - 1);
 			outputs.insert(index,output);
 		}
 		else
@@ -149,7 +172,8 @@ class IOManager
 
 	function AddOutput(item,prioritize)
 	{
-		local highPriority = (prioritize && Data.RandInt(0,2) == 0)
+		srand(seed + item.output);
+		local highPriority = (prioritize && (rand() % 4) == 0)
 			|| Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		//local highPriority = prioritize || Object.HasMetaProperty(item.output,"Object Randomiser - High Priority Output");
 		
@@ -190,7 +214,7 @@ class IOManager
 	{		
 		for (local position = shuffle.len() - 1;position > 0;position--)
 		{
-			local val = rand() % position;		
+			local val = rand() % position;
 			local temp = shuffle[position];
 			shuffle[position] = shuffle[val];
 			shuffle[val] = temp;

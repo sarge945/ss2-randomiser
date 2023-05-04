@@ -29,27 +29,32 @@ class rndComplexRandomiser extends rndBase
 	
 	function Init()
 	{	
+		DebugPrint ("Randomiser Init " + self);
+	
 		//Configure the number of times we will randomise
 		local maxTimes = getParam("maxTimes",99); //The maximum number of randomisations we can make
 		local minTimes = getParam("minTimes",99); //The minumum number of randomisations we can make
 		if (minTimes > maxTimes)
 			minTimes = maxTimes;
-		SetData("Times",Data.RandInt(minTimes,maxTimes));
-	
-		local seed = Data.RandInt(0,10000);		
-		DebugPrint ("Randomiser Init (seed: " + seed + ")");
+		SetData("Times",Data.RandInt(minTimes,maxTimes));	
+		local seed = Data.RandInt(0,10000);
 		SetData("Seed",seed);
-		SetOneShotTimer("StartTimer",0.04);
 		
+		//Add a delay to the timer to put less stress on the game when loading new areas
+		local priority = getParam("priority",0);
+		local startDelay = 0.01 + self * 0.0002 + (priority * 0.1);
+		DebugPrint("startDelay for " + Object.GetName(self) + " (" + self + ") is " + startDelay + " (Priority: " + priority + ")");
+		SetOneShotTimer("StartTimer",startDelay);
 	}
 	
 	function Setup()
-	{	
-		delay = getParam("priority",0) * 0.02;
-		
+	{
+		local seed = GetData("Seed");
+		DebugPrint ("Randomiser Setup (seed: " + seed + ")");
+			
 		ConfigureAllowedTypes();
 	
-		manager = IOManager(GetData("Seed"));
+		manager = IOManager(seed);
 		manager.GetInputsAndOutputsForAllObjectPools(self,allowedTypes,getParam("prioritizeWorldObjects",false));
 		
 		if (debug)
@@ -66,7 +71,7 @@ class rndComplexRandomiser extends rndBase
 			}
 		}
 		
-		SetOneShotTimer("RandomizeTimer",0.1 + delay);
+		SetOneShotTimer("RandomizeTimer",0.1);
 	}
 	
 	function ConfigureAllowedTypes()

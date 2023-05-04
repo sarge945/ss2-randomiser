@@ -6,7 +6,7 @@
 //Prioritize world objects, since the map seems pretty barren and empty otherwise
 Create "rndComplexRandomiser" "rndMedicalRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "debug=1; prioritizeWorldObjects=1"
+	+ObjProp "DesignNoteSS" = "prioritizeWorldObjects=1"
 }
 //Inputs
 +Link "rndMedicalObjects" "rndMedicalRandomiser" "SwitchLink"
