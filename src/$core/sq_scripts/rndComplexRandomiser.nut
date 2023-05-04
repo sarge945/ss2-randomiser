@@ -103,7 +103,7 @@ class rndComplexRandomiser extends rndBase
 		local count = 0;
 		
 		local fuzzy = getParam("variedOutput",true);
-		//DebugPrint ("variedOutput: " + getParam("variedOutput",true));
+		DebugPrint ("Fuzzy enabled: " + getParam("variedOutput",true));
 
 		while (count < times)
 		{		
@@ -133,7 +133,7 @@ class rndComplexRandomiser extends rndBase
 				//Add a little variation to the output, otherwise each container gets exactly 1 item
 				if (fuzzy)
 				{
-					local min = Max(manager.outputs.len() / 2,0);
+					local min = Max(manager.outputs.len() * 0.35,0);
 					local index = Data.RandInt(min,manager.outputs.len() - 1);
 					manager.outputs.insert(index,output);
 				}
