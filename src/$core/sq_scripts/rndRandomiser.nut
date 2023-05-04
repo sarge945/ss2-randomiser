@@ -6,7 +6,7 @@ class rndRandomiser extends rndBase
 	//Default allowed inputs.
 	//We can replace this
 	//Randomisers AND outputs have input filters
-	static allowedInputs = [
+	static allowedInputsDefault = [
 		//-49, //Goodies
 		//-12, //Weapons
 		//-156, //Keys
@@ -20,8 +20,11 @@ class rndRandomiser extends rndBase
 		-1105, //Beakers
 		-938, //Cyber Modules
 		-3863, //GamePig Games
+		-90, //Decorative items like mugs etc
 	];
 
+	allowedInputs = null;
+	totalItems = null;
 
 	function Init()
 	{
@@ -30,6 +33,10 @@ class rndRandomiser extends rndBase
 		//See note under section 2.9.2 at http://squirrel-lang.org/squirreldoc/reference/language/classes.html
 		inputs = [];
 		outputs = [];
+		
+		//copy the array so we can modify it
+		allowedInputs = getParamArray("allowedInputs",allowedInputsDefault);
+		totalItems = getParam("totalItems",-1);
 		
 		ProcessLinks();
 		
@@ -93,8 +100,10 @@ class rndRandomiser extends rndBase
 	{
 		foreach (archetype in allowedInputs)
 		{
+			print ("checking " + archetype + " against " + input);
 			if (isArchetype(input,archetype))
 				return true;
+			print ("check failed");
 		}
 		return false;
 	}
@@ -146,7 +155,7 @@ class rndRandomiser extends rndBase
 	{
 		foreach(obj in outputs)
 		{
-			print ("Sending message to " + obj);
+			print (self + "Sending ready message to " + obj);
 			
 			SendMessage(obj, "RandomiserReady", self);
 		}
@@ -156,6 +165,12 @@ class rndRandomiser extends rndBase
 	//Array was shuffled so no need to randomise here
 	function OnOutputItemRequest()
 	{
+		if (totalItems == 0)
+		{
+			print("total items reached for randomiser " + self);
+			return;
+		}
+			
 		print (message().data + " asked for an item");
 		
 		if (inputs.len() > 0)
@@ -164,6 +179,17 @@ class rndRandomiser extends rndBase
 			local item = inputs[index];
 			SendMessage(message().data, "ReceiveItem", item);
 			inputs.remove(index);
+			totalItems--;
+
+			/*
+			//remove all links
+			foreach (inputLink in Link.GetAll(linkkind("Target"),item))
+			{
+				local inputLinkInfo = sLink(inputLink);
+				print ("removing link: " + item + " -> " + inputLinkInfo.dest);
+				Link.Destroy(inputLink);
+			}
+			*/
 		}
 	}
 }

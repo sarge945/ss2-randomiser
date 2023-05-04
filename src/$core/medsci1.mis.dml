@@ -29,22 +29,27 @@ Create "rndObjectCollection" "rndCryoAfterAirlock"
 }
 
 //Everything in the Science Sector (except special items, like items in Hackable crates)
-Create "rndObjectCollection" "SargeMedSciScienceObjects"
+Create "rndObjectCollection" "rndScienceSector"
+{
+}
+
+//The Body Bags in the Science Sector
+Create "rndObjectCollection" "rndScienceSectorBodybags"
 {
 }
 
 //Everything in the R&D Sector (except special items, like items in Hackable crates)
-Create "rndObjectCollection" "SargeMedSciRandDObjects"
+Create "rndObjectCollection" "rndRandDSector"
 {
 }
 
 //Special
-Create "rndObjectCollection" "SargeMedSciSpecialObjects"
+Create "rndObjectCollection" "rndSpecial"
 {
 }
 
 //Everything in the Maintenance Hallway (just 1 corpse)
-Create "rndObjectCollection" "SargeMedSciMaintenanceObjects"
+Create "rndObjectCollection" "rndMaintenance"
 {
 }
 
@@ -143,7 +148,7 @@ Create "rndObjectCollection" "SargeMedSciMaintenanceObjects"
 ////Markers and other spawn points
 
 //inside the smashable glass section
-Create "rndOutputMarker" "SargeRandomCryoSmashableMarker"
+Create "rndOutputMarker" "rndCryoGlassChamber"
 {
 	+ObjProp "Position"
 	{
@@ -155,12 +160,12 @@ Create "rndOutputMarker" "SargeRandomCryoSmashableMarker"
 	
 	+ObjProp "DesignNoteSS" = "highPriority=true;"
 }
-+Link "SargeRandomCryoSmashableMarker" "rndCryoAfterAirlock" "Target"
++Link "rndCryoGlassChamber" "rndCryoAfterAirlock" "Target"
 {
 }
 
 //Where the floor hypo used to be (the room with the ramp and the exploding computer)
-Create "rndOutputMarker" "SargeRandomCryoFloorSpot"
+Create "rndOutputMarker" "rndCryoFloorSpot"
 {
 	+ObjProp "Position"
 	{
@@ -170,194 +175,194 @@ Create "rndOutputMarker" "SargeRandomCryoFloorSpot"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomCryoFloorSpot" "rndCryoAfterAirlock" "Target"
++Link "rndCryoFloorSpot" "rndCryoAfterAirlock" "Target"
 {
 }
 
 /////////////////=====	Science Sector	=====\\\\\\\\\\\\\\\\\
 
 //Small security room desk
-+Link 258 "SargeMedSciScienceObjects" "Target"
++Link 258 "rndScienceSector" "Target"
 {
 }
 
 //Small security room crate
-+Link 565 "SargeMedSciScienceObjects" "Target"
++Link 565 "rndScienceSector" "Target"
 {
 }
 
 //Overturned Crate in turret ramp room
-+Link 1432 "SargeMedSciScienceObjects" "Target"
++Link 1432 "rndScienceSector" "Target"
 {
 }
 
 //Chemicsl Storeroom Crate
-+Link 893 "SargeMedSciScienceObjects" "Target"
++Link 893 "rndScienceSector" "Target"
 {
 }
 
 //Chemicsl Storeroom Crate
-+Link 900 "SargeMedSciScienceObjects" "Target"
++Link 900 "rndScienceSector" "Target"
 {
 }
 
 //Trap Room Crate
-+Link 976 "SargeMedSciScienceObjects" "Target"
++Link 976 "rndScienceSector" "Target"
 {
 }
 
 //Trap Room Desk
-+Link 483 "SargeMedSciScienceObjects" "Target"
++Link 483 "rndScienceSector" "Target"
 {
 }
 
 //Trap Room Desk
-+Link 1071 "SargeMedSciScienceObjects" "Target"
++Link 1071 "rndScienceSector" "Target"
 {
 }
 
 //A Desk
-+Link 915 "SargeMedSciScienceObjects" "Target"
++Link 915 "rndScienceSector" "Target"
 {
 }
 
 //A Trashcan near R and D Sector Door in lowered area
-+Link 1796 "SargeMedSciScienceObjects" "Target"
++Link 1796 "rndScienceSector" "Target"
 {
 }
 
 //A Body Bag
-+Link 794 "SargeMedSciScienceObjects" "Target"
++Link 794 "rndScienceSectorBodybags" "Target"
 {
 }
 
 //A Body Bag
-+Link 798 "SargeMedSciScienceObjects" "Target"
++Link 798 "rndScienceSectorBodybags" "Target"
 {
 }
 
 //A Body Bag
-+Link 828 "SargeMedSciScienceObjects" "Target"
++Link 828 "rndScienceSectorBodybags" "Target"
 {
 }
 
 //A Body Bag
-+Link 684 "SargeMedSciScienceObjects" "Target"
++Link 684 "rndScienceSectorBodybags" "Target"
 {
 }
 
 //Corpse near Power Recharger
-+Link 1182 "SargeMedSciScienceObjects" "Target"
++Link 1182 "rndScienceSector" "Target"
 {
 }
 
 //A Corpse in the Xerxes core room
-+Link 880 "SargeMedSciScienceObjects" "Target"
++Link 880 "rndScienceSector" "Target"
 {
 }
 
 //Hanging guy
-+Link 735 "SargeMedSciScienceObjects" "Target"
++Link 735 "rndScienceSector" "Target"
 {
 }
 
 //Corpse in Trap Room
-+Link 294 "SargeMedSciScienceObjects" "Target"
++Link 294 "rndScienceSector" "Target"
 {
 }
 
 //Corpse with Power Cell at Medical Bulkhead Door
-+Link 1095 "SargeMedSciScienceObjects" "Target"
++Link 1095 "rndScienceSector" "Target"
 {
 }
 
 //Corpse Near the door to R and D
-+Link 1153 "SargeMedSciScienceObjects" "Target"
++Link 1153 "rndScienceSector" "Target"
 {
 }
 
 //Corpse Near the door to R and D
-+Link 507 "SargeMedSciScienceObjects" "Target"
++Link 507 "rndScienceSector" "Target"
 {
 }
 
 //Corpse in the Xerxes Core next to the "Remember Citadel" sign
-+Link 1428 "SargeMedSciScienceObjects" "Target"
++Link 1428 "rndScienceSector" "Target"
 {
 }
 
 //Corpse in the Turret Ramp room
-+Link 702 "SargeMedSciScienceObjects" "Target"
++Link 702 "rndScienceSector" "Target"
 {
 }
 
 //A Corpse in the Chemical Storeroom
-+Link 867 "SargeMedSciScienceObjects" "Target"
++Link 867 "rndScienceSector" "Target"
 {
 }
 
 //Corpse in the upper section next to the Turret Ambush room
-+Link 998 "SargeMedSciScienceObjects" "Target"
++Link 998 "rndScienceSector" "Target"
 {
 }
 
 //A bag of chips in the Security Closet
-+Link 551 "SargeMedSciScienceObjects" "Target"
++Link 551 "rndScienceSector" "Target"
 {
 }
 
 //A bottle of Liquor in the Security Closet
-+Link 549 "SargeMedSciScienceObjects" "Target"
++Link 549 "rndScienceSector" "Target"
 {
 }
 
 //A bottle of vodka in the Xerxes Core room
-+Link 1425 "SargeMedSciScienceObjects" "Target"
++Link 1425 "rndScienceSector" "Target"
 {
 }
 
 //A bottle of vodka in the Turret Ambush room
-+Link 997 "SargeMedSciScienceObjects" "Target"
++Link 997 "rndScienceSector" "Target"
 {
 }
 
 //Rad Patch on Medical Lobby Desk
-+Link 438 "SargeMedSciScienceObjects" "Target"
++Link 438 "rndScienceSector" "Target"
 {
 }
 
 //Rad Patch in nook near Medical Lobby Desk
-+Link 835 "SargeMedSciScienceObjects" "Target"
++Link 835 "rndScienceSector" "Target"
 {
 }
 
 //Some floor nanites in the main Xerxes area
-+Link 871 "SargeMedSciScienceObjects" "Target"
++Link 871 "rndScienceSector" "Target"
 {
 }
 
 //Some AP Ammo in the Turret Ramp room
-+Link 225 "SargeMedSciScienceObjects" "Target"
++Link 225 "rndScienceSector" "Target"
 {
 }
 
 //Some Bullets behind Turret in Ramp Room
-+Link 79 "SargeMedSciScienceObjects" "Target"
++Link 79 "rndScienceSector" "Target"
 {
 }
 
 //A Psi Hypo on a Box in the Turret Ambush room
-+Link 159 "SargeMedSciScienceObjects" "Target"
++Link 159 "rndScienceSector" "Target"
 {
 }
 
 //A Med Hypo under a piece of Debris in a Computer Room near the R and D Entrance
-+Link 1113 "SargeMedSciScienceObjects" "Target"
++Link 1113 "rndScienceSector" "Target"
 {
 }
 
 //Nanites near recharging station
-+Link 1665 "SargeMedSciScienceObjects" "Target"
++Link 1665 "rndScienceSector" "Target"
 {
 }
 
@@ -371,7 +376,7 @@ Create "rndOutputMarker" "SargeRandomCryoFloorSpot"
 
 
 //On the floor near the first power charger (with the turrets)
-Create "Marker" "SargeRechargerInput"
+Create "rndOutputMarker" "SargeRechargerInput"
 {
 	+ObjProp "Position"
 	{
@@ -380,13 +385,15 @@ Create "Marker" "SargeRechargerInput"
 		"Pitch" 0
 		"Bank" 0
 	}
+	
+	+ObjProp "DesignNoteSS" = "highPriority=true;"
 }
-+Link "SargeRechargerInput" "SargeMedSciScienceObjects" "Target"
++Link "SargeRechargerInput" "rndScienceSector" "Target"
 {
 }
 
 //Bench in small area with trashcan and observation window to Watts lab
-Create "Marker" "SargeRandomObservationRoom"
+Create "rndOutputMarker" "SargeRandomObservationRoom"
 {
 	+ObjProp "Position"
 	{
@@ -396,12 +403,12 @@ Create "Marker" "SargeRandomObservationRoom"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomObservationRoom" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomObservationRoom" "rndScienceSector" "Target"
 {
 }
 
 //Desk in trap room
-Create "Marker" "SargeRandomTrapRoomDesk"
+Create "rndOutputMarker" "SargeRandomTrapRoomDesk"
 {
 	+ObjProp "Position"
 	{
@@ -411,11 +418,11 @@ Create "Marker" "SargeRandomTrapRoomDesk"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomTrapRoomDesk" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomTrapRoomDesk" "rndScienceSector" "Target"
 {
 }
 //Desk in trap room
-Create "Marker" "SargeRandomTrapRoomDesk2"
+Create "rndOutputMarker" "SargeRandomTrapRoomDesk2"
 {
 	+ObjProp "Position"
 	{
@@ -425,11 +432,11 @@ Create "Marker" "SargeRandomTrapRoomDesk2"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomTrapRoomDesk2" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomTrapRoomDesk2" "rndScienceSector" "Target"
 {
 }
 //Trap room grating area
-Create "Marker" "SargeRandomTrapRoomGrating"
+Create "rndOutputMarker" "SargeRandomTrapRoomGrating"
 {
 	+ObjProp "Position"
 	{
@@ -439,12 +446,12 @@ Create "Marker" "SargeRandomTrapRoomGrating"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomTrapRoomGrating" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomTrapRoomGrating" "rndScienceSector" "Target"
 {
 }
 /*
 //Trap room floor area
-Create "Marker" "SargeRandomTrapRoomFloor"
+Create "rndOutputMarker" "SargeRandomTrapRoomFloor"
 {
 	+ObjProp "Position"
 	{
@@ -454,13 +461,13 @@ Create "Marker" "SargeRandomTrapRoomFloor"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomTrapRoomFloor" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomTrapRoomFloor" "rndScienceSector" "Target"
 {
 }
 */
 
 //Security Room closet desk
-Create "Marker" "SargeRandomSecurityRoomClosetDesk"
+Create "rndOutputMarker" "SargeRandomSecurityRoomClosetDesk"
 {
 	+ObjProp "Position"
 	{
@@ -470,13 +477,13 @@ Create "Marker" "SargeRandomSecurityRoomClosetDesk"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomSecurityRoomClosetDesk" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomSecurityRoomClosetDesk" "rndScienceSector" "Target"
 {
 }
 
 
 //Medical lobby desk
-Create "Marker" "SargeRandomMedicalLobbyDesk"
+Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk"
 {
 	+ObjProp "Position"
 	{
@@ -486,10 +493,10 @@ Create "Marker" "SargeRandomMedicalLobbyDesk"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMedicalLobbyDesk" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomMedicalLobbyDesk" "rndScienceSector" "Target"
 {
 }
-Create "Marker" "SargeRandomMedicalLobbyDesk2"
+Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk2"
 {
 	+ObjProp "Position"
 	{
@@ -499,10 +506,10 @@ Create "Marker" "SargeRandomMedicalLobbyDesk2"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMedicalLobbyDesk2" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomMedicalLobbyDesk2" "rndScienceSector" "Target"
 {
 }
-Create "Marker" "SargeRandomMedicalLobbyDesk3"
+Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk3"
 {
 	+ObjProp "Position"
 	{
@@ -512,12 +519,12 @@ Create "Marker" "SargeRandomMedicalLobbyDesk3"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMedicalLobbyDesk3" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomMedicalLobbyDesk3" "rndScienceSector" "Target"
 {
 }
 
 //Medical lobby nook above the desk
-Create "Marker" "SargeRandomMedicalLobbyDesk4"
+Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk4"
 {
 	+ObjProp "Position"
 	{
@@ -527,12 +534,12 @@ Create "Marker" "SargeRandomMedicalLobbyDesk4"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMedicalLobbyDesk4" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomMedicalLobbyDesk4" "rndScienceSector" "Target"
 {
 }
 
 //Chair in the main Xerxes room
-Create "Marker" "SargeRandomXerxesChair"
+Create "rndOutputMarker" "SargeRandomXerxesChair"
 {
 	+ObjProp "Position"
 	{
@@ -542,12 +549,12 @@ Create "Marker" "SargeRandomXerxesChair"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomXerxesChair" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomXerxesChair" "rndScienceSector" "Target"
 {
 }
 
 //Gurney in the Morgue
-Create "Marker" "SargeRandomMorgueGurney"
+Create "rndOutputMarker" "SargeRandomMorgueGurney"
 {
 	+ObjProp "Position"
 	{
@@ -557,12 +564,12 @@ Create "Marker" "SargeRandomMorgueGurney"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomMorgueGurney" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomMorgueGurney" "rndScienceSector" "Target"
 {
 }
 
 //Computer Room near R&D
-Create "Marker" "SargeRandomComputerRoom"
+Create "rndOutputMarker" "SargeRandomComputerRoom"
 {
 	+ObjProp "Position"
 	{
@@ -572,12 +579,12 @@ Create "Marker" "SargeRandomComputerRoom"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomComputerRoom" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomComputerRoom" "rndScienceSector" "Target"
 {
 }
 
 //Chemical Storeroom
-Create "Marker" "SargeRandomChemicalStoreroom"
+Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 {
 	+ObjProp "Position"
 	{
@@ -587,12 +594,12 @@ Create "Marker" "SargeRandomChemicalStoreroom"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomChemicalStoreroom" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomChemicalStoreroom" "rndScienceSector" "Target"
 {
 }
 
 //On top of box in turret/recharger room
-Create "Marker" "SargeRandomTurretRoomBox"
+Create "rndOutputMarker" "SargeRandomTurretRoomBox"
 {
 	+ObjProp "Position"
 	{
@@ -602,84 +609,84 @@ Create "Marker" "SargeRandomTurretRoomBox"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomTurretRoomBox" "SargeMedSciScienceObjects" "Target"
++Link "SargeRandomTurretRoomBox" "rndScienceSector" "Target"
 {
 }
 
 /////////////////=====	R And D Sector	=====\\\\\\\\\\\\\\\\\
 
 //A Desk
-+Link 533 "SargeMedSciRandDObjects" "Target"
++Link 533 "rndRandDSector" "Target"
 {
 }
 
 //Overturned Desk in Power Recharger room
-+Link 1391 "SargeMedSciRandDObjects" "Target"
++Link 1391 "rndRandDSector" "Target"
 {
 }
 
 //Crate opposite power recharger
-+Link 525 "SargeMedSciRandDObjects" "Target"
++Link 525 "rndRandDSector" "Target"
 {
 }
 
 //Crate outside power recharger room next to body
-+Link 562 "SargeMedSciRandDObjects" "Target"
++Link 562 "rndRandDSector" "Target"
 {
 }
 
 //Shotgun guy
-+Link 967 "SargeMedSciRandDObjects" "Target"
++Link 967 "rndRandDSector" "Target"
 {
 }
 
 //Corpse in random closet near Turret window
-+Link 1362 "SargeMedSciRandDObjects" "Target"
++Link 1362 "rndRandDSector" "Target"
 {
 }
 
 //Corpse in corner of Watts room
-+Link 1351 "SargeMedSciRandDObjects" "Target"
++Link 1351 "rndRandDSector" "Target"
 {
 }
 
 //Ghost Phantom Corpse in Hallway
-+Link 833 "SargeMedSciRandDObjects" "Target"
++Link 833 "rndRandDSector" "Target"
 {
 }
 
 //Corpse in Power Recharger Room
-+Link 781 "SargeMedSciRandDObjects" "Target"
++Link 781 "rndRandDSector" "Target"
 {
 }
 
 //Headless Corpse in the main R and D hallway
-+Link 492 "SargeMedSciRandDObjects" "Target"
++Link 492 "rndRandDSector" "Target"
 {
 }
 
 //A Med Hypo
-+Link 114 "SargeMedSciRandDObjects" "Target"
++Link 114 "rndRandDSector" "Target"
 {
 }
 
 //A Pistol in the small Closet near the Turret Window
-+Link 1363 "SargeMedSciRandDObjects" "Target"
++Link 1363 "rndRandDSector" "Target"
 {
 }
 
 //Some Juice in the main R and D Hallway
-+Link 297 "SargeMedSciRandDObjects" "Target"
++Link 297 "rndRandDSector" "Target"
 {
 }
 
 //Some Pistol Bullets near a Camera outside the Power Cell Room
-+Link 1343 "SargeMedSciRandDObjects" "Target"
++Link 1343 "rndRandDSector" "Target"
 {
 }
 
 //AP Clip on the Bench in the Power Cell Room
-+Link 1345 "SargeMedSciRandDObjects" "Target"
++Link 1345 "rndRandDSector" "Target"
 {
 }
 
@@ -694,7 +701,7 @@ Create "Marker" "SargeRandomTurretRoomBox"
 
 
 //Dr Watts room gurneys
-Create "Marker" "SargeRandomWattsRoomOutput2"
+Create "rndOutputMarker" "SargeRandomWattsRoomOutput2"
 {
 	+ObjProp "Position"
 	{
@@ -704,10 +711,10 @@ Create "Marker" "SargeRandomWattsRoomOutput2"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomWattsRoomOutput2" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomWattsRoomOutput2" "rndRandDSector" "Target"
 {
 }
-Create "Marker" "SargeRandomWattsRoomOutput3"
+Create "rndOutputMarker" "SargeRandomWattsRoomOutput3"
 {
 	+ObjProp "Position"
 	{
@@ -717,12 +724,12 @@ Create "Marker" "SargeRandomWattsRoomOutput3"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomWattsRoomOutput3" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomWattsRoomOutput3" "rndRandDSector" "Target"
 {
 }
 
 //Table in R&D Room with power charger
-Create "Marker" "SargeRandomRandDPowerRoomDesk"
+Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk"
 {
 	+ObjProp "Position"
 	{
@@ -732,11 +739,11 @@ Create "Marker" "SargeRandomRandDPowerRoomDesk"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomRandDPowerRoomDesk" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomRandDPowerRoomDesk" "rndRandDSector" "Target"
 {
 }
 //Table in R&D Room with power charger
-Create "Marker" "SargeRandomRandDPowerRoomDesk2"
+Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
 {
 	+ObjProp "Position"
 	{
@@ -746,11 +753,11 @@ Create "Marker" "SargeRandomRandDPowerRoomDesk2"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomRandDPowerRoomDesk2" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomRandDPowerRoomDesk2" "rndRandDSector" "Target"
 {
 }
 //Table in R&D Room with power charger
-Create "Marker" "SargeRandomRandDPowerRoomDesk3"
+Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk3"
 {
 	+ObjProp "Position"
 	{
@@ -760,13 +767,13 @@ Create "Marker" "SargeRandomRandDPowerRoomDesk3"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomRandDPowerRoomDesk3" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomRandDPowerRoomDesk3" "rndRandDSector" "Target"
 {
 }
 
 
 //Gurney in main R&D Hallway
-Create "Marker" "SargeRandomRandDHallway1"
+Create "rndOutputMarker" "SargeRandomRandDHallway1"
 {
 	+ObjProp "Position"
 	{
@@ -776,14 +783,14 @@ Create "Marker" "SargeRandomRandDHallway1"
 		"Bank" 0
 	}
 }
-+Link "SargeRandomRandDHallway1" "SargeMedSciRandDObjects" "Target"
++Link "SargeRandomRandDHallway1" "rndRandDSector" "Target"
 {
 }
 
 /////////////////=====	Maintenance Sector	=====\\\\\\\\\\\\\\\\\
 
 //Corpse next to Engineering hatch
-+Link 165 "SargeMedSciMaintenanceObjects" "Target"
++Link 165 "rndMaintenance" "Target"
 {
 }
 

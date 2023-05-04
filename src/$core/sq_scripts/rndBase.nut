@@ -39,7 +39,12 @@ class rndBase extends SqRootScript
 		}
 		
 		if (array.len() == 0 && defVal != null)
-			array.append(defVal);
+		{
+			if (typeof(defVal == "array"))
+				return defVal;
+			else
+				array.append(defVal);
+		}
 		
 		return array;
 	}

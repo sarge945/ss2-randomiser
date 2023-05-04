@@ -1,7 +1,6 @@
-//Create a randomiser for the items before the cryo airlock
+//Create a randomiser for the items in Cryo
 Create "rndRandomiser" "rndCryoRandomiser"
 {
-	//+ObjProp "DesignNoteSS" = "Input0="rndCryoBeforeAirlock"; Input1="rndCryoAfterAirlock"; Output0="rndCryoAfterAirlock";"
 }
 //Add Inputs
 +Link "rndCryoRandomiser" "rndCryoAfterAirlock" "Target"
@@ -13,5 +12,66 @@ Create "rndRandomiser" "rndCryoRandomiser"
 }
 //Add Outputs
 +Link "rndCryoRandomiser" "rndCryoAfterAirlock" "~Target"
+{
+}
+
+
+
+
+
+
+//Create a randomiser for the Science and R&D Sector
+Create "rndRandomiser" "rndScienceRandomiser"
+{
+}
+//Add Inputs
++Link "rndScienceRandomiser" "rndScienceSector" "Target"
+{
+}
++Link "rndScienceRandomiser" "rndScienceSectorBodybags" "Target"
+{
+}
++Link "rndScienceRandomiser" "rndRandDSector" "Target"
+{
+}
++Link "rndScienceRandomiser" "rndMaintenance" "Target"
+{
+}
+
+//Add Outputs
++Link "rndScienceRandomiser" "rndScienceSector" "~Target"
+{
+}
++Link "rndScienceRandomiser" "rndRandDSector" "~Target"
+{
+}
++Link "rndScienceRandomiser" "rndMaintenance" "~Target"
+{
+}
+
+
+
+
+
+
+
+//Create a randomiser for the Science Sector Bodybags (Only allow hypos)
+Create "rndRandomiser" "rndScienceBodybagsRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedInputs0=-51; totalItems=4;"
+}
+//Add Inputs - Note, while it's only allowed hypos, it can still pull from the entire item pool, which contains hypos
++Link "rndScienceBodybagsRandomiser" "rndScienceSector" "Target"
+{
+}
++Link "rndScienceBodybagsRandomiser" "rndScienceSectorBodybags" "Target"
+{
+}
++Link "rndScienceBodybagsRandomiser" "rndRandDSector" "Target"
+{
+}
+
+//Add Outputs
++Link "rndScienceBodybagsRandomiser" "rndScienceSectorBodybags" "~Target"
 {
 }
