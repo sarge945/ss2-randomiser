@@ -1,25 +1,17 @@
 //An extremely simple randomiser for basic cases
 //Simply swaps each input with an output, no fancy features, no checks
 //It simply moves all inputs to a random output without caring about anything else
-class rndSimpleRandomiser extends rndBase
+class rndSimpleRandomiser extends rndBaseRandomiser
 {
 	inputs = null;
-	outputs = null;
-	seed = null;
-
-	function SetSeed()
-	{
-		seed = getParam("forceSeed",-1);
-		if (seed == -1)
-			seed = Data.RandInt(0,99999);
-	}
 
 	function Init(reloaded)
 	{
+		base.Init(reloaded);
+	
 		if (reloaded)
 			return;
 	
-		SetSeed();
 		inputs = [];
 		outputs = [];
 		
@@ -47,7 +39,6 @@ class rndSimpleRandomiser extends rndBase
 		PrintDebug("Simple Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + " inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
 		
 		Randomise();
-		Object.Destroy(self);
 	}
 	
 	//Foreach is required here, otherwise both arrays will point to each other and always randomise to themselves
@@ -85,6 +76,6 @@ class rndSimpleRandomiser extends rndBase
 			rolls++;
 		}
 		
-		PrintDebug("Simple Randomiser Completed. Swapped " + rolls + " items");
+		Complete("Simple");
 	}
 }

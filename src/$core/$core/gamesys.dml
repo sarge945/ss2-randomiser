@@ -1,3 +1,7 @@
+// ================================================================================
+// 								Basic Metaprops
+// ================================================================================
+
 //Attached to all Inputs
 CreateArch "Misc Metaprops" "Object Randomiser Input"
 {
@@ -18,6 +22,10 @@ CreateArch "Misc Metaprops" "Object Randomiser Output"
 	}
 }
 
+// ================================================================================
+// 						Metaprops to control Output Types
+// ================================================================================
+
 //Shorthand for an output designed to go in a small nook or under stuff, etc
 //Only allows small objects (hypos, softs, implants, CMs etc)
 CreateArch "Misc Metaprops" "Object Randomiser - Nook Output"
@@ -37,16 +45,9 @@ CreateArch "Misc Metaprops" "Object Randomiser - Hypo Output"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;"
 }
 
-//Acts as an output
-//Link this to an Item Pool and it will behave like any regular output
-CreateArch "Marker" "rndOutputMarker"
-{
-	+ObjProp "Scripts"
-	{
-		"Script 0" "rndOutput"
-		"Don't inherit" false
-	}
-}
+// ================================================================================
+// 								Randomiser Types
+// ================================================================================
 
 //Object Pool
 //SwitchLink to a Randomiser to have all linked Targets added as inputs
@@ -95,8 +96,26 @@ CreateArch "Marker" "rndReplacerRandomiser"
 	}
 }
 
-//"Special Output Handler"
+// ================================================================================
+// 								Output Types
+// ================================================================================
+
+//Marker output
+//Link this to an Item Pool and it will behave like any regular output
+CreateArch "Marker" "rndOutputMarker"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndOutput"
+		"Don't inherit" false
+	}
+}
+
+////Special Outputs
+
 //Designed to do special handling for certain objects as they are randomised
+//Will also copy over and recreate the object's SwitchLinks
+//Used for Toxin-A vials
 CreateArch "Marker" "rndSwitchLinkOutputHandler"
 {
 	+ObjProp "Scripts"
@@ -106,8 +125,23 @@ CreateArch "Marker" "rndSwitchLinkOutputHandler"
 	}
 }
 
-//Randomiser Types (for convenience)
+//Designed to create a specified object at it's location
+CreateArch "Marker" "rndSwitchLinkOutputHandler"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndSwitchLinkHandler"
+		"Don't inherit" false
+	}
+	+ObjProp "DesignNoteSS" = "createdObject=-76;"
+}
 
+
+
+// ================================================================================
+// 						Complex Randomiser Shorthands
+//					These simply configure complex randomisers
+// ================================================================================
 
 CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 {
@@ -126,10 +160,17 @@ CreateArch "rndComplexRandomiser" "rndPowercellRandomiser"
 
 CreateArch "rndComplexRandomiser" "rndAudioLogRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=1 noSecret=1; noHighPriority=1; variedOutput=0; priority=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-76; noCorpse=1; noRespectJunk=0 noSecret=1; noHighPriority=1; variedOutput=0; priority=1;"
 }
 
-////Metaprops to control item distribution. These don't do anything on their own, but signal to the Randomiser that certain things should be done with a given object
+
+// ================================================================================
+// 							Metaprops to control item distribution
+//
+//							These don't do anything on their own,
+//				but signal to the Randomiser that certain things should be done
+//									with a given object
+// ================================================================================
 
 //Prevent an object or the objects inside a container from being added automatically
 CreateArch "Misc Metaprops" "Object Randomiser - No Auto Input"
