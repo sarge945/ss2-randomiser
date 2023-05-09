@@ -8,10 +8,10 @@ class rndSpecialHandler extends rndBase
 		local input = message().data;
 		local output = message().from;
 		PrintDebug("Object " + input + " was randomised to " + output + " (special!)");
-		DoSpecialAction(input,output);
+		DoRandomAction(input,output);
 	}
 	
-	function DoSpecialAction(input,output)
+	function DoRandomAction(input,output)
 	{
 	}
 }
@@ -21,30 +21,27 @@ class rndSpecialHandler extends rndBase
 //For physical outputs, it creates a small trigger zone and links it to the target
 class rndSwitchLinkHandler extends rndSpecialHandler
 {
-	function DoSpecialAction(input,output)
+    linkSrc = null;
+
+	function DoRandomAction(input,output)
 	{
-		local scaleX = getParam("scaleX",5.00);
-		local scaleY = getParam("scaleY",5.00);
-		local scaleZ = getParam("scaleZ",2.00);
-		
-		local linkSrc = output;
+		linkSrc = output;
 	
-		/*
-		//For containers, link our SwitchLinks to them
-		if (isContainer(output))
+		//Create a marker if we're not a container
+		//if (!isContainer(output))
 		{
-			
-		}
-		//For physical, create a small marker
-		else
-		*/
-		{
-			//Create a Once Tripwire
-			local tripwire = Object.BeginCreate("Once Tripwire");
-			
+            local scaleX = getParam("scaleX",5.00);
+            local scaleY = getParam("scaleY",5.00);
+            local scaleZ = getParam("scaleZ",2.00);
+
+            //Create a Once Tripwire
+            local tripwire = Object.BeginCreate("Once Tripwire");
+
 			Object.Teleport(tripwire, Object.Position(output), Object.Facing(output));
+            
+            local scale = vector(scaleX,scaleY,scaleZ);
 			
-			Property.SetSimple(tripwire,"Scale",scaleX + ", " + scaleY + ", " + scaleZ);
+			Property.SetSimple(tripwire,"Scale",scale);
 			
 			Object.EndCreate(tripwire);
 			
