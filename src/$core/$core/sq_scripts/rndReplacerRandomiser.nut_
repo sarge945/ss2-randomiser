@@ -45,7 +45,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 		}
 	
 		if (currentRolls >= totalRolls || currentRolls > totalItems)
-		{
+
 			PrintDebug("Rolls exceeded",5);
 			return;
 		}

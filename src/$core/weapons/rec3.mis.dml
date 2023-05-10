@@ -1,0 +1,70 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a Randomiser for the Weapons
+Create "rndWeaponRandomiser" "rndWeaponsRandomiser"
+{
+}
+
+//Inputs
++Link "rndMallObjects" "rndWeaponsRandomiser" "SwitchLink"
+{
+}
+
++Link "rndTheatreObjects" "rndWeaponsRandomiser" "SwitchLink"
+{
+}
+
++Link "rndSecurityObjects" "rndWeaponsRandomiser" "SwitchLink"
+{
+}
+
++Link "rndSensualSimObjects" "rndWeaponsRandomiser" "SwitchLink"
+{
+}
+
++Link "rndCasinoObjects" "rndWeaponsRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMallObjects" "rndWeaponsRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndTheatreObjects" "rndWeaponsRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndSecurityObjects" "rndWeaponsRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndSensualSimObjects" "rndWeaponsRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndCasinoObjects" "rndWeaponsRandomiser" "~SwitchLink"
+{
+}
+
+
+
+//Kill Crystal Shard email tripwire
+-Link 513 514 SwitchLink 01510089
+
+//Create a handler for the Crystal Shard
+Create "rndSwitchLinkOutputHandler" "ShardHandler"
+{
+}
+
+//Link the handler to the email trap
++Link "ShardHandler" 514 "SwitchLink"
+{
+}
+
+//Shard
++Link "ShardHandler" 1941 "Target"
+{
+}

@@ -8,7 +8,38 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 246 "rndEggsRandomiser" "Target"
 {
 }
+
++Link 248 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1133 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 628 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 636 "rndEggsRandomiser" "Target"
+{
+}
+
+/*
+//DISABLED: Flies are the only really good egg type that works here
++Link 1135 "rndEggsRandomiser" "Target"
+{
+}
+*/
+
+/*
+//DISABLED: Worms are the only really good egg type that works here
++Link 1126 "rndEggsRandomiser" "Target"
+{
+}
+*/

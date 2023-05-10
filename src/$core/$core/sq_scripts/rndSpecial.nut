@@ -17,7 +17,6 @@ class rndSpecialHandler extends rndBase
 }
 
 //Associates all of it's switchlinks with the output once randomised
-//For container outputs, it links the output to the target
 //For physical outputs, it creates a small trigger zone and links it to the target
 class rndSwitchLinkHandler extends rndSpecialHandler
 {
@@ -30,9 +29,9 @@ class rndSwitchLinkHandler extends rndSpecialHandler
 		//Create a marker if we're not a container
 		//if (!isContainer(output))
 		{
-            local scaleX = getParam("scaleX",5.00);
-            local scaleY = getParam("scaleY",5.00);
-            local scaleZ = getParam("scaleZ",2.00);
+            local scaleX = getParam("scaleX",10.00);
+            local scaleY = getParam("scaleY",10.00);
+            local scaleZ = getParam("scaleZ",4.00);
 
             //Create a Once Tripwire
             local tripwire = Object.BeginCreate("Once Tripwire");

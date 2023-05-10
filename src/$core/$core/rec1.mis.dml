@@ -38,11 +38,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -430,7 +425,8 @@ Create "rndOutputMarker" "rndReplace1443"
 
 ////Seventh Apartment - locked with 11111
 
-//Crystal Shard. Disabled because Shodan sends an email about it
+//Crystal Shard.
+//Disabled because Shodan sends an email about it
 /*
 +Link 1942 "rndCrewLockedApartmentObjects" "Target"
 {
@@ -536,69 +532,3 @@ Create "rndOutputMarker" "rndReplace1443"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 397 "rndEggs" "Target"
-{
-}
-
-+Link 500 "rndEggs" "Target"
-{
-}
-
-+Link 290 "rndEggs" "Target"
-{
-}
-
-/*
-//Useless egg on elevator
-+Link 776 "rndEggs" "Target"
-{
-}
-*/
-
-+Link 264 "rndEggs" "Target"
-{
-}
-
-+Link 198 "rndEggs" "Target"
-{
-}
-
-+Link 563 "rndEggs" "Target"
-{
-}
-
-+Link 131 "rndEggs" "Target"
-{
-}
-
-+Link 284 "rndEggs" "Target"
-{
-}
-
-+Link 106 "rndEggs" "Target"
-{
-}
-
-/*
-+Link 886 "rndEggs" "Target"
-{
-}
-*/
-
-+Link 572 "rndEggs" "Target"
-{
-}
-
-/*
-//DISABLED until we can properly determine egg type through output
-//These need to be "no goo" eggs
-+Link 2005 "rndEggs" "Target"
-{
-}
-
-+Link 297 "rndEggs" "Target"
-{
-}
-*/

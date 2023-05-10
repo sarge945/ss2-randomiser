@@ -8,7 +8,64 @@ Create "rndHydroEggRandomiser" "rndHydroEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndHydroEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 326 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 364 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 373 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 374 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 362 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 363 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 135 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 148 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 375 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 376 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 377 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 378 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 328 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 154 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 156 "rndHydroEggsRandomiser" "Target"
 {
 }

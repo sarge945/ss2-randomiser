@@ -1,0 +1,86 @@
+//Create a randomiser for the Entire map, since there are no new weapons we haven't found before
+Create "rndWeaponRandomiser" "rndRec2WeaponRandomiser"
+{
+}
+
+//Inputs
+
++Link "rndSecurityObjects" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndMaintenanceObjects" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndLoungeObjects" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndDiningObjects" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndGardenObjects" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndGardenObjectsTrapped" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
++Link "rndGardenObjectsLocked" "rndRec2WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
+
++Link "rndSecurityObjects" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndMaintenanceObjects" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndLoungeObjects" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndDiningObjects" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndGardenObjects" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndGardenObjectsTrapped" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
++Link "rndGardenObjectsLocked" "rndRec2WeaponRandomiser" "~SwitchLink"
+{
+}
+
+/////////////////////////////////////////////////
+
+//Handle the Crystal Shard
+
+//Create a handler for the Crystal Shard
+Create "rndSwitchLinkOutputHandler" "ShardHandler"
+{
+}
+
+//Kill Crystal Shard email tripwire
+-Link 745 746 SwitchLink 015100DB
+
+//Link the handler to the email trap
++Link "ShardHandler" 746 "SwitchLink"
+{
+}
+
+//Shard
++Link "ShardHandler" 590 "Target"
+{
+}

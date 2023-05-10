@@ -115,7 +115,6 @@ CreateArch "Marker" "rndOutputMarker"
 
 //Designed to do special handling for certain objects as they are randomised
 //Will also copy over and recreate the object's SwitchLinks
-//Used for Toxin-A vials
 CreateArch "Marker" "rndSwitchLinkOutputHandler"
 {
 	+ObjProp "Scripts"
@@ -123,17 +122,6 @@ CreateArch "Marker" "rndSwitchLinkOutputHandler"
 		"Script 0" "rndSwitchLinkHandler"
 		"Don't inherit" false
 	}
-}
-
-//Designed to create a specified object at it's location
-CreateArch "Marker" "rndSwitchLinkOutputHandler"
-{
-	+ObjProp "Scripts"
-	{
-		"Script 0" "rndSwitchLinkHandler"
-		"Don't inherit" false
-	}
-	+ObjProp "DesignNoteSS" = "createdObject=-76;"
 }
 
 

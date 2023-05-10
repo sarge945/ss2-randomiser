@@ -8,7 +8,100 @@ Create "rndHydroEggRandomiser" "rndHydroEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndHydroEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
+////Lobby Eggs
+
++Link 1000 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 991 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 999 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 992 "rndHydroEggsRandomiser" "Target"
+{
+}
+
+////Snow Room
+
++Link 1352 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1353 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1354 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1355 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1356 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1358 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1359 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1360 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1362 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 1363 "rndHydroEggsRandomiser" "Target"
+{
+}
+
+////Sector B
+
++Link 952 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 905 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 904 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 874 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 875 "rndHydroEggsRandomiser" "Target"
+{
+}
+
+////Sector C
+
++Link 70 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 80 "rndHydroEggsRandomiser" "Target"
+{
+}
+
++Link 287 "rndHydroEggsRandomiser" "Target"
 {
 }

@@ -42,12 +42,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -311,14 +305,6 @@ Create "rndOutputMarker" "rndPowerAdminThirdOffice"
 {
 }
 
-/*
-//Crystal Shard
-//Ignore because a log is associated with it
-+Link 773 "rndPowerAdminObjects" "Target"
-{
-}
-*/
-
 //Sixth Office
 //Contains nothing, add a marker
 
@@ -548,14 +534,6 @@ Create "rndOutputMarker" "rndMessHallFreezer1"
 
 /////////////////=====	Lounge	=====\\\\\\\\\\\\\\\\\
 
-/*
-//Crystal Shard
-//Ignore because a log is associated with it
-+Link 748 "rndLoungeObjects" "Target"
-{
-}
-*/
-
 //Crystal Shard corpse
 +Link 743 "rndLoungeObjects" "Target"
 {
@@ -608,38 +586,3 @@ Create "rndOutputMarker" "rndMessHallFreezer1"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 246 "rndEggs" "Target"
-{
-}
-
-+Link 248 "rndEggs" "Target"
-{
-}
-
-+Link 1133 "rndEggs" "Target"
-{
-}
-
-+Link 628 "rndEggs" "Target"
-{
-}
-
-+Link 636 "rndEggs" "Target"
-{
-}
-
-/*
-//DISABLED: Flies are the only really good egg type that works here
-+Link 1135 "rndEggs" "Target"
-{
-}
-*/
-
-/*
-//DISABLED: Worms are the only really good egg type that works here
-+Link 1126 "rndEggs" "Target"
-{
-}
-*/

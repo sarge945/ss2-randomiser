@@ -13,7 +13,6 @@ class rndSimpleRandomiser extends rndBaseRandomiser
 			return;
 	
 		inputs = [];
-		outputs = [];
 		
 		foreach (ilink in Link.GetAll(linkkind("~Target"),self))
 		{
@@ -54,7 +53,6 @@ class rndSimpleRandomiser extends rndBaseRandomiser
 	
 	function Randomise()
 	{		
-		local rolls = 0;
 		local totalInputs = inputs.len();
 	
 		while (inputs.len() > 0)
