@@ -41,9 +41,11 @@ Create "rndWeaponRandomiser" "rndWeaponsRandomiser"
 {
 }
 
+/*
 +Link "rndSensualSimObjects" "rndWeaponsRandomiser" "~SwitchLink"
 {
 }
+*/
 
 +Link "rndCasinoObjects" "rndWeaponsRandomiser" "~SwitchLink"
 {

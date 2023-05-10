@@ -35,5 +35,5 @@ Create "rndWeaponRandomiser" "rndCrewQuartersWeaponRandomiser"
 {
 }
 
-//NOTE: Don't make a Weapon Randomiser for Athletics, since the only weapon there is the Fusion Cannon, which is a reward for reaching the generator
+//NOTE: Don't make a Weapon Randomiser for Athletics, since the only weapon there is the Fusion Cannon, which is a reward for reaching the generator. There is also a Crystal Shard
 //NOTE: Don't make a Weapon Randomiser for the locked apartment (rndCrewLockedApartmentObjects), since the weapons in there are also rewards
