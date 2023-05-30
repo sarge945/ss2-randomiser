@@ -167,20 +167,24 @@ class rndOutput extends rndBase
                 SetData("placed",true);
                 PostMessage(source,"OutputSuccess",input,!container);
                 PrintDebug("    found suitable input " + input + " from " + source,4);
+                PrintDebug("    moving suitable input " + input + " to placer (total " + placers.len() + "): ",5);
 
                 for(local i = 0;i < placers.len();i++)
                 {
                     local p = placers[i];
+                    PrintDebug("    Getting Placer " + p,5);
                     if (!Object.IsTransient(p))
                     {
                         local isPlacer = isPlacer(p);
                         if (isPlacer)
+                        {
                             Object.SetTransience(p,true);
+                            PrintDebug("Placing " + input + " at placer " + p + "...",5);
+                        }
 
-                        if (isPlacer)
-                            PrintDebug("Placing " + input + " at " + p + "...");
-                        Place(input,p,isPlacer);
                         placers.remove(i);
+                        placers.append(i);
+                        Place(input,p,isPlacer);
                         return;
                     }
                 }

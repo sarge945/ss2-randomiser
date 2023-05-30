@@ -416,14 +416,6 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 {
 }
 
-
-
-
-////Extra Markers
-
-
-
-
 //Bench in small area with trashcan and observation window to Watts lab
 Create "rndOutputMarker" "SargeRandomObservationRoom"
 {
@@ -501,48 +493,6 @@ Create "rndOutputMarker" "SargeRandomTrapRoomFloor"
 }
 */
 
-//Security Room closet desk
-Create "rndOutputMarker" "SargeRandomSecurityRoomClosetDesk"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-35.9509, -168.484, -0.0694024"
-		"Heading" e478
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomSecurityRoomClosetDesk" "rndScienceObjects" "Target"
-{
-}
-
-//Medical lobby desk
-Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-54.7713, -195.792, 0.830598"
-		"Heading" de60
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomMedicalLobbyDesk" "rndScienceObjects" "Target"
-{
-}
-Create "rndOutputMarker" "SargeRandomMedicalLobbyDesk2"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-73.9693, -198.961, 0.830598"
-		"Heading" 3610
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomMedicalLobbyDesk2" "rndScienceObjects" "Target"
-{
-}
 
 //Nook in the Medical Lobby
 //Moved slightly compared to object 835 so that more objects can fit
@@ -556,7 +506,8 @@ Create "rndOutputMarker" "SargeRandomMedicalLobbyDeskNook"
 		"Bank" 0
 	}
 }
-+MetaProp "SargeRandomMedicalLobbyDeskNook" "Object Randomiser - No Junk"
+//+MetaProp "SargeRandomMedicalLobbyDeskNook" "Object Randomiser - No Junk"
++MetaProp "SargeRandomMedicalLobbyDeskNook" "Object Randomiser - High Priority Output"
 +Link "SargeRandomMedicalLobbyDeskNook" "rndScienceObjects" "Target"
 {
 }
@@ -575,55 +526,6 @@ Create "rndOutputMarker" "SargeRandomComputerRoom"
 }
 +MetaProp "SargeRandomComputerRoom" "Object Randomiser - No Junk"
 +Link "SargeRandomComputerRoom" "rndScienceObjects" "Target"
-{
-}
-
-
-//Chair in the main Xerxes room
-Create "rndOutputMarker" "SargeRandomXerxesChair"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-50.4874, -42.5113, -0.969402"
-		"Heading" b6c8
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomXerxesChair" "rndScienceObjects" "Target"
-{
-}
-
-/*
-//Gurney in the Morgue
-Create "rndOutputMarker" "SargeRandomMorgueGurney"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-83.5665, -111.267, -0.157899"
-		"Heading" fa5c
-		"Pitch" 0
-		"Bank" 0
-	}
-	+ObjProp "DesignNoteSS" = "limitType=-51;"
-}
-+Link "SargeRandomMorgueGurney" "rndScienceObjects" "Target"
-{
-}
-*/
-
-//Chemical Storeroom
-Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-34.6176, -43.9759, -0.537849"
-		"Heading" f270
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomChemicalStoreroom" "rndScienceObjects" "Target"
 {
 }
 
@@ -721,34 +623,6 @@ Create "rndOutputMarker" "SargeRandomChemicalStoreroom"
 
 ////Extra Markers
 
-//Table in R&D Room with power charger
-Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-23.2229, 95.1905, -6.86447"
-		"Heading" 2590
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomRandDPowerRoomDesk" "rndRNDObjects" "Target"
-{
-}
-//Table in R&D Room with power charger
-Create "rndOutputMarker" "SargeRandomRandDPowerRoomDesk2"
-{
-	+ObjProp "Position"
-	{
-		"Location" "-22.9695, 52.4995, 0.515529"
-		"Heading" 1fc
-		"Pitch" 0
-		"Bank" 0
-	}
-}
-+Link "SargeRandomRandDPowerRoomDesk2" "rndRNDObjects" "Target"
-{
-}
 
 /////////////////=====	Maintenance Sector	=====\\\\\\\\\\\\\\\\\
 

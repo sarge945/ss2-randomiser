@@ -188,7 +188,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
 		local output = outputs[0];
 
-		PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + ")",4);
+		PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + "/" + totalRolls + ")",4);
 
 		local inputString = Stringify(inputs);
 
@@ -323,10 +323,14 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		{
 			local vali = val.tointeger();
 
+            PrintDebug("    Validating outputs...",5);
 			if (IsOutputValid(vali))
 			{
+                PrintDebug("      -> Output " + vali + " is valid",5);
 				outputs.append(vali);
 			}
+            else
+                PrintDebug("      -> Output " + vali + " is NOT valid",5);
 		}
 
 		SetData("Outputs",Stringify(outputs));
@@ -342,15 +346,19 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
 		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
 
+        PrintDebug("    Validating inputs...",5);
 		foreach(val in expandedInputs)
 		{
 			local vali = val.tointeger();
 
 			if (IsInputValid(vali))
 			{
+                PrintDebug("      -> Input " + vali + " is valid",5);
 				inputs.append(vali);
 				PostMessage(vali,"Verify");
 			}
+            else
+                PrintDebug("      -> Input " + vali + " is NOT valid",5);
 		}
 
 		SetData("Inputs",Stringify(inputs));
