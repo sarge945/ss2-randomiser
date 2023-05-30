@@ -23,32 +23,22 @@ Create "rndObjectCollection" "rndDiningObjects"
 }
 
 //Create an object collection for the Garden area
-Create "rndObjectCollection" "rndGargenObjects"
+Create "rndObjectCollection" "rndGardenObjects"
 {
 }
 
 //Create an object collection for the Garden area Trapped room (with all the bodies and eggs)
-Create "rndObjectCollection" "rndGargenObjectsTrapped"
+Create "rndObjectCollection" "rndGardenObjectsTrapped"
 {
 }
 
 //Create an object collection for the Garden area behind the locked keypad door
-Create "rndObjectCollection" "rndGargenObjectsLocked"
-{
-}
-
-//Create an object collection for the Art Terminals.
-Create "rndObjectCollection" "rndArtObjects"
+Create "rndObjectCollection" "rndGardenObjectsLocked"
 {
 }
 
 //Create an object collection for the Security Crates
 Create "rndObjectCollection" "rndSecurityCrates"
-{
-}
-
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
 {
 }
 
@@ -178,7 +168,8 @@ Create "rndObjectCollection" "rndEggs"
 ////Pool Room
 
 //Cigarettes on Pool Table
-+MetaProp 1212 "Object Randomiser - Junk Only"
++MetaProp 1212 "Object Randomiser - Output Self Only"
++MetaProp 1212 "Object Randomiser - Freeze"
 +Link 1212 "rndLoungeObjects" "Target"
 {
 }
@@ -380,85 +371,73 @@ Create "rndObjectCollection" "rndEggs"
 ////Top Level
 
 //Grenade Launcher
-+Link 1575 "rndGargenObjects" "Target"
++Link 1575 "rndGardenObjects" "Target"
 {
 }
 
 //Corpse
-+Link 1299 "rndGargenObjects" "Target"
++Link 1299 "rndGardenObjects" "Target"
 {
 }
 
 ////Under the Garden
 
 //Corpse in small graveyard room
-+Link 445 "rndGargenObjects" "Target"
++Link 445 "rndGardenObjects" "Target"
 {
 }
 
 //Corpse in Graveyard Room
-+Link 459 "rndGargenObjects" "Target"
++Link 459 "rndGardenObjects" "Target"
 {
 }
 
 //Corpse in Graveyard Room
-+Link 453 "rndGargenObjects" "Target"
++Link 453 "rndGardenObjects" "Target"
 {
 }
 
 ////Trapped Room (Big graveyard room)
 
 //Corpse with Crew Keycard
-+Link 419 "rndGargenObjectsTrapped" "Target"
++Link 419 "rndGardenObjectsTrapped" "Target"
 {
 }
 
 //Corpse
-+Link 1091 "rndGargenObjectsTrapped" "Target"
++Link 1091 "rndGardenObjectsTrapped" "Target"
 {
 }
 
 //Corpse under the floor
-+Link 1092 "rndGargenObjectsTrapped" "Target"
++Link 1092 "rndGardenObjectsTrapped" "Target"
 {
 }
 
 //Corpse under the floor
-+Link 440 "rndGargenObjectsTrapped" "Target"
++Link 440 "rndGardenObjectsTrapped" "Target"
 {
 }
 
 //Corpse under the floor
-+Link 1088 "rndGargenObjectsTrapped" "Target"
++Link 1088 "rndGardenObjectsTrapped" "Target"
 {
 }
 
 ////Behind the Security Keypad Door
 
 //Corpse
-+Link 1095 "rndGargenObjectsLocked" "Target"
++Link 1095 "rndGardenObjectsLocked" "Target"
 {
 }
 
 //Corpse
-+Link 1099 "rndGargenObjectsLocked" "Target"
++Link 1099 "rndGardenObjectsLocked" "Target"
 {
 }
 
 //Corpse
-+Link 1098 "rndGargenObjectsLocked" "Target"
-{
-}
-
-/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
-
-//Bonne Chance pool room - [1
-+Link 211 "rndArtObjects" "Target"
-{
-}
-
-//Dining Area
-+Link 164 "rndArtObjects" "Target"
++Link 1098 "rndGardenObjectsLocked" "Target"
 {
 }
 
@@ -479,46 +458,3 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 98 "rndEggs" "Target"
-{
-}
-
-+Link 112 "rndEggs" "Target"
-{
-}
-
-+Link 551 "rndEggs" "Target"
-{
-}
-
-+Link 564 "rndEggs" "Target"
-{
-}
-
-+Link 555 "rndEggs" "Target"
-{
-}
-
-+Link 559 "rndEggs" "Target"
-{
-}
-
-+Link 705 "rndEggs" "Target"
-{
-}
-
-//Grave Room
-
-+Link 416 "rndEggs" "Target"
-{
-}
-
-+Link 1290 "rndEggs" "Target"
-{
-}
-
-+Link 1672 "rndEggs" "Target"
-{
-}

@@ -27,11 +27,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -567,40 +562,3 @@ Create "rndOutputMarker" "rndAdminUpstairsEmptyOffice"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 144 "rndEggs" "Target"
-{
-}
-
-+Link 859 "rndEggs" "Target"
-{
-}
-
-+Link 861 "rndEggs" "Target"
-{
-}
-
-+Link 863 "rndEggs" "Target"
-{
-}
-
-+Link 871 "rndEggs" "Target"
-{
-}
-
-+Link 873 "rndEggs" "Target"
-{
-}
-
-+Link 875 "rndEggs" "Target"
-{
-}
-
-+Link 878 "rndEggs" "Target"
-{
-}
-
-+Link 880 "rndEggs" "Target"
-{
-}

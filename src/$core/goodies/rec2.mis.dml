@@ -20,13 +20,13 @@ Create "rndComplexRandomiser" "rndRecRandomiser"
 +Link "rndDiningObjects" "rndRecRandomiser" "SwitchLink"
 {
 }
-+Link "rndGargenObjects" "rndRecRandomiser" "SwitchLink"
++Link "rndGardenObjects" "rndRecRandomiser" "SwitchLink"
 {
 }
-+Link "rndGargenObjectsTrapped" "rndRecRandomiser" "SwitchLink"
++Link "rndGardenObjectsTrapped" "rndRecRandomiser" "SwitchLink"
 {
 }
-+Link "rndGargenObjectsLocked" "rndRecRandomiser" "SwitchLink"
++Link "rndGardenObjectsLocked" "rndRecRandomiser" "SwitchLink"
 {
 }
 
@@ -43,12 +43,12 @@ Create "rndComplexRandomiser" "rndRecRandomiser"
 +Link "rndDiningObjects" "rndRecRandomiser" "~SwitchLink"
 {
 }
-+Link "rndGargenObjects" "rndRecRandomiser" "~SwitchLink"
++Link "rndGardenObjects" "rndRecRandomiser" "~SwitchLink"
 {
 }
-+Link "rndGargenObjectsTrapped" "rndRecRandomiser" "~SwitchLink"
++Link "rndGardenObjectsTrapped" "rndRecRandomiser" "~SwitchLink"
 {
 }
-+Link "rndGargenObjectsLocked" "rndRecRandomiser" "~SwitchLink"
++Link "rndGardenObjectsLocked" "rndRecRandomiser" "~SwitchLink"
 {
 }

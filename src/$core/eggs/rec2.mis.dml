@@ -8,7 +8,46 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 98 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 112 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 551 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 564 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 555 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 559 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 705 "rndEggsRandomiser" "Target"
+{
+}
+
+//Grave Room
+
++Link 416 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1290 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1672 "rndEggsRandomiser" "Target"
 {
 }

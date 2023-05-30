@@ -9,26 +9,27 @@ Create "rndCardRandomiser" "rndKeycardRandomiser"
 }
 
 //Inputs
-+Link "rndGargenObjectsTrapped" "rndKeycardRandomiser" "SwitchLink"
++Link "rndGardenObjectsTrapped" "rndKeycardRandomiser" "SwitchLink"
 {
 }
 //Outputs
-+Link "rndGargenObjectsTrapped" "rndKeycardRandomiser" "~SwitchLink"
++Link "rndGardenObjectsTrapped" "rndKeycardRandomiser" "~SwitchLink"
 {
 }
 
-/////////////////////////////////////////////////
+/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
 
 //Create a randomiser for the Art Terminals
 Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
 }
 
-//Inputs
-+Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+//Bonne Chance pool room - [1
++Link 211 "rndArtRandomiser" "Target"
 {
 }
-//Outputs
-+Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+
+//Dining Area
++Link 164 "rndArtRandomiser" "Target"
 {
 }

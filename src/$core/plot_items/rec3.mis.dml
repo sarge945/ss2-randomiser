@@ -7,11 +7,29 @@ Create "rndArtTerminalRandomiser" "rndArtRandomiser"
 {
 }
 
-//Inputs
-+Link "rndArtObjects" "rndArtRandomiser" "SwitchLink"
+/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
+
+//Mall Upper Level
++Link 251 "rndArtRandomiser" "Target"
 {
 }
-//Outputs
-+Link "rndArtObjects" "rndArtRandomiser" "~SwitchLink"
+
+//Mall Upper Level - 4
++Link 117 "rndArtRandomiser" "Target"
+{
+}
+
+//Mall Upper Level
++Link 250 "rndArtRandomiser" "Target"
+{
+}
+
+//Mall Upper Level
++Link 252 "rndArtRandomiser" "Target"
+{
+}
+
+//Mall Upper Level
++Link 253 "rndArtRandomiser" "Target"
 {
 }

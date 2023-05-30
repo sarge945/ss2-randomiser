@@ -8,7 +8,13 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====  Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 134 "rndEggsRandomiser" "Target"
 {
 }
+
++Link 175 "rndEggsRandomiser" "Target"
+{
+}
+

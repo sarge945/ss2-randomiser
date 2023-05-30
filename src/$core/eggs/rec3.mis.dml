@@ -8,7 +8,61 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 532 "rndEggsRandomiser" "Target"
 {
 }
+
++Link 290 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 501 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 506 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 509 "rndEggsRandomiser" "Target"
+{
+}
+
+/*
+//Roof pod
+//TODO: Prevent this from having goo
++Link 478 "rndEggsRandomiser" "Target"
+{
+}
+*/
+
++Link 460 "rndEggsRandomiser" "Target"
+{
+}
+
+//Cell pod
++Link 125 "rndEggsRandomiser" "Target"
+{
+}
+
+//Cell Pod needs to be linked to the nearby door panel router
++Link 125 1308 "~SwitchLink"
+{
+}
+
+//Cinema
+
++Link 521 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 524 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 520 "rndEggsRandomiser" "Target"
+{
+}
+

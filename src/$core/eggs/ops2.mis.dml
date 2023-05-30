@@ -1,5 +1,5 @@
 // ================================================================================
-// 								Handle Eggs
+//                              Handle Eggs
 // ================================================================================
 
 //Create a randomiser for the Eggs
@@ -8,7 +8,41 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 144 "rndEggsRandomiser" "Target"
 {
 }
+
++Link 859 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 861 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 863 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 871 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 873 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 875 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 878 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 880 "rndEggsRandomiser" "Target"
+{
+}
+

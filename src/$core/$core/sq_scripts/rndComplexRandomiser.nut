@@ -1,5 +1,22 @@
+//A complex randomiser
+//This supports Object Pools, allowed types, and other features to make
+//handling groups of objects much easier
 class rndComplexRandomiser extends rndBaseRandomiser
 {
+	//Configuration
+	allowedTypes = null;
+	minTimes = null;
+	maxTimes = null;
+	allowOriginalLocations = null;
+	priority = null;
+	failures = null;
+
+	//State
+	totalRolls = null;
+	totalItems = null;
+	inputs = null;
+
+
 	//If no allowed types are specified, use the default
 	static allowedTypesDefault = [
 		//-49,	//Goodies
@@ -33,10 +50,10 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		//-68,	//Potted plants
 		//-69,	//Potted plants
 	];
-	
+
 	//state
 	outputLoop = null;
-	
+
 	//Settings
 	fuzzy = null;
 	ignorePriority = null;
@@ -45,16 +62,40 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	noCorpse = null;
 	noHighPriority = null;
 	timerID = null;
-	
+
+	function Init(reloaded)
+	{
+		base.Init(reloaded);
+		priority = getParam("priority",0);
+
+		if (!reloaded)
+		{
+			//Set timer
+			local startTime = GetStartTime();
+			SetData("StartTime",startTime);
+			SetOneShotTimer("StartTimer",startTime);
+		}
+
+		SetAllowedTypes();
+		maxTimes = getParam("maxTimes",9999);
+		minTimes = getParam("minTimes",9999);
+		allowOriginalLocations = getParam("allowOriginalLocations",1);
+		SetAllowedTypes();
+		totalRolls = RandBetween(seed,minTimes,maxTimes);
+		failures = 0;
+	}
+
 	function Setup()
 	{
-		base.Setup();
-		
-		/*
-		if (name == "rndEngineeringRandomiser")
-			debugLevel = 999;
-		*/
-		
+		inputs = StrToIntArray(DeStringify(GetData("Inputs")));
+		outputs = StrToIntArray(DeStringify(GetData("Outputs")));
+
+		inputs = DeDuplicateArray(inputs);
+		outputs = DeDuplicateArray(outputs);
+
+		//Show startup message
+		ShowWelcomeMessage("Complex");
+
 		//Populate configuration
 		fuzzy = getParam("variedOutput",1);
 		ignorePriority = getParam("ignorePriority",0);
@@ -62,20 +103,20 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		noCorpse = getParam("noCorpse",0);
 		noRespectJunk = getParam("noRespectJunk",0);
 		noHighPriority = getParam("noHighPriority",0);
-		
+
 		//Setup variables
 		outputLoop = 0;
-	
+
 		if (inputs.len() == 0 || outputs.len() == 0)
 		{
 			PrintDebug("Randomiser won't function! [inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
 			return;
 		}
-		
+
 		totalItems = inputs.len();
-		
+
 		PrintDebug("[inputs: " + inputs.len() + " (" + GetData("Inputs") + "), outputs: " + outputs.len() + " (" + GetData("Outputs") + ")]",4);
-		
+
 		if (inputs.len() > 0 && outputs.len() > 0)
 		{
 			ShuffleBothArrays();
@@ -83,39 +124,49 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		}
 	}
 
+	function ShowWelcomeMessage(randomiserType)
+	{
+		PrintDebug(randomiserType + " Randomiser Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + ", inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
+	}
+
+	function GetStartTime()
+	{
+		return 0.25 + (seed % 1000 * 0.0001);
+	}
+
 	function OnOutputSuccess()
 	{
 		local output = message().from;
 		local input = message().data;
 		local pos = inputs.find(input);
-	
+
 		if (inputs.len() == 0 || outputs.len() == 0 || pos == null)
 			return;
-	
+
 		//print("OnOutputSuccess received");
-		currentRolls++;
-	
+		rolls++;
+
 		//print("output successful");
 		PrintDebug("	Output Successful for " + input + " to " + output,4);
-		
+
 		RemoveInput(input);
 		ReplaceOutput(output);
 		Randomise();
 	}
-	
+
 	function OnOutputFailed()
 	{
 		local output = message().from;
 		local pos = outputs.find(output);
-		
+
 		if (inputs.len() == 0 || outputs.len() == 0 || pos == null)
 			return;
-		
+
 		failures++;
-			
+
 		//print("OnOutputFailed received");
 		PrintDebug("	Output Failed for output " + output,4);
-		
+
 		outputs.remove(pos);
 		Randomise();
 		//ReplaceOutput(output,true);
@@ -125,24 +176,24 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	{
 		if (inputs.len() == 0 || outputs.len() == 0)
 		{
-			Complete();
+			Complete("Complex");
 			return;
 		}
-	
-		if (currentRolls >= totalRolls || currentRolls > totalItems)
+
+		if (rolls >= totalRolls || rolls > totalItems)
 		{
 			PrintDebug("Rolls exceeded",5);
 			return;
 		}
-		
+
 		local output = outputs[0];
-		
-		PrintDebug("Randomising inputs to " + output + " (roll: " + currentRolls + ")",4);
-		
+
+		PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + ")",4);
+
 		local inputString = Stringify(inputs);
-		
+
 		PrintDebug("	Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
-		PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),currentRolls);
+		PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),rolls);
 		if (timerID != null)
 			KillTimer(timerID);
 		timerID = SetOneShotTimer("RandomiseTimer",0.1);
@@ -150,8 +201,11 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
 	function OnTimer()
 	{
-		base.OnTimer()
-		if (message().name == "RandomiseTimer")
+		if (message().name == "StartTimer")
+		{
+			Setup();
+		}
+		else if (message().name == "RandomiseTimer")
 		{
 			//we're stuck!
 			PrintDebug("contingency timer activated...",4);
@@ -164,7 +218,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	function RemoveInput(input)
 	{
 		local index = inputs.find(input);
-		
+
 		if (index != null)
 			inputs.remove(index);
 	}
@@ -173,11 +227,11 @@ class rndComplexRandomiser extends rndBaseRandomiser
 	{
 		return noRespectJunk + ";" + noSecret + ";" + noCorpse + ";" + allowOriginalLocations + ";";
 	}
-	
+
 	function ShuffleBothArrays()
 	{
 		inputs = Shuffle(inputs,seed);
-		
+
 		//If we are set to have high-priority outputs, then we are going to need
 		//to split the outputs array, then shuffle each, then recombine them,
 		//with the high priority ones at the start
@@ -189,17 +243,17 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		{
 			local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
 			local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
-			
+
 			lowPrio = Shuffle(lowPrio,-seed);
 			highPrio = Shuffle(highPrio,-seed);
-			
+
 			if (noHighPriority)
 				outputs = lowPrio;
 			else
 				outputs = Combine(highPrio,lowPrio);
 		}
 	}
-	
+
 	//Move an input to the end after it's used
 	//Allow items to "bubble" where a container will
 	//possibly contain more than one, or nothing,
@@ -210,12 +264,12 @@ class rndComplexRandomiser extends rndBaseRandomiser
 		local pos = outputs.find(output);
 		if (pos == null)
 			return;
-	
+
 		if (fuzzy && !forceEnd)
 		{
 			local min = outputs.len() * 0.35;
 			local max = outputs.len() - 1;
-			
+
 			local insertIndex = RandBetween(seed + output,min,max);
 			outputs.remove(pos);
 			outputs.insert(insertIndex,output);
@@ -225,5 +279,80 @@ class rndComplexRandomiser extends rndBaseRandomiser
 			outputs.remove(pos);
 			outputs.append(output);
 		}
+	}
+
+	function SetAllowedTypes()
+	{
+		allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
+		local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
+		foreach (add in addAllowedTypes)
+			allowedTypes.append(add);
+	}
+
+	function CheckAllowedTypes(input)
+	{
+		foreach(type in allowedTypes)
+		{
+			if (isArchetype(input,type))
+				return true;
+		}
+		return false;
+	}
+
+	function IsInputValid(input)
+	{
+		//Check allowed types
+		if (!CheckAllowedTypes(input))
+			return false;
+
+		return true;
+	}
+
+	function IsOutputValid(output)
+	{
+		return true;
+	}
+
+	function OnSetOutputs()
+	{
+		local outputs = DeStringify(GetData("Outputs"));
+		local expandedOutputs = DeStringify(message().data);
+		PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
+
+		foreach(val in expandedOutputs)
+		{
+			local vali = val.tointeger();
+
+			if (IsOutputValid(vali))
+			{
+				outputs.append(vali);
+			}
+		}
+
+		SetData("Outputs",Stringify(outputs));
+	}
+
+	function OnSetInputs()
+	{
+		local inputs = DeStringify(GetData("Inputs"));
+		local expandedInputs = DeStringify(message().data);
+
+		if (allowedTypes == null || allowedTypes == [])
+			SetAllowedTypes();
+
+		PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
+
+		foreach(val in expandedInputs)
+		{
+			local vali = val.tointeger();
+
+			if (IsInputValid(vali))
+			{
+				inputs.append(vali);
+				PostMessage(vali,"Verify");
+			}
+		}
+
+		SetData("Inputs",Stringify(inputs));
 	}
 }

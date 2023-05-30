@@ -37,11 +37,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
 /////////////////=====	Galleria	=====\\\\\\\\\\\\\\\\\
 
 ////Toilets
@@ -288,13 +283,10 @@ Create "rndObjectCollection" "rndEggs"
 
 ////Prison Room
 
-/*
 //Crystal Shard
-//Disabled because of script related issues
 +Link 1941 "rndSecurityObjects" "Target"
 {
 }
-*/
 
 //Corpse
 +Link 287 "rndSecurityObjects" "Target"
@@ -421,33 +413,6 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
-/////////////////=====	Art Terminals	=====\\\\\\\\\\\\\\\\\
-
-//Mall Upper Level
-+Link 251 "rndArtObjects" "Target"
-{
-}
-
-//Mall Upper Level - 4
-+Link 117 "rndArtObjects" "Target"
-{
-}
-
-//Mall Upper Level
-+Link 250 "rndArtObjects" "Target"
-{
-}
-
-//Mall Upper Level
-+Link 252 "rndArtObjects" "Target"
-{
-}
-
-//Mall Upper Level
-+Link 253 "rndArtObjects" "Target"
-{
-}
-
 /////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
 
 //Galleria
@@ -462,62 +427,6 @@ Create "rndObjectCollection" "rndEggs"
 
 //Galleria next to Replicator
 +Link 183 "rndSecurityCrates" "Target"
-{
-}
-
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 532 "rndEggs" "Target"
-{
-}
-
-+Link 290 "rndEggs" "Target"
-{
-}
-
-+Link 501 "rndEggs" "Target"
-{
-}
-
-+Link 506 "rndEggs" "Target"
-{
-}
-
-+Link 509 "rndEggs" "Target"
-{
-}
-
-/*
-//Roof pod
-//TODO: Prevent this from having goo
-+Link 478 "rndEggs" "Target"
-{
-}
-*/
-
-+Link 460 "rndEggs" "Target"
-{
-}
-
-/*
-//Cell pod
-//Don't randomise it as it's set off by the door and is NVbuilt
-+Link 125 "rndEggs" "Target"
-{
-}
-*/
-
-//Cinema
-
-+Link 521 "rndEggs" "Target"
-{
-}
-
-+Link 524 "rndEggs" "Target"
-{
-}
-
-+Link 520 "rndEggs" "Target"
 {
 }
 

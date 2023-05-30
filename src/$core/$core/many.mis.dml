@@ -14,14 +14,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
-/*
-TODO: Add Eggs
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-*/
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers

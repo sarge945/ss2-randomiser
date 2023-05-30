@@ -2,6 +2,7 @@ class rndBase extends SqRootScript
 {
 	static PHYSCONTROL_LOC_ROT = 24;
 
+	seed = null;
 	name = null;
 	debugLevel = null;
 
@@ -11,7 +12,7 @@ class rndBase extends SqRootScript
 		debugLevel = getParam("debug",0);
 		name = GetObjectName(self);
 		//print (name + " (" + self + ") initialised");
-	
+
 		if (!GetData("Started"))
 		{
 			SetData("Started",true);
@@ -20,7 +21,17 @@ class rndBase extends SqRootScript
 		else
 			Init(true);
 	}
-	
+
+	function SetSeed()
+	{
+		seed = getParam("forceSeed",-1);
+		if (seed == -1)
+		{
+			seed = Data.RandInt(0,99999);
+			SetData("seed",seed);
+		}
+	}
+
 	static function GetObjectName(obj)
 	{
 		local name = Object.GetName(obj);
@@ -28,13 +39,13 @@ class rndBase extends SqRootScript
 			name = ShockGame.GetArchetypeName(obj);
 		return name;
 	}
-	
+
 	function PrintDebug(msg,requiredDebugLevel = 0)
 	{
 		if (debugLevel >= requiredDebugLevel)
 			print(GetIdentifier() + "> " + msg);
 	}
-	
+
 	function ShowDebug(msg,requiredDebugLevel = 0)
 	{
 		if (debugLevel >= requiredDebugLevel)
@@ -43,13 +54,13 @@ class rndBase extends SqRootScript
 			print(GetIdentifier() + "> " + msg);
 		}
 	}
-	
+
 	//Make debug easier
 	function GetIdentifier()
 	{
 		return "[" + self + "] " + name;
 	}
-	
+
 	function Init(reloaded)
 	{
 	}
@@ -69,12 +80,12 @@ class rndBase extends SqRootScript
 		[-101, -102, -103, -104, -969, -1661, -1344], //BrawnBoost, EndurBoost, SwiftBoost, SmartBoost (aka Psi Boost), LabAssistant, ExperTech, RunFast
 		[-106, -762, -1334, -1660], //WormBlood, WormBlend, WormHeart, WormMind
 	];
-	
+
 	static function SameItemType(first,second)
-	{		
+	{
 		if (isArchetype(first,second))
 			return true;
-					
+
 		//Similar Archetypes count for the same
 		foreach (archList in similarArchetypes)
 		{
@@ -91,7 +102,7 @@ class rndBase extends SqRootScript
 				return true;
 		}
 	}
-	
+
 	//Items with these archetypes will be counted as junk.
 	static junkArchetypes = [
 		-68, //Plant #1
@@ -101,7 +112,7 @@ class rndBase extends SqRootScript
 		-1214, //Ring Buoy
 		-1255, //Magazines
 		-4286, //Basketball
-		
+
 		//Controversial Ones, might remove
 		-76, //Audio Log
 		-91, //Soda
@@ -115,7 +126,16 @@ class rndBase extends SqRootScript
 		-3865, //GamePig Cartridges
 		-1105, //Beaker
 	];
-	
+
+    static function CopyLinkType(source,dest,linkName)
+    {
+        foreach (llink in Link.GetAll(linkkind(linkName),source))
+        {
+            local target = sLink(llink).dest;
+            Link.Create(linkkind(linkName),dest,target);
+        }
+    }
+
 	static function IsJunk(obj)
 	{
 		foreach(type in junkArchetypes)
@@ -132,7 +152,7 @@ class rndBase extends SqRootScript
 	{
 		return key in userparams() ? userparams()[key] : defVal;
 	}
-	
+
 	// fetch an array of parameters
 	// This is not complete - it will find values that aren't in the actual array
 	// for instance, if you have myValue0, myValue1 they will be added correctly,
@@ -142,11 +162,11 @@ class rndBase extends SqRootScript
 	{
 		local array = [];
 		foreach(key,value in userparams())
-		{			
+		{
 			if (key.find(name) == 0)
 				array.append(value);
 		}
-		
+
 		if (array.len() == 0 && defVal != null)
 		{
 			if (typeof(defVal == "array"))
@@ -154,12 +174,12 @@ class rndBase extends SqRootScript
 			else
 				array.append(defVal);
 		}
-		
+
 		return array;
 	}
-	
+
 	static function Stringify(arr)
-	{	
+	{
 		local str = "";
 		foreach (val in arr)
 		{
@@ -167,14 +187,14 @@ class rndBase extends SqRootScript
 		}
 		return str;
 	}
-	
+
 	static function DeStringify(str,noDupes = true)
 	{
 		if (str == null || str == "")
 			return [];
 		return split(str,";");
 	}
-	
+
 	static function DeDuplicateArray(arr)
 	{
 		local temp = [];
@@ -185,7 +205,7 @@ class rndBase extends SqRootScript
 		}
 		return temp;
 	}
-	
+
 	static function StrToIntArray(arr)
 	{
 		local re = [];
@@ -197,39 +217,44 @@ class rndBase extends SqRootScript
 	}
 
 	static function isArchetype(obj,type)
-	{	
+	{
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
-	
+
 	static function isCorpse(obj)
 	{
 		return isArchetype(obj,-503) || isArchetype(obj,-551) || isArchetype(obj,-181);
 	}
-	
+
 	//Return true for containers and corpses
 	static function isContainer(obj)
 	{
 		return Property.Get(obj,"ContainDims","Width") != 0 || Property.Get(obj,"ContainDims","Height") != 0;
 	}
-	
+
 	static function isMarker(obj)
 	{
 		return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
 	}
 	
+    static function isPlacer(obj)
+	{
+		return ShockGame.GetArchetypeName(obj) == "rndPlacer";
+	}
+
 	//rand() % sucks because it's annoying to define a range
 	//Meanwhile, we are using a seed, so we can't use Data.RandInt();
 	static function RandBetween(seed,min,max)
-	{	
+	{
 		if (min > max)
 			min = max;
-		
+
 		local range = max - min + 1;
-		
+
 		srand(seed);
 		return (rand() % range) + min;
 	}
-	
+
 	//Shuffles an array
 	//https://en.wikipedia.org/wiki/Knuth_shuffle
 	static function Shuffle(shuffle, seed)
@@ -241,28 +266,28 @@ class rndBase extends SqRootScript
 			local temp = shuffle[position];
 			shuffle[position] = shuffle[val];
 			shuffle[val] = temp;
-		}		
-				
+		}
+
 		return shuffle;
 	}
-	
+
 	static function Combine(array1, array2, array3 = [], array4 = [])
 	{
 		local results = [];
-		
+
 		results.extend(array1);
 		results.extend(array2);
 		results.extend(array3);
 		results.extend(array4);
-			
+
 		return results;
 	}
-	
-	
+
+
 	function FilterByMetaprop(array,metaprop,inverse = false)
 	{
 		local results = [];
-		
+
 		foreach(val in array)
 		{
 			if (!inverse && Object.HasMetaProperty(val,metaprop))
@@ -270,11 +295,10 @@ class rndBase extends SqRootScript
 			else if (inverse && !Object.HasMetaProperty(val,metaprop))
 				results.append(val);
 		}
-		
+
 		return results;
 	}
-	
-		
+
 	//Copies over all the links of one type from one object to another.
 	function copyLinks(source,dest,linkType)
 	{

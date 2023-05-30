@@ -8,7 +8,69 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 397 "rndEggsRandomiser" "Target"
 {
 }
+
++Link 500 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 290 "rndEggsRandomiser" "Target"
+{
+}
+
+/*
+//Useless egg on elevator
++Link 776 "rndEggsRandomiser" "Target"
+{
+}
+*/
+
++Link 264 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 198 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 563 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 131 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 284 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 106 "rndEggsRandomiser" "Target"
+{
+}
+
+/*
++Link 886 "rndEggsRandomiser" "Target"
+{
+}
+*/
+
++Link 572 "rndEggsRandomiser" "Target"
+{
+}
+
+/*
+//DISABLED until we can properly determine egg type through output
+//These need to be "no goo" eggs
++Link 2005 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 297 "rndEggsRandomiser" "Target"
+{
+}
+*/

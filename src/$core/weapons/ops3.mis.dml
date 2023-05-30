@@ -31,6 +31,7 @@ Create "rndWeaponRandomiser" "rndMessHallWeaponRandomiser"
 Create "rndWeaponRandomiser" "rndMainWeaponRandomiser"
 {
 }
+
 //Inputs
 +Link "rndHallwayObjects" "rndMainWeaponRandomiser" "SwitchLink"
 {
@@ -38,10 +39,74 @@ Create "rndWeaponRandomiser" "rndMainWeaponRandomiser"
 +Link "rndDataStorageObjects" "rndMainWeaponRandomiser" "SwitchLink"
 {
 }
++Link "rndLoungeObjects" "rndMainWeaponRandomiser" "SwitchLink"
+{
+}
+
 //Outputs
 +Link "rndHallwayObjects" "rndMainWeaponRandomiser" "~SwitchLink"
 {
 }
 +Link "rndDataStorageObjects" "rndMainWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndMainWeaponRandomiser" "~SwitchLink"
+{
+}
+
+//Create a randomiser for Power Admin
+Create "rndWeaponRandomiser" "rndPowerAdminWeaponRandomiser"
+{
+}
++Link "rndPowerAdminObjects" "rndPowerAdminWeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerAdminObjects" "rndPowerAdminWeaponRandomiser" "SwitchLink"
+{
+}
+
+/////////////////////////////////////////////////
+
+//Handle the Crystal Shards
+
+//Create a handler for the Crystal Shards
+Create "rndSwitchLinkOutputHandler" "ShardHandler"
+{
+}
+
+//Kill Crystal Shard email tripwires
+-Link 1461 822 SwitchLink 015100C7
+-Link 1460 822 SwitchLink 015100C2
+-Link 823 822 SwitchLink 01510052
+
+//Link the handler to the email trap
++Link "ShardHandler" 822 "SwitchLink"
+{
+}
+
+////Power Admin
+
+//Shard
++Link 773 "rndPowerAdminObjects" "Target"
+{
+}
+
+
+//Link the shard and the shard email to the handler
+
++Link "ShardHandler" 773 "Target"
+{
+}
+
+////Lounge
+
+//Crystal Shard
++Link 748 "rndLoungeObjects" "Target"
+{
+}
+
+//Link the shard and the shard email to the handler
+
++Link "ShardHandler" 748 "Target"
 {
 }

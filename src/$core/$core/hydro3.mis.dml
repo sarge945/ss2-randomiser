@@ -7,11 +7,6 @@ Create "rndObjectCollection" "rndHydro3Objects"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
 ////Corpses
 
 //Man immediately at the start of the map
@@ -89,40 +84,3 @@ Create "rndObjectCollection" "rndEggs"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 162 "rndEggs" "Target"
-{
-}
-
-+Link 164 "rndEggs" "Target"
-{
-}
-
-+Link 166 "rndEggs" "Target"
-{
-}
-
-+Link 165 "rndEggs" "Target"
-{
-}
-
-+Link 171 "rndEggs" "Target"
-{
-}
-
-+Link 170 "rndEggs" "Target"
-{
-}
-
-+Link 169 "rndEggs" "Target"
-{
-}
-
-+Link 168 "rndEggs" "Target"
-{
-}
-
-+Link 167 "rndEggs" "Target"
-{
-}

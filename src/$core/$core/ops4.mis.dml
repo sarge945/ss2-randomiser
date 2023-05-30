@@ -47,18 +47,6 @@ Create "rndObjectCollection" "rndBrigCellsObjects"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
-//TODO: Remove this, use output parameters instead
-//Create an object collection for the Roof Eggs in the level
-Create "rndObjectCollection" "rndEggs2"
-{
-}
-
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -511,23 +499,5 @@ Create "rndOutputMarker" "rndCommandCenterMedRoom"
 }
 //Bronson
 +Link 146 "rndSecurityLockedObjects" "Target"
-{
-}
-
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 287 "rndEggs2" "Target"
-{
-}
-
-+Link 279 "rndEggs2" "Target"
-{
-}
-
-+Link 330 "rndEggs2" "Target"
-{
-}
-
-+Link 704 "rndEggs" "Target"
 {
 }

@@ -29,16 +29,6 @@ Create "rndObjectCollection" "rndFinalAreaObjects"
 {
 }
 
-//Create an object collection for the Eggs in the level (only one)
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
-//Create an object collection for the Wall Eggs
-Create "rndObjectCollection" "rndWallEggs"
-{
-}
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -240,26 +230,3 @@ Create "rndObjectCollection" "rndWallEggs"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 760 "rndEggs" "Target"
-{
-}
-
-////Wall Eggs
-
-+Link 744 "rndWallEggs" "Target"
-{
-}
-
-+Link 751 "rndWallEggs" "Target"
-{
-}
-
-+Link 752 "rndWallEggs" "Target"
-{
-}
-
-+Link 759 "rndWallEggs" "Target"
-{
-}

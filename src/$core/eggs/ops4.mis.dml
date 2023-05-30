@@ -7,11 +7,6 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
-{
-}
-
 //Create a randomiser for the Roof Eggs
 //TODO: Make this work with proper outputs and send messages
 //rather than needing different randomisers
@@ -19,7 +14,20 @@ Create "rndNoGooEggRandomiser" "rndRoofEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs2" "rndRoofEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 287 "rndRoofEggsRandomiser" "Target"
+{
+}
+
++Link 279 "rndRoofEggsRandomiser" "Target"
+{
+}
+
++Link 330 "rndRoofEggsRandomiser" "Target"
+{
+}
+
++Link 704 "rndEggsRandomiser" "Target"
 {
 }

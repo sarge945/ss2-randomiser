@@ -8,17 +8,71 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndEggs" "rndEggsRandomiser" "~SwitchLink"
-{
-}
-
 //Create a randomiser for the Wall Eggs
 Create "rndWallEggRandomiser" "rndWallEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndWallEggs" "rndWallEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 760 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 605 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 464 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1520 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1728 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1230 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1231 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 889 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 759 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1030 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1184 "rndEggsRandomiser" "Target"
+{
+}
+
+////Wall Eggs
+
++Link 1342 "rndWallEggsRandomiser" "Target"
+{
+}
+
++Link 1371 "rndWallEggsRandomiser" "Target"
+{
+}
+
++Link 2351 "rndWallEggsRandomiser" "Target"
+{
+}
+
++Link 2352 "rndWallEggsRandomiser" "Target"
 {
 }

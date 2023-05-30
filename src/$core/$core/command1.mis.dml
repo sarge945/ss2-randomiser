@@ -32,16 +32,6 @@ Create "rndObjectCollection" "rndSecurityCargoObjects"
 {
 }
 
-//Create an object collection for the Eggs in the level
-Create "rndObjectCollection" "rndEggs"
-{
-}
-
-//Create an object collection for the Wall Eggs
-Create "rndObjectCollection" "rndWallEggs"
-{
-}
-
 // ================================================================================
 // 								Add Objects to Object Collections
 // 					Note: Not all items are needed, only containers
@@ -333,66 +323,3 @@ Create "rndObjectCollection" "rndWallEggs"
 {
 }
 
-/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
-
-+Link 760 "rndEggs" "Target"
-{
-}
-
-+Link 605 "rndEggs" "Target"
-{
-}
-
-+Link 464 "rndEggs" "Target"
-{
-}
-
-+Link 1520 "rndEggs" "Target"
-{
-}
-
-+Link 1728 "rndEggs" "Target"
-{
-}
-
-+Link 1230 "rndEggs" "Target"
-{
-}
-
-+Link 1231 "rndEggs" "Target"
-{
-}
-
-+Link 889 "rndEggs" "Target"
-{
-}
-
-+Link 759 "rndEggs" "Target"
-{
-}
-
-+Link 1030 "rndEggs" "Target"
-{
-}
-
-+Link 1184 "rndEggs" "Target"
-{
-}
-
-////Wall Eggs
-
-+Link 1342 "rndWallEggs" "Target"
-{
-}
-
-+Link 1371 "rndWallEggs" "Target"
-{
-}
-
-+Link 2351 "rndWallEggs" "Target"
-{
-}
-
-+Link 2352 "rndWallEggs" "Target"
-{
-}
