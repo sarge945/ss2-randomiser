@@ -3,6 +3,7 @@ class rndOutput extends rndBase
     container = null;
     corpse = null;
     allowedTypes = null;
+    placers = null;
 
     function Init(reloaded)
     {
@@ -13,6 +14,8 @@ class rndOutput extends rndBase
         SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
         PrintDebug("Output Online [container: " + container + ", corpse: " + corpse + "]",4);
         allowedTypes = getParamArray("allowedTypes",[]);
+        SetSeed();
+        placers = GetPlacers();
     }
 
     function CheckAllowedTypes(input)
@@ -164,14 +167,45 @@ class rndOutput extends rndBase
                 SetData("placed",true);
                 PostMessage(source,"OutputSuccess",input,!container);
                 PrintDebug("    found suitable input " + input + " from " + source,4);
-                Place(input,self);
-                return;
+
+                for(local i = 0;i < placers.len();i++)
+                {
+                    local p = placers[i];
+                    if (!Object.IsTransient(p))
+                    {
+                        local isPlacer = isPlacer(p);
+                        if (isPlacer)
+                            Object.SetTransience(p,true);
+
+                        if (isPlacer)
+                            PrintDebug("Placing " + input + " at " + p + "...");
+                        Place(input,p,isPlacer);
+                        placers.remove(i);
+                        return;
+                    }
+                }
             }
         }
         PostMessage(source,"OutputFailed");
     }
 
-    function Place(input,output)
+    function GetPlacers()
+    {
+        local placers = [];
+        placers.append(self);
+        foreach (ilink in Link.GetAll(linkkind("~SwitchLink"),self))
+        {
+            local placer = sLink(ilink).dest;
+            if (isPlacer(placer))
+            {
+                placers.append(placer);
+                PrintDebug("Placer: " + placer);
+            }
+        }
+        return Shuffle(placers,seed);
+    }
+
+    function Place(input,output,useNewPosition)
     {
         //Send a "Randomised" message to all objects targeting our input
         //This allows special behaviours to be implemented without modifying the scripts on our inputs
@@ -190,7 +224,7 @@ class rndOutput extends rndBase
         else
         {
             PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
-            PlacePhysical(input,output);
+            PlacePhysical(input,output,useNewPosition);
         }
     }
 
@@ -201,13 +235,18 @@ class rndOutput extends rndBase
         Container.Add(input,output);
     }
 
-    function PlacePhysical(input,output)
+    function PlacePhysical(input,output,useNewPosition)
     {
         local position = GetData("position");
         local facing = GetData("facing");
         local physicsControls = GetData("physicsControls");
 
-        local position_up = vector(position.x, position.y, position.z + 0.35);
+        local usedPosition = position;
+        if (useNewPosition)
+            usedPosition = Object.Position(output);
+
+        local position_up = vector(usedPosition.x, usedPosition.y, usedPosition.z + 0.35);
+
 
         //Make object render
         Property.SetSimple(input, "HasRefs", TRUE);
@@ -221,7 +260,7 @@ class rndOutput extends rndBase
         else if (SameItemType(input,output))
         {
             Property.Set(input, "PhysControl", "Controls Active", physicsControls);
-            Object.Teleport(input, position, facing);
+            Object.Teleport(input, usedPosition, facing);
         }
         //Different objects, need to "jiggle" the object to fix physics issues
         else

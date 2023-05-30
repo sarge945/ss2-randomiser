@@ -22,6 +22,7 @@ CreateArch "Misc Metaprops" "Object Randomiser Output"
 	}
 }
 
+
 // ================================================================================
 // 						Metaprops to control Output Types
 // ================================================================================
@@ -109,6 +110,12 @@ CreateArch "Marker" "rndOutputMarker"
 		"Script 0" "rndOutput"
 		"Don't inherit" false
 	}
+}
+
+//Marker output
+//SwitchLink this to any object and it will act like an alternate output for it
+CreateArch "Marker" "rndPlacer"
+{
 }
 
 ////Special Outputs

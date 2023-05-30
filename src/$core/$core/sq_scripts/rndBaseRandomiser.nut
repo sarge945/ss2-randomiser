@@ -2,19 +2,8 @@
 //At bare minimum, randomisers will have a seed and some outputs
 class rndBaseRandomiser extends rndBase
 {
-	seed = null;
 	outputs = null;
 	rolls = null;
-
-	function SetSeed()
-	{
-		seed = getParam("forceSeed",-1);
-		if (seed == -1)
-		{
-			seed = Data.RandInt(0,99999);
-			SetData("seed",seed);
-		}
-	}
 	
 	function Init(reloaded)
 	{	

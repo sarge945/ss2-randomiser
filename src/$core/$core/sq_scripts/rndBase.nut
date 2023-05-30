@@ -2,6 +2,7 @@ class rndBase extends SqRootScript
 {
 	static PHYSCONTROL_LOC_ROT = 24;
 
+	seed = null;
 	name = null;
 	debugLevel = null;
 
@@ -19,6 +20,16 @@ class rndBase extends SqRootScript
 		}
 		else
 			Init(true);
+	}
+
+	function SetSeed()
+	{
+		seed = getParam("forceSeed",-1);
+		if (seed == -1)
+		{
+			seed = Data.RandInt(0,99999);
+			SetData("seed",seed);
+		}
 	}
 
 	static function GetObjectName(obj)
@@ -224,6 +235,11 @@ class rndBase extends SqRootScript
 	static function isMarker(obj)
 	{
 		return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
+	}
+	
+    static function isPlacer(obj)
+	{
+		return ShockGame.GetArchetypeName(obj) == "rndPlacer";
 	}
 
 	//rand() % sucks because it's annoying to define a range
