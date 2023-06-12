@@ -98,3 +98,8 @@ Beta 15:
 - The mod is now split into 2 main versions, Lite and Full. For now, the only difference is that Full also randomises non-plot-related audiologs.
 - Added "No Swarm Eggs" addon. Will prevent Swarm Eggs from appearing at all, and remove the relevant log in rec1 as well. To enable, use the optional file.
 - RSD Compatibility is now an optional file. Will change some minor aspects of the randomisation to not clash with RSD Changes. To enable, use the optional file.
+- Items with emails associated with them (Crystal Shards, Toxin A etc) will now randomise, and the email will be setup to work at the new location.
+- Fixed "hypo only" outputs (like the medical beds in hydro2, and body bags) allowing medkits as well
+- Corpses can now be randomised. For now, this only affects Grassi's corpse.
+- Fixed Hydro2 LabAssistant randomisation
+- Added some more item locations

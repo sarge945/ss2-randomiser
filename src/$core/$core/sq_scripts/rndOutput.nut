@@ -172,6 +172,10 @@ class rndOutput extends rndBase
                 for(local i = 0;i < placers.len();i++)
                 {
                     local p = placers[i];
+
+                    placers.remove(i);
+                    placers.append(p);
+
                     PrintDebug("    Getting Placer " + p,5);
                     if (!Object.IsTransient(p))
                     {
@@ -182,8 +186,6 @@ class rndOutput extends rndBase
                             PrintDebug("Placing " + input + " at placer " + p + "...",5);
                         }
 
-                        placers.remove(i);
-                        placers.append(i);
                         Place(input,p,isPlacer);
                         return;
                     }
@@ -203,7 +205,7 @@ class rndOutput extends rndBase
             if (isPlacer(placer))
             {
                 placers.append(placer);
-                PrintDebug("Placer: " + placer);
+                PrintDebug("Placer: " + placer,10);
             }
         }
         return Shuffle(placers,seed);
@@ -220,7 +222,7 @@ class rndOutput extends rndBase
         }
 
         Container.Remove(input);
-        if (isContainer(output) && !isContainer(input))
+        if (isContainer(output))
         {
             PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",2);
             PlaceInContainer(input,output);
