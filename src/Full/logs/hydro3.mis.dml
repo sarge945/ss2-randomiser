@@ -1,0 +1,18 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndHydroLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndHydro3Objects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHydro3Objects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}

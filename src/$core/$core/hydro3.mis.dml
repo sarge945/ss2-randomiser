@@ -51,6 +51,19 @@ Create "rndObjectCollection" "rndHydro3Objects"
 
 ////Loose Items
 
+
+//Audio Log at the start of the map
++MetaProp 967 "Object Randomiser - Output Self Only"
++Link 967 "rndHydro3Objects" "Target"
+{
+}
+
+//Audio Log on Desk
++MetaProp 382 "Object Randomiser - Output Self Only"
++Link 382 "rndHydro3Objects" "Target"
+{
+}
+
 /*
 //Wrench at the start of the map
 +Link 103 "rndHydro3Objects" "Target"

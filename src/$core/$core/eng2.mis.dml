@@ -70,6 +70,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Audio Log
++Link 591 "rndHallwayObjects" "Target"
+{
+}
+
 /////////////////=====	Command Control	=====\\\\\\\\\\\\\\\\\
 
 ////Corpses
@@ -81,6 +86,16 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Dead guy immediately before Cargo Bay A
 +Link 1376 "rndCommandControlObjects" "Target"
+{
+}
+
+//Dead guy in Command Control room
++Link 64 "rndCommandControlObjects" "Target"
+{
+}
+
+//Headless in Command Control room
++Link 44 "rndCommandControlObjects" "Target"
 {
 }
 
@@ -122,6 +137,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 +Link 126 "rndCommandControlObjects" "Target"
 {
 }
+
+////Loose Items
+
+//Audio Log on Desk
++Link 1028 "rndCommandControlObjects" "Target"
+{
+}
+
 
 ////Markers and other spawn points
 
@@ -773,6 +796,10 @@ Create "rndOutputMarker" "rndCargoBay2ABox6"
 }
 
 //Sanger
+//Only let her have junk because she already has a log
+//Don't take her FE device or her log
++MetaProp 507 "Object Randomiser - Junk Only"
++MetaProp 507 "Object Randomiser - No Auto Input"
 +Link 507 "rndCargoBay2BObjects" "Target"
 {
 }
@@ -792,6 +819,11 @@ Create "rndOutputMarker" "rndCargoBay2ABox6"
 }
 
 ////Loose Items
+
+//Audio Log
++Link 1154 "rndCargoBay2BObjects" "Target"
+{
+}
 
 //Mug on Table in middle area
 +Link 911 "rndCargoBay2BObjects" "Target"
@@ -901,11 +933,6 @@ Create "rndOutputMarker" "rndCargoBay2BBox6"
 +Link "rndCargoBay2BBox6" "rndCargoBay2BObjects" "Target"
 {
 }
-
-//Misc
-
-//Stop the French-Epstein device from being randomised because it's a reward for completing the area
-+MetaProp 220 "Object Randomiser - No Auto Input"
 
 /////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
 

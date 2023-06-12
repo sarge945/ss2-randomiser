@@ -215,6 +215,7 @@ Create "rndOutputMarker" "rndDataStorageElevator"
 
 //Nanites Under the egg trap
 +MetaProp 778 "Object Randomiser - High Priority Output"
++MetaProp 778 "Object Randomiser - No Position Fix"
 +Link 778 "rndPowerAdminObjects" "Target"
 {
 }
@@ -224,12 +225,13 @@ Create "rndOutputMarker" "rndPowerAdminMainHallwayCorner"
 {
 	+ObjProp "Position"
 	{
-		"Location" "-131.688, 396.358, -25.8242"
+		"Location" "-130.838, 383.158, -25.6042"
 		"Heading" 1464
 		"Pitch" 0
 		"Bank" 0
 	}
 }
++MetaProp "rndPowerAdminMainHallwayCorner" "Object Randomiser - No Position Fix"
 +Link "rndPowerAdminMainHallwayCorner" "rndPowerAdminObjects" "Target"
 {
 }

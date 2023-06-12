@@ -86,11 +86,6 @@ Create "rndToxinARandomiser" "rndToxinAHydro2Randomiser"
 {
 }
 
-//Link the Items to it as Output
-+Link "rndHydro1Objects" "rndToxinAHydro2Randomiser" "~SwitchLink"
-{
-}
-
 ////Kill Emails
 
 //Email in room

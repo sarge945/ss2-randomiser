@@ -179,14 +179,14 @@ class rndOutput extends rndBase
                     PrintDebug("    Getting Placer " + p,5);
                     if (!Object.IsTransient(p))
                     {
-                        local isPlacer = isPlacer(p);
-                        if (isPlacer)
+                        local isMarker = isMarker(p);
+                        if (isMarker)
                         {
                             Object.SetTransience(p,true);
                             PrintDebug("Placing " + input + " at placer " + p + "...",5);
                         }
 
-                        Place(input,p,isPlacer);
+                        Place(input,p,isMarker);
                         return;
                     }
                 }
@@ -204,8 +204,16 @@ class rndOutput extends rndBase
             local placer = sLink(ilink).dest;
             if (isPlacer(placer))
             {
-                placers.append(placer);
-                PrintDebug("Placer: " + placer,10);
+                foreach (plink in Link.GetAll(linkkind("~Target"),placer))
+                {
+                    local marker = sLink(plink).dest;
+                    if (isMarker(marker))
+                    {
+                        placers.append(marker);
+                        PrintDebug("Placer Marker: " + marker);
+                    }
+                }
+                PrintDebug("Placer: " + placer);
             }
         }
         return Shuffle(placers,seed);
@@ -296,6 +304,7 @@ class rndOutput extends rndBase
         [-938,0,0,-1], //Cyber Modules
         [-85,0,0,-1], //Nanites
         [-1396,90,0,-1], //Ciggies
+        [-5321,0,0,-1], //Worm Implants
         [-99,90,0,-1], //Implants
         [-91,0,-1,-1], //Cola
         [-51,-1,0,-1], //Hypos

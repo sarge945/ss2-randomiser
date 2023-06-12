@@ -338,7 +338,7 @@ Create "rndOutputMarker" "rndCryoFloorSpot"
 }
 
 //A bag of chips in the Security Closet
-+MetaProp 551 "Object Randomiser - No Auto Output"
+//+MetaProp 551 "Object Randomiser - No Auto Output"
 +Link 551 "rndScienceObjects" "Target"
 {
 }

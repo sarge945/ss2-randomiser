@@ -1,0 +1,61 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndHydroLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndAdminObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndHydroLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndAdminObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSurveyObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBMedical" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorBStoreroom" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorCObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSectorDObjects" "rndHydroLogRandomiser" "~SwitchLink"
+{
+}
+

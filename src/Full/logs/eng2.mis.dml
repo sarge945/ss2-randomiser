@@ -1,0 +1,47 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndEngLogRandomiser"
+{
+}
+//Inputs
++Link "rndHallwayObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay1AObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay2AObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndEngLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHallwayObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandControlObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay1AObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay1BObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay2AObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBay2BObjects" "rndEngLogRandomiser" "~SwitchLink"
+{
+}

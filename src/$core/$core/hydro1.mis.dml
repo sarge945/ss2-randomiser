@@ -123,6 +123,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Loose Items
 
+//Audio Logs
++MetaProp 1083 "Object Randomiser - Output Self Only"
++Link 1083 "rndHydro1Objects" "Target"
+{
+}
+
 //Med Hypo between plant boxes
 +MetaProp 1082 "Object Randomiser - No Auto Output"
 +Link 1082 "rndHydro1Objects" "Target"
