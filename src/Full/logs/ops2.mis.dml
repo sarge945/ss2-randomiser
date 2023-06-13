@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndOpsLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSystemsAdminObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndLobbyObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCrewQuartersObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSystemsAdminObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndLobbyObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCrewQuartersObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}

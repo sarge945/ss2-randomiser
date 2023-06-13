@@ -87,6 +87,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Audio Log
++MetaProp 86 "Object Randomiser - Junk Only"
++Link 86 "rndMallObjects" "Target"
+{
+}
+
 //Mug
 +MetaProp 99 "Object Randomiser - Junk Only"
 +Link 99 "rndMallObjects" "Target"
@@ -130,6 +136,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Laser Pistol
++MetaProp 394 "Object Randomiser - No Junk"
 +Link 394 "rndMallObjects" "Target"
 {
 }
@@ -211,6 +218,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Audio Log
++MetaProp 672 "Object Randomiser - Junk Only"
++Link 672 "rndCasinoObjects" "Target"
+{
+}
+
 ///Lance Room - Nothing
 
 ///Nikki Room
@@ -263,6 +276,13 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 */
+
+/////////////////=====	Security Station Med Bay =====\\\\\\\\\\\\\\\\\
+
+//Audio Log
++Link 1980 "rndSecurityObjects" "Target"
+{
+}
 
 /////////////////=====	Security Station =====\\\\\\\\\\\\\\\\\
 
@@ -395,6 +415,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 ////Downstairs Bar
+
+//Audio Log
++Link 87 "rndCasinoObjects" "Target"
+{
+}
 
 //Corpse on floor
 +Link 446 "rndCasinoObjects" "Target"

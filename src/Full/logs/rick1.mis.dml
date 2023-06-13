@@ -1,0 +1,78 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndRickLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndUmbilicalObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndRickLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndUmbilicalObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndRickLogRandomiser" "~SwitchLink"
+{
+}

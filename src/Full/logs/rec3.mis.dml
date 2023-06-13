@@ -1,0 +1,42 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndRecLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndMallObjects" "rndRecLogRandomiser" "SwitchLink"
+{
+}
++Link "rndTheatreObjects" "rndRecLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndRecLogRandomiser" "SwitchLink"
+{
+}
++Link "rndSensualSimObjects" "rndRecLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCasinoObjects" "rndRecLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndMallObjects" "rndRecLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndTheatreObjects" "rndRecLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityObjects" "rndRecLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndSensualSimObjects" "rndRecLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCasinoObjects" "rndRecLogRandomiser" "~SwitchLink"
+{
+}

@@ -78,6 +78,11 @@ Create "rndOutputMarker" "rndReplace1443"
 
 ////Desk near Upgrade Stations
 
+//Audio Log on Desk across from upgrade unitys
++Link 108 "rndLobbyObjects" "Target"
+{
+}
+
 //Plant on Desk across from upgrade stations
 +Link 1873 "rndLobbyObjects" "Target"
 {
@@ -107,6 +112,11 @@ Create "rndOutputMarker" "rndReplace1443"
 
 ////Athletics Entry Desk
 
+//Audio Log on Desk
++Link 1983 "rndLobbyObjects" "Target"
+{
+}
+
 //Juice on Desk
 +Link 644 "rndLobbyObjects" "Target"
 {
@@ -118,6 +128,11 @@ Create "rndOutputMarker" "rndReplace1443"
 }
 
 ////Store Room
+
+//Audio Log on Desk
++Link 1862 "rndLobbyObjects" "Target"
+{
+}
 
 //Magazine on Desk
 +Link 431 "rndLobbyObjects" "Target"
@@ -178,6 +193,14 @@ Create "rndOutputMarker" "rndReplace1443"
 {
 }
 
+////Medical Room
+
+//Audio Log
++Link 1756 "rndLobbyObjects" "Target"
+{
+}
+
+
 ////Radiation Room
 
 //Nanites on floor
@@ -226,6 +249,14 @@ Create "rndOutputMarker" "rndReplace1443"
 
 ////QBR room
 
+/*
+//Audio Log
+//Disabled as it spells out the main quest for this deck
++Link 109 "rndMedicalObjects" "Target"
+{
+}
+*/
+
 //Corpse on floor
 //Trapped, so set to high priority
 +MetaProp 348 "Object Randomiser - High Priority Output"
@@ -265,6 +296,13 @@ Create "rndOutputMarker" "rndReplace1443"
 {
 }
 
+////End of Hallway, Garden entrance
+
+//Audio Log
++Link 683 "rndMedicalObjects" "Target"
+{
+}
+
 /////////////////=====	Athletics Section	=====\\\\\\\\\\\\\\\\\
 
 //Dead guy in changing room
@@ -298,6 +336,11 @@ Create "rndOutputMarker" "rndReplace1443"
 }
 
 /////////////////=====	Crew Section	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log next to Corpse
++Link 678 "rndCrewObjects" "Target"
+{
+}
 
 //Corpse near entrance door
 +Link 670 "rndCrewObjects" "Target"

@@ -1,0 +1,54 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndOpsLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndSystemOpsObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndBrigCellsObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
+
+//Output
++Link "rndSystemOpsObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerOpsObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndBarracksObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCommandCenterObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndBrigObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndBrigCellsObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}

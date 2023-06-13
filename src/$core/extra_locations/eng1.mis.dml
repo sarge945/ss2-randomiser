@@ -13,7 +13,7 @@ Create "rndOutputMarker" "rnd_marker_airlock1"
         "Bank" cc18
     }
 }
-+MetaProp "rnd_marker_airlock1" "Object Randomiser - Nook Output"
++MetaProp "rnd_marker_airlock1" "Object Randomiser - Small Item Output"
 +Link "rnd_marker_airlock1" "rndTubeObjects" "Target"
 {
 }

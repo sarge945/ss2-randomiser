@@ -17,11 +17,6 @@ Create "rndObjectCollection" "rndBarracksObjects"
 {
 }
 
-//Create an object collection for the Barracks Shooting Range area
-Create "rndObjectCollection" "rndBarracksShootingRangeObjects"
-{
-}
-
 //Create an object collection for the Command Center (aka Security)
 Create "rndObjectCollection" "rndCommandCenterObjects"
 {
@@ -76,6 +71,13 @@ Create "rndObjectCollection" "rndBrigCellsObjects"
 +MetaProp 406 "Object Randomiser - No Auto Input"
 
 /////////////////=====	Power Ops	=====\\\\\\\\\\\\\\\\\
+
+//Audio Log on Floor when entering from System Ops
++MetaProp 465 "Object Randomiser - Junk Only"
++Link 465 "rndPowerOpsObjects" "Target"
+{
+}
+
 ////Enter through door on the left, then clockwise...
 
 ////First Office
@@ -167,6 +169,12 @@ Create "rndOutputMarker" "rndPowerOpsLadderRoom"
 
 /////////////////=====	Barracks	=====\\\\\\\\\\\\\\\\\
 
+//Audio Log near Barracks
++MetaProp 827 "Object Randomiser - Junk Only"
++Link 827 "rndBarracksObjects" "Target"
+{
+}
+
 //Corpse near the upgrade station
 +Link 699 "rndBarracksObjects" "Target"
 {
@@ -214,7 +222,9 @@ Create "rndOutputMarker" "rndPowerOpsLadderRoom"
 ////Shooting Range
 
 //Anti-Pers Bullets
-+Link 559 "rndBarracksShootingRangeObjects" "Target"
++MetaProp 559 "Object Randomiser - Ammo Output"
++MetaProp 559 "Object Randomiser - High Priority Output"
++Link 559 "rndBarracksObjects" "Target"
 {
 }
 
@@ -337,13 +347,20 @@ Create "rndOutputMarker" "rndCommandCenterTurretCorner"
 
 ////Broken Pipe Room
 
+//Audio Log
++Link 831 "rndCommandCenterObjects" "Target"
+{
+}
+
 //Medical Kit
++MetaProp 360 "Object Randomiser - Small Item Output"
 +Link 360 "rndCommandCenterObjects" "Target"
 {
 }
 
 //Cyber Modules under the floor
 +MetaProp 949 "Object Randomiser - No Junk"
++MetaProp 949 "Object Randomiser - Small Item Output"
 +Link 949 "rndCommandCenterObjects" "Target"
 {
 }
@@ -401,6 +418,12 @@ Create "rndOutputMarker" "rndCommandCenterMedRoom"
 }
 
 ///Third Room
+
+//Log on Floor - Contains MedSci Armoury Code, may disable
++MetaProp 525 "Object Randomiser - Small Item Output"
++Link 525 "rndCommandCenterObjects" "Target"
+{
+}
 
 //Corpse on Table
 +Link 749 "rndCommandCenterObjects" "Target"
@@ -501,3 +524,12 @@ Create "rndOutputMarker" "rndCommandCenterMedRoom"
 +Link 146 "rndSecurityLockedObjects" "Target"
 {
 }
+
+/*
+//Audio Log - Diego threatening Bronson
+//The log from Diego makes sense to be here, so don't let it appear anywhere else
+//+MetaProp 466 "Object Randomiser - No Auto Input"
++Link 466 "rndSecurityLockedObjects" "Target"
+{
+}
+*/

@@ -118,6 +118,18 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 */
 
+//Audio Log next to corpse at Entrance
+//Disabled due to being visible
++MetaProp 1349 "Object Randomiser - Junk Only"
++Link 1349 "rndHallwayObjects" "Target"
+{
+}
+
+//Audio Log
++Link 826 "rndHallwayObjects" "Target"
+{
+}
+
 //Shotgun in alternate path from radiation room
 +Link 734 "rndHallwayObjects" "Target"
 {
@@ -171,6 +183,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 +Link 776 "rndDataStorageObjects" "Target"
+{
+}
+
+//Audio Log
++MetaProp 828 "Object Randomiser - Junk Only"
++Link 828 "rndDataStorageObjects" "Target"
 {
 }
 
@@ -354,6 +372,14 @@ Create "rndOutputMarker" "rndPowerAdminSixthOffice"
 
 //Dead woman near the turret
 +Link 1168 "rndMessHallObjects" "Target"
+{
+}
+
+////Loose Items
+
+//Audio Log
++MetaProp 1357 "Object Randomiser - Junk Only"
++Link 1357 "rndMessHallObjects" "Target"
 {
 }
 

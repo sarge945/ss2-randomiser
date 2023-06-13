@@ -1,0 +1,54 @@
+// ================================================================================
+// 								Swap Audio Logs
+// ================================================================================
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndOpsLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndHallwayObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndPowerAdminObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndOpsLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHallwayObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndLoungeObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndDataStorageObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndPowerAdminObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallKitchenObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndMessHallBathroomObjects" "rndOpsLogRandomiser" "~SwitchLink"
+{
+}

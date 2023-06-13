@@ -15,3 +15,56 @@ Create "rndAudioLogRandomiser" "rndKorenchkinLogRandomiser"
 +Link "rndKorenchkinObjects" "rndKorenchkinLogRandomiser" "~SwitchLink"
 {
 }
+
+///Rest of the map
+
+//Create a randomiser for the Audio Logs
+Create "rndAudioLogRandomiser" "rndCommandLogRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommandLogRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommandLogRandomiser" "~SwitchLink"
+{
+}

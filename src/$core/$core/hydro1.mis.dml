@@ -140,7 +140,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 //So we have to use a custom marker
 /*
 +MetaProp 969 "Object Randomiser - No Auto Output"
-//+MetaProp 969 "Object Randomiser - Nook Output"
+//+MetaProp 969 "Object Randomiser - Small Item Output"
 //+MetaProp 969 "Object Randomiser - High Priority Output"
 +Link 969 "rndHydro1Objects" "Target"
 {
@@ -156,7 +156,7 @@ Create "rndOutputMarker" "rnd_marker_nook1"
         "Bank" 0
     }
 }
-+MetaProp "rnd_marker_nook1" "Object Randomiser - Nook Output"
++MetaProp "rnd_marker_nook1" "Object Randomiser - Small Item Output"
 +MetaProp "rnd_marker_nook1" "Object Randomiser - High Priority Output"
 +Link "rnd_marker_nook1" "rndHydro1Objects" "Target"
 {

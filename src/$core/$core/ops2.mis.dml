@@ -59,6 +59,23 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+////Loose Items
+
+//Audio Log
++MetaProp 816 "Object Randomiser - Junk Only"
++Link 816 "rndLobbyObjects" "Target"
+{
+}
+
+/*
+//Audio Log - Contains important information about Red Cyborgs
+//Don't randomise as it's plot relevant
++MetaProp 544 "Object Randomiser - Junk Only"
++Link 544 "rndLobbyObjects" "Target"
+{
+}
+*/
+
 /////////////////=====	Crew Quarters	=====\\\\\\\\\\\\\\\\\
 
 ////Corpses
@@ -76,6 +93,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 ////Loose Items
+
+//Audio Log near the lobby
++MetaProp 1093 "Object Randomiser - Junk Only"
++Link 1093 "rndCrewQuartersObjects" "Target"
+{
+}
 
 //Dead guy in the lobby's shotgun
 +Link 1494 "rndCrewQuartersObjects" "Target"
@@ -125,7 +148,7 @@ Create "rndOutputMarker" "rndChemicalStoreroomShelf"
 
 ////First Apartment
 
-//Dead guy on the bed
+//Dead guy on the bed (Malick)
 +Link 976 "rndCrewQuartersObjects" "Target"
 {
 }
@@ -135,16 +158,22 @@ Create "rndOutputMarker" "rndChemicalStoreroomShelf"
 {
 }
 
+/*
+//Audio Log
+//DO NOT randomise, as this is Malick's final log next to his corpse
++Link 1495 "rndCrewQuartersObjects" "Target"
+{
+}
+*/
+
 //DO NOT INCLUDE LOCKER 966!
 
 ////Second Apartment
 
-/*
 //Medium Armour
 +Link 475 "rndCrewQuartersObjects" "Target"
 {
 }
-*/
 
 //Locker
 +Link 546 "rndCrewQuartersObjects" "Target"
@@ -236,6 +265,16 @@ Create "rndOutputMarker" "rndApartmentPool"
 }
 
 /////////////////=====	Second set of Apartments	=====\\\\\\\\\\\\\\\\\
+
+////Approaching Apartment Section
+
+//Audio Log
++MetaProp 1090 "Object Randomiser - Junk Only"
++Link 1090 "rndCrewQuartersObjects" "Target"
+{
+}
+
+
 //Going clockwise from the grav shafts to each apartment...
 
 ////First Apartment

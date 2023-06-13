@@ -179,6 +179,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+//Audio Log
++MetaProp 528 "Object Randomiser - Junk Only"
++Link 528 "rndLoungeObjects" "Target"
+{
+}
+
 //Mug
 +MetaProp 1000 "Object Randomiser - Junk Only"
 +Link 1000 "rndLoungeObjects" "Target"
@@ -218,6 +224,12 @@ Create "rndObjectCollection" "rndSecurityCrates"
 //Liquor
 +MetaProp 175 "Object Randomiser - Junk Only"
 +Link 175 "rndLoungeObjects" "Target"
+{
+}
+
+//Audio Log
++MetaProp 76 "Object Randomiser - Junk Only"
++Link 76 "rndLoungeObjects" "Target"
 {
 }
 
@@ -313,6 +325,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Conference Room
 
+//Audio Log
++Link 1982 "rndDiningObjects" "Target"
+{
+}
+
 //Mug
 +Link 198 "rndDiningObjects" "Target"
 {
@@ -370,6 +387,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 ////Top Level
 
+//Audio Log
++Link 1979 "rndGardenObjects" "Target"
+{
+}
+
 //Grenade Launcher
 +Link 1575 "rndGardenObjects" "Target"
 {
@@ -381,6 +403,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 ////Under the Garden
+
+//Audio Log
++Link 682 "rndGardenObjects" "Target"
+{
+}
 
 //Corpse in small graveyard room
 +Link 445 "rndGardenObjects" "Target"

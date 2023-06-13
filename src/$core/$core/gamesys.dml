@@ -29,7 +29,7 @@ CreateArch "Misc Metaprops" "Object Randomiser Output"
 
 //Shorthand for an output designed to go in a small nook or under stuff, etc
 //Only allows small objects (hypos, softs, implants, CMs etc)
-CreateArch "Misc Metaprops" "Object Randomiser - Nook Output"
+CreateArch "Misc Metaprops" "Object Randomiser - Small Item Output"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;allowedTypes1=-320;allowedTypes2=-99;allowedTypes3=-938;"
 }
@@ -44,6 +44,12 @@ CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
 CreateArch "Misc Metaprops" "Object Randomiser - Hypo Output"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;"
+}
+
+//Shorthand for Ammo only
+CreateArch "Misc Metaprops" "Object Randomiser - Ammo Output"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-35;allowedTypes1=-45;allowedTypes2=-34;"
 }
 
 // ================================================================================
@@ -145,7 +151,12 @@ CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-12; ignorePriority=1; noSecret=1; variedOutput=0; priority=1; noItemOutput=1"
+}
+
+CreateArch "rndComplexRandomiser" "rndArmourRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-78; ignorePriority=1; noSecret=1; variedOutput=0; priority=1; noItemOutput=1"
 }
 
 CreateArch "rndComplexRandomiser" "rndPowercellRandomiser"
