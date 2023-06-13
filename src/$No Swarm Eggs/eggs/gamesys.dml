@@ -9,3 +9,21 @@
 {
 	"" "allowedTypes0=-1335;allowedTypes1=-1476;allowedTypes2=-1332;replacementTypes0=-1335;replacementTypes1=-1476"
 }
+
+//Use for Wall eggs
++ObjProp "rndWallEggRandomiser" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333;replacementTypes0=-1475;replacementTypes1=-1333"
+}
+
+//Use for Ceiling eggs
++ObjProp "rndCeilingEggRandomiser" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1227;allowedTypes1=-1298;allowedTypes2=-1299;replacementTypes0=-1227;replacementTypes1=-1299"
+}
+
+//Use for Ceiling eggs, no goo
++ObjProp "rndCeilingNoGooEggRandomiser" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1227;allowedTypes1=-1298;allowedTypes2=-1299;replacementTypes1=-1299"
+}

@@ -20,3 +20,15 @@ CreateArch "rndReplacerRandomiser" "rndWallEggRandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333"
 }
+
+//Use for Ceiling eggs
+CreateArch "rndReplacerRandomiser" "rndCeilingEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1227;allowedTypes1=-1298;allowedTypes2=-1299"
+}
+
+//Use for Ceiling eggs, no goo
+CreateArch "rndReplacerRandomiser" "rndCeilingNoGooEggRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-1227;allowedTypes1=-1298;allowedTypes2=-1299;replacementTypes0=-1298;replacementTypes1=-1299"
+}

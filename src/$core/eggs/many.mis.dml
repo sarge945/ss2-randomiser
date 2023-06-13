@@ -1,0 +1,129 @@
+// ================================================================================
+// 								Handle Eggs
+// ================================================================================
+
+//Create a randomiser for the Eggs
+//For now, just put everything together.
+Create "rndEggRandomiser" "rndEggsRandomiser"
+{
+}
+Create "rndWallEggRandomiser" "rndWallEggsRandomiser"
+{
+}
+Create "rndCeilingNoGooEggRandomiser" "rndCeilingEggsRandomiser"
+{
+}
+
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
+////Wall Eggs
+
++Link 1391 "rndWallEggsRandomiser" "Target"
+{
+}
+
+////Floor Eggs
+
++Link 29 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 59 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 159 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 165 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 1583 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 130 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 97 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 167 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 55 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 30 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 282 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 32 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 498 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 248 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 75 "rndEggsRandomiser" "Target"
+{
+}
+
++Link 117 "rndEggsRandomiser" "Target"
+{
+}
+
+
+////Ceiling Eggs
+
++Link 1644 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1407 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1405 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1383 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1609 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1541 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1394 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1390 "rndCeilingEggsRandomiser" "Target"
+{
+}
+
++Link 1412 "rndCeilingEggsRandomiser" "Target"
+{
+}
