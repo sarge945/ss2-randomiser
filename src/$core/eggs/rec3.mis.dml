@@ -7,6 +7,9 @@
 Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
+Create "rndNoGooEggRandomiser" "rndNoGooEggsRandomiser"
+{
+}
 
 /////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
 
@@ -30,13 +33,10 @@ Create "rndEggRandomiser" "rndEggsRandomiser"
 {
 }
 
-/*
 //Roof pod
-//TODO: Prevent this from having goo
-+Link 478 "rndEggsRandomiser" "Target"
++Link 478 "rndNoGooEggsRandomiser" "Target"
 {
 }
-*/
 
 +Link 460 "rndEggsRandomiser" "Target"
 {
