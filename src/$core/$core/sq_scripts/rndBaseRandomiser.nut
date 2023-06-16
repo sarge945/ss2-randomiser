@@ -9,12 +9,7 @@ class rndBaseRandomiser extends rndBase
 	{	
 		outputs = [];
 		rolls = 0;
-		if (reloaded)
-		{
-			seed = GetData("seed");
-		}
-        else
-		    SetSeed();
+		SetSeed(reloaded);
 	}
 	
 	function ShowWelcomeMessage(randomiserType)

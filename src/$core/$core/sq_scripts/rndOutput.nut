@@ -14,7 +14,7 @@ class rndOutput extends rndBase
         SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
         PrintDebug("Output Online [container: " + container + ", corpse: " + corpse + "]",4);
         allowedTypes = getParamArray("allowedTypes",[]);
-        SetSeed();
+		SetSeed(reloaded);
         placers = GetPlacers();
     }
 
@@ -209,6 +209,7 @@ class rndOutput extends rndBase
                     local marker = sLink(plink).dest;
                     if (isMarker(marker))
                     {
+                        Object.SetTransience(marker,false);
                         placers.append(marker);
                         PrintDebug("Placer Marker: " + marker);
                     }

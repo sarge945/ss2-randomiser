@@ -22,8 +22,14 @@ class rndBase extends SqRootScript
 			Init(true);
 	}
 
-	function SetSeed()
+	function SetSeed(reloaded)
 	{
+        if (reloaded)
+        {
+            seed = GetData("seed");
+            return;
+        }
+
 		seed = getParam("forceSeed",-1);
 		if (seed == -1)
 		{
