@@ -3,7 +3,6 @@ class rndOutput extends rndBase
     container = null;
     corpse = null;
     allowedTypes = null;
-    placers = null;
 
     function Init(reloaded)
     {
@@ -15,7 +14,6 @@ class rndOutput extends rndBase
         PrintDebug("Output Online [container: " + container + ", corpse: " + corpse + "]",4);
         allowedTypes = getParamArray("allowedTypes",[]);
 		SetSeed(reloaded);
-        placers = GetPlacers();
     }
 
     function CheckAllowedTypes(input)
@@ -179,60 +177,15 @@ class rndOutput extends rndBase
                 SetData("placed",true);
                 PostMessage(source,"OutputSuccess",input,!container);
                 PrintDebug("    found suitable input " + input + " from " + source,4);
-                PrintDebug("    moving suitable input " + input + " to placer (total " + placers.len() + "): ",5);
 
-                for(local i = 0;i < placers.len();i++)
-                {
-                    local p = placers[i];
-
-                    placers.remove(i);
-                    placers.append(p);
-
-                    PrintDebug("    Getting Placer " + p,5);
-                    if (!Object.IsTransient(p) || self == p)
-                    {
-                        local isMarker = isMarker(p);
-                        if (isMarker)
-                        {
-                            Object.SetTransience(p,true);
-                            PrintDebug("Placing " + input + " at placer " + p + "...",5);
-                        }
-
-                        Place(input,p,isMarker);
-                        return;
-                    }
-                }
+                Place(input,self);
+                return;
             }
         }
         PostMessage(source,"OutputFailed");
     }
 
-    function GetPlacers()
-    {
-        local placers = [];
-        placers.append(self);
-        foreach (ilink in Link.GetAll(linkkind("~SwitchLink"),self))
-        {
-            local placer = sLink(ilink).dest;
-            if (isPlacer(placer))
-            {
-                foreach (plink in Link.GetAll(linkkind("~Target"),placer))
-                {
-                    local marker = sLink(plink).dest;
-                    if (isMarker(marker))
-                    {
-                        Object.SetTransience(marker,false);
-                        placers.append(marker);
-                        //PrintDebug("Placer Marker: " + marker);
-                    }
-                }
-                //PrintDebug("Placer: " + placer);
-            }
-        }
-        return Shuffle(placers,seed);
-    }
-
-    function Place(input,output,useNewPosition)
+    function Place(input,output)
     {
         //Send a "Randomised" message to all objects targeting our input
         //This allows special behaviours to be implemented without modifying the scripts on our inputs
@@ -251,7 +204,7 @@ class rndOutput extends rndBase
         else
         {
             PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
-            PlacePhysical(input,output,useNewPosition);
+            PlacePhysical(input,output);
         }
     }
 
@@ -262,17 +215,13 @@ class rndOutput extends rndBase
         Container.Add(input,output);
     }
 
-    function PlacePhysical(input,output,useNewPosition)
+    function PlacePhysical(input,output)
     {
         local position = GetData("position");
         local facing = GetData("facing");
         local physicsControls = GetData("physicsControls");
 
-        local usedPosition = position;
-        if (useNewPosition)
-            usedPosition = Object.Position(output);
-
-        local position_up = vector(usedPosition.x, usedPosition.y, usedPosition.z + 0.35);
+        local position_up = vector(position.x, position.y, position.z + 0.35);
 
 
         //Make object render
@@ -287,7 +236,7 @@ class rndOutput extends rndBase
         else if (SameItemType(input,output))
         {
             Property.Set(input, "PhysControl", "Controls Active", physicsControls);
-            Object.Teleport(input, usedPosition, facing);
+            Object.Teleport(input, position, facing);
         }
         //Different objects, need to "jiggle" the object to fix physics issues
         else

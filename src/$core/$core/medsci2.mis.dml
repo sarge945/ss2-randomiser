@@ -238,7 +238,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Rad Hypo on pipes near Biopsy Lab
 +MetaProp 1421 "Object Randomiser - Secret"
-+MetaProp 1421 "Object Randomiser - High Priority"
++MetaProp 1421 "Object Randomiser - High Priority Output"
 +Link 1421 "rndMedicalObjects" "Target"
 {
 }

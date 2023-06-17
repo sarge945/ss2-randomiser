@@ -9,7 +9,6 @@ class rndObjectPool extends rndBase
 	function Init(reloaded)
 	{
 		//debugLevel = 999;
-	
 		if (!reloaded)
 		{
 			SetOneShotTimer("StartTimer",0.02);
@@ -30,12 +29,6 @@ class rndObjectPool extends rndBase
 	
 	function AddMetaProperties()
 	{
-		/*
-		foreach(input in inputs)
-		{
-			Object.AddMetaProperty(input,"Object Randomiser Input");
-		}
-		*/
 		foreach(output in outputs)
 		{
 			if (isMarker(output))
@@ -126,8 +119,26 @@ class rndObjectPool extends rndBase
 					outputs.append(object);
 			}
 		}
+
+        SortOutputs();
+        outputs = GetLimitedOutputs();
 	}
 	
+    function SortOutputs()
+    {
+        local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
+        local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
+        outputs = Combine(highPrio,lowPrio);
+    }
+
+    function GetLimitedOutputs()
+    {
+        local newOutputs = [];
+        for (local i = 0; i < inputs.len() && i < outputs.len();i++)
+            newOutputs.append(outputs[i]);
+        return newOutputs;
+    }
+
 	function SendMessages()
 	{
 		local inputString = Stringify(inputs);
@@ -144,7 +155,7 @@ class rndObjectPool extends rndBase
 		{
 			local object = sLink(olink).dest;
 			PrintDebug("Sending outputs '" + outputString + "' to " + object,4);
-			PostMessage(object,"SetOutputs",outputString);
+			PostMessage(object,"SetOutputs",outputString,inputs.len());
 		}
 	}
 }

@@ -1,5 +1,5 @@
 // ================================================================================
-// 								Extra Markers and Placers
+// 								Extra Markers
 // ================================================================================
 
 /////////////////=====	Cryo Sector	=====\\\\\\\\\\\\\\\\\
@@ -39,11 +39,6 @@ Create "rndOutputMarker" "rndCryoComputerRoom"
 /////////////////=====	Science Sector	=====\\\\\\\\\\\\\\\\\
 
 
-////Security Room
-Create "rndPlacer" "rndSecurityRoomPlacer"
-{
-}
-
 //Security Room closet desk
 Create "rndOutputMarker" "rndSecurityRoomClosetDesk"
 {
@@ -56,31 +51,9 @@ Create "rndOutputMarker" "rndSecurityRoomClosetDesk"
 	}
 }
 
-+Link "rndSecurityRoomClosetDesk" "rndSecurityRoomPlacer" "Target"
++Link "rndSecurityRoomClosetDesk" "rndScienceObjects" "Target"
 {
 }
-
-+Link "rndSecurityRoomPlacer" 258 "SwitchLink"
-{
-}
-
-+Link "rndSecurityRoomPlacer" 549 "SwitchLink"
-{
-}
-
-+Link "rndSecurityRoomPlacer" 565 "SwitchLink"
-{
-}
-
-+Link "rndSecurityRoomPlacer" 551 "SwitchLink"
-{
-}
-
-////Medical Lobby
-Create "rndPlacer" "rndMedicalLobbyPlacer"
-{
-}
-
 
 //Medical lobby desk
 Create "rndOutputMarker" "rndMedicalLobbyDesk"
@@ -94,7 +67,7 @@ Create "rndOutputMarker" "rndMedicalLobbyDesk"
 	}
 }
 
-+Link "rndMedicalLobbyDesk" "rndMedicalLobbyPlacer" "Target"
++Link "rndMedicalLobbyDesk" "rndScienceObjects" "Target"
 {
 }
 
@@ -110,7 +83,7 @@ Create "rndOutputMarker" "rndMedicalLobbyDesk2"
 	}
 }
 
-+Link "rndMedicalLobbyDesk2" "rndMedicalLobbyPlacer" "Target"
++Link "rndMedicalLobbyDesk2" "rndScienceObjects" "Target"
 {
 }
 
@@ -126,19 +99,7 @@ Create "rndOutputMarker" "rndMedicalLobbyTabletop"
 	}
 }
 
-+Link "rndMedicalLobbyTabletop" "rndMedicalLobbyPlacer" "Target"
-{
-}
-
-+Link "rndMedicalLobbyPlacer" 270 "SwitchLink"
-{
-}
-
-+Link "rndMedicalLobbyPlacer" 438 "SwitchLink"
-{
-}
-
-+Link "rndMedicalLobbyPlacer" 1186 "SwitchLink"
++Link "rndMedicalLobbyTabletop" "rndScienceObjects" "Target"
 {
 }
 
@@ -159,13 +120,6 @@ Create "rndOutputMarker" "SargeRandomXerxesChair"
 {
 }
 
-
-
-////Chemical Storeroom
-Create "rndPlacer" "rndChemicalStoreroomPlacer"
-{
-}
-
 //Chemical Shelves
 //Marker
 Create "rndOutputMarker" "rndChemicalStoreroomShelves"
@@ -181,9 +135,6 @@ Create "rndOutputMarker" "rndChemicalStoreroomShelves"
 +Link "rndChemicalStoreroomShelves" "rndScienceObjects" "Target"
 {
 }
-+Link "rndChemicalStoreroomPlacer" "rndChemicalStoreroomShelves" "SwitchLink"
-{
-}
 
 //Chemical Storeroom 2
 Create "rndOutputMarker" "rndChemicalStoreroomShelves2"
@@ -196,7 +147,8 @@ Create "rndOutputMarker" "rndChemicalStoreroomShelves2"
 		"Bank" 0
 	}
 }
-+Link "rndChemicalStoreroomShelves2" "rndChemicalStoreroomPlacer" "Target"
+
++Link "rndChemicalStoreroomShelves2" "rndScienceObjects" "Target"
 {
 }
 
@@ -211,16 +163,12 @@ Create "rndOutputMarker" "rndChemicalStoreroomShelves3"
 		"Bank" 0
 	}
 }
-+Link "rndChemicalStoreroomShelves3" "rndChemicalStoreroomPlacer" "Target"
+
++Link "rndChemicalStoreroomShelves3" "rndScienceObjects" "Target"
 {
 }
 
-//Power Recharger Room
-Create "rndPlacer" "rndPowerRechargerRoomPlacer"
-{
-}
-
-Create "rndMarker" "rndPowerRechargerRoom"
+Create "rndOutputMarker" "rndPowerRechargerRoom"
 {
 	+ObjProp "Position"
 	{
@@ -231,16 +179,11 @@ Create "rndMarker" "rndPowerRechargerRoom"
 	}
 }
 
-+Link "rndPowerRechargerRoom" "rndPowerRechargerRoomPlacer" "Target"
-{
-}
-
-+Link "rndPowerRechargerRoomPlacer" 1665 "SwitchLink"
++Link "rndPowerRechargerRoom" "rndScienceObjects" "Target"
 {
 }
 
 ////R and D Sector
-
 
 //Table in R&D Room with power charger
 //Marker

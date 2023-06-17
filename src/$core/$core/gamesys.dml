@@ -118,12 +118,6 @@ CreateArch "Marker" "rndOutputMarker"
 	}
 }
 
-//Marker output
-//SwitchLink this to any object and it will act like an alternate output for it
-CreateArch "Marker" "rndPlacer"
-{
-}
-
 ////Special Outputs
 
 //Designed to do special handling for certain objects as they are randomised
