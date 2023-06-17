@@ -22,7 +22,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
         }
 
         //Shuffle Array
-        outputs = Shuffle(outputs,seed);
+        outputs = rndUtils.Shuffle(outputs,seed);
 
         PrintDebug("Replacer Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", outputs: " + outputs.len() + "]");
 
@@ -36,7 +36,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
     function GetReplaceObject(rolls)
     {
         local total = replaceObjects.len() - 1;
-        local obj = RandBetween(seed + rolls,0,total);
+        local obj = rndUtils.RandBetween(seed + rolls,0,total);
         return replaceObjects[obj];
     }
 

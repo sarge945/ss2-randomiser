@@ -54,17 +54,39 @@ class rndComplexRandomiser extends rndBaseRandomiser
         allowOriginalLocations = getParam("allowOriginalLocations",1);
 
         //Setup
-        totalRolls = RandBetween(seed,minTimes,maxTimes);
+        totalRolls = rndUtils.RandBetween(seed,minTimes,maxTimes);
         failures = 0;
+    }
+
+    function GetCollection()
+    {
+        return rndObjectCollection(self);
     }
 
     function Setup()
     {
-        inputs = StrToIntArray(DeStringify(GetData("Inputs")));
-        outputs = StrToIntArray(DeStringify(GetData("Outputs")));
+        local collection = GetCollection();
 
-        inputs = DeDuplicateArray(inputs);
-        outputs = DeDuplicateArray(outputs);
+        local potentialInputs = rndUtils.DeDuplicateArray(collection.inputs);
+        local potentialOutputs = rndUtils.DeDuplicateArray(rndUtils.Combine(collection.lowOutputs,collection.highOutputs));
+        
+        inputs = [];
+        outputs = [];
+
+        foreach (pi in potentialInputs)
+        {
+            if (IsInputValid(pi))
+            {
+                inputs.append(pi);
+                PostMessage(pi,"Verify");
+            }
+        }
+        
+        foreach (po in potentialOutputs)
+        {
+            if (IsOutputValid(po))
+                outputs.append(po);
+        }
 
         //Show startup message
         ShowWelcomeMessage("Complex");
@@ -80,7 +102,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         totalItems = inputs.len();
 
-        PrintDebug("[inputs: " + inputs.len() + " (" + GetData("Inputs") + "), outputs: " + outputs.len() + " (" + GetData("Outputs") + ")]",4);
+        PrintDebug("[inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]",4);
 
         if (inputs.len() > 0 && outputs.len() > 0)
         {
@@ -155,7 +177,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + "/" + totalRolls + ")",4);
 
-        local inputString = Stringify(inputs);
+        local inputString = rndUtils.Stringify(inputs);
 
         PrintDebug("    Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
         PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),rolls);
@@ -195,27 +217,27 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function ShuffleBothArrays()
     {
-        inputs = Shuffle(inputs,seed);
+        inputs = rndUtils.Shuffle(inputs,seed);
 
         //If we are set to have high-priority outputs, then we are going to need
         //to split the outputs array, then shuffle each, then recombine them,
         //with the high priority ones at the start
         if (ignorePriority)
         {
-            outputs = Shuffle(outputs,-seed);
+            outputs = rndUtils.Shuffle(outputs,-seed);
         }
         else
         {
-            local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
-            local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
+            local lowPrio = rndUtils.FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
+            local highPrio = rndUtils.FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
 
-            lowPrio = Shuffle(lowPrio,-seed);
-            highPrio = Shuffle(highPrio,-seed);
+            lowPrio = rndUtils.Shuffle(lowPrio,-seed);
+            highPrio = rndUtils.Shuffle(highPrio,-seed);
 
             if (noHighPriority)
                 outputs = lowPrio;
             else
-                outputs = Combine(highPrio,lowPrio);
+                outputs = rndUtils.Combine(highPrio,lowPrio);
         }
     }
 
@@ -227,20 +249,25 @@ class rndComplexRandomiser extends rndBaseRandomiser
     function ReplaceOutput(output,forceEnd = false)
     {
         local pos = outputs.find(output);
+        
         if (pos == null)
             return;
+        
+        print ("pos: " + pos);
 
         if (fuzzy && !forceEnd)
         {
             local min = outputs.len() * 0.35;
             local max = outputs.len() - 1;
 
-            local insertIndex = RandBetween(seed + output,min,max);
+            local insertIndex = rndUtils.RandBetween(seed + output,min,max);
+            print ("insertIndex: " + insertIndex + " (min: " + min + ", max: " + max + ", len: " + outputs.len() + ")");
             outputs.remove(pos);
             outputs.insert(insertIndex,output);
         }
         else
         {
+            print ("insertIndex (auto): 0");
             outputs.remove(pos);
             outputs.append(output);
         }
@@ -258,7 +285,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
             if (containerLink)
             {
                 local container = sLink(containerLink).dest;
-                if (isCorpse(container))
+                if (rndUtils.isCorpse(container))
                 {
                     PrintDebug("Container: " + container);
                     return false;
@@ -272,57 +299,10 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function IsOutputValid(output)
     {
-        if (!isMarker(output) && !isContainer(output) && noItemOutputs)
+        if (!rndUtils.isMarker(output) && !rndUtils.isContainer(output) && noItemOutputs)
             return false;
 
         return true;
     }
 
-    function OnSetOutputs()
-    {
-        local outputs = DeStringify(GetData("Outputs"));
-        local expandedOutputs = DeStringify(message().data);
-        PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
-
-        foreach(val in expandedOutputs)
-        {
-            local vali = val.tointeger();
-
-            PrintDebug("    Validating outputs...",5);
-            if (IsOutputValid(vali))
-            {
-                PrintDebug("      -> Output " + vali + " is valid",5);
-                outputs.append(vali);
-            }
-            else
-                PrintDebug("      -> Output " + vali + " is NOT valid",5);
-        }
-
-        SetData("Outputs",Stringify(outputs));
-    }
-
-    function OnSetInputs()
-    {
-        local inputs = DeStringify(GetData("Inputs"));
-        local expandedInputs = DeStringify(message().data);
-
-        PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
-
-        PrintDebug("    Validating inputs...",5);
-        foreach(val in expandedInputs)
-        {
-            local vali = val.tointeger();
-
-            if (IsInputValid(vali))
-            {
-                PrintDebug("      -> Input " + vali + " is valid",5);
-                inputs.append(vali);
-                PostMessage(vali,"Verify");
-            }
-            else
-                PrintDebug("      -> Input " + vali + " is NOT valid",5);
-        }
-
-        SetData("Inputs",Stringify(inputs));
-    }
 }

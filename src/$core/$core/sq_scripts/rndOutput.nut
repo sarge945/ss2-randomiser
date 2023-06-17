@@ -6,8 +6,8 @@ class rndOutput extends rndBase
 
     function Init(reloaded)
     {
-        container = isContainer(self);
-        corpse = isCorpse(self);
+        container = rndUtils.isContainer(self);
+        corpse = rndUtils.isCorpse(self);
         SetData("position",Object.Position(self));
         SetData("facing",Object.Facing(self));
         SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
@@ -23,7 +23,7 @@ class rndOutput extends rndBase
 
         foreach(type in allowedTypes)
         {
-            if (isArchetype(input,type))
+            if (rndUtils.isArchetype(input,type))
                 return true;
         }
         return false;
@@ -34,7 +34,7 @@ class rndOutput extends rndBase
         if (RnoRespectJunk == 1)
             return true;
 
-        local isJunk = IsJunk(input);
+        local isJunk = rndUtils.IsJunk(input);
 
         local junkOnlyM = Object.HasMetaProperty(output,"Object Randomiser - Junk Only");
         local noJunkM = Object.HasMetaProperty(output,"Object Randomiser - No Junk");
@@ -57,7 +57,7 @@ class rndOutput extends rndBase
     static function LogCheck(input,output)
     {
         local noLogM = Object.HasMetaProperty(output,"Object Randomiser - No Logs");
-        if (IsLog(input) && noLogM)
+        if (rndUtils.IsLog(input) && noLogM)
             return false;
 
         return true;
@@ -65,18 +65,18 @@ class rndOutput extends rndBase
 
     static function ContainerOnlyCheck(input,output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && isArchetype(input,output))
+        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && rndUtils.isArchetype(input,output))
             return true;
 
         if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
-            return isContainer(output);
+            return rndUtils.isContainer(output);
         return true;
     }
 
     static function SameTypeCheck(input,output)
     {
         if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only"))
-            return isContainer(output) || SameItemType(output,input);
+            return rndUtils.isContainer(output) || rndUtils.SameItemType(output,input);
         return true;
     }
 
@@ -90,14 +90,14 @@ class rndOutput extends rndBase
 
     static function CorpseCheck(output,RnoCorpse)
     {
-        if (isCorpse(output) && RnoCorpse)
+        if (rndUtils.isCorpse(output) && RnoCorpse)
             return false;
         return true;
     }
 
     static function AllowOriginal(input,self,RallowOriginalLocations)
     {
-        if (!RallowOriginalLocations && isArchetype(input,self))
+        if (!RallowOriginalLocations && rndUtils.isArchetype(input,self))
             return false;
         return true;
     }
@@ -141,12 +141,12 @@ class rndOutput extends rndBase
 
     function IsPlaced()
     {
-        return GetData("placed") && !isContainer(self);
+        return GetData("placed") && !rndUtils.isContainer(self);
     }
 
     function IsVerified()
     {
-        return GetData("verified") || isContainer(self) || isMarker(self);
+        return GetData("verified") || rndUtils.isContainer(self) || rndUtils.isMarker(self);
     }
 
     function OnVerify()
@@ -165,8 +165,8 @@ class rndOutput extends rndBase
         local inputs = message().data;
         local config = message().data2;
 
-        local inputArr = StrToIntArray(DeStringify(inputs));
-        local configArr = StrToIntArray(DeStringify(config));
+        local inputArr = rndUtils.StrToIntArray(rndUtils.DeStringify(inputs));
+        local configArr = rndUtils.StrToIntArray(rndUtils.DeStringify(config));
 
         PrintDebug("OnRandomiseOutput received from " + source + " contains: [" + inputs + ", " + config + "]",4);
 
@@ -196,7 +196,7 @@ class rndOutput extends rndBase
         }
 
         Container.Remove(input);
-        if (isContainer(output))
+        if (rndUtils.isContainer(output))
         {
             PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",2);
             PlaceInContainer(input,output);
@@ -233,7 +233,7 @@ class rndOutput extends rndBase
         {
         }
         //If we are the same archetype, "lock" into position and adopt physics controls
-        else if (SameItemType(input,output))
+        else if (rndUtils.SameItemType(input,output))
         {
             Property.Set(input, "PhysControl", "Controls Active", physicsControls);
             Object.Teleport(input, position, facing);
@@ -280,7 +280,7 @@ class rndOutput extends rndBase
         foreach (archetype in fixArchetypes)
         {
             local type = archetype[0];
-            if (isArchetype(item,type))
+            if (rndUtils.isArchetype(item,type))
             {
                 local x = archetype[1];
                 local y = archetype[2];

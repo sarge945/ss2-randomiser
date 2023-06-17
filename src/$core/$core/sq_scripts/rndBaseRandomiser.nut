@@ -2,6 +2,7 @@
 //At bare minimum, randomisers will have a seed and some outputs
 class rndBaseRandomiser extends rndBase
 {
+	inputs = null;
 	outputs = null;
 	rolls = null;
     allowedTypes = null;
@@ -53,7 +54,7 @@ class rndBaseRandomiser extends rndBase
     {
         foreach(type in allowedTypes)
         {
-            if (isArchetype(input,type))
+            if (rndUtils.isArchetype(input,type))
                 return true;
         }
         return false;

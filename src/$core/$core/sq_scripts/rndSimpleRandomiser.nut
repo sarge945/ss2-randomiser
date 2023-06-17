@@ -32,8 +32,8 @@ class rndSimpleRandomiser extends rndBaseRandomiser
         PopulateEmptyArrays();
 
         //Shuffle Arrays
-        inputs = Shuffle(inputs,seed);
-        outputs = Shuffle(outputs,-seed);
+        inputs = rndUtils.Shuffle(inputs,seed);
+        outputs = rndUtils.Shuffle(outputs,-seed);
 
         //Show startup message
         PrintDebug("Simple Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + " inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
