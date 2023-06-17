@@ -5,6 +5,7 @@
 //Create a randomiser for the Cryo Power Cell
 Create "rndSimpleRandomiser" "rndCryoPowercellRandomiser"
 {
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-1141"
 }
 
 +Link 1767 "rndCryoPowercellRandomiser" "Target"

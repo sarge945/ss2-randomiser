@@ -5,6 +5,7 @@
 //Create a Randomiser for the Hardware Override Cards
 Create "rndSimpleRandomiser" "rndHardwareOverrideRandomiser"
 {
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-1485;allowedTypes1=-1455;"
 }
 
 //Hardware Override Cards

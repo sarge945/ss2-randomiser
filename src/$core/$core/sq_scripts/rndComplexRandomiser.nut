@@ -4,7 +4,6 @@
 class rndComplexRandomiser extends rndBaseRandomiser
 {
     //Configuration
-    allowedTypes = null;
     minTimes = null;
     maxTimes = null;
     allowOriginalLocations = null;
@@ -15,41 +14,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
     totalRolls = null;
     totalItems = null;
     inputs = null;
-
-
-    //If no allowed types are specified, use the default
-    static allowedTypesDefault = [
-        //-49,  //Goodies
-        //-12,  //Weapons
-        //-156, //Keys
-        //-76,  //Audio Logs
-        -30,    //Ammo
-        -51,    //Patches
-        -70,    //Devices (portable batteries etc)
-        //-78,  //Armor
-        -85,    //Nanites
-        -99,    //Implants
-        -320,   //Softwares
-        -1105,  //Beakers
-        -938,   //Cyber Modules
-        -3863,  //GamePig Games
-        -91,    //Soda Can
-        -92,    //Chips
-        -964,   //Vodka
-        -965,   //Champagne
-        -966,   //Juice
-        -967,   //Liquor
-        -1221,  //Mug
-        -1396,  //Cigarettes
-        -1398,  //Heart Pillow
-        -4286,  //Basketall
-        //-1214,    //Ring Buoy
-        -1255,  //Magazines
-        -4105,  //Annelid Healing Gland
-        -1676,  //Medbed Key
-        //-68,  //Potted plants
-        //-69,  //Potted plants
-    ];
 
     //state
     outputLoop = null;
@@ -77,8 +41,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
             SetOneShotTimer("StartTimer",startTime);
         }
 
-        SetAllowedTypes();
-
         //Populate configuration
         fuzzy = getParam("variedOutput",1);
         ignorePriority = getParam("ignorePriority",0);
@@ -90,7 +52,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
         maxTimes = getParam("maxTimes",9999);
         minTimes = getParam("minTimes",9999);
         allowOriginalLocations = getParam("allowOriginalLocations",1);
-        SetAllowedTypes();
 
         //Setup
         totalRolls = RandBetween(seed,minTimes,maxTimes);
@@ -285,24 +246,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
         }
     }
 
-    function SetAllowedTypes()
-    {
-        allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
-        local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
-        foreach (add in addAllowedTypes)
-            allowedTypes.append(add);
-    }
-
-    function CheckAllowedTypes(input)
-    {
-        foreach(type in allowedTypes)
-        {
-            if (isArchetype(input,type))
-                return true;
-        }
-        return false;
-    }
-
     function IsInputValid(input)
     {
         //Check allowed types
@@ -362,9 +305,6 @@ class rndComplexRandomiser extends rndBaseRandomiser
     {
         local inputs = DeStringify(GetData("Inputs"));
         local expandedInputs = DeStringify(message().data);
-
-        if (allowedTypes == null || allowedTypes == [])
-            SetAllowedTypes();
 
         PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
 

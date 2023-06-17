@@ -22,6 +22,7 @@ Create "rndCardRandomiser" "rndWattsKeycardRandomiser"
 //Create a randomiser for Grassi's Body
 Create "rndSimpleRandomiser" "rndGrassiRandomiser"
 {
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-503"
 }
 
 +Link 105 "rndGrassiRandomiser" "Target"

@@ -7,13 +7,11 @@ class rndReplacerRandomiser extends rndBaseRandomiser
     rolls = null;
     totalOutputs = null;
     replaceObjects = null;
-    allowedTypes = null;
 
     function Init(reloaded)
     {
         base.Init(reloaded);
 
-        allowedTypes = getParamArray("allowedTypes",[]);
         replaceObjects = getParamArray("replacementTypes",allowedTypes);
 
         foreach (olink in Link.GetAll(linkkind("~Target"),self))
@@ -33,16 +31,6 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         rolls = 0;
         totalOutputs = outputs.len();
-    }
-
-    function CheckAllowedTypes(output)
-    {
-        foreach(type in allowedTypes)
-        {
-            if (isArchetype(output,type))
-                return true;
-        }
-        return false;
     }
 
     function GetReplaceObject(rolls)

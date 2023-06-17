@@ -3,11 +3,13 @@ CreateArch "rndComplexRandomiser" "rndCardRandomiser"
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-157; ignorePriority=1; noSecret=1; variedOutput=0; priority=1;"
 }
 
-CreateArch "rndSimpleRandomiser" "rndArtTerminalRandomiser"
-{
-}
-
 CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
 {
 	+ObjProp "DesignNoteSS" = "allowedTypes0=-1341; variedOutput=0; ignorePriority=1; noSecret=1; priority=1;"
+}
+
+//Create a randomiser for the Art Terminals
+Create "rndSimpleRandomiser" "rndArtTerminalRandomiser"
+{
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-1277;allowedTypes1=-2936;"
 }
