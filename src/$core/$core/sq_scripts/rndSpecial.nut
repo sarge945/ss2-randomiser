@@ -29,9 +29,9 @@ class rndSwitchLinkHandler extends rndSpecialHandler
 		//Create a marker if we're not a container
 		//if (!isContainer(output))
 		{
-            local scaleX = getParam("scaleX",10.00);
-            local scaleY = getParam("scaleY",10.00);
-            local scaleZ = getParam("scaleZ",4.00);
+            local scaleX = getParam("scaleX",25.00);
+            local scaleY = getParam("scaleY",25.00);
+            local scaleZ = getParam("scaleZ",8.00);
 
             //Create a Once Tripwire
             local tripwire = Object.BeginCreate("Once Tripwire");
@@ -39,6 +39,7 @@ class rndSwitchLinkHandler extends rndSpecialHandler
 			Object.Teleport(tripwire, Object.Position(output), Object.Facing(output));
             
             local scale = vector(scaleX,scaleY,scaleZ);
+            Property.Set(tripwire, "PhysDims", "Size", scale);
 			
 			Property.SetSimple(tripwire,"Scale",scale);
 			
