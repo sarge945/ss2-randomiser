@@ -117,28 +117,35 @@ Create "rndObjectCollection" "rndSecurityCargoObjects"
 }
 
 //Replicator Vodka
++MetaProp 366 "Object Randomiser - Junk Only"
++MetaProp 366 "Object Randomiser - No Logs"
 +Link 366 "rndLobbyObjects" "Target"
 {
 }
 
 //Second Replicator Vodka
+//Looks weird when replaced with some items
++MetaProp 357 "Object Randomiser - No Auto Output"
 +Link 357 "rndLobbyObjects" "Target"
 {
 }
 
 //Replicator Clip
++MetaProp 1187 "Object Randomiser - Junk Only"
++MetaProp 1187 "Object Randomiser - No Logs"
 +Link 1187 "rndLobbyObjects" "Target"
 {
 }
 
 //Replicator Chips 1
-//Looks weird when replaced with some items
 +MetaProp 356 "Object Randomiser - No Auto Output"
 +Link 356 "rndLobbyObjects" "Target"
 {
 }
 
 //Replicator Chips 2
++MetaProp 358 "Object Randomiser - Junk Only"
++MetaProp 358 "Object Randomiser - No Logs"
 +Link 358 "rndLobbyObjects" "Target"
 {
 }
