@@ -56,6 +56,15 @@ class rndOutput extends rndBase
         return true;
     }
 
+    static function LogCheck(input,output)
+    {
+        local noLogM = Object.HasMetaProperty(output,"Object Randomiser - No Logs");
+        if (IsLog(input) && noLogM)
+            return false;
+
+        return true;
+    }
+
     static function ContainerOnlyCheck(input,output)
     {
         if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && isArchetype(input,output))
@@ -125,6 +134,9 @@ class rndOutput extends rndBase
 
         if (!AllowOriginal(input,self,RallowOriginalLocations))
             return 8;
+        
+        if (!LogCheck(input,self))
+            return 9;
 
         return 0;
     }
@@ -177,7 +189,7 @@ class rndOutput extends rndBase
                     placers.append(p);
 
                     PrintDebug("    Getting Placer " + p,5);
-                    if (!Object.IsTransient(p))
+                    if (!Object.IsTransient(p) || self == p)
                     {
                         local isMarker = isMarker(p);
                         if (isMarker)
@@ -211,10 +223,10 @@ class rndOutput extends rndBase
                     {
                         Object.SetTransience(marker,false);
                         placers.append(marker);
-                        PrintDebug("Placer Marker: " + marker);
+                        //PrintDebug("Placer Marker: " + marker);
                     }
                 }
-                PrintDebug("Placer: " + placer);
+                //PrintDebug("Placer: " + placer);
             }
         }
         return Shuffle(placers,seed);

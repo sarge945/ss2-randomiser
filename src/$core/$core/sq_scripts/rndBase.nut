@@ -142,6 +142,11 @@ class rndBase extends SqRootScript
         }
     }
 
+    static function IsLog(obj)
+    {
+        return isArchetype(obj,-76);
+    }
+
 	static function IsJunk(obj)
 	{
 		foreach(type in junkArchetypes)

@@ -208,6 +208,12 @@ CreateArch "Misc Metaprops" "Object Randomiser - Output Self Only"
 {
 }
 
+//Use this for spots next to corpses
+//These outputs will not allow audio logs as they will imply the log belonged to the corpse
+CreateArch "Misc Metaprops" "Object Randomiser - No Logs"
+{
+}
+
 //Use this for somewhat valuable spots.
 //These outputs will not allow "junk" items (magazines, mugs etc) as they are considered to be valuable spots
 //Please note that randomisers with noSecret=1 will still use these outputs - they are not hidden, only valuable
