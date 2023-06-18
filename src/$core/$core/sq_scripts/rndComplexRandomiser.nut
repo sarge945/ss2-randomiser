@@ -299,6 +299,11 @@ class rndComplexRandomiser extends rndBaseRandomiser
         if (!rndUtils.isMarker(output) && !rndUtils.isContainer(output) && noItemOutputs)
             return false;
 
+        //dirty hack
+        //don't allow monsters for now
+        if (rndUtils.isMonster(output))
+            return false;
+
         return true;
     }
 

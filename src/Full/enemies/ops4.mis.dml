@@ -1,0 +1,67 @@
+//UPDATE: Test completely failed.
+
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a test randomiser for the Barracks and System Ops areas
+Create "rndEnemyRandomiser" "rndOpsEnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Grenade Hybrids on lower level
++Link 317 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
++Link 321 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
++Link 315 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Grenade Hybrid on upper level
++Link 319 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Turret
++Link 328 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Grenade Hybrid
++Link 390 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Turret
++Link 284 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Monke
++Link 307 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 327 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+//Turret
++Link 335 "rndOpsEnemyRandomiser" "Target"
+{
+}
+
+/*
+//Security Bot
++Link 325 "rndOpsEnemyRandomiser" "Target"
+{
+}
+*/

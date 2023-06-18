@@ -132,7 +132,7 @@ class rndOutput extends rndBase
 
         if (!AllowOriginal(input,self,RallowOriginalLocations))
             return 8;
-        
+
         if (!LogCheck(input,self))
             return 9;
 

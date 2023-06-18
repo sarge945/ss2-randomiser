@@ -4,9 +4,11 @@
 class rndSimpleRandomiser extends rndBaseRandomiser
 {
     inputs = null;
+    physicalPlace = null;
 
     function Init(reloaded)
     {
+        physicalPlace = getParam("physicalPlace",0);
         base.Init(reloaded);
 
         if (reloaded)
@@ -71,9 +73,18 @@ class rndSimpleRandomiser extends rndBaseRandomiser
 
             PrintDebug("Randomising " + ShockGame.GetArchetypeName(input[0]) + " to " + ShockGame.GetArchetypeName(output[0]),1);
 
+
             //Swap objects
             Object.Teleport(input[0],output[1],output[2]);
             Object.Teleport(output[0],input[1],input[2]);
+
+            if (physicalPlace)
+            {
+                //Turn off any physics controls
+                Property.Set(input[0], "PhysControl", "Controls Active", 0);
+                Property.Set(input[0], "PhysAttr", "Gravity %", 100.0);
+            }
+
 
             //Update object, so that when we swap, we swap correctly
             output[0] = input[0];

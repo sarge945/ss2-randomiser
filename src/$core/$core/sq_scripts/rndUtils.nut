@@ -139,6 +139,11 @@ class rndUtils
 		return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
 	}
 
+    static function isMonster(obj)
+    {
+        return isArchetype(obj,-162);
+    }
+
 	static function isCorpse(obj)
 	{
 		return isArchetype(obj,-503) || isArchetype(obj,-551) || isArchetype(obj,-181);

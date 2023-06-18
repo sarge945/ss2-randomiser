@@ -1,3 +1,9 @@
+//Create a generic enemy randomiser
+CreateArch "rndSimpleRandomiser" "rndEnemyRandomiser"
+{
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-162; physicalPlace=1"
+}
+
 //Create a randomiser for Reaver Brains
 CreateArch "rndSimpleRandomiser" "rndBrainRandomiser"
 {
