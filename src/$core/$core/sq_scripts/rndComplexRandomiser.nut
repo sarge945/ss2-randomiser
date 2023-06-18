@@ -118,7 +118,8 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function GetStartTime()
     {
-        return 0.25 + (seed % 1000 * 0.0001);
+        //return 0.25 + (seed % 1000 * 0.0001);
+        return 0.01;
     }
 
     function OnOutputSuccess()
@@ -183,7 +184,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
         PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),rolls);
         if (timerID != null)
             KillTimer(timerID);
-        timerID = SetOneShotTimer("RandomiseTimer",0.1);
+        timerID = SetOneShotTimer("RandomiseTimer",0.01);
     }
 
     function OnTimer()
@@ -253,21 +254,17 @@ class rndComplexRandomiser extends rndBaseRandomiser
         if (pos == null)
             return;
         
-        print ("pos: " + pos);
-
         if (fuzzy && !forceEnd)
         {
             local min = outputs.len() * 0.35;
             local max = outputs.len() - 1;
 
             local insertIndex = rndUtils.RandBetween(seed + output,min,max);
-            print ("insertIndex: " + insertIndex + " (min: " + min + ", max: " + max + ", len: " + outputs.len() + ")");
             outputs.remove(pos);
             outputs.insert(insertIndex,output);
         }
         else
         {
-            print ("insertIndex (auto): 0");
             outputs.remove(pos);
             outputs.append(output);
         }

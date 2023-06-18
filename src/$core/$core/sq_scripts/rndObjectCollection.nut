@@ -13,9 +13,9 @@ class rndObjectCollection
 
     constructor(s)
     {
-		inputs = [];
-		highOutputs = [];
-		lowOutputs = [];
+        inputs = [];
+        highOutputs = [];
+        lowOutputs = [];
         source = s;
         PopulateForAllObjectPools();
         AddMetaPropertiesToOutputs();
@@ -23,20 +23,20 @@ class rndObjectCollection
 
     function PopulateForAllObjectPools()
     {
-		foreach (ilink in Link.GetAll(-LINKKIND_SWITCHLINK,source))
+        foreach (ilink in Link.GetAll(-LINKKIND_SWITCHLINK,source))
         {
-            print ("Getting inputs for " + sLink(ilink).dest + " (source: " + source + ")");
+            //print ("Getting inputs for " + sLink(ilink).dest + " (source: " + source + ")");
             GetInputs(sLink(ilink).dest);
         }
-		foreach (olink in Link.GetAll(LINKKIND_SWITCHLINK,source))
+        foreach (olink in Link.GetAll(LINKKIND_SWITCHLINK,source))
         {
-            print ("Getting outputs for " + sLink(olink).dest + " (source: " + source + ")");
+            //print ("Getting outputs for " + sLink(olink).dest + " (source: " + source + ")");
             GetOutputs(sLink(olink).dest);
         }
     }
 
-	function AddMetaProperty(output)
-	{
+    function AddMetaProperty(output)
+    {
         if (rndUtils.isMarker(output))
         {
             //do nothing
@@ -49,75 +49,75 @@ class rndObjectCollection
         {
             Object.AddMetaProperty(output,"Object Randomiser Output");
         }
-	}
-	
-	function DynamicScriptAdd(item,script)
-	{
-		local script1 = Property.Get(item,"Scripts","Script 0");
-		local script2 = Property.Get(item,"Scripts","Script 1");
-		local script3 = Property.Get(item,"Scripts","Script 2");
-		local script4 = Property.Get(item,"Scripts","Script 3");
-		
-		if (script1 == script || script2 == script || script3 == script || script4 == script)
-			return;
-		
-		if (script1 == "" || script1 == 0)
-		{
-			Property.Set(item,"Scripts","Script 0",script);
-		}
-		else if (script2 == "")
-		{
-			Property.Set(item,"Scripts","Script 1",script);
-		}
-		else if (script3 == "")
-		{
-			Property.Set(item,"Scripts","Script 2",script);
-		}
-		else if (script4 == "")
-		{
-			Property.Set(item,"Scripts","Script 3",script);
-		}
-		else
-		{
-			print("Error: Object " + item + " (" + ShockGame.GetArchetypeName(item) + ") has no available script slots!");
-		}
-	}
-	
-    function GetInputs(pool)
-    {
-		foreach (ilink in Link.GetAll(-LINKKIND_TARGET,pool))
-		{
-			local object = sLink(ilink).dest;
-			if (rndUtils.isContainer(object))
-			{
-				if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Input"))
-				{
-					foreach (clink in Link.GetAll(LINKKIND_CONTAINS,object))
-					{
-						local contained = sLink(clink).dest;
-						if (!Object.HasMetaProperty(contained,"Object Randomiser - No Auto Input"))
-							inputs.append(contained);
-					}
-				}				
-			}
-            if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Input"))
-                inputs.append(object);
-		}
     }
 
-	function GetOutputs(pool)
-	{
-		foreach (ilink in Link.GetAll(-LINKKIND_TARGET,pool))
-		{
-			local object = sLink(ilink).dest;
-            if (!Object.HasMetaProperty(object,"Object Randomiser - No Auto Output"))
+    function DynamicScriptAdd(item,script)
+    {
+        local script1 = Property.Get(item,"Scripts","Script 0");
+        local script2 = Property.Get(item,"Scripts","Script 1");
+        local script3 = Property.Get(item,"Scripts","Script 2");
+        local script4 = Property.Get(item,"Scripts","Script 3");
+
+        if (script1 == script || script2 == script || script3 == script || script4 == script)
+            return;
+
+        if (script1 == "" || script1 == 0)
+        {
+            Property.Set(item,"Scripts","Script 0",script);
+        }
+        else if (script2 == "")
+        {
+            Property.Set(item,"Scripts","Script 1",script);
+        }
+        else if (script3 == "")
+        {
+            Property.Set(item,"Scripts","Script 2",script);
+        }
+        else if (script4 == "")
+        {
+            Property.Set(item,"Scripts","Script 3",script);
+        }
+        else
+        {
+            print("Error: Object " + item + " (" + ShockGame.GetArchetypeName(item) + ") has no available script slots!");
+        }
+    }
+
+    function GetInputs(pool)
+    {
+        foreach (ilink in Link.GetAll(-LINKKIND_TARGET,pool))
+        {
+            local object = sLink(ilink).dest;
+            if (rndUtils.isContainer(object))
+            {
+                if (!rndUtils.HasMetaProp(object,"Object Randomiser - No Auto Input"))
+                {
+                    foreach (clink in Link.GetAll(LINKKIND_CONTAINS,object))
+                    {
+                        local contained = sLink(clink).dest;
+                        if (!rndUtils.HasMetaProp(contained,"Object Randomiser - No Auto Input"))
+                            inputs.append(contained);
+                    }
+                }
+            }
+            if (!rndUtils.HasMetaProp(object,"Object Randomiser - No Auto Input"))
+                inputs.append(object);
+        }
+    }
+
+    function GetOutputs(pool)
+    {
+        foreach (ilink in Link.GetAll(-LINKKIND_TARGET,pool))
+        {
+            local object = sLink(ilink).dest;
+            if (!rndUtils.HasMetaProp(object,"Object Randomiser - No Auto Output"))
                 appendToOutputArray(object);
-		}
-	}
+        }
+    }
 
     function appendToOutputArray(output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - High Priority Output"))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - High Priority Output"))
             highOutputs.append(output);
         else
             lowOutputs.append(output);

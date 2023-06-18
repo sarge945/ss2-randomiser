@@ -2,14 +2,13 @@
 // 								Handle Eggs
 // ================================================================================
 
-/*
 //Only one egg in the map
-Create "rndWallEggRandomiser" "rndWallEggsRandomiser"
+Create "rndWallEggRandomiserNoGrubs" "rndWallEggsRandomiser"
 {
 }
 
-//Outputs
-+Link "rndWallEggs" "rndWallEggsRandomiser" "~SwitchLink"
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
++Link 2144 "rndWallEggsRandomiser" "Target"
 {
 }
-*/

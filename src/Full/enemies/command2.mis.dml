@@ -1,0 +1,64 @@
+// ================================================================================
+// 								Korenchkin Brain
+// ================================================================================
+
+//Create a randomiser for the brain
+Create "rndBrainRandomiser" "rndKorenchkinRandomiser"
+{
+}
+
+////Link the brain and markers to it
++Link 189 "rndKorenchkinRandomiser" "Target"
+{
+}
++Link 189 "rndKorenchkinRandomiser" "~Target"
+{
+}
+
+//Near the bench on the right side of the room
+Create "rndOutputMarker" "rndKorenchkinBenchBrainSpot"
+{
+	+ObjProp "Position"
+	{
+		"Location" "109.786, 29.9555, 45.6033"
+		"Heading" bfb0
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+
++Link "rndKorenchkinBenchBrainSpot" "rndKorenchkinRandomiser" "~Target"
+{
+}
+
+//Near the plant on the left side of the room
+Create "rndOutputMarker" "rndKorenchkinPlantSpot"
+{
+	+ObjProp "Position"
+	{
+		"Location" "82.1959, 15.2555, 63.3033"
+		"Heading" 4000
+		"Pitch" 0
+		"Bank" 0
+	}
+}
+
++Link "rndKorenchkinPlantSpot" "rndKorenchkinRandomiser" "~Target"
+{
+}
+
+//On the roof (sneaky!)
+Create "rndOutputMarker" "rndKorenchkinRoofSpot"
+{
+	+ObjProp "Position"
+	{
+		"Location" "82.1959, 33.8555, 64.8033"
+		"Heading" 4000
+		"Pitch" 0
+		"Bank" 4000
+	}
+}
+
++Link "rndKorenchkinRoofSpot" "rndKorenchkinRandomiser" "~Target"
+{
+}

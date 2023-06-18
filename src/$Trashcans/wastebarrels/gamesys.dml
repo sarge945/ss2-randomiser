@@ -1,0 +1,3 @@
+//Prevent Waste Barrels from containing anything other than junk
++MetaProp -155 "Object Randomiser - Junk Only"
++MetaProp -155 "Object Randomiser - No Logs"

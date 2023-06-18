@@ -61,8 +61,8 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         Object.Teleport(newObject,Object.Position(output),Object.Facing(output));
 
-        CopyLinkType(output,newObject,"SwitchLink");
-        CopyLinkType(output,newObject,"~SwitchLink");
+        copyLinks(output,newObject,"SwitchLink");
+        copyLinks(output,newObject,"~SwitchLink");
 
         //Set model, since some eggs have a different model,
         //and we want things to look exactly the same

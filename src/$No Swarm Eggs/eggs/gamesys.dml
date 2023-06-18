@@ -16,6 +16,12 @@
 	"" "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333;replacementTypes0=-1475;replacementTypes1=-1333"
 }
 
+//Use for Wall eggs, no grubs
++ObjProp "rndWallEggRandomiserNoGrubs" "DesignNoteSS"
+{
+	"" "allowedTypes0=-1331;allowedTypes1=-1475;allowedTypes2=-1333;replacementTypes0=-1475"
+}
+
 //Use for Ceiling eggs
 +ObjProp "rndCeilingEggRandomiser" "DesignNoteSS"
 {

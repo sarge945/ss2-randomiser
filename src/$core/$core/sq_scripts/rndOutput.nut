@@ -36,10 +36,10 @@ class rndOutput extends rndBase
 
         local isJunk = rndUtils.IsJunk(input);
 
-        local junkOnlyM = Object.HasMetaProperty(output,"Object Randomiser - Junk Only");
-        local noJunkM = Object.HasMetaProperty(output,"Object Randomiser - No Junk");
-        local highPrioM = Object.HasMetaProperty(output,"Object Randomiser - High Priority Output");
-        local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
+        local junkOnlyM = rndUtils.HasMetaProp(output,"Object Randomiser - Junk Only");
+        local noJunkM = rndUtils.HasMetaProp(output,"Object Randomiser - No Junk");
+        local highPrioM = rndUtils.HasMetaProp(output,"Object Randomiser - High Priority Output");
+        local secretM = rndUtils.HasMetaProp(output,"Object Randomiser - Secret");
 
         if (junkOnlyM && !isJunk)
             return false;
@@ -56,7 +56,7 @@ class rndOutput extends rndBase
 
     static function LogCheck(input,output)
     {
-        local noLogM = Object.HasMetaProperty(output,"Object Randomiser - No Logs");
+        local noLogM = rndUtils.HasMetaProp(output,"Object Randomiser - No Logs");
         if (rndUtils.IsLog(input) && noLogM)
             return false;
 
@@ -65,24 +65,24 @@ class rndOutput extends rndBase
 
     static function ContainerOnlyCheck(input,output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && rndUtils.isArchetype(input,output))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Output Self Only") && rndUtils.isArchetype(input,output))
             return true;
 
-        if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
+        if (rndUtils.HasMetaProp(input,"Object Randomiser - Container Only"))
             return rndUtils.isContainer(output);
         return true;
     }
 
     static function SameTypeCheck(input,output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only"))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Output Self Only"))
             return rndUtils.isContainer(output) || rndUtils.SameItemType(output,input);
         return true;
     }
 
     static function SecretCheck(output,RnoSecret)
     {
-        local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
+        local secretM = rndUtils.HasMetaProp(output,"Object Randomiser - Secret");
         if (secretM && RnoSecret)
             return false;
         return true;
@@ -248,12 +248,12 @@ class rndOutput extends rndBase
 
             Physics.Activate(input);
 
-            if (!Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
+            if (!rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
                 Physics.SetVelocity(input,vector(0,0,10));
         }
 
         //Freeze objects
-        if (Object.HasMetaProperty(output,"Object Randomiser - Freeze"))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Freeze"))
         {
             Property.Set(input, "PhysControl", "Controls Active", PHYSCONTROL_LOC_ROT);
         }

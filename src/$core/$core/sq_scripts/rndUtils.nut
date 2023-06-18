@@ -68,15 +68,6 @@ class rndUtils
 		-1105, //Beaker
 	];
 
-    static function CopyLinkType(source,dest,linkName)
-    {
-        foreach (llink in Link.GetAll(linkkind(linkName),source))
-        {
-            local target = sLink(llink).dest;
-            Link.Create(linkkind(linkName),dest,target);
-        }
-    }
-
     static function IsLog(obj)
     {
         return isArchetype(obj,-76);
@@ -129,6 +120,19 @@ class rndUtils
 		}
 		return re;
 	}
+
+    //Check for metaprop on an item or it's parent archetype
+    static function HasMetaProp(item,metaprop)
+    {
+
+        local parent = Object.Archetype(item);
+        local hasMeta = Object.HasMetaProperty(item,metaprop);
+
+        if (!hasMeta && parent != -1)
+            return HasMetaProp(parent,metaprop)
+        else
+            return hasMeta;
+    }
 
 	static function isArchetype(obj,type)
 	{

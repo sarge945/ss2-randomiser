@@ -1,0 +1,6 @@
+//Create a randomiser for Reaver Brains
+CreateArch "rndSimpleRandomiser" "rndBrainRandomiser"
+{
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-1967"
+}
+
