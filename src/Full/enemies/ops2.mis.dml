@@ -1,0 +1,78 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndOpsEnemyRandomiser" "rndOps2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 354 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 837 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 883 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 893 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe
++Link 894 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 1016 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 815 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 394 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//Red Monke
++Link 817 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//Red Monke
++Link 817 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//Red Monke
++Link 355 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+//Arachnightmare
+//Potentially not good, has custom scripts
++Link 1006 "rndOps2EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Midwife
+//Don't replace as it's near eggs
++Link 352 "rndOps2EnemyRandomiser" "Target"
+{
+}
+*/

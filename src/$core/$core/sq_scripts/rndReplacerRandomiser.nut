@@ -24,7 +24,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
         //Shuffle Array
         outputs = rndUtils.Shuffle(outputs,seed);
 
-        PrintDebug("Replacer Randomiser (" + ShockGame.GetArchetypeName(self) + ") Started. [seed: " + seed + ", outputs: " + outputs.len() + "]");
+        ShowWelcomeMessage("Replacer");
 
         //We have to set a timer, or Object.BeginCreate breaks everything
         SetOneShotTimer("StartTimer",0.01);
@@ -33,10 +33,10 @@ class rndReplacerRandomiser extends rndBaseRandomiser
         totalOutputs = outputs.len();
     }
 
-    function GetReplaceObject(rolls)
+    function GetReplaceObject(output)
     {
         local total = replaceObjects.len() - 1;
-        local obj = rndUtils.RandBetween(seed + rolls,0,total);
+        local obj = rndUtils.RandBetween(seed + output,0,total);
         return replaceObjects[obj];
     }
 
@@ -55,7 +55,21 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         local output = outputs[0];
 
-        local replacement = GetReplaceObject(rolls);
+        CreateNewObject(output);
+
+        rolls++;
+        outputs.remove(0);
+        Randomise();
+    }
+
+    function CreateNewObject(output)
+    {
+        local replacement = GetReplaceObject(output);
+        if (replacement == output)
+        {
+            return;
+        }
+        local name = Object.GetName(output);
         local newObject = Object.BeginCreate(replacement);
         PrintDebug("created object (" + ShockGame.GetArchetypeName(newObject) + ") " + newObject,1);
 
@@ -63,7 +77,22 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         copyLinks(output,newObject,"SwitchLink");
         copyLinks(output,newObject,"~SwitchLink");
+        copyLinks(output,newObject,"Target");
+        copyLinks(output,newObject,"~Target");
 
+        Place(output,newObject);
+
+        Object.EndCreate(newObject);
+
+        PrintDebug("Replacing " + output + " (" + ShockGame.GetArchetypeName(output) + ") with " + newObject + " (" + ShockGame.GetArchetypeName(newObject) + ")",1);
+
+        Object.Destroy(output);
+
+        Object.SetName(newObject,name);
+    }
+
+    function Place(output,newObject)
+    {
         //Set model, since some eggs have a different model,
         //and we want things to look exactly the same
         local model = Property.Get(output, "ModelName");
@@ -74,14 +103,5 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         local tweqModel = Property.Get(output, "CfgTweqModels","Model 0");
         Property.Set(newObject, "CfgTweqModels", "Model 0", tweqModel);
-        Object.EndCreate(newObject);
-
-        PrintDebug("Replacing " + output + " (" + ShockGame.GetArchetypeName(output) + ") with " + newObject + " (" + ShockGame.GetArchetypeName(newObject) + ")",1);
-
-        rolls++;
-        outputs.remove(0);
-        Object.Destroy(output);
-
-        Randomise();
     }
 }

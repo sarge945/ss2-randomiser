@@ -160,7 +160,10 @@ class rndOutput extends rndBase
         local source = message().from;
 
         if (IsPlaced())
+        {
             PostMessage(source,"OutputFailed");
+            return;
+        }
 
         local inputs = message().data;
         local config = message().data2;
@@ -172,7 +175,8 @@ class rndOutput extends rndBase
 
         foreach(input in inputArr)
         {
-            if (IsValid(input,configArr) == 0)
+            local valid = IsValid(input,configArr);
+            if (valid == 0)
             {
                 SetData("placed",true);
                 PostMessage(source,"OutputSuccess",input,!container);
@@ -181,6 +185,8 @@ class rndOutput extends rndBase
                 Place(input,self);
                 return;
             }
+            else
+                PrintDebug("    input " + input + " was not valid (error code " + valid + ")",4);
         }
         PostMessage(source,"OutputFailed");
     }

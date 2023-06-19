@@ -102,6 +102,8 @@ class rndBase extends SqRootScript
 		{
 			local realLink = sLink(outLink);
 			Link.Create(realLink.flavor,dest,realLink.dest);
+            //realLink.source = dest;
+            //print("Creating new link " + linkType + " to " + dest);
 		}
 	}
 }

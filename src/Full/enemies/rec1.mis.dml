@@ -1,0 +1,100 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a test randomiser for the Barracks and System Ops areas
+Create "rndRecEnemyRandomiser" "rndRec1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 147 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 369 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 152 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Security
++Link 740 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Assault
++Link 487 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Rumbler
+//Special, don't randomise
++Link 1546 "rndRec1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Grenade
++Link 201 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1401 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1671 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin - Teleports In
++Link 1379 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin - Teleports In
++Link 1374 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 1990 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+//Monster Gens
+//Only add special cases, not ecologies
+
++Link 1385 "rndRec1EnemyRandomiser" "Target"
+{
+}
++Link 1394 "rndRec1EnemyRandomiser" "Target"
+{
+}
++Link 1393 "rndRec1EnemyRandomiser" "Target"
+{
+}
++Link 1413 "rndRec1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Roof Monkey
+//This is just way too silly
++Link 189 "rndRec1EnemyRandomiser" "Target"
+{
+}
++Link 1853 "rndRec1EnemyRandomiser" "Target"
+{
+}
+*/

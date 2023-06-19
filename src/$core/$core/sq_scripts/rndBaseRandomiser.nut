@@ -2,7 +2,6 @@
 //At bare minimum, randomisers will have a seed and some outputs
 class rndBaseRandomiser extends rndBase
 {
-	inputs = null;
 	outputs = null;
 	rolls = null;
     allowedTypes = null;
@@ -70,7 +69,7 @@ class rndBaseRandomiser extends rndBase
 	
 	function ShowWelcomeMessage(randomiserType)
 	{
-		PrintDebug(randomiserType + " Randomiser Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + ", inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
+		PrintDebug(randomiserType + " Randomiser Started. [seed: " + seed + ", outputs: " + outputs.len() + "]");
 	}
 	
 	function Complete(randomiserType)

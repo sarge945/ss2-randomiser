@@ -1,0 +1,77 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndMedSciEnemyRandomiser" "rndMedSci1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+/*
+//Maint Bot
+//We don't need to replace this
++Link 87 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//Pipe Guy in Xerxes core
+//Disabled due to being specially triggered
++Link 596 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Pipe Guy in Security Room
++Link 1383 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Pipe Guy in Trap Room (Chucky)
++Link 964 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Monke in Trap Room (Spunky)
++Link 605 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in room near R&D Entrance
++Link 1081 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in Morgue (Dingo)
++Link 904 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in alcove near bins
++Link 1007 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in Watts room
++Link 163 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Ramp Turret
+//Probably not needed since it will only ever be 1 type
++Link 1015 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
+//Generator Room Turrets
+//Probably not needed since they will only ever be 1 type
++Link 611 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
++Link 610 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+*/

@@ -1,0 +1,88 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndMedSciEnemyRandomiser" "rndMedSci2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Shotgun guy in flooded apartments area
++Link 1392 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in flooded apartments area
++Link 1661 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in radiation storage
++Link 1293 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy in bar
++Link 705 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Pipe guy near map start
++Link 668 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Radiation Room
++Link 437 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Grassis Lab
++MetaProp 519 "Object Randomiser - Ranged Enemies Only"
++Link 519 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey near danger closet
++Link 543 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in easy radiation room
++Link 296 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Willy and Chilly
+//Caged monkeys
+//Keep them as they are as they are the only thing that makes sense here
++Link 280 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
++Link 821 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//Turrets, no point replacing
++Link 629 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
++Link 714 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Monster Gens
+//Only add special cases, not ecologies
+
+//Shotgunners that ambush you
++Link 1238 "rndMedSci2EnemyRandomiser" "Target"
+{
+}
++Link 1248 "rndMedSci2EnemyRandomiser" "Target"
+{
+}

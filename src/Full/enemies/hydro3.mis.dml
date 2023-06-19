@@ -1,0 +1,16 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndHydroEnemyRandomiser" "rndHydro3EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Just the one this time
+
+//Midwife Sandy
++Link 138 "rndHydro3EnemyRandomiser" "Target"
+{
+}

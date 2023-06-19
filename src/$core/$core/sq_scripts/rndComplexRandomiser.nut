@@ -7,7 +7,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
     minTimes = null;
     maxTimes = null;
     allowOriginalLocations = null;
-    priority = null;
+    delay = null;
     failures = null;
 
     //State
@@ -27,11 +27,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
     noHighPriority = null;
     timerID = null;
     noItemOutputs = null;
+	
+	function ShowWelcomeMessage(randomiserType)
+	{
+		PrintDebug(randomiserType + " Randomiser Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + ", inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
+	}
 
     function Init(reloaded)
     {
         base.Init(reloaded);
-        priority = getParam("priority",0);
+        delay = getParam("delay",0);
 
         if (!reloaded)
         {
@@ -119,7 +124,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
     function GetStartTime()
     {
         //return 0.25 + (seed % 1000 * 0.0001);
-        return 0.01;
+        return 0.01 + (0.1 * delay);
     }
 
     function OnOutputSuccess()
@@ -165,16 +170,25 @@ class rndComplexRandomiser extends rndBaseRandomiser
         if (inputs.len() == 0 || outputs.len() == 0)
         {
             Complete("Complex");
+            KillContingencyTimer();
             return;
         }
 
         if (rolls >= totalRolls || rolls > totalItems)
         {
-            PrintDebug("Rolls exceeded",5);
+            PrintDebug("Rolls exceeded (" + minTimes + ", " + maxTimes + ", " + totalRolls + ")",5);
+            Complete("Complex");
+            KillContingencyTimer();
             return;
         }
 
         local output = outputs[0];
+
+        if (!Object.Exists(output))
+        {
+            outputs.remove(0);
+            Randomise();
+        }
 
         PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + "/" + totalRolls + ")",4);
 
@@ -182,9 +196,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         PrintDebug("    Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
         PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),rolls);
+
+        //TODO: Delet this
+        KillContingencyTimer();
+        timerID = SetOneShotTimer("RandomiseTimer",1.0);
+    }
+
+    function KillContingencyTimer()
+    {
         if (timerID != null)
             KillTimer(timerID);
-        timerID = SetOneShotTimer("RandomiseTimer",0.01);
     }
 
     function OnTimer()
@@ -196,9 +217,9 @@ class rndComplexRandomiser extends rndBaseRandomiser
         else if (message().name == "RandomiseTimer")
         {
             //we're stuck!
-            PrintDebug("contingency timer activated...",4);
-            ShowDebug("contingency timer activated...",4);
-            outputs.remove(0);
+            PrintDebug("contingency timer activated... Something has gone very wrong! Report a randomiser bug immediately!",0);
+            ShowDebug("contingency timer activated... Something has gone very wrong!",0);
+            ShowDebug("Report a randomiser bug immediately!",0);
             Randomise();
         }
     }

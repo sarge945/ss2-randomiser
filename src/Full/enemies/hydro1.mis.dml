@@ -1,0 +1,51 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndHydroEnemyRandomiser" "rndHydro1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+/*
+//Maint droids, no point adding
++Link 407 "rndHydro1EnemyRandomiser" "Target"
+{
+}
++Link 403 "rndHydro1EnemyRandomiser" "Target"
+{
+}
++Link 391 "rndHydro1EnemyRandomiser" "Target"
+{
+}
++Link 399 "rndHydro1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Shotgun
++Link 1089 "rndHydro1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Turnbull
+//Leave alone
++Link 1003 "rndHydro1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Pipe - Teleports In
++Link 168 "rndHydro1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Midwife
+//Should be left as she's tending to eggs
++Link 634 "rndHydro1EnemyRandomiser" "Target"
+{
+}
+*/
