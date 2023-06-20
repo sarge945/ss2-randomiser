@@ -1,4 +1,134 @@
 // ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a randomiser for the map
+Create "rndCommandEnemyRandomiser" "rndCommand2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 2400 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 2401 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 1367 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 1368 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assault Bot
++Link 2457 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assault Bot
++Link 2459 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assault Bot
++Link 2460 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 1554 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 169 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 508 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2338 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2336 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 472 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2335 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2334 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 857 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 1295 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Turrets
+
+//Bridge Turret - might leave as-is so it can't be downgraded
++Link 1325 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Bridge Turret Upstairs - might leave as-is so it can't be downgraded
++Link 1387 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Laser Turret
++Link 2399 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+//Laser Turret
++Link 2360 "rndCommand2EnemyRandomiser" "Target"
+{
+}
+
+
+////DirectMonsterGens
+
+//None
+
+
+
+
+
+
+
+
+// ================================================================================
 // 								Korenchkin Brain
 // ================================================================================
 

@@ -62,7 +62,7 @@ class rndBaseRandomiser extends rndBase
     function SetAllowedTypes()
     {
         allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
-        local addAllowedTypes = getParamArray("allowedTypesAdd",[]);
+        local addAllowedTypes = getParamArray("addAllowedTypes",[]);
         foreach (add in addAllowedTypes)
             allowedTypes.append(add);
     }

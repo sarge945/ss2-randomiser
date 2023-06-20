@@ -135,7 +135,7 @@ CreateArch "Marker" "rndSwitchLinkOutputHandler"
 
 CreateArch "rndComplexRandomiser" "rndCrateRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "ignorePriority=1; variedOutput=0;"
+	+ObjProp "DesignNoteSS" = "ignorePriority=1; variedOutput=0; addAllowedTypes0=-12; addAllowedTypes1=-78"
 }
 
 CreateArch "rndComplexRandomiser" "rndWeaponRandomiser"

@@ -1,0 +1,61 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for the whole map, we already have everything on this deck
+//This will cover everything before Core Control, the Nacelles, and the service tube area
+Create "rndWeaponRandomiser" "rndCommand2WeaponRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersQuartersObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndOfficersLoungeObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndApartmentsObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndEscapePodsObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCaptainsObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndBridgeObjects" "rndCommand2WeaponRandomiser" "~SwitchLink"
+{
+}

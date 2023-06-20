@@ -1,0 +1,79 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for everything
+Create "rndWeaponRandomiser" "rndRick1WeaponRandomiser"
+{
+}
+
+//Inputs
++Link "rndUmbilicalObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndRick1WeaponRandomiser" "SwitchLink"
+{
+}
+
+
+//Outputs
++Link "rndUmbilicalObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsBeforeCrane" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterCrane" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndVentilationObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndSupportAObjectsAfterVentilation" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2LobbyObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleAObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBHallwayObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndNacelleBObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2HallwayObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndPod2MissileObjects" "rndRick1WeaponRandomiser" "~SwitchLink"
+{
+}

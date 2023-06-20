@@ -16,29 +16,29 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
     static botTypes = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-171,      1,        1,    1,        1,    0,      0,          0,      0,      0,], //Maint droid
-        [-172,      0,        0,    0,        9,    1,      0,          0,      0,      0,], //Security Droid
-        [-173,      0,        0,    0,        0,    1,      0,          0,      0,      0,], //Assault Droid
-        [-180,      0,        0,    0,        0,    0,      0,          0,      0,      0,], //Rumbler
+        [-172,      0,        0,    0,        9,    1,      1,          0,      0,      0,], //Security Droid
+        [-173,      0,        0,    0,        0,    1,      8,          0,      0,      0,], //Assault Droid
+        [-180,      0,        0,    0,        0,    0,      8,          0,      0,      0,], //Rumbler
     ];
 
     static turretTypes = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
-        [-369,      1,        1,    1,        1,    0,      0,          0,      0,      0,], //Slug Turret
-        [-168,      0,        1,    3,        8,    1,      0,          0,      0,      0,], //Laser Turret
-        [-167,      0,        0,    0,        0,    0,      0,          0,      0,      0,], //Rocket Turret
+        [-369,      1,        1,    1,        1,    1,      0,          0,      0,      0,], //Slug Turret
+        [-168,      0,        1,    3,        6,    8,      1,          0,      0,      0,], //Laser Turret
+        [-167,      0,        0,    0,        0,    0,      2,          0,      0,      0,], //Rocket Turret
     ];
 
     static mainTypes = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-397,      3,        1,    1,        1,    0,      0,          0,      0,      0,], //OG-Pipe
-        [-175,      2,        2,    3,        5,    3,      0,          0,      0,      0,], //OG-Shotgun
+        [-175,      2,        2,    3,        5,    3,      1,          0,      0,      0,], //OG-Shotgun
         [-1431,      1,        2,    3,        1,    0,      0,          0,      0,      0,], //Blue Monkey
-        [-174,      0,        2,    1,        3,    3,      0,          0,      0,      0,], //Protocol Droid
-        [-179,      0,        0,    3,        5,    3,      0,          0,      0,      0,], //Midwife
-        [-176,      0,        0,    0,        10,    2,      0,          0,      0,      0,], //OG-Grenade
-        [-1432,      0,        0,    0,        8,    3,      0,          0,      0,      0,], //Red Monkey
-        [-189,      0,        0,    0,        5,    0,      0,          0,      0,      0,], //Arachnightmare
-        [-1541,      0,        0,    0,        5,    3,      0,          0,      0,      0,], //Cyborg Assassin
+        [-174,      0,        2,    1,        3,    3,      5,          0,      0,      0,], //Protocol Droid
+        [-179,      0,        0,    3,        5,    3,      4,          0,      0,      0,], //Midwife
+        [-176,      0,        0,    0,        10,    2,      1,          0,      0,      0,], //OG-Grenade
+        [-1432,      0,        0,    0,        8,    3,      1,          0,      0,      0,], //Red Monkey
+        [-189,      0,        0,    0,        5,    0,      1,          0,      0,      0,], //Arachnightmare
+        [-1541,      0,        0,    0,        5,    3,      6,          0,      0,      0,], //Cyborg Assassin
         [-1439,      0,        0,    0,        0,    0,      0,          0,      0,      0,], //Invisible Arachnid
     ];
 
@@ -109,6 +109,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         Property.SetSimple(newObject,"HitPoints",maxHP);
 
         //Copy over AI Properties
+        Property.CopyFrom(newObject,"AI_VisDesc",output);
         Property.CopyFrom(newObject,"AI_Fidget",output);
         Property.CopyFrom(newObject,"AI_Patrol",output);
         Property.CopyFrom(newObject,"AI_PtrlRnd",output);

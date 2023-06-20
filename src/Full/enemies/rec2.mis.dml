@@ -2,7 +2,7 @@
 // 								Enemy Randomisation
 // ================================================================================
 
-//Create a test randomiser for the Barracks and System Ops areas
+//Create a Randomiser for the map
 Create "rndRecEnemyRandomiser" "rndRec2EnemyRandomiser"
 {
 }

@@ -208,11 +208,14 @@ Create "rndObjectCollection" "rndWallEggs"
 {
 }
 
+/*
 //Fusion Cannon (Foo-shun!!)
+//Don't change, it's iconic
 +MetaProp 1612 "Object Randomiser - Secret"
 +Link 1612 "rndSupportAObjectsAfterVentilation" "Target"
 {
 }
+*/
 
 //Corpse near entrance to Pod 2 Ladder
 +Link 1619 "rndSupportAObjectsAfterVentilation" "Target"
@@ -301,6 +304,8 @@ Create "rndObjectCollection" "rndWallEggs"
 }
 
 //PSI Hypo inside egg
+//This just seems completely wrong
++MetaProp 914 "Object Randomiser - No Auto Output"
 +Link 914 "rndNacelleAObjects" "Target"
 {
 }

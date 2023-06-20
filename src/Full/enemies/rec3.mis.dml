@@ -2,7 +2,7 @@
 // 								Enemy Randomisation
 // ================================================================================
 
-//Create a test randomiser for the Barracks and System Ops areas
+//Create a Randomiser for the map
 Create "rndRecEnemyRandomiser" "rndRec3EnemyRandomiser"
 {
 }
@@ -56,3 +56,7 @@ Create "rndRecEnemyRandomiser" "rndRec3EnemyRandomiser"
 +Link 1726 "rndRec3EnemyRandomiser" "Target"
 {
 }
+
+////DirectMonsterGens
+
+//None
