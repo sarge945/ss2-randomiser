@@ -547,6 +547,8 @@ Create "rndOutputMarker" "rndSectorB1048Replacer"
 ////Containers
 
 //Desk in Chemical Storeroom
+//Contains manifest
++MetaProp 325 "Object Randomiser - No Auto Input"
 +Link 325 "rndSectorBStoreroom" "Target"
 {
 }
