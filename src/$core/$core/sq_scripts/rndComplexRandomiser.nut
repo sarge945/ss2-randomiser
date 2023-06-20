@@ -216,11 +216,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
         }
         else if (message().name == "RandomiseTimer")
         {
-            //we're stuck!
-            PrintDebug("contingency timer activated... Something has gone very wrong! Report a randomiser bug immediately!",0);
-            ShowDebug("contingency timer activated... Something has gone very wrong!",0);
-            ShowDebug("Report a randomiser bug immediately!",0);
-            Randomise();
+            if (outputs.len() > 0)
+            {
+                //we're stuck!
+                ShowDebug("Contingency timer reached... A Randomiser has encountered an issue",0);
+                ShowDebug("Output " + outputs[0] + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",0);
+                ShowDebug("Report this as a bug!",0);
+                outputs.remove(0);
+                KillContingencyTimer();
+                Randomise();
+            }
         }
     }
 

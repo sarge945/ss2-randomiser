@@ -143,11 +143,13 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         {
             return RollForEnemy(botTypes);
         }
+        /*
         //Polymorph turrets into each other
         else if (rndUtils.isArchetype(output,-369) || rndUtils.isArchetype(output,-167) || rndUtils.isArchetype(output,-168))
         {
             return RollForEnemy(turretTypes);
         }
+        */
         //This one's a doozy!
         //Hybrids, Monkeys, Spiders, Protocol Droids and Cyborgs can all become each other
         else if (rndUtils.isArchetype(output,-174) || rndUtils.isArchetype(output,-396) || rndUtils.isArchetype(output,-1540) || rndUtils.isArchetype(output,-1539) || rndUtils.isArchetype(output,-2013))
