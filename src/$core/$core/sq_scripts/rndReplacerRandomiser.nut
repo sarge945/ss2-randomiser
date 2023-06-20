@@ -65,8 +65,9 @@ class rndReplacerRandomiser extends rndBaseRandomiser
     function CreateNewObject(output)
     {
         local replacement = GetReplaceObject(output);
-        if (replacement == output)
+        if (rndUtils.isArchetypeExact(output,replacement))
         {
+            PrintDebug("Not replacing " + output + ", same archetype",1);
             return;
         }
         local name = Object.GetName(output);

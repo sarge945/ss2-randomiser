@@ -184,7 +184,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         local output = outputs[0];
 
-        if (!Object.Exists(output))
+        if (!Object.Exists(output) || Object.Archetype(output) == 0)
         {
             outputs.remove(0);
             Randomise();
@@ -220,7 +220,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
             {
                 //we're stuck!
                 ShowDebug("Contingency timer reached... A Randomiser has encountered an issue",0);
-                ShowDebug("Output " + outputs[0] + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",0);
+                ShowDebug("Output " + outputs[0] + " of type " + Object.Archetype(outputs[0]) + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",0);
                 ShowDebug("Report this as a bug!",0);
                 outputs.remove(0);
                 KillContingencyTimer();

@@ -133,10 +133,15 @@ class rndUtils
         else
             return hasMeta;
     }
+    
+    static function isArchetypeExact(obj,type)
+    {
+        return obj == type || Object.Archetype(obj) == type;
+    }
 
     static function isArchetype(obj,type)
     {
-        return obj == type || Object.Archetype(obj) == type || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
+        return isArchetypeExact(obj,type) || Object.Archetype(obj) == Object.Archetype(type) || Object.InheritsFrom(obj,type);
     }
 
     /*

@@ -55,6 +55,8 @@ Create "rndObjectCollection" "rndSecurityCrates"
 
 //Wrench Guy at the start of the game
 +MetaProp 1177 "Object Randomiser - No Auto Input"
+//Prevent the first guy from getting the second wrench
++MetaProp 1177 "Object Randomiser - Small Item Output"
 +Link 1177 "rndCryoObjects" "Target"
 {
 }
@@ -171,6 +173,9 @@ Create "rndOutputMarker" "rndCryoGlassChamber"
 	}
 }
 +MetaProp "rndCryoGlassChamber" "Object Randomiser - High Priority Output"
+//Prevent cryo card from appearing there
++MetaProp "rndCryoGlassChamber" "Object Randomiser - Secret"
++MetaProp "rndCryoGlassChamber" "Object Randomiser - No Logs"
 +Link "rndCryoGlassChamber" "rndCryoObjectsAfterAirlock" "Target"
 {
 }

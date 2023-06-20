@@ -109,7 +109,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         Property.SetSimple(newObject,"HitPoints",maxHP);
 
         //Copy over AI Properties
-        Property.CopyFrom(newObject,"AI_VisDesc",output);
+        //Property.CopyFrom(newObject,"AI_VisDesc",output);
         Property.CopyFrom(newObject,"AI_Fidget",output);
         Property.CopyFrom(newObject,"AI_Patrol",output);
         Property.CopyFrom(newObject,"AI_PtrlRnd",output);
