@@ -37,8 +37,8 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         [-179,      0,        0,    3,        5,    3,      0,          0,      0,      0,], //Midwife
         [-176,      0,        0,    0,        10,    2,      0,          0,      0,      0,], //OG-Grenade
         [-1432,      0,        0,    0,        8,    3,      0,          0,      0,      0,], //Red Monkey
-        [-189,      0,        0,    0,        6,    0,      0,          0,      0,      0,], //Arachnightmare
-        [-1541,      0,        0,    0,        0,    3,      0,          0,      0,      0,], //Cyborg Assassin
+        [-189,      0,        0,    0,        5,    0,      0,          0,      0,      0,], //Arachnightmare
+        [-1541,      0,        0,    0,        5,    3,      0,          0,      0,      0,], //Cyborg Assassin
         [-1439,      0,        0,    0,        0,    0,      0,          0,      0,      0,], //Invisible Arachnid
     ];
 
@@ -95,12 +95,19 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         rndUtils.CopyMetaprop(output,newObject,"Blind");
 
         Property.CopyFrom(newObject,"EcoType",output);
-        
+
         //For turrets, copy over hack difficulty
         Property.CopyFrom(newObject,"HackDiff",output);
         Property.CopyFrom(newObject,"RepairDiff",output);
         Property.CopyFrom(newObject,"AmbientHacked",output);
-        
+
+        //Remove friendly (fixes issue with Repairman)
+        Object.RemoveMetaProperty(newObject,"Good Guy");
+
+        //Set HP to max (fixes issues with RSD)
+        local maxHP = Property.Get(newObject,"MAX_HP");
+        Property.SetSimple(newObject,"HitPoints",maxHP);
+
         //Copy over AI Properties
         Property.CopyFrom(newObject,"AI_Fidget",output);
         Property.CopyFrom(newObject,"AI_Patrol",output);
@@ -108,21 +115,21 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         Property.CopyFrom(newObject,"AI_Mode",output);
         Property.CopyFrom(newObject,"AI_Alertness",output);
         Property.CopyFrom(newObject,"AI_Efficiency",output);
-        
+
         //Copy Multiplayer Handoff (maybe not needed)
         Property.CopyFrom(newObject,"AI_NoHandoff",output);
 
         //Set Idling Directions (maybe not needed)
         Property.CopyFrom(newObject,"AI_IdleDirs",output);
-        
+
         //Set Idling Return to Origin (maybe not needed)
         Property.CopyFrom(newObject,"AI_IdlRetOrg",output);
-        
+
         //Copying Signal and Alert Responses
         Property.CopyFrom(newObject,"AI_SigRsp",output);
         Property.CopyFrom(newObject,"AI_AlrtRsp",output);
-        
-        //If we are the same type, copy our loot table and ranged combat info
+
+        //If we are the same type, copy our loot table and contained items
         if (rndUtils.isArchetype(output,newObject))
         {
             PrintDebug(output + " and " + newObject + " are same archetype, setting RCProp and Loot Info properties",1);
@@ -132,8 +139,6 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         }
     }
 
-    //Massive hacky if conditional.
-    //This should probably be a table of some sort...
     function GetReplaceObject(output)
     {
         PrintDebug("---- Rolling for " + output + " (" + ShockGame.GetArchetypeName(output) + ") ----",1);
@@ -143,13 +148,11 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         {
             return RollForEnemy(botTypes);
         }
-        /*
         //Polymorph turrets into each other
         else if (rndUtils.isArchetype(output,-369) || rndUtils.isArchetype(output,-167) || rndUtils.isArchetype(output,-168))
         {
             return RollForEnemy(turretTypes);
         }
-        */
         //This one's a doozy!
         //Hybrids, Monkeys, Spiders, Protocol Droids and Cyborgs can all become each other
         else if (rndUtils.isArchetype(output,-174) || rndUtils.isArchetype(output,-396) || rndUtils.isArchetype(output,-1540) || rndUtils.isArchetype(output,-1539) || rndUtils.isArchetype(output,-2013))

@@ -79,10 +79,10 @@ class rndReplacerRandomiser extends rndBaseRandomiser
         copyLinks(output,newObject,"~SwitchLink");
         copyLinks(output,newObject,"Target");
         copyLinks(output,newObject,"~Target");
+        
+        Object.EndCreate(newObject);
 
         Place(output,newObject);
-
-        Object.EndCreate(newObject);
 
         PrintDebug("Replacing " + output + " (" + ShockGame.GetArchetypeName(output) + ") with " + newObject + " (" + ShockGame.GetArchetypeName(newObject) + ")",1);
 

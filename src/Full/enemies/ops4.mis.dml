@@ -79,17 +79,19 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 }
 
 //Spider
++Link 327 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Spider Ambush. Leave intact
+//Spider
 +Link 285 "rndOps4EnemyRandomiser" "Target"
 {
 }
 
 //Spider
 +Link 286 "rndOps4EnemyRandomiser" "Target"
-{
-}
-
-//Spider
-+Link 327 "rndOps4EnemyRandomiser" "Target"
 {
 }
 
@@ -102,6 +104,7 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 +Link 603 "rndOps4EnemyRandomiser" "Target"
 {
 }
+*/
 
 //Turrets
 +Link 281 "rndOps4EnemyRandomiser" "Target"
