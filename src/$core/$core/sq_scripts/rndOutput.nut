@@ -3,6 +3,11 @@ class rndOutput extends rndBase
     container = null;
     corpse = null;
     allowedTypes = null;
+    setMaterials = null;
+
+    static REMOVE_TIMER = 2;
+
+    timerID = null;
 
     function Init(reloaded)
     {
@@ -212,6 +217,15 @@ class rndOutput extends rndBase
             PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
             PlacePhysical(input,output);
         }
+
+        SetFinishTimer();
+    }
+
+    function SetFinishTimer()
+    {
+        if (timerID)
+            KillTimer(timerID);
+        timerID = SetOneShotTimer("rndFinishTimer",REMOVE_TIMER);
     }
 
     function PlaceInContainer(input,output)
@@ -228,7 +242,6 @@ class rndOutput extends rndBase
         local physicsControls = GetData("physicsControls");
 
         local position_up = vector(position.x, position.y, position.z + 0.35);
-
 
         //Make object render
         Property.SetSimple(input, "HasRefs", TRUE);
@@ -256,12 +269,31 @@ class rndOutput extends rndBase
 
             if (!rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
                 Physics.SetVelocity(input,vector(0,0,10));
+
+            //This is a horrible dirty filthy hack to make objects not make any noise when being placed,
+            //which would otherwise alert the AI and screw up premade patrol patterns and ambush setups.
+            //It's removed by a timer that goes after 2 seconds.
+            Property.Set(input, "Material Tags", "1: Tags", "Material None");
+            setMaterials = input;
         }
 
         //Freeze objects
         if (rndUtils.HasMetaProp(output,"Object Randomiser - Freeze"))
         {
             Property.Set(input, "PhysControl", "Controls Active", PHYSCONTROL_LOC_ROT);
+        }
+    }
+
+    function OnTimer()
+    {
+        if (message().name == "rndFinishTimer")
+        {
+            PrintDebug("Output finished, removing...",0);
+            if (setMaterials)
+                Property.Remove(setMaterials, "Material Tags");
+
+            //clean up
+            Object.RemoveMetaProperty(self,"Object Randomiser Output");
         }
     }
 

@@ -187,6 +187,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
         if (!Object.Exists(output) || Object.Archetype(output) == 0)
         {
             outputs.remove(0);
+            KillContingencyTimer();
             Randomise();
         }
 
@@ -199,7 +200,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         //TODO: Delet this
         KillContingencyTimer();
-        timerID = SetOneShotTimer("RandomiseTimer",1.0);
+        timerID = SetOneShotTimer("ContingencyTimer",1.0);
     }
 
     function KillContingencyTimer()
@@ -214,7 +215,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
         {
             Setup();
         }
-        else if (message().name == "RandomiseTimer")
+        else if (message().name == "ContingencyTimer")
         {
             if (outputs.len() > 0)
             {
