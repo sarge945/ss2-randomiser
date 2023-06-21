@@ -3,14 +3,16 @@ class rndOutput extends rndBase
     container = null;
     corpse = null;
     allowedTypes = null;
-    setMaterials = null;
 
-    static REMOVE_TIMER = 4;
+    outputItems = null;
+
+    static REMOVE_TIMER = 3;
 
     timerID = null;
 
     function Init(reloaded)
     {
+        outputItems = [];
         container = rndUtils.isContainer(self);
         corpse = rndUtils.isCorpse(self);
         SetData("position",Object.Position(self));
@@ -198,6 +200,12 @@ class rndOutput extends rndBase
 
     function Place(input,output)
     {
+        //This is a horrible dirty filthy hack to make objects not make any noise when being placed,
+        //which would otherwise alert the AI and screw up premade patrol patterns and ambush setups.
+        //It's removed by a timer that goes after 2 seconds.
+        Property.Set(input, "Material Tags", "1: Tags", "Material None");
+        outputItems.append(input);
+
         //Send a "Randomised" message to all objects targeting our input
         //This allows special behaviours to be implemented without modifying the scripts on our inputs
         foreach (ilink in Link.GetAll(linkkind("~Target"),input))
@@ -269,12 +277,6 @@ class rndOutput extends rndBase
 
             if (!rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
                 Physics.SetVelocity(input,vector(0,0,10));
-
-            //This is a horrible dirty filthy hack to make objects not make any noise when being placed,
-            //which would otherwise alert the AI and screw up premade patrol patterns and ambush setups.
-            //It's removed by a timer that goes after 2 seconds.
-            Property.Set(input, "Material Tags", "1: Tags", "Material None");
-            setMaterials = input;
         }
 
         //Freeze objects
@@ -288,9 +290,9 @@ class rndOutput extends rndBase
     {
         if (message().name == "rndFinishTimer")
         {
-            PrintDebug("Output finished, removing...",0);
-            if (setMaterials)
-                Property.Remove(setMaterials, "Material Tags");
+            PrintDebug("Output finished, removing...",3);
+            foreach (item in outputItems)
+                Property.Remove(item, "Material Tags");
 
             //clean up
             Object.RemoveMetaProperty(self,"Object Randomiser Output");

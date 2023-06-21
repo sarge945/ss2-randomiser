@@ -61,3 +61,11 @@ Create "rndOpsEnemyRandomiser" "rndOps3EnemyRandomiser"
 +Link 1170 "rndOps3EnemyRandomiser" "Target"
 {
 }
+
+//Monster Gens
+//Only add special cases, not ecologies
+
+//Droid Spawner
++Link 818 "rndOps3EnemyRandomiser" "Target"
+{
+}
