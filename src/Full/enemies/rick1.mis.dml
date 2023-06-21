@@ -1,0 +1,203 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndRickEnemyRandomiser" "rndRick1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 2100 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//A Security Bot
++Link 417 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//A Security Bot
++Link 417 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//An Assault Bot
++Link 2113 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//An Assault Bot
++Link 411 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//A rumbler
++Link 2243 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//A rumbler
++Link 253 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//A rumbler
++Link 2188 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Morgue Rumbler
++Link 2141 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Shotgun Ambushers
++Link 2205 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 2203 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 2201 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Arachnightmare
+//Larger enemies get stuck on the door
++Link 1780 "rndRick1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Invisible Arachnid
++MetaProp 2149 "Object Randomiser - Force Enemy Keep Inventory"
++Link 2149 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Baby Arachnid
+//Leave alone, it's a special encounter
++Link 2123 "rndRick1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Midwife
+//Has battery
++MetaProp 2145 "Object Randomiser - Force Enemy Keep Inventory"
++Link 2145 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Midwife
++Link 2147 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2147 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
+//Has Battery
++MetaProp 2165 "Object Randomiser - Force Enemy Keep Inventory"
++Link 2165 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 652 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 450 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++MetaProp 1307 "Object Randomiser - Ranged Enemies Only"
++Link 1307 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2099 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+////Turrets
+
++Link 2200 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 1624 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 617 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Turret Pair
++Link 1634 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 1633 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
++Link 1632 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
++Link 2106 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Laser Turrets
+
++Link 2103 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
++Link 2109 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Slug turrets
+
+//Pair
++Link 912 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 913 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
++Link 708 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Entry Turrets, leave as slug for now
++Link 171 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 257 "rndRick1EnemyRandomiser" "Target"
+{
+}
++Link 1079 "rndRick1EnemyRandomiser" "Target"
+{
+}
+*/
+
+
+////DirectMonsterGens
+
+//None

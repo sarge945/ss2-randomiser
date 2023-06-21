@@ -1,0 +1,37 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndRickEnemyRandomiser" "rndRick2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Assault Bot
++Link 733 "rndRick2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++MetaProp 714 "Object Randomiser - Ranged Enemies Only"
++Link 714 "rndRick2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++MetaProp 696 "Object Randomiser - Ranged Enemies Only"
++Link 696 "rndRick2EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++MetaProp 699 "Object Randomiser - Ranged Enemies Only"
++Link 699 "rndRick2EnemyRandomiser" "Target"
+{
+}
+
+////DirectMonsterGens
+
+//None

@@ -1,0 +1,35 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndShodanEnemyRandomiser" "rndCitadelEnemyRandomiser"
+{
+}
+
+//Enemies, all Red Assassins
+
++MetaProp 678 "Object Randomiser - Ranged Enemies Only"
++Link 678 "rndCitadelEnemyRandomiser" "Target"
+{
+}
+
++Link 649 "rndCitadelEnemyRandomiser" "Target"
+{
+}
+
++Link 643 "rndCitadelEnemyRandomiser" "Target"
+{
+}
+
++Link 644 "rndCitadelEnemyRandomiser" "Target"
+{
+}
+
++Link 659 "rndCitadelEnemyRandomiser" "Target"
+{
+}
+
+////DirectMonsterGens
+
+//None

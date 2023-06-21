@@ -299,6 +299,7 @@ Create "rndObjectCollection" "rndWallEggs"
 */
 
 //Audio Log near Collapsed Area
++MetaProp 471 "Object Randomiser - No Auto Output"
 +Link 471 "rndNacelleAObjects" "Target"
 {
 }

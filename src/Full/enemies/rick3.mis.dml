@@ -1,0 +1,61 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndRickEnemyRandomiser" "rndRick3EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Rumbler
++Link 79 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 80 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 81 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 495 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 620 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+//Escape pod spiders - don't replace, clearance too low
++Link 217 "rndRick3EnemyRandomiser" "Target"
+{
+}
++Link 216 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+////Turrets
+
++Link 625 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
++Link 621 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
++Link 622 "rndRick3EnemyRandomiser" "Target"
+{
+}
+
+////DirectMonsterGens
+
+//None

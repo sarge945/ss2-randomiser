@@ -77,3 +77,9 @@ CreateArch "rndEnemyRandomiser" "rndShodanEnemyRandomiser"
 CreateArch "Misc Metaprops" "Object Randomiser - Ranged Enemies Only"
 {
 }
+
+//Use this to force keeping an enemies inventory no matter what
+//Normaly enemies only keep their inventory if they are transformed to the same type
+CreateArch "Misc Metaprops" "Object Randomiser - Force Enemy Keep Inventory"
+{
+}

@@ -1,0 +1,95 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndManyEnemyRandomiser" "rndBOTMEnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Rumbler
++Link 198 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 694 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 1473 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 1395 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 1426 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 229 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 17 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 128 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 1616 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Spiders were left, since most of them don't have clearance to be anything else
+
+//Midwife
++Link 707 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+//Midwife
++Link 1449 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+
+/*
+//Midwife
+//Near eggs, left
++Link 1403 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//Midwife
+//Near openings, left
++Link 162 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//Midwife
+//Near openings, left
++Link 187 "rndBOTMEnemyRandomiser" "Target"
+{
+}
+*/
+
+////DirectMonsterGens
+
+//None
