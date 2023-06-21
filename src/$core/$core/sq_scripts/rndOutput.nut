@@ -5,7 +5,7 @@ class rndOutput extends rndBase
     allowedTypes = null;
     setMaterials = null;
 
-    static REMOVE_TIMER = 2;
+    static REMOVE_TIMER = 4;
 
     timerID = null;
 
