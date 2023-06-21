@@ -16,7 +16,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
     static botTypes = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-171,      1,        1,    1,        1,    0,      0,          0,      0,      0,], //Maint droid
-        [-172,      0,        0,    0,        9,    1,      1,          0,      0,      0,], //Security Droid
+        [-172,      0,        0,    0,        3,    1,      1,          0,      0,      0,], //Security Droid
         [-173,      0,        0,    0,        0,    1,      8,          0,      0,      0,], //Assault Droid
         [-180,      0,        0,    0,        0,    0,      8,          0,      0,      0,], //Rumbler
     ];

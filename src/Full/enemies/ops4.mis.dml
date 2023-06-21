@@ -9,7 +9,6 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 
 //Enemies
 
-/*
 //Leave both bots, they are unique (our first bots of this kind)
 //Armoury Bot
 +Link 329 "rndOps4EnemyRandomiser" "Target"
@@ -20,7 +19,6 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 +Link 325 "rndOps4EnemyRandomiser" "Target"
 {
 }
-*/
 
 //OG-Shotgun - teleports in
 +Link 692 "rndOps4EnemyRandomiser" "Target"
