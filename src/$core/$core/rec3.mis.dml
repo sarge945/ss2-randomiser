@@ -218,11 +218,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+/*
 //Audio Log
+//Don't move as it's related to this location
 +MetaProp 672 "Object Randomiser - Junk Only"
 +Link 672 "rndCasinoObjects" "Target"
 {
 }
+*/
 
 ///Lance Room - Nothing
 
@@ -248,11 +251,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 */
 
+/*
 //Cyber Modules
+//Unrandomised, these are a good reward for getting the right card
 +MetaProp 457 "Object Randomiser - High Priority Output"
 +Link 457 "rndSensualSimObjects" "Target"
 {
 }
+*/
 
 ///Lance
 

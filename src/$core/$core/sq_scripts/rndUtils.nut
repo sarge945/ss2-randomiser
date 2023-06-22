@@ -22,6 +22,13 @@ class rndUtils
         [-106, -762, -1334, -1660], //WormBlood, WormBlend, WormHeart, WormMind
     ];
 
+    static function IsContained(object)
+    {
+        //return Property.PossessedSimple(object,"HasRefs") && !Property.Get(object,"HasRefs");
+        local contains = LinkTools.LinkKindNamed("~Contains");
+        return Link.AnyExist(contains,object);
+    }
+
     static function SameItemType(first,second)
     {
         if (isArchetype(first,second))
@@ -241,5 +248,66 @@ class rndUtils
         }
 
         return results;
+    }
+
+    //Copies over a lot of common properties fro one NPC to another
+    static function CopyProperties(source,dest)
+    {
+        /*
+        //HORRIBLE hack to deal with Shotgun Hybrids having duplicate slugs
+        //Some other enemies contain rad hypos etc
+        if (!rndUtils.isArchetype(source,-175))
+            copyLinks(source,dest,"Contains");
+        */
+
+        //Copy over AI state metaprops
+        rndUtils.CopyMetaprop(source,dest,"Docile");
+        rndUtils.CopyMetaprop(source,dest,"Patrolling");
+        rndUtils.CopyMetaprop(source,dest,"Silent");
+        rndUtils.CopyMetaprop(source,dest,"Deaf");
+        //rndUtils.CopyMetaprop(source,dest,"ImmobileRanged");
+        rndUtils.CopyMetaprop(source,dest,"Posing");
+        rndUtils.CopyMetaprop(source,dest,"Blind");
+
+        Property.CopyFrom(dest,"EcoType",source);
+
+        //For turrets, copy over hack difficulty
+        Property.CopyFrom(dest,"HackDiff",source);
+        Property.CopyFrom(dest,"RepairDiff",source);
+        Property.CopyFrom(dest,"AmbientHacked",source);
+
+        //Remove friendly (fixes issue with Repairman)
+        Object.RemoveMetaProperty(dest,"Good Guy");
+
+        //Set HP to max (fixes issues with RSD)
+        local maxHP = Property.Get(dest,"MAX_HP");
+        Property.SetSimple(dest,"HitPoints",maxHP);
+
+        //Copy over AI Properties
+        //Property.CopyFrom(dest,"AI_VisDesc",source);
+        Property.CopyFrom(dest,"AI_Fidget",source);
+        Property.CopyFrom(dest,"AI_Patrol",source);
+        Property.CopyFrom(dest,"AI_PtrlRnd",source);
+        Property.CopyFrom(dest,"AI_Mode",source);
+        Property.CopyFrom(dest,"AI_Alertness",source);
+        Property.CopyFrom(dest,"AI_Efficiency",source);
+
+        //Copy Multiplayer Handoff (maybe not needed)
+        Property.CopyFrom(dest,"AI_NoHandoff",source);
+
+        //Set Idling Directions (maybe not needed)
+        Property.CopyFrom(dest,"AI_IdleDirs",source);
+
+        //Set Idling Return to Origin (maybe not needed)
+        Property.CopyFrom(dest,"AI_IdlRetOrg",source);
+
+        //Copying Signal and Alert Responses
+        Property.CopyFrom(dest,"AI_SigRsp",source);
+        Property.CopyFrom(dest,"AI_AlrtRsp",source);
+
+        //Copy transparency (for Shodan level)
+        Property.CopyFrom(dest,"LBAlpha",source);
+        Property.CopyFrom(dest,"ExtraLight",source);
+
     }
 }

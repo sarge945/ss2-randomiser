@@ -5,6 +5,7 @@ class rndBaseRandomiser extends rndBase
 	outputs = null;
 	rolls = null;
     allowedTypes = null;
+    addedAllowedTypes = null;
 
     //If no allowed types are specified, use the default
     static allowedTypesDefault = [
@@ -56,15 +57,26 @@ class rndBaseRandomiser extends rndBase
             if (rndUtils.isArchetype(input,type))
                 return true;
         }
+        foreach(type in addedAllowedTypes)
+        {
+            if (rndUtils.isArchetype(input,type))
+                return true;
+        }
         return false;
     }
 
     function SetAllowedTypes()
     {
         allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
-        local addAllowedTypes = getParamArray("addAllowedTypes",[]);
-        foreach (add in addAllowedTypes)
-            allowedTypes.append(add);
+        addedAllowedTypes = getParamArray("addAllowedTypes",[]);
+
+        /*
+        PrintDebug("Allowed Types: ",99);
+        foreach (allowedType in allowedTypes)
+            PrintDebug("    " + allowedType,99);
+        foreach (allowedType in addedAllowedTypes)
+            PrintDebug("    " + allowedType,99);
+        */
     }
 	
 	function ShowWelcomeMessage(randomiserType)

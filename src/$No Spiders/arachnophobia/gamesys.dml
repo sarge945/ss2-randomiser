@@ -1,0 +1,58 @@
+// ================================================================================
+// 						Arachnophobia
+// ================================================================================
+
+//Metaprop to polymorph an object into a worm
+//Used for spiders which aren't being randomised
+//for instance, the dropping spiders in rec and rick.
+//The rest of them are handled by randomisers
+CreateArch "Misc Metaprops" "Object Randomiser - Arachnophobia Replace"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndSpiderSwapper"
+		"Don't inherit" false
+	}
+
+}
+
+//Attach the metaprop to the spider archetypes
++MetaProp -2013 "Object Randomiser - Arachnophobia Replace"
+
+//Set all enemy randomisers to avoid spawning spiders
++ObjProp "rndMedSciEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=1;noSpiders=1;"
+}
++ObjProp "rndEngEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=2;noSpiders=1;"
+}
++ObjProp "rndHydroEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=3;noSpiders=1;"
+}
++ObjProp "rndOpsEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=4;noSpiders=1;"
+}
++ObjProp "rndRecEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=5;noSpiders=1;"
+}
++ObjProp "rndCommandEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=6;noSpiders=1;"
+}
++ObjProp "rndRickEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=7;noSpiders=1;"
+}
++ObjProp "rndManyEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=8;noSpiders=1;"
+}
++ObjProp "rndShodanEnemyRandomiser" "DesignNoteSS"
+{
+	"" "deckLevel=9;noSpiders=1;"
+}

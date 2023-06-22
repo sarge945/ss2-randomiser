@@ -110,7 +110,7 @@ class rndObjectCollection
         foreach (ilink in Link.GetAll(-LINKKIND_TARGET,pool))
         {
             local object = sLink(ilink).dest;
-            if (!rndUtils.HasMetaProp(object,"Object Randomiser - No Auto Output"))
+            if (!rndUtils.HasMetaProp(object,"Object Randomiser - No Auto Output") && !rndUtils.IsContained(object))
                 appendToOutputArray(object);
         }
     }

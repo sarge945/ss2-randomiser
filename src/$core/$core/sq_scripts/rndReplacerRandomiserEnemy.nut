@@ -1,8 +1,6 @@
 //Special randomiser that can replace any enemy with another type based on what type it is
 class rndEnemyRandomiser extends rndReplacerRandomiser
 {
-    rollSeed = null;
-
     //If no allowed types are specified, use the default
     static allowedTypesDefault = [
         -163,  //Robots
@@ -44,6 +42,8 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
     ];
 
     deckLevel = null;
+    rollSeed = null;
+    arachnophobia = null;
 
     static DECK_LEVELS = 9;
 
@@ -54,6 +54,8 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
 
         if (deckLevel > DECK_LEVELS || deckLevel <= 0)
             deckLevel = DECK_LEVELS;
+
+        arachnophobia = getParam("noSpiders",0);
 
         //print ("deckLevel: " + deckLevel);
     }
@@ -79,61 +81,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
 
     function Place(output,newObject)
     {
-        /*
-        //HORRIBLE hack to deal with Shotgun Hybrids having duplicate slugs
-        //Some other enemies contain rad hypos etc
-        if (!rndUtils.isArchetype(output,-175))
-            copyLinks(output,newObject,"Contains");
-        */
-
-        //Copy over AI state metaprops
-        rndUtils.CopyMetaprop(output,newObject,"Docile");
-        rndUtils.CopyMetaprop(output,newObject,"Patrolling");
-        rndUtils.CopyMetaprop(output,newObject,"Silent");
-        rndUtils.CopyMetaprop(output,newObject,"Deaf");
-        //rndUtils.CopyMetaprop(output,newObject,"ImmobileRanged");
-        rndUtils.CopyMetaprop(output,newObject,"Posing");
-        rndUtils.CopyMetaprop(output,newObject,"Blind");
-
-        Property.CopyFrom(newObject,"EcoType",output);
-
-        //For turrets, copy over hack difficulty
-        Property.CopyFrom(newObject,"HackDiff",output);
-        Property.CopyFrom(newObject,"RepairDiff",output);
-        Property.CopyFrom(newObject,"AmbientHacked",output);
-
-        //Remove friendly (fixes issue with Repairman)
-        Object.RemoveMetaProperty(newObject,"Good Guy");
-
-        //Set HP to max (fixes issues with RSD)
-        local maxHP = Property.Get(newObject,"MAX_HP");
-        Property.SetSimple(newObject,"HitPoints",maxHP);
-
-        //Copy over AI Properties
-        //Property.CopyFrom(newObject,"AI_VisDesc",output);
-        Property.CopyFrom(newObject,"AI_Fidget",output);
-        Property.CopyFrom(newObject,"AI_Patrol",output);
-        Property.CopyFrom(newObject,"AI_PtrlRnd",output);
-        Property.CopyFrom(newObject,"AI_Mode",output);
-        Property.CopyFrom(newObject,"AI_Alertness",output);
-        Property.CopyFrom(newObject,"AI_Efficiency",output);
-
-        //Copy Multiplayer Handoff (maybe not needed)
-        Property.CopyFrom(newObject,"AI_NoHandoff",output);
-
-        //Set Idling Directions (maybe not needed)
-        Property.CopyFrom(newObject,"AI_IdleDirs",output);
-
-        //Set Idling Return to Origin (maybe not needed)
-        Property.CopyFrom(newObject,"AI_IdlRetOrg",output);
-
-        //Copying Signal and Alert Responses
-        Property.CopyFrom(newObject,"AI_SigRsp",output);
-        Property.CopyFrom(newObject,"AI_AlrtRsp",output);
-
-        //Copy transparency (for Shodan level)
-        Property.CopyFrom(newObject,"LBAlpha",output);
-        Property.CopyFrom(newObject,"ExtraLight",output);
+        rndUtils.CopyProperties(output,newObject);
 
         //If we are the same type, copy our loot table and contained items
         if (rndUtils.isArchetype(output,newObject))
@@ -157,31 +105,70 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         //All Big Droids and Rumblers can replace each other
         if (rndUtils.isArchetype(output,-171) || rndUtils.isArchetype(output,-172) || rndUtils.isArchetype(output,-173) || rndUtils.isArchetype(output,-180))
         {
-            return RollForEnemy(botTypes);
+            return RollForEnemy(output,botTypes);
         }
         //Polymorph turrets into each other
         else if (rndUtils.isArchetype(output,-369) || rndUtils.isArchetype(output,-167) || rndUtils.isArchetype(output,-168))
         {
-            return RollForEnemy(turretTypes);
+            return RollForEnemy(output,turretTypes);
         }
         //This one's a doozy!
         //Hybrids, Monkeys, Spiders, Protocol Droids and Cyborgs can all become each other
         else if (rndUtils.isArchetype(output,-174) || rndUtils.isArchetype(output,-396) || rndUtils.isArchetype(output,-1540) || rndUtils.isArchetype(output,-1539) || rndUtils.isArchetype(output,-2013))
         {
-            return RollForEnemy(mainTypes);
+            return RollForEnemy(output,mainTypes);
         }
 
         //return the original means no replacement
         return output;
     }
 
-    function RollForEnemy(rollTable)
+    function RollForEnemy(output,rollTable)
     {
+        local rolls = 0;
+        local validRoll = false;
         local total_chance = GetTotalChance(rollTable);
-        PrintDebug("ROLLING: total chance " + total_chance,1);
-        local roll = rndUtils.RandBetween(seed + rollSeed,1,total_chance);
-        local index = GetEnemyBasedOnRoll(roll,rollTable);
-        return rollTable[index][0];
+        local enemy = rollTable[0][0];
+
+        while (!validRoll && rolls < 20)
+        {
+            rolls++;
+            PrintDebug("ROLLING: total chance " + total_chance,1);
+            local roll = rndUtils.RandBetween(seed + rollSeed + rolls,1,total_chance);
+            local index = GetEnemyBasedOnRoll(roll,rollTable);
+            local potentialEnemy = rollTable[index][0];
+
+            /*
+            //filthy dirty arachnophobia hack
+            if ((enemy == -1439 || enemy == -189) && arachnophobia)
+                enemy = -182; //grub
+            */
+
+            //Arachnophobe hack
+            if (arachnophobia && IsSpider(potentialEnemy))
+                continue;
+
+            //Ranged enemies only
+            if (rndUtils.HasMetaProp(output,"Object Randomiser - Ranged Enemies Only") && IsMeleeEnemy(potentialEnemy))
+                continue;
+            
+            enemy = potentialEnemy;
+            validRoll = true;
+            PrintDebug("Valid Roll...",1);
+        }
+
+
+        return enemy;
+    }
+
+    function IsSpider(enemy)
+    {
+        return enemy == -1432 || enemy == -189;
+    }
+
+    function IsMeleeEnemy(enemy)
+    {
+        return enemy == -180 || enemy == -397 || enemy == -174 || enemy == -189 || enemy == -1439;
     }
 
     //Calculates a total chance value based on the combined weight of every enemy type on the deck
