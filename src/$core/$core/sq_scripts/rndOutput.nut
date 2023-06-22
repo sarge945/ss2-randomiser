@@ -206,14 +206,6 @@ class rndOutput extends rndBase
         Property.Set(input, "Material Tags", "1: Tags", "Material None");
         outputItems.append(input);
 
-        //Send a "Randomised" message to all objects targeting our input
-        //This allows special behaviours to be implemented without modifying the scripts on our inputs
-        foreach (ilink in Link.GetAll(linkkind("~Target"),input))
-        {
-            local targeted = sLink(ilink).dest;
-            PostMessage(targeted,"Randomise",input);
-        }
-
         Container.Remove(input);
         if (rndUtils.isContainer(output))
         {
@@ -224,6 +216,14 @@ class rndOutput extends rndBase
         {
             PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
             PlacePhysical(input,output);
+        }
+
+        //Send a "Randomised" message to all objects targeting our input
+        //This allows special behaviours to be implemented without modifying the scripts on our inputs
+        foreach (ilink in Link.GetAll(linkkind("~Target"),input))
+        {
+            local targeted = sLink(ilink).dest;
+            PostMessage(targeted,"Randomise",input);
         }
 
         SetFinishTimer();
@@ -238,9 +238,12 @@ class rndOutput extends rndBase
 
     function PlaceInContainer(input,output)
     {
+        local position = GetData("position");
+        local facing = GetData("facing");
+        Object.Teleport(input, position, facing);
         Property.SetSimple(input, "HasRefs", FALSE);
-        //Link.Create(linkkind("Contains"),output,input);
-        Container.Add(input,output);
+        Link.Create(linkkind("Contains"),output,input);
+        //Container.Add(input,output); //This will combine objects, which can then be moved elsewhere. We don't want this
     }
 
     function PlacePhysical(input,output)
