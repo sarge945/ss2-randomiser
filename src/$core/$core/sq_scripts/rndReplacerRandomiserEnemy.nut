@@ -130,7 +130,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         local total_chance = GetTotalChance(rollTable);
         local enemy = rollTable[0][0];
 
-        while (!validRoll && rolls < 20)
+        while (!validRoll && rolls < 30)
         {
             rolls++;
             PrintDebug("ROLLING: total chance " + total_chance,1);

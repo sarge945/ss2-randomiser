@@ -311,7 +311,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
                 local container = sLink(containerLink).dest;
                 if (rndUtils.isCorpse(container))
                 {
-                    PrintDebug("Container: " + container);
+                    //PrintDebug("Container: " + container,3);
                     return false;
                 }
 

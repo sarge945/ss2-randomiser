@@ -7,7 +7,7 @@ class rndSpecialHandler extends rndBase
     {
         local input = message().data;
         local output = message().from;
-        PrintDebug("Object " + input + " was randomised to " + output + " (special!)");
+        PrintDebug("Object " + input + " was randomised to " + output + " (special!)",1);
         DoRandomAction(input,output);
     }
 
@@ -45,7 +45,7 @@ class rndSwitchLinkHandler extends rndSpecialHandler
 
             Object.EndCreate(tripwire);
 
-            PrintDebug("Creating Tripwire at " + rndUtils.GetObjectName(output));
+            PrintDebug("Creating Tripwire at " + rndUtils.GetObjectName(output) + "(" + output + ")",1);
 
             linkSrc = tripwire;
         }
@@ -54,7 +54,7 @@ class rndSwitchLinkHandler extends rndSpecialHandler
         {
             local target = sLink(swlink).dest;
             Link.Create(linkkind("SwitchLink"),linkSrc,target);
-            PrintDebug("Creating SwitchLink from " + rndUtils.GetObjectName(linkSrc) + " to " + rndUtils.GetObjectName(target));
+            PrintDebug("Creating SwitchLink from " + rndUtils.GetObjectName(linkSrc) + " to " + rndUtils.GetObjectName(target),1);
         }
     }
 }
