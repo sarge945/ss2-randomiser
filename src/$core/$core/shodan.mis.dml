@@ -76,7 +76,7 @@ Create "rndObjectCollection" "rndMainObjects"
 {
 }
 
-////Energy Recharger near main hall
+////Psi Booster near main hall
 +Link 1271 "rndMainObjects" "Target"
 {
 }

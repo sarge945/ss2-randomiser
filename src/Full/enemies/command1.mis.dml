@@ -1,0 +1,75 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a randomiser for the map
+Create "rndCommandEnemyRandomiser" "rndCommand1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Security Bot
++Link 2512 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Rumbler
++Link 2313 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 792 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 791 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 85 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 2314 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Assassin
++Link 1228 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+//Turrets
+
++Link 1191 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
++Link 1241 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
++Link 1239 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
++Link 1240 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
++Link 324 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
++Link 323 "rndCommand1EnemyRandomiser" "Target"
+{
+}
+
+////DirectMonsterGens
+
+//None

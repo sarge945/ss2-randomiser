@@ -285,6 +285,11 @@ Create "rndObjectCollection" "rndSecurityCargoObjects"
 
 ////Shuttle Bay B
 
+//Assault Rifle
++Link 633 "rndCargoBayObjects" "Target"
+{
+}
+
 //FE Device
 +Link 104 "rndCargoBayObjects" "Target"
 {

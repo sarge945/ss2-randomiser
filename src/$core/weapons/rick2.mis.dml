@@ -1,0 +1,42 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for everything
+Create "rndWeaponRandomiser" "rndRick2WeaponRandomiser"
+{
+}
+
+//Inputs
++Link "rndElevatorLobbyObjects" "rndRick2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndShaftObjects" "rndRick2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndChapelObjects" "rndRick2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndRick2WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndFinalAreaObjects" "rndRick2WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndElevatorLobbyObjects" "rndRick2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndShaftObjects" "rndRick2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndChapelObjects" "rndRick2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndMedicalObjects" "rndRick2WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndFinalAreaObjects" "rndRick2WeaponRandomiser" "~SwitchLink"
+{
+}

@@ -1,0 +1,71 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndOpsEnemyRandomiser" "rndOps3EnemyRandomiser"
+{
+}
+
+//Enemies
+
+/*
+//Protocol Droid
+//Disabled - Doesn't actually seem to be used at all
++Link 224 "rndOps3EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Protocol Droid
++Link 672 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+/*
+//OG-Shotgun
+//Don't remove as it has custom loot
++Link 1743 "rndOps3EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Shotgun
++Link 1095 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++MetaProp 793 "Object Randomiser - Ranged Enemies Only"
++Link 793 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 573 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1184 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+////Turrets
+
+//On Table
++Link 1167 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+//On Table
++Link 1170 "rndOps3EnemyRandomiser" "Target"
+{
+}
+
+//Monster Gens
+//Only add special cases, not ecologies
+
+//Droid Spawner
++Link 818 "rndOps3EnemyRandomiser" "Target"
+{
+}

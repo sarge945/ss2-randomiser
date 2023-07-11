@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Add Weapons to Randomisers
+// ================================================================================
+
+//Create a randomiser for everything
+Create "rndWeaponRandomiser" "rndCommand1WeaponRandomiser"
+{
+}
+
+//Inputs
++Link "rndLobbyObjects" "rndCommand1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndUmbilicalObjects" "rndCommand1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndMainStationObjects" "rndCommand1WeaponRandomiser" "SwitchLink"
+{
+}
++Link "rndCargoBayObjects" "rndCommand1WeaponRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndLobbyObjects" "rndCommand1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndUmbilicalObjects" "rndCommand1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndMainStationObjects" "rndCommand1WeaponRandomiser" "~SwitchLink"
+{
+}
++Link "rndCargoBayObjects" "rndCommand1WeaponRandomiser" "~SwitchLink"
+{
+}

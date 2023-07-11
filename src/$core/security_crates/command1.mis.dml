@@ -11,8 +11,14 @@ Create "rndCrateRandomiser" "rndSecurityCratesRandomiser"
 +Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "SwitchLink"
 {
 }
++Link "rndSecurityMainObjects" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
 
 //Outputs
 +Link "rndSecurityCargoObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}
++Link "rndSecurityMainObjects" "rndSecurityCratesRandomiser" "~SwitchLink"
 {
 }

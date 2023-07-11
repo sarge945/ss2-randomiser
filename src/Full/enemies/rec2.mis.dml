@@ -1,0 +1,90 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndRecEnemyRandomiser" "rndRec2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 152 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//Security
++Link 851 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 1895 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 163 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+/*
+//OG-Grenade
+//Contains WormMind, don't change for now
++Link 481 "rndRec2EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Grenade
++Link 73 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 75 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//Laser Turret
++Link 1724 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//Kool-Aid Assault Bot
+//OHHH YEAAAHH!!!!
++Link 2143 "rndRec2EnemyRandomiser" "Target"
+{
+}
+
+//Monster Gens
+//Only add special cases, not ecologies
+
++Link 782 "rndRec2EnemyRandomiser" "Target"
+{
+}
++Link 783 "rndRec2EnemyRandomiser" "Target"
+{
+}
++Link 1287 "rndRec2EnemyRandomiser" "Target"
+{
+}
++Link 1321 "rndRec2EnemyRandomiser" "Target"
+{
+}
++Link 1301 "rndRec2EnemyRandomiser" "Target"
+{
+}
+/*
+//Spawns midwife to check up on eggs
+//Leave for lore reasons
++Link 376 "rndRec2EnemyRandomiser" "Target"
+{
+}
+*/
+
+//BonneChance ambush
++Link 575 "rndRec2EnemyRandomiser" "Target"
+{
+}

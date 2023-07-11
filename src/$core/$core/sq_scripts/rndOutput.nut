@@ -4,10 +4,17 @@ class rndOutput extends rndBase
     corpse = null;
     allowedTypes = null;
 
+    outputItems = null;
+
+    static REMOVE_TIMER = 3;
+
+    timerID = null;
+
     function Init(reloaded)
     {
-        container = isContainer(self);
-        corpse = isCorpse(self);
+        outputItems = [];
+        container = rndUtils.isContainer(self);
+        corpse = rndUtils.isCorpse(self);
         SetData("position",Object.Position(self));
         SetData("facing",Object.Facing(self));
         SetData("physicsControls",Property.Get(self,"PhysControl","Controls Active"));
@@ -23,7 +30,7 @@ class rndOutput extends rndBase
 
         foreach(type in allowedTypes)
         {
-            if (isArchetype(input,type))
+            if (rndUtils.isArchetype(input,type))
                 return true;
         }
         return false;
@@ -34,12 +41,12 @@ class rndOutput extends rndBase
         if (RnoRespectJunk == 1)
             return true;
 
-        local isJunk = IsJunk(input);
+        local isJunk = rndUtils.IsJunk(input);
 
-        local junkOnlyM = Object.HasMetaProperty(output,"Object Randomiser - Junk Only");
-        local noJunkM = Object.HasMetaProperty(output,"Object Randomiser - No Junk");
-        local highPrioM = Object.HasMetaProperty(output,"Object Randomiser - High Priority Output");
-        local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
+        local junkOnlyM = rndUtils.HasMetaProp(output,"Object Randomiser - Junk Only");
+        local noJunkM = rndUtils.HasMetaProp(output,"Object Randomiser - No Junk");
+        local highPrioM = rndUtils.HasMetaProp(output,"Object Randomiser - High Priority Output");
+        local secretM = rndUtils.HasMetaProp(output,"Object Randomiser - Secret");
 
         if (junkOnlyM && !isJunk)
             return false;
@@ -56,8 +63,8 @@ class rndOutput extends rndBase
 
     static function LogCheck(input,output)
     {
-        local noLogM = Object.HasMetaProperty(output,"Object Randomiser - No Logs");
-        if (IsLog(input) && noLogM)
+        local noLogM = rndUtils.HasMetaProp(output,"Object Randomiser - No Logs");
+        if (rndUtils.IsLog(input) && noLogM)
             return false;
 
         return true;
@@ -65,24 +72,24 @@ class rndOutput extends rndBase
 
     static function ContainerOnlyCheck(input,output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only") && isArchetype(input,output))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Output Self Only") && rndUtils.isArchetype(input,output))
             return true;
 
-        if (Object.HasMetaProperty(input,"Object Randomiser - Container Only"))
-            return isContainer(output);
+        if (rndUtils.HasMetaProp(input,"Object Randomiser - Container Only"))
+            return rndUtils.isContainer(output);
         return true;
     }
 
     static function SameTypeCheck(input,output)
     {
-        if (Object.HasMetaProperty(output,"Object Randomiser - Output Self Only"))
-            return isContainer(output) || SameItemType(output,input);
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Output Self Only"))
+            return rndUtils.isContainer(output) || rndUtils.SameItemType(output,input);
         return true;
     }
 
     static function SecretCheck(output,RnoSecret)
     {
-        local secretM = Object.HasMetaProperty(output,"Object Randomiser - Secret");
+        local secretM = rndUtils.HasMetaProp(output,"Object Randomiser - Secret");
         if (secretM && RnoSecret)
             return false;
         return true;
@@ -90,14 +97,14 @@ class rndOutput extends rndBase
 
     static function CorpseCheck(output,RnoCorpse)
     {
-        if (isCorpse(output) && RnoCorpse)
+        if (rndUtils.isCorpse(output) && RnoCorpse)
             return false;
         return true;
     }
 
     static function AllowOriginal(input,self,RallowOriginalLocations)
     {
-        if (!RallowOriginalLocations && isArchetype(input,self))
+        if (!RallowOriginalLocations && rndUtils.isArchetype(input,self))
             return false;
         return true;
     }
@@ -132,7 +139,7 @@ class rndOutput extends rndBase
 
         if (!AllowOriginal(input,self,RallowOriginalLocations))
             return 8;
-        
+
         if (!LogCheck(input,self))
             return 9;
 
@@ -141,12 +148,12 @@ class rndOutput extends rndBase
 
     function IsPlaced()
     {
-        return GetData("placed") && !isContainer(self);
+        return GetData("placed") && !rndUtils.isContainer(self);
     }
 
     function IsVerified()
     {
-        return GetData("verified") || isContainer(self) || isMarker(self);
+        return GetData("verified") || rndUtils.isContainer(self) || rndUtils.isMarker(self);
     }
 
     function OnVerify()
@@ -160,19 +167,23 @@ class rndOutput extends rndBase
         local source = message().from;
 
         if (IsPlaced())
+        {
             PostMessage(source,"OutputFailed");
+            return;
+        }
 
         local inputs = message().data;
         local config = message().data2;
 
-        local inputArr = StrToIntArray(DeStringify(inputs));
-        local configArr = StrToIntArray(DeStringify(config));
+        local inputArr = rndUtils.StrToIntArray(rndUtils.DeStringify(inputs));
+        local configArr = rndUtils.StrToIntArray(rndUtils.DeStringify(config));
 
         PrintDebug("OnRandomiseOutput received from " + source + " contains: [" + inputs + ", " + config + "]",4);
 
         foreach(input in inputArr)
         {
-            if (IsValid(input,configArr) == 0)
+            local valid = IsValid(input,configArr);
+            if (valid == 0)
             {
                 SetData("placed",true);
                 PostMessage(source,"OutputSuccess",input,!container);
@@ -181,22 +192,22 @@ class rndOutput extends rndBase
                 Place(input,self);
                 return;
             }
+            else
+                PrintDebug("    input " + input + " was not valid (error code " + valid + ")",4);
         }
         PostMessage(source,"OutputFailed");
     }
 
     function Place(input,output)
     {
-        //Send a "Randomised" message to all objects targeting our input
-        //This allows special behaviours to be implemented without modifying the scripts on our inputs
-        foreach (ilink in Link.GetAll(linkkind("~Target"),input))
-        {
-            local targeted = sLink(ilink).dest;
-            PostMessage(targeted,"Randomise",input);
-        }
+        //This is a horrible dirty filthy hack to make objects not make any noise when being placed,
+        //which would otherwise alert the AI and screw up premade patrol patterns and ambush setups.
+        //It's removed by a timer that goes after 2 seconds.
+        Property.Set(input, "Material Tags", "1: Tags", "Material None");
+        outputItems.append(input);
 
         Container.Remove(input);
-        if (isContainer(output))
+        if (rndUtils.isContainer(output))
         {
             PrintDebug("outputting " + input + " to container " + output + " <"+ ShockGame.SimTime() +">",2);
             PlaceInContainer(input,output);
@@ -206,13 +217,33 @@ class rndOutput extends rndBase
             PrintDebug("outputting " + input + " to location " + output + " <"+ ShockGame.SimTime() +">",2);
             PlacePhysical(input,output);
         }
+
+        //Send a "Randomised" message to all objects targeting our input
+        //This allows special behaviours to be implemented without modifying the scripts on our inputs
+        foreach (ilink in Link.GetAll(linkkind("~Target"),input))
+        {
+            local targeted = sLink(ilink).dest;
+            PostMessage(targeted,"Randomise",input);
+        }
+
+        SetFinishTimer();
+    }
+
+    function SetFinishTimer()
+    {
+        if (timerID)
+            KillTimer(timerID);
+        timerID = SetOneShotTimer("rndFinishTimer",REMOVE_TIMER);
     }
 
     function PlaceInContainer(input,output)
     {
+        local position = GetData("position");
+        local facing = GetData("facing");
+        Object.Teleport(input, position, facing);
         Property.SetSimple(input, "HasRefs", FALSE);
-        //Link.Create(linkkind("Contains"),output,input);
-        Container.Add(input,output);
+        Link.Create(linkkind("Contains"),output,input);
+        //Container.Add(input,output); //This will combine objects, which can then be moved elsewhere. We don't want this
     }
 
     function PlacePhysical(input,output)
@@ -223,7 +254,6 @@ class rndOutput extends rndBase
 
         local position_up = vector(position.x, position.y, position.z + 0.35);
 
-
         //Make object render
         Property.SetSimple(input, "HasRefs", TRUE);
 
@@ -233,7 +263,7 @@ class rndOutput extends rndBase
         {
         }
         //If we are the same archetype, "lock" into position and adopt physics controls
-        else if (SameItemType(input,output))
+        else if (rndUtils.SameItemType(input,output))
         {
             Property.Set(input, "PhysControl", "Controls Active", physicsControls);
             Object.Teleport(input, position, facing);
@@ -248,14 +278,27 @@ class rndOutput extends rndBase
 
             Physics.Activate(input);
 
-            if (!Object.HasMetaProperty(output,"Object Randomiser - No Position Fix"))
+            if (!rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
                 Physics.SetVelocity(input,vector(0,0,10));
         }
 
         //Freeze objects
-        if (Object.HasMetaProperty(output,"Object Randomiser - Freeze"))
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - Freeze"))
         {
             Property.Set(input, "PhysControl", "Controls Active", PHYSCONTROL_LOC_ROT);
+        }
+    }
+
+    function OnTimer()
+    {
+        if (message().name == "rndFinishTimer")
+        {
+            PrintDebug("Output finished, removing...",3);
+            foreach (item in outputItems)
+                Property.Remove(item, "Material Tags");
+
+            //clean up
+            Object.RemoveMetaProperty(self,"Object Randomiser Output");
         }
     }
 
@@ -280,7 +323,7 @@ class rndOutput extends rndBase
         foreach (archetype in fixArchetypes)
         {
             local type = archetype[0];
-            if (isArchetype(item,type))
+            if (rndUtils.isArchetype(item,type))
             {
                 local x = archetype[1];
                 local y = archetype[2];

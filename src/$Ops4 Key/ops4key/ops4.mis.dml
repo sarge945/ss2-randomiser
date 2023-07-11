@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Set Ops4 Key Region
+// ================================================================================
+
+//we can't use LockID on the keycard, because if it's anything other than 0,
+//it goes into our regular inventory, rather than our keycards, so instead we're
+//going to need to handle the lock manually
+
+//Keycard
++ObjProp 707 "Scripts"
+{
+	"Script 0" "rndCardScript"
+    "Don't inherit" false
+}
+
++ObjProp 707 "FrobInfo"
+{
+	"World Action" "Move, Script"
+}
+
+//Link the card and the slot together so we can send unlock message
++Link 707 619 "SwitchLink"
+{
+}
+
+//Keycard Slot
++ObjProp 619 "Scripts"
+{
+	"Script 0" "rndSlotScript"
+    "Don't inherit" false
+}
+
++ObjProp 619 "KeyDst"
+{
+	"LockID" 1
+}

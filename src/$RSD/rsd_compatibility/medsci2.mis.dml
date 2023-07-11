@@ -8,6 +8,7 @@
 //so there's not much point going down there anymore.
 //Let's change that.
 +MetaProp 1476 "Object Randomiser - High Priority Output"
++MetaProp 1475 "Object Randomiser - High Priority Output"
 
 // ================================================================================
 // 								Add Power Cell to Randomisers

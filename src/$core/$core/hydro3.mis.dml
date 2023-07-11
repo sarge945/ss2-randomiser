@@ -60,6 +60,7 @@ Create "rndObjectCollection" "rndHydro3Objects"
 
 //Audio Log on Desk
 +MetaProp 382 "Object Randomiser - Output Self Only"
++MetaProp 382 "Object Randomiser - Freeze"
 +Link 382 "rndHydro3Objects" "Target"
 {
 }

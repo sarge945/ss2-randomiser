@@ -7,7 +7,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
     minTimes = null;
     maxTimes = null;
     allowOriginalLocations = null;
-    priority = null;
+    delay = null;
     failures = null;
 
     //State
@@ -27,11 +27,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
     noHighPriority = null;
     timerID = null;
     noItemOutputs = null;
+	
+	function ShowWelcomeMessage(randomiserType)
+	{
+		PrintDebug(randomiserType + " Randomiser Started. [seed: " + seed + ", startTime: " + GetData("StartTime") + ", inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]");
+	}
 
     function Init(reloaded)
     {
         base.Init(reloaded);
-        priority = getParam("priority",0);
+        delay = getParam("delay",0);
 
         if (!reloaded)
         {
@@ -54,17 +59,39 @@ class rndComplexRandomiser extends rndBaseRandomiser
         allowOriginalLocations = getParam("allowOriginalLocations",1);
 
         //Setup
-        totalRolls = RandBetween(seed,minTimes,maxTimes);
+        totalRolls = rndUtils.RandBetween(seed,minTimes,maxTimes);
         failures = 0;
+    }
+
+    function GetCollection()
+    {
+        return rndObjectCollection(self);
     }
 
     function Setup()
     {
-        inputs = StrToIntArray(DeStringify(GetData("Inputs")));
-        outputs = StrToIntArray(DeStringify(GetData("Outputs")));
+        local collection = GetCollection();
 
-        inputs = DeDuplicateArray(inputs);
-        outputs = DeDuplicateArray(outputs);
+        local potentialInputs = rndUtils.DeDuplicateArray(collection.inputs);
+        local potentialOutputs = rndUtils.DeDuplicateArray(rndUtils.Combine(collection.lowOutputs,collection.highOutputs));
+        
+        inputs = [];
+        outputs = [];
+
+        foreach (pi in potentialInputs)
+        {
+            if (IsInputValid(pi))
+            {
+                inputs.append(pi);
+                PostMessage(pi,"Verify");
+            }
+        }
+        
+        foreach (po in potentialOutputs)
+        {
+            if (IsOutputValid(po))
+                outputs.append(po);
+        }
 
         //Show startup message
         ShowWelcomeMessage("Complex");
@@ -80,7 +107,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         totalItems = inputs.len();
 
-        PrintDebug("[inputs: " + inputs.len() + " (" + GetData("Inputs") + "), outputs: " + outputs.len() + " (" + GetData("Outputs") + ")]",4);
+        PrintDebug("[inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]",4);
 
         if (inputs.len() > 0 && outputs.len() > 0)
         {
@@ -96,7 +123,8 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function GetStartTime()
     {
-        return 0.25 + (seed % 1000 * 0.0001);
+        //return 0.25 + (seed % 1000 * 0.0001);
+        return 0.01 + (0.1 * delay);
     }
 
     function OnOutputSuccess()
@@ -142,26 +170,43 @@ class rndComplexRandomiser extends rndBaseRandomiser
         if (inputs.len() == 0 || outputs.len() == 0)
         {
             Complete("Complex");
+            KillContingencyTimer();
             return;
         }
 
         if (rolls >= totalRolls || rolls > totalItems)
         {
-            PrintDebug("Rolls exceeded",5);
+            PrintDebug("Rolls exceeded (" + minTimes + ", " + maxTimes + ", " + totalRolls + ")",5);
+            Complete("Complex");
+            KillContingencyTimer();
             return;
         }
 
         local output = outputs[0];
 
+        if (!Object.Exists(output) || Object.Archetype(output) == 0)
+        {
+            outputs.remove(0);
+            KillContingencyTimer();
+            Randomise();
+        }
+
         PrintDebug("Randomising inputs to " + output + " (roll: " + rolls + "/" + totalRolls + ")",4);
 
-        local inputString = Stringify(inputs);
+        local inputString = rndUtils.Stringify(inputs);
 
         PrintDebug("    Sending RandomiseOutput to randomise " + inputString + " at " + output,4);
         PostMessage(output,"RandomiseOutput",inputString,GetSettingsString(),rolls);
+
+        //TODO: Delet this
+        KillContingencyTimer();
+        timerID = SetOneShotTimer("ContingencyTimer",1.0);
+    }
+
+    function KillContingencyTimer()
+    {
         if (timerID != null)
             KillTimer(timerID);
-        timerID = SetOneShotTimer("RandomiseTimer",0.1);
     }
 
     function OnTimer()
@@ -170,13 +215,18 @@ class rndComplexRandomiser extends rndBaseRandomiser
         {
             Setup();
         }
-        else if (message().name == "RandomiseTimer")
+        else if (message().name == "ContingencyTimer")
         {
-            //we're stuck!
-            PrintDebug("contingency timer activated...",4);
-            ShowDebug("contingency timer activated...",4);
-            outputs.remove(0);
-            Randomise();
+            if (outputs.len() > 0)
+            {
+                //we're stuck!
+                ShowDebug("Contingency timer reached... A Randomiser has encountered an issue",0);
+                ShowDebug("Output " + outputs[0] + " of type " + Object.Archetype(outputs[0]) + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",0);
+                ShowDebug("Report this as a bug!",0);
+                outputs.remove(0);
+                KillContingencyTimer();
+                Randomise();
+            }
         }
     }
 
@@ -195,27 +245,27 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function ShuffleBothArrays()
     {
-        inputs = Shuffle(inputs,seed);
+        inputs = rndUtils.Shuffle(inputs,seed);
 
         //If we are set to have high-priority outputs, then we are going to need
         //to split the outputs array, then shuffle each, then recombine them,
         //with the high priority ones at the start
         if (ignorePriority)
         {
-            outputs = Shuffle(outputs,-seed);
+            outputs = rndUtils.Shuffle(outputs,-seed);
         }
         else
         {
-            local lowPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
-            local highPrio = FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
+            local lowPrio = rndUtils.FilterByMetaprop(outputs,"Object Randomiser - High Priority Output",true);
+            local highPrio = rndUtils.FilterByMetaprop(outputs,"Object Randomiser - High Priority Output");
 
-            lowPrio = Shuffle(lowPrio,-seed);
-            highPrio = Shuffle(highPrio,-seed);
+            lowPrio = rndUtils.Shuffle(lowPrio,-seed);
+            highPrio = rndUtils.Shuffle(highPrio,-seed);
 
             if (noHighPriority)
                 outputs = lowPrio;
             else
-                outputs = Combine(highPrio,lowPrio);
+                outputs = rndUtils.Combine(highPrio,lowPrio);
         }
     }
 
@@ -227,15 +277,16 @@ class rndComplexRandomiser extends rndBaseRandomiser
     function ReplaceOutput(output,forceEnd = false)
     {
         local pos = outputs.find(output);
+        
         if (pos == null)
             return;
-
+        
         if (fuzzy && !forceEnd)
         {
             local min = outputs.len() * 0.35;
             local max = outputs.len() - 1;
 
-            local insertIndex = RandBetween(seed + output,min,max);
+            local insertIndex = rndUtils.RandBetween(seed + output,min,max);
             outputs.remove(pos);
             outputs.insert(insertIndex,output);
         }
@@ -258,9 +309,9 @@ class rndComplexRandomiser extends rndBaseRandomiser
             if (containerLink)
             {
                 local container = sLink(containerLink).dest;
-                if (isCorpse(container))
+                if (rndUtils.isCorpse(container))
                 {
-                    PrintDebug("Container: " + container);
+                    //PrintDebug("Container: " + container,3);
                     return false;
                 }
 
@@ -272,57 +323,15 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function IsOutputValid(output)
     {
-        if (!isMarker(output) && !isContainer(output) && noItemOutputs)
+        if (!rndUtils.isMarker(output) && !rndUtils.isContainer(output) && noItemOutputs)
+            return false;
+
+        //dirty hack
+        //don't allow monsters for now
+        if (rndUtils.isMonster(output))
             return false;
 
         return true;
     }
 
-    function OnSetOutputs()
-    {
-        local outputs = DeStringify(GetData("Outputs"));
-        local expandedOutputs = DeStringify(message().data);
-        PrintDebug("outputs received: " + message().data + " (from " + message().from + ")",2);
-
-        foreach(val in expandedOutputs)
-        {
-            local vali = val.tointeger();
-
-            PrintDebug("    Validating outputs...",5);
-            if (IsOutputValid(vali))
-            {
-                PrintDebug("      -> Output " + vali + " is valid",5);
-                outputs.append(vali);
-            }
-            else
-                PrintDebug("      -> Output " + vali + " is NOT valid",5);
-        }
-
-        SetData("Outputs",Stringify(outputs));
-    }
-
-    function OnSetInputs()
-    {
-        local inputs = DeStringify(GetData("Inputs"));
-        local expandedInputs = DeStringify(message().data);
-
-        PrintDebug("inputs received: " + message().data + " (from " + message().from + ")",2);
-
-        PrintDebug("    Validating inputs...",5);
-        foreach(val in expandedInputs)
-        {
-            local vali = val.tointeger();
-
-            if (IsInputValid(vali))
-            {
-                PrintDebug("      -> Input " + vali + " is valid",5);
-                inputs.append(vali);
-                PostMessage(vali,"Verify");
-            }
-            else
-                PrintDebug("      -> Input " + vali + " is NOT valid",5);
-        }
-
-        SetData("Inputs",Stringify(inputs));
-    }
 }

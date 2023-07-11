@@ -1,0 +1,62 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create a Randomiser for the map
+Create "rndRecEnemyRandomiser" "rndRec3EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid
++Link 235 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 266 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//Protocol Droid
++Link 141 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//Security
++Link 1027 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Security
+//Don't randomise because it has AI Links
++Link 839 "rndRec3EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Assault
++Link 1047 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 315 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 1902 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+//Laser Turret
++Link 1726 "rndRec3EnemyRandomiser" "Target"
+{
+}
+
+////DirectMonsterGens
+
+//None

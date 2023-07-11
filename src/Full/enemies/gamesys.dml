@@ -1,0 +1,85 @@
+//Create an enemy randomiser
+CreateArch "Marker" "rndEnemyRandomiser"
+{
+	+ObjProp "Scripts"
+	{
+		"Script 0" "rndEnemyRandomiser"
+		"Don't inherit" false
+	}
+}
+
+//Create a randomiser for Reaver Brains
+CreateArch "rndSimpleRandomiser" "rndBrainRandomiser"
+{
+    +ObjProp "DesignNoteSS" = "allowedTypes0=-1967"
+}
+
+// ================================================================================
+// 						Complex Randomiser Shorthands
+//					These simply configure complex randomisers
+// ================================================================================
+
+CreateArch "rndEnemyRandomiser" "rndMedSciEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=1"
+}
+
+CreateArch "rndEnemyRandomiser" "rndEngEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=2"
+}
+
+CreateArch "rndEnemyRandomiser" "rndHydroEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=3"
+}
+
+CreateArch "rndEnemyRandomiser" "rndOpsEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=4"
+}
+
+CreateArch "rndEnemyRandomiser" "rndRecEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=5"
+}
+
+CreateArch "rndEnemyRandomiser" "rndCommandEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=6"
+}
+
+CreateArch "rndEnemyRandomiser" "rndRickEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=7"
+}
+
+CreateArch "rndEnemyRandomiser" "rndManyEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=8"
+}
+
+CreateArch "rndEnemyRandomiser" "rndShodanEnemyRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "deckLevel=9"
+}
+
+// ================================================================================
+// 							Metaprops to control enemy distribution
+//
+//							These don't do anything on their own,
+//				but signal to the Randomiser that certain things should be done
+//									with a given object
+// ================================================================================
+
+//Use this for enemies meant to "shoot down" at the player.
+//They can only be replaced with enemies with ranged attacks
+CreateArch "Misc Metaprops" "Object Randomiser - Ranged Enemies Only"
+{
+}
+
+//Use this to force keeping an enemies inventory no matter what
+//Normaly enemies only keep their inventory if they are transformed to the same type
+CreateArch "Misc Metaprops" "Object Randomiser - Force Enemy Keep Inventory"
+{
+}

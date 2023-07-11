@@ -35,6 +35,9 @@ Create "rndComplexRandomiser" "rndMedicalRandomiser"
 +Link "rndCrewObjectsBar" "rndMedicalRandomiser" "~SwitchLink"
 {
 }
++Link "rndWattsRoomObjects" "rndMedicalRandomiser" "~SwitchLink"
+{
+}
 
 
 //Create a randomiser for the First Irradiated Area
@@ -62,25 +65,5 @@ Create "rndComplexRandomiser" "rndIrradiated2Randomiser"
 }
 //Outputs
 +Link "rndMedicalRadiation2Objects" "rndIrradiated2Randomiser" "~SwitchLink"
-{
-}
-
-//Allow up to 2 items in Watts room
-Create "rndComplexRandomiser" "rndWattsRoomRandomiser"
-{
-	+ObjProp "DesignNoteSS" = "priority=1; variedOutput=0; maxTimes=2; minTimes=0;"
-}
-//Inputs
-+Link "rndCrewObjectsKitchen" "rndWattsRoomRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjectsBar" "rndWattsRoomRandomiser" "SwitchLink"
-{
-}
-+Link "rndCrewObjects" "rndWattsRoomRandomiser" "SwitchLink"
-{
-}
-//Outputs
-+Link "rndWattsRoomObjects" "rndWattsRoomRandomiser" "~SwitchLink"
 {
 }

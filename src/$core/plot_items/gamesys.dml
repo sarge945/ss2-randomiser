@@ -9,7 +9,7 @@ CreateArch "rndComplexRandomiser" "rndToxinARandomiser"
 }
 
 //Create a randomiser for the Art Terminals
-Create "rndSimpleRandomiser" "rndArtTerminalRandomiser"
+CreateArch "rndSimpleRandomiser" "rndArtTerminalRandomiser"
 {
     +ObjProp "DesignNoteSS" = "allowedTypes0=-1277;allowedTypes1=-2936;"
 }

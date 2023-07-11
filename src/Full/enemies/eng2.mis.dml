@@ -1,0 +1,152 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndEngEnemyRandomiser" "rndEng2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+/*
+//Maintenance bots in cargo bay
+//Ignored since there's no other choices
++Link 528 "rndEng2EnemyRandomiser" "Target"
+{
+}
++Link 53 "rndEng2EnemyRandomiser" "Target"
+{
+}
++Link 492 "rndEng2EnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//OG-Shotgun in main engineering control
+//Does the weird head thing, going to leave for now
++Link 843 "rndEng2EnemyRandomiser" "Target"
+{
+}
+*/
+
+//OG-Shotgun in Shuttle Bay
++Link 854 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in Cargo Bay
++Link 376 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in Cargo Bay
++Link 386 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in Command Control
++Link 100 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in Shuttle Bay Floor Area
++Link 1143 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in Cargo Bay
++Link 70 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in Cargo Bay
++Link 50 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+/*
+//OG-Pipe in Cargo Bay
+//Has AI Links, can't handle
++Link 388 "rndEng2EnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
+//Blue Monkey at top of lift in Shuttle Bat
+//We probably don't want to change this
++MetaProp 128 "Object Randomiser - Ranged Enemies Only"
++Link 128 "rndEng2EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Monkey in main hallways
++Link 232 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++Link 308 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++MetaProp 259 "Object Randomiser - Ranged Enemies Only"
++Link 259 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++Link 267 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++Link 300 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++Link 249 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
+//TODO: Check this, it's a small spot
++Link 294 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay
++Link 240 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Cargo Bay hidden behind boxes
++Link 140 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+////Turrets
+
+//Cargo Bays
++Link 431 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Shuttle Bay
++Link 808 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Cargo Bays
++Link 660 "rndEng2EnemyRandomiser" "Target"
+{
+}
+
+//Cargo Bays
++Link 427 "rndEng2EnemyRandomiser" "Target"
+{
+}

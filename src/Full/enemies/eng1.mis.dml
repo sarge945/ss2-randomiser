@@ -1,0 +1,148 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndEngEnemyRandomiser" "rndEng1EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Protocol Droid in main area
++Link 1056 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//Shotgun Hybrid in Reactor area
++MetaProp 1201 "Object Randomiser - Ranged Enemies Only"
++Link 1201 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in big tube
++MetaProp 855 "Object Randomiser - Ranged Enemies Only"
++Link 855 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in big tube
++MetaProp 643 "Object Randomiser - Ranged Enemies Only"
++Link 643 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in big tube
++MetaProp 836 "Object Randomiser - Ranged Enemies Only"
++Link 836 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in big tube
++MetaProp 836 "Object Randomiser - Ranged Enemies Only"
++Link 836 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun teleporter
++Link 830 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in nacelle
++Link 728 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun in tubes
++Link 1672 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in tubes
++Link 1670 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in tubes
++Link 1666 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in tubes
++Link 1668 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in tubes
++Link 924 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in main area
++Link 1811 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in tubes
++Link 1671 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe in reactor area
++Link 154 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Storage Room
++Link 809 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//Monkey in Nacelle
++MetaProp 781 "Object Randomiser - Ranged Enemies Only"
++Link 781 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Monkey in Central Column
+//Disabled as it's too short for anything else
++Link 792 "rndEng1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Monkey in Reactor Room
++Link 164 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Midwife in long tube
+//Disabled as it's plot related
++Link 1273 "rndEng1EnemyRandomiser" "Target"
+{
+}
+*/
+
+////Turrets
+
+/*
+//2 Turrets in main hallway
++Link 522 "rndEng1EnemyRandomiser" "Target"
+{
+}
++Link 500 "rndEng1EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Turret in main hallway
++Link 942 "rndEng1EnemyRandomiser" "Target"
+{
+}
+
+//Turret in long tunnel
++Link 904 "rndEng1EnemyRandomiser" "Target"
+{
+}

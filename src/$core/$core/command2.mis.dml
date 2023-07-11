@@ -357,11 +357,14 @@ Create "rndObjectCollection" "rndHighSecurityObjects"
 }
 
 //Stasis Field Generator
++MetaProp 1366 "Object Randomiser - No Logs"
 +Link 1366 "rndApartmentsObjects" "Target"
 {
 }
 
 //Corpse
+//Trapped
++MetaProp 1365 "Object Randomiser - High Priority Output"
 +Link 1365 "rndApartmentsObjects" "Target"
 {
 }

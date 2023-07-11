@@ -1,0 +1,116 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+Create "rndHydroEnemyRandomiser" "rndHydro2EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//OG-Shotgun
++Link 1705 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 1678 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun
++Link 1707 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun (Shotgun Sam)
++Link 801 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun (Shotgun Billy)
++Link 727 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun (Shotgun Bob)
++Link 709 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//OG-Pipe
++Link 1713 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1680 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 772 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1698 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 2237 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1687 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Monkey
++Link 1693 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Midwife Mina
+//TEST THIS THOROUGHLY
++Link 1217 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Midwife NormaJean
+//Doesn't work sometimes, no idea why
++Link 805 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Midwife
+//May leave, is tending to eggs as per lore
++Link 1709 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+//Midwife
+//May leave, is tending to eggs as per lore
++Link 1676 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Bloome
+//Don't enable, is story related
++Link 1711 "rndHydro2EnemyRandomiser" "Target"
+{
+}
+*/
+
+////Turrets
+
+//Security Booth turrets
++Link 1673 "rndHydro2EnemyRandomiser" "Target"
+{
+}
++Link 1671 "rndHydro2EnemyRandomiser" "Target"
+{
+}

@@ -1,0 +1,125 @@
+// ================================================================================
+// 								Enemy Randomisation
+// ================================================================================
+
+//Create randomiser for the map
+Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
+{
+}
+
+//Enemies
+
+//Armoury Bot
++Link 329 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Command Center Bot
++Link 325 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun - teleports in
++Link 692 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//OG-Shotgun - teleports in
++Link 696 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//OG-Grenade
++Link 315 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Grenade Hybrids on lower level
++Link 317 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
++Link 321 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+
+//Grenade Hybrid on upper level
++MetaProp 319 "Object Randomiser - Ranged Enemies Only"
++Link 319 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Turret
++Link 328 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Grenade Hybrid
++Link 390 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Turret
++Link 284 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Monke
++Link 307 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Monke
++Link 338 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 327 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+/*
+//Spider Ambush. Leave intact
+//Spider
++Link 285 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 286 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 601 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
+//Spider
++Link 603 "rndOps4EnemyRandomiser" "Target"
+{
+}
+*/
+
+//Turrets
++Link 281 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
++Link 284 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
++Link 328 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
++Link 335 "rndOps4EnemyRandomiser" "Target"
+{
+}
+
++Link 700 "rndOps4EnemyRandomiser" "Target"
+{
+}
