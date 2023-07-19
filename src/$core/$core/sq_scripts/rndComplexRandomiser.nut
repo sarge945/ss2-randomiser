@@ -220,9 +220,9 @@ class rndComplexRandomiser extends rndBaseRandomiser
             if (outputs.len() > 0)
             {
                 //we're stuck!
-                ShowDebug("Contingency timer reached... A Randomiser has encountered an issue",0);
-                ShowDebug("Output " + outputs[0] + " of type " + Object.Archetype(outputs[0]) + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",0);
-                ShowDebug("Report this as a bug!",0);
+                ShowDebug("Contingency timer reached... A Randomiser has encountered an issue",1);
+                ShowDebug("Output " + outputs[0] + " of type " + Object.Archetype(outputs[0]) + " (" + ShockGame.GetArchetypeName(outputs[0]) + ") will be unusable",1);
+                ShowDebug("Report this as a bug!",1);
                 outputs.remove(0);
                 KillContingencyTimer();
                 Randomise();

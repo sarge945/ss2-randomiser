@@ -94,12 +94,15 @@ Beta 14:
 - Fixed a few errors with some item spots looking weird
 - Fixed broken Hydro2 weapon randomisation (broken in Beta 13)
 
-Beta 15:
-- The mod is now split into 2 main versions, Lite and Full. For now, the only difference is that Full also randomises non-plot-related audiologs.
+1.0 (Release Version)
+- The mod is now split into 2 main versions, Lite and Full. Full contains all the features of Lite, plus it also randomises Enemy placement and non-plot-related audiologs
+- All maps are now randomised
 - Added "No Swarm Eggs" addon. Will prevent Swarm Eggs from appearing at all, and remove the relevant log in rec1 as well. To enable, use the optional file.
 - RSD Compatibility is now an optional file. Will change some minor aspects of the randomisation to not clash with RSD Changes. To enable, use the optional file.
 - Items with emails associated with them (Crystal Shards, Toxin A etc) will now randomise, and the email will be setup to work at the new location.
 - Fixed "hypo only" outputs (like the medical beds in hydro2, and body bags) allowing medkits as well
-- Corpses can now be randomised. For now, this only affects Grassi's corpse.
 - Fixed Hydro2 LabAssistant randomisation
-- Added some more item locations
+- Added some more item locations, finished randomising all maps
+- Added "Trash" addon - makes trash cans only contain junk items (magazines, cola, etc etc)
+- Added "Ops4 Key" addon - makes the Security key in ops4 required to unlock the security booth (in Vanilla you can use the keycard from Engineering). Since it's randomised, it makes sense that it should serve some purpose.
+- Added "No Spiders" addon. All spiders will be randomised to something else, and spiders which aren't randomised are replaced with either worms or monkeys
