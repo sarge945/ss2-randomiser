@@ -282,6 +282,11 @@ class rndUtils
         //Set HP to max (fixes issues with RSD)
         local maxHP = Property.Get(dest,"MAX_HP");
         Property.SetSimple(dest,"HitPoints",maxHP);
+        
+        //Fix Physics Issues
+        //Property.CopyFrom(dest,"PhysState",source);
+        //Property.CopyFrom(dest,"PhysControl",source);
+        //Property.CopyFrom(dest,"CollisionType",source);
 
         //Copy over AI Properties
         //Property.CopyFrom(dest,"AI_VisDesc",source);

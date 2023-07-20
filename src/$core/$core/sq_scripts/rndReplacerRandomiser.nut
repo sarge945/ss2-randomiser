@@ -87,9 +87,10 @@ class rndReplacerRandomiser extends rndBaseRandomiser
 
         PrintDebug("Replacing " + output + " (" + ShockGame.GetArchetypeName(output) + ") with " + newObject + " (" + ShockGame.GetArchetypeName(newObject) + ")",1);
 
+        Object.SetName(output,"temp" + output);
         Object.Destroy(output);
-
         Object.SetName(newObject,name);
+        PrintDebug ("new name: " + rndUtils.GetObjectName(newObject),1);
     }
 
     function Place(output,newObject)
