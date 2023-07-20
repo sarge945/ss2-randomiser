@@ -20,39 +20,27 @@ CreateArch "Misc Metaprops" "Object Randomiser - Arachnophobia Replace"
 +MetaProp -2013 "Object Randomiser - Arachnophobia Replace"
 
 //Set all enemy randomisers to avoid spawning spiders
-+ObjProp "rndMedSciEnemyRandomiser" "DesignNoteSS"
-{
-	"" "deckLevel=1;noSpiders=1;"
-}
-+ObjProp "rndEngEnemyRandomiser" "DesignNoteSS"
-{
-	"" "deckLevel=2;noSpiders=1;"
-}
-+ObjProp "rndHydroEnemyRandomiser" "DesignNoteSS"
-{
-	"" "deckLevel=3;noSpiders=1;"
-}
 +ObjProp "rndOpsEnemyRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=4;noSpiders=1;"
+	"" "pipeHybridWeight=1;shotgunHybridWeight=5;blueMonkeyWeight=1;protocolDroidWeight=3;midwifeWeight=5;grenadeHybridWeight=10;redMonkeyWeight=8;arachnightmareWeight=0;cyborgAssassinWeight=5;slugTurretWeight=1;laserTurretWeight=6;maintenanceBotWeight=1;securityBotWeight=3"
 }
 +ObjProp "rndRecEnemyRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=5;noSpiders=1;"
+	"" "shotgunHybridWeight=3;blueMonkeyWeight=0;protocolDroidWeight=3;midwifeWeight=3;grenadeHybridWeight=2;redMonkeyWeight=3;arachnightmareWeight=0;cyborgAssassinWeight=3;slugTurretWeight=1;laserTurretWeight=8;securityBotWeight=1;assaultBotWeight=1"
 }
 +ObjProp "rndCommandEnemyRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=6;noSpiders=1;"
+	"" "shotgunHybridWeight=1;blueMonkeyWeight=0;protocolDroidWeight=5;midwifeWeight=4;grenadeHybridWeight=1;redMonkeyWeight=1;arachnightmareWeight=0;cyborgAssassinWeight=6;;slugTurretWeight=0;laserTurretWeight=1;rocketTurretWeight=2;securityBotWeight=1;assaultBotWeight=8;rumblerWeight=8"
 }
 +ObjProp "rndRickEnemyRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=7;noSpiders=1;"
+	"" "shotgunHybridWeight=1;blueMonkeyWeight=0;protocolDroidWeight=3;midwifeWeight=3;grenadeHybridWeight=2;redMonkeyWeight=2;arachnightmareWeight=0;cyborgAssassinWeight=4;invisibleArachnidWeight=0;slugTurretWeight=5;laserTurretWeight=6;rocketTurretWeight=6;securityBotWeight=1;assaultBotWeight=4;rumblerWeight=4"
 }
 +ObjProp "rndManyEnemyRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=8;noSpiders=1;"
+	"" "midwifeWeight=5;grenadeHybridWeight=5;redMonkeyWeight=2;arachnightmareWeight=0;cyborgAssassinWeight=0;invisibleArachnidWeight=0;rocketTurretWeight=1;rumblerWeight=1"
 }
-+ObjProp "rndShodanEnemyRandomiser" "DesignNoteSS"
++ObjProp "rndMonsterClosetRandomiser" "DesignNoteSS"
 {
-	"" "deckLevel=9;noSpiders=1;"
+	"" "protocolDroidWeight=1;arachnightmareWeight=0;cyborgAssassinWeight=1"
 }

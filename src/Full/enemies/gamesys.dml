@@ -21,47 +21,52 @@ CreateArch "rndSimpleRandomiser" "rndBrainRandomiser"
 
 CreateArch "rndEnemyRandomiser" "rndMedSciEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=1"
+	+ObjProp "DesignNoteSS" = "pipeHybridWeight=3;shotgunHybridWeight=2;blueMonkeyWeight=1;"
 }
 
 CreateArch "rndEnemyRandomiser" "rndEngEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=2"
+	+ObjProp "DesignNoteSS" = "pipeHybridWeight=1;shotgunHybridWeight=2;blueMonkeyWeight=2;protocolDroidWeight=2;slugTurretWeight=1;laserTurretWeight=1"
 }
 
 CreateArch "rndEnemyRandomiser" "rndHydroEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=3"
+	+ObjProp "DesignNoteSS" = "pipeHybridWeight=1;shotgunHybridWeight=3;blueMonkeyWeight=3;protocolDroidWeight=1;midwifeWeight=3;slugTurretWeight=1;laserTurretWeight=3"
 }
 
 CreateArch "rndEnemyRandomiser" "rndOpsEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=4"
+	+ObjProp "DesignNoteSS" = "pipeHybridWeight=1;shotgunHybridWeight=5;blueMonkeyWeight=1;protocolDroidWeight=3;midwifeWeight=5;grenadeHybridWeight=10;redMonkeyWeight=8;arachnightmareWeight=5;cyborgAssassinWeight=5;slugTurretWeight=1;laserTurretWeight=6;maintenanceBotWeight=1;securityBotWeight=3"
 }
 
 CreateArch "rndEnemyRandomiser" "rndRecEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=5"
+	+ObjProp "DesignNoteSS" = "shotgunHybridWeight=3;blueMonkeyWeight=0;protocolDroidWeight=3;midwifeWeight=3;grenadeHybridWeight=2;redMonkeyWeight=3;arachnightmareWeight=1;cyborgAssassinWeight=3;slugTurretWeight=1;laserTurretWeight=8;securityBotWeight=1;assaultBotWeight=1"
 }
 
 CreateArch "rndEnemyRandomiser" "rndCommandEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=6"
+	+ObjProp "DesignNoteSS" = "shotgunHybridWeight=1;blueMonkeyWeight=0;protocolDroidWeight=5;midwifeWeight=4;grenadeHybridWeight=1;redMonkeyWeight=1;arachnightmareWeight=1;cyborgAssassinWeight=6;;slugTurretWeight=0;laserTurretWeight=1;rocketTurretWeight=2;securityBotWeight=1;assaultBotWeight=8;rumblerWeight=8"
 }
 
 CreateArch "rndEnemyRandomiser" "rndRickEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=7"
+	+ObjProp "DesignNoteSS" = "shotgunHybridWeight=1;blueMonkeyWeight=0;protocolDroidWeight=3;midwifeWeight=3;grenadeHybridWeight=2;redMonkeyWeight=2;arachnightmareWeight=2;cyborgAssassinWeight=4;invisibleArachnidWeight=2;slugTurretWeight=5;laserTurretWeight=6;rocketTurretWeight=6;securityBotWeight=1;assaultBotWeight=4;rumblerWeight=4"
 }
 
 CreateArch "rndEnemyRandomiser" "rndManyEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=8"
+	+ObjProp "DesignNoteSS" = "midwifeWeight=5;grenadeHybridWeight=5;redMonkeyWeight=2;arachnightmareWeight=1;cyborgAssassinWeight=0;invisibleArachnidWeight=1;rocketTurretWeight=1;rumblerWeight=1"
 }
 
 CreateArch "rndEnemyRandomiser" "rndShodanEnemyRandomiser"
 {
-	+ObjProp "DesignNoteSS" = "deckLevel=9"
+	+ObjProp "DesignNoteSS" = "protocolDroidWeight=3;midwifeWeight=4;grenadeHybridWeight=4;redMonkeyWeight=0;arachnightmareWeight=0;cyborgAssassinWeight=0;invisibleArachnidWeight=0;redAssassinWeight=3;rocketTurretWeight=1"
+}
+
+CreateArch "rndEnemyRandomiser" "rndMonsterClosetRandomiser"
+{
+	+ObjProp "DesignNoteSS" = "protocolDroidWeight=1;arachnightmareWeight=1;cyborgAssassinWeight=1"
 }
 
 // ================================================================================

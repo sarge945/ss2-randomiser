@@ -11,7 +11,10 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         -1254, //DirectMonsterGen
     ];
 
-    static botTypes = [
+    /*
+    //OLD DATA! DO NOT USE!!!
+    //--------------------------------------
+    static botTypesOld = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-171,      1,        1,    1,        1,    0,      0,          0,      0,      0,], //Maint droid
         [-172,      0,        0,    0,        3,    1,      1,          1,      0,      0,], //Security Droid
@@ -19,14 +22,14 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         [-180,      0,        0,    0,        0,    0,      8,          4,      1,      1,], //Rumbler
     ];
 
-    static turretTypes = [
+    static turretTypesOld = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-369,      1,        1,    1,        1,    1,      0,          5,      0,      0,], //Slug Turret
         [-168,      0,        1,    3,        6,    8,      1,          6,      0,      0,], //Laser Turret
         [-167,      0,        0,    0,        0,    0,      2,          6,      1,      1,], //Rocket Turret
     ];
 
-    static mainTypes = [
+    static mainTypesOld = [
         //Type      MedSci    Eng   Hydro     Ops   Rec     Command     Rick    Many    Shodan
         [-397,      3,        1,    1,        1,    0,      0,          0,      0,      0,], //OG-Pipe
         [-175,      2,        2,    3,        5,    3,      1,          1,      0,      0,], //OG-Shotgun
@@ -40,24 +43,43 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         [-3398,      0,        0,    0,        0,    0,      0,          0,      0,      3,], //Red Assassin
         [-1439,      0,        0,    0,        0,    0,      0,          2,      1,      0,], //Invisible Arachnid
     ];
+    */
 
-    deckLevel = null;
     rollSeed = null;
-    arachnophobia = null;
-
-    static DECK_LEVELS = 9;
+    mainTypes = null;
+    turretTypes = null;
+    botTypes = null;
 
     function Init(reloaded)
     {
         base.Init(reloaded);
-        deckLevel = getParam("deckLevel",-1);
 
-        if (deckLevel > DECK_LEVELS || deckLevel <= 0)
-            deckLevel = DECK_LEVELS;
-
-        arachnophobia = getParam("noSpiders",0);
-
-        //print ("deckLevel: " + deckLevel);
+        mainTypes = [
+            [-397,      getParam("pipeHybridWeight",0),], //OG-Pipe
+            [-175,      getParam("shotgunHybridWeight",0),], //OG-Shotgun
+            [-1431,     getParam("blueMonkeyWeight",0),], //Blue Monkey
+            [-174,      getParam("protocolDroidWeight",0),], //Protocol Droid
+            [-179,      getParam("midwifeWeight",0),], //Midwife
+            [-176,      getParam("grenadeHybridWeight",0),], //OG-Grenade
+            [-1432,     getParam("redMonkeyWeight",0),], //Red Monkey
+            [-189,      getParam("arachnightmareWeight",0),], //Spider
+            [-1541,     getParam("cyborgAssassinWeight",0),], //Cyborg Assassin
+            [-3398,     getParam("redAssassinWeight",0),], //Red Assassin
+            [-1439,     getParam("invisibleArachnidWeight",0),], //Invisible Arachnid
+        ];
+        
+        turretTypes = [
+            [-369,      getParam("slugTurretWeight",0),], //Slug Turret
+            [-168,      getParam("laserTurretWeight",0),], //Laser Turret
+            [-167,     getParam("rocketTurretWeight",0),], //Rocket Turret
+        ];
+        
+        botTypes = [
+            [-171,      getParam("maintenanceBotWeight",0),], //Maintenance Bot
+            [-172,      getParam("securityBotWeight",0),], //Security Bot
+            [-173,     getParam("assaultBotWeight",0),], //Assault
+            [-180,     getParam("rumblerWeight",0),], //Rumbler
+        ];
     }
 
     function CreateNewObject(output)
@@ -128,7 +150,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         local rolls = 0;
         local validRoll = false;
         local total_chance = GetTotalChance(rollTable);
-        local enemy = rollTable[0][0];
+        local enemy = rollTable[0];
 
         while (!validRoll && rolls < 30)
         {
@@ -137,16 +159,6 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
             local roll = rndUtils.RandBetween(seed + rollSeed + rolls,1,total_chance);
             local index = GetEnemyBasedOnRoll(roll,rollTable);
             local potentialEnemy = rollTable[index][0];
-
-            /*
-            //filthy dirty arachnophobia hack
-            if ((enemy == -1439 || enemy == -189) && arachnophobia)
-                enemy = -182; //grub
-            */
-
-            //Arachnophobe hack
-            if (arachnophobia && IsSpider(potentialEnemy))
-                continue;
 
             //Ranged enemies only
             if (rndUtils.HasMetaProp(output,"Object Randomiser - Ranged Enemies Only") && IsMeleeEnemy(potentialEnemy))
@@ -161,11 +173,6 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         return enemy;
     }
 
-    function IsSpider(enemy)
-    {
-        return enemy == -1432 || enemy == -189;
-    }
-
     function IsMeleeEnemy(enemy)
     {
         return enemy == -180 || enemy == -397 || enemy == -174 || enemy == -189 || enemy == -1439;
@@ -177,10 +184,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         local total_chance = 0;
 
         foreach(val in rollTable)
-        {
-            local value = val[deckLevel];
-            total_chance += value;
-        }
+            total_chance += val[1];
 
         return total_chance;
     }
@@ -193,11 +197,10 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         local remaining_roll_value = roll;
         PrintDebug("START: roll = " + remaining_roll_value,1);
 
-        foreach(index, val in rollTable)
+        foreach(index, value in rollTable)
         {
-            local value = val[deckLevel];
-            PrintDebug("    " + index + "[val] = " + value,1);
-            remaining_roll_value -= value;
+            PrintDebug("    " + index + "[val] = " + value[1],1);
+            remaining_roll_value -= value[1];
 
             PrintDebug("    remaining roll = " + remaining_roll_value,1);
 

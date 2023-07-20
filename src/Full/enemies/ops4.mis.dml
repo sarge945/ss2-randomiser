@@ -7,6 +7,11 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 {
 }
 
+//Create randomiser for the monster closet
+Create "rndMonsterClosetRandomiser" "rndOps4TrapRandomiser"
+{
+}
+
 //Enemies
 
 //Armoury Bot
@@ -80,28 +85,26 @@ Create "rndOpsEnemyRandomiser" "rndOps4EnemyRandomiser"
 {
 }
 
-/*
 //Spider Ambush. Leave intact
 //Spider
-+Link 285 "rndOps4EnemyRandomiser" "Target"
++Link 285 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
-+Link 286 "rndOps4EnemyRandomiser" "Target"
++Link 286 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
-+Link 601 "rndOps4EnemyRandomiser" "Target"
++Link 601 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
-+Link 603 "rndOps4EnemyRandomiser" "Target"
++Link 603 "rndOps4TrapRandomiser" "Target"
 {
 }
-*/
 
 //Turrets
 +Link 281 "rndOps4EnemyRandomiser" "Target"
