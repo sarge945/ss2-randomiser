@@ -106,3 +106,9 @@ Beta 14:
 - Added "Trash" addon - makes trash cans only contain junk items (magazines, cola, etc etc)
 - Added "Ops4 Key" addon - makes the Security key in ops4 required to unlock the security booth (in Vanilla you can use the keycard from Engineering). Since it's randomised, it makes sense that it should serve some purpose.
 - Added "No Spiders" addon. All spiders will be randomised to something else, and spiders which aren't randomised are replaced with either worms or monkeys
+
+1.1 (Release Hotfix)
+- Fixed race condition with Object.SetName and Object.Destroy, which was randomly preventing some AI's that were replaced from properly executing signal responses, leading to failed ambushes
+- Changed the way Enemy randomisers work, now the ratio of enemies can be specified on the randomisers themselves, similar to other randomisers, rather than using a big table. This should allow proper support for FMs.
+- Lite version is now much lighter, it no longer randomises weapons or eggs. There is now a lot more differentiation between Lite and Full, to hopefully give people more options.
+- Audio Log randomisation is now an addon
