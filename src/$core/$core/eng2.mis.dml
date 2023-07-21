@@ -235,6 +235,8 @@ Create "rndOutputMarker" "rndBehindOverride"
 ////Loose Items
 
 //Nanites on a Box near the protocol droid trap on the ground level
+//Trapped, so make it high priority
++MetaProp 796 "Object Randomiser - High Priority Output"
 +Link 796 "rndCargoBay1AObjects" "Target"
 {
 }
