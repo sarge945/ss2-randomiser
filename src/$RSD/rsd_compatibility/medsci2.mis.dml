@@ -6,9 +6,10 @@
 //Usually it has armor in it, making it worth it.
 //But RSD removes that armour (for good reason),
 //so there's not much point going down there anymore.
-//Let's change that.
-+MetaProp 1476 "Object Randomiser - High Priority Output"
-+MetaProp 1475 "Object Randomiser - High Priority Output"
+//Instead, it adds a SwiftBoost, lets keep it there.
+//+MetaProp 1476 "Object Randomiser - High Priority Output"
++MetaProp 1475 "Object Randomiser - No Auto Input"
++MetaProp 1475 "Object Randomiser - No Auto Output"
 
 // ================================================================================
 // 								Add Power Cell to Randomisers

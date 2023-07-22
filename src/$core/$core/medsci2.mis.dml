@@ -237,6 +237,9 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Rad Hypo on pipes near Biopsy Lab
+//The machinery used to get up here can get broken, so don't allow anything important up here
+//It's not a "body bag", but Nanites and Hypos seems to be a good fit here.
++MetaProp 1421 "Object Randomiser - Body Bag Output"
 +MetaProp 1421 "Object Randomiser - Secret"
 +MetaProp 1421 "Object Randomiser - High Priority Output"
 +Link 1421 "rndMedicalObjects" "Target"
