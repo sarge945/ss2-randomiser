@@ -74,7 +74,6 @@ Create "rndRickEnemyRandomiser" "rndRick1EnemyRandomiser"
 */
 
 //Invisible Arachnid
-+MetaProp 2149 "Object Randomiser - Force Enemy Keep Inventory"
 +Link 2149 "rndRick1EnemyRandomiser" "Target"
 {
 }
@@ -88,9 +87,15 @@ Create "rndRickEnemyRandomiser" "rndRick1EnemyRandomiser"
 */
 
 //Midwife
-//Has battery
-+MetaProp 2145 "Object Randomiser - Force Enemy Keep Inventory"
 +Link 2145 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Remove battery
+-Link 2145 2104 Contains 00A1003B
+
+//Link battery to Randomiser by adding it to a corpse
++Link 1565 2104 "Contains"
 {
 }
 
@@ -105,9 +110,15 @@ Create "rndRickEnemyRandomiser" "rndRick1EnemyRandomiser"
 }
 
 //Assassin
-//Has Battery
-+MetaProp 2165 "Object Randomiser - Force Enemy Keep Inventory"
 +Link 2165 "rndRick1EnemyRandomiser" "Target"
+{
+}
+
+//Remove battery
+-Link 2165 2122 Contains 00A1003D
+
+//Link battery to Randomiser by adding it to a corpse
++Link 342 2122 "Contains"
 {
 }
 
