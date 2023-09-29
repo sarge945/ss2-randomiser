@@ -176,7 +176,7 @@ class rndUtils
 
     static function isMarker(obj)
     {
-        return ShockGame.GetArchetypeName(obj) == "rndOutputMarker";
+        return ShockGame.GetArchetypeName(obj) == "rndOutputMarker" || ShockGame.GetArchetypeName(obj) == "Marker";
     }
 
     static function isPlacer(obj)

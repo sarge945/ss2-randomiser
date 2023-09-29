@@ -46,15 +46,12 @@ class rndSimpleRandomiser extends rndBaseRandomiser
 
     function IsOutputValid(output)
     {
-        return true;
+        return CheckAllowedTypes(output);
     }
 
     function IsInputValid(input)
     {
-        //Check allowed types
-        if (!CheckAllowedTypes(input))
-            return false;
-        return true;
+        return CheckAllowedTypes(input);
     }
 
     //Foreach is required here, otherwise both arrays will point to each other and always randomise to themselves

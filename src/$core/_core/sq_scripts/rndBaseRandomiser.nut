@@ -52,6 +52,8 @@ class rndBaseRandomiser extends rndBase
 
     function CheckAllowedTypes(input)
     {
+        if (rndUtils.isMarker(input) || rndUtils.isContainer(input))
+            return true;
         foreach(type in allowedTypes)
         {
             if (rndUtils.isArchetype(input,type))
@@ -62,6 +64,7 @@ class rndBaseRandomiser extends rndBase
             if (rndUtils.isArchetype(input,type))
                 return true;
         }
+        PrintDebug("Object " + input + " was not of allowed type (" + ShockGame.GetArchetypeName(input) + ")");
         return false;
     }
 
