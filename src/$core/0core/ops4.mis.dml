@@ -326,7 +326,7 @@ Create "rndOutputMarker" "rndPowerOpsLadderRoom"
 ////Entrance Room
 
 //Corpse in entrance to Command Center with the 2 turrets
-+Link 85 "rndCommandCenterObjects" "Target"
++Link 84 "rndCommandCenterObjects" "Target"
 {
 }
 
@@ -360,6 +360,7 @@ Create "rndOutputMarker" "rndCommandCenterTurretCorner"
 
 //Cyber Modules under the floor
 +MetaProp 949 "Object Randomiser - No Junk"
++MetaProp 949 "Object Randomiser - Secret"
 +MetaProp 949 "Object Randomiser - Small Item Output"
 +Link 949 "rndCommandCenterObjects" "Target"
 {

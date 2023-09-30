@@ -130,8 +130,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Med Hypo between plant boxes
-+MetaProp 1082 "Object Randomiser - No Auto Output"
++MetaProp 1082 "Object Randomiser - Hypo Output"
 +Link 1082 "rndHydro1Objects" "Target"
+{
+}
+
+//Ammo Clip between plant boxes
++MetaProp 621 "Object Randomiser - Small Item Output"
++Link 621 "rndHydro1Objects" "Target"
 {
 }
 

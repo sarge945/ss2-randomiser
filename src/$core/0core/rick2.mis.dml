@@ -65,7 +65,7 @@ Create "rndObjectCollection" "rndFinalAreaObjects"
 }
 
 //Beaker in ladder room
-+Link 813 "rndShaftObjects" "Target"
++Link 816 "rndShaftObjects" "Target"
 {
 }
 

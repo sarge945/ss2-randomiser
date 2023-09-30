@@ -46,7 +46,7 @@ class rndSimpleRandomiser extends rndBaseRandomiser
 
     function IsOutputValid(output)
     {
-        return CheckAllowedTypes(output);
+        return rndUtils.isMarker(output) || rndUtils.isContainer(output) || CheckAllowedTypes(output)
     }
 
     function IsInputValid(input)

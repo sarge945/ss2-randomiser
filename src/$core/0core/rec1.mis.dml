@@ -71,6 +71,24 @@ Create "rndOutputMarker" "rndReplace1443"
 
 /////////////////=====	Athletics Lobby	=====\\\\\\\\\\\\\\\\\
 
+//Lockbox behind Desk
+//May remove this
+
+//Prisms
++MetaProp 454 "Object Randomiser - Secret"
++MetaProp 454 "Object Randomiser - High Priority Output"
++Link 454 "rndLobbyObjects" "Target"
+{
+}
+
+//Medbed Key
++MetaProp 409 "Object Randomiser - Secret"
++MetaProp 409 "Object Randomiser - High Priority Output"
++Link 409 "rndLobbyObjects" "Target"
+{
+}
+
+
 //Corpse with Power Cell
 +Link 107 "rndLobbyObjects" "Target"
 {

@@ -165,8 +165,26 @@ class rndComplexRandomiser extends rndBaseRandomiser
         //ReplaceOutput(output,true);
     }
 
+    static SUPER_DEBUG = 0;
+    //Set SUPER_DEBUG to 1 to remove every item that's randomised
+    //Use this to test if anything was missed
+    function SuperDebugMode()
+    {
+        foreach (input in inputs)
+            Object.Destroy(input);
+        foreach (output in outputs)
+            Object.Destroy(output);
+    }
+
     function Randomise(outputDebugText = true)
     {
+        if (SUPER_DEBUG)
+        {
+            print ("SUPER DEBUG MODE ACTIVE!");
+            SuperDebugMode();
+            return;
+        }
+
         if (inputs.len() == 0 || outputs.len() == 0)
         {
             Complete("Complex");

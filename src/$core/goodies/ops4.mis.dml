@@ -52,3 +52,16 @@ Create "rndComplexRandomiser" "rndOpsRandomiser"
 +Link "rndSecurityLockedObjects" "rndOpsRandomiser" "~SwitchLink"
 {
 }
+
+//Randomise Armoury
+Create "rndComplexRandomiser" "rndOpsArmouryRandomiser"
+{
+}
+
+//IO
++Link "rndArmouryObjects" "rndOpsArmouryRandomiser" "SwitchLink"
+{
+}
++Link "rndArmouryObjects" "rndOpsArmouryRandomiser" "~SwitchLink"
+{
+}

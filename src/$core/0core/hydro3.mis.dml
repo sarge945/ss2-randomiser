@@ -7,6 +7,11 @@ Create "rndObjectCollection" "rndHydro3Objects"
 {
 }
 
+//Create an object collection for the Security Crates
+Create "rndObjectCollection" "rndSecurityCrates"
+{
+}
+
 ////Corpses
 
 //Man immediately at the start of the map
@@ -98,3 +103,49 @@ Create "rndObjectCollection" "rndHydro3Objects"
 {
 }
 
+
+//Stuff in the secret area, may remove these depending on how things play
+
+//Shotgun Pellets
++MetaProp 753 "Object Randomiser - Ammo Output"
++MetaProp 753 "Object Randomiser - High Priority Output"
++Link 753 "rndHydro3Objects" "Target"
+{
+}
+
+//Cyber Modules
++MetaProp 120 "Object Randomiser - Small Item Output"
++MetaProp 120 "Object Randomiser - High Priority Output"
++Link 120 "rndHydro3Objects" "Target"
+{
+}
+
+//Maint Tool
++MetaProp 283 "Object Randomiser - Small Item Output"
++MetaProp 283 "Object Randomiser - High Priority Output"
++Link 283 "rndHydro3Objects" "Target"
+{
+}
+
+/*
+//Champagne
++MetaProp 751 "Object Randomiser - Junk Only"
++Link 751 "rndHydro3Objects" "Target"
+{
+}
+
+//Magazine
++MetaProp 285 "Object Randomiser - Junk Only"
++Link 285 "rndHydro3Objects" "Target"
+{
+}
+
+*/
+
+/////////////////=====	Security Crates	=====\\\\\\\\\\\\\\\\\
+
+
+//The only crate in the map.
++Link 215 "rndSecurityCrates" "Target"
+{
+}

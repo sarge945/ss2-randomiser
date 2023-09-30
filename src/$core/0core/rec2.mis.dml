@@ -102,6 +102,11 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Ciggies
++Link 1611 "rndMaintenanceObjects" "Target"
+{
+}
+
+//Ciggies
 +Link 1610 "rndMaintenanceObjects" "Target"
 {
 }
@@ -272,6 +277,14 @@ Create "rndObjectCollection" "rndSecurityCrates"
 {
 }
 
+////Toilets
+
+//Timed Grenade
++MetaProp 1245 "Object Randomiser - Ammo Output"
++Link 1245 "rndLoungeObjects" "Target"
+{
+}
+
 /////////////////=====	Dining/Mess Area	=====\\\\\\\\\\\\\\\\\
 
 ////Dining Area
@@ -398,7 +411,7 @@ Create "rndObjectCollection" "rndSecurityCrates"
 }
 
 //Corpse
-+Link 1299 "rndGardenObjects" "Target"
++Link 299 "rndGardenObjects" "Target"
 {
 }
 

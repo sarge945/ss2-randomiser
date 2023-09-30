@@ -699,6 +699,130 @@ Create "rndObjectCollection" "rndHighSecurityObjects"
 {
 }
 
+/////////////////=====	Captains Quarters	=====\\\\\\\\\\\\\\\\\
+
+////Main Area past smashed windows
+
+//Magazine
++Link 361 "rndCaptainsObjects" "Target"
+{
+}
+
+//Corpse
++Link 379 "rndCaptainsObjects" "Target"
+{
+}
+
+//Corpse
++Link 380 "rndCaptainsObjects" "Target"
+{
+}
+
+//Vodka
++Link 341 "rndCaptainsObjects" "Target"
+{
+}
+
+////Conference Room
+
+//Med Hypo
++Link 2218 "rndCaptainsObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 429 "Object Randomiser - High Priority Output"
++MetaProp 429 "Object Randomiser - Junk Only"
++Link 429 "rndCaptainsObjects" "Target"
+{
+}
+
+//Magazine
++MetaProp 430 "Object Randomiser - High Priority Output"
++MetaProp 430 "Object Randomiser - Junk Only"
++Link 430 "rndCaptainsObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 427 "Object Randomiser - High Priority Output"
++MetaProp 427 "Object Randomiser - Junk Only"
++Link 427 "rndCaptainsObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 425 "Object Randomiser - High Priority Output"
++MetaProp 425 "Object Randomiser - Junk Only"
++Link 425 "rndCaptainsObjects" "Target"
+{
+}
+
+//Champagne
++MetaProp 426 "Object Randomiser - High Priority Output"
++MetaProp 426 "Object Randomiser - Junk Only"
++Link 426 "rndCaptainsObjects" "Target"
+{
+}
+
+//Ciggies
++MetaProp 428 "Object Randomiser - High Priority Output"
++MetaProp 428 "Object Randomiser - Junk Only"
++Link 428 "rndCaptainsObjects" "Target"
+{
+}
+
+//Audio Log
++MetaProp 167 "Object Randomiser - Junk Only"
++Link 167 "rndCaptainsObjects" "Target"
+{
+}
+
+//Research Soft V2
++Link 2219 "rndCaptainsObjects" "Target"
+{
+}
+
+//// Captains Cabin ////
+
+//Heavy Armour
++Link 2227 "rndCaptainsObjects" "Target"
+{
+}
+
+//Personal Locker
++Link 1565 "rndCaptainsObjects" "Target"
+{
+}
+
+//Chips
++MetaProp 1561 "Object Randomiser - Junk Only"
++Link 1561 "rndCaptainsObjects" "Target"
+{
+}
+
+//Juice
++MetaProp 1569 "Object Randomiser - Junk Only"
++Link 1569 "rndCaptainsObjects" "Target"
+{
+}
+
+//Magazine in Captains Office
++MetaProp 421 "Object Randomiser - Junk Only"
++Link 421 "rndCaptainsObjects" "Target"
+{
+}
+
+
+/////////////////=====	Apartments	=====\\\\\\\\\\\\\\\\\
+
+////Hallway
+
+//Corpse
++Link 2386 "rndApartmentsObjects" "Target"
+{
+}
+
 /////////////////=====	Super Crates	=====\\\\\\\\\\\\\\\\\
 
 //Korenchkin's Room (SCP4)

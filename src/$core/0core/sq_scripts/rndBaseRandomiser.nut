@@ -52,8 +52,6 @@ class rndBaseRandomiser extends rndBase
 
     function CheckAllowedTypes(input)
     {
-        if (rndUtils.isMarker(input) || rndUtils.isContainer(input))
-            return true;
         foreach(type in allowedTypes)
         {
             if (rndUtils.isArchetype(input,type))

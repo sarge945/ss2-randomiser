@@ -3,7 +3,6 @@
 // ================================================================================
 
 //Create a randomiser for the whole map, we already have everything on this deck
-//This will cover everything before Core Control, the Nacelles, and the service tube area
 Create "rndWeaponRandomiser" "rndCommand2WeaponRandomiser"
 {
 }
