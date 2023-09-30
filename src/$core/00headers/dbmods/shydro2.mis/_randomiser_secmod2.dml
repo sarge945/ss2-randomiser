@@ -1,0 +1,8 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Secmod has copied hydro2 as a new map, shydro2
+//So we have to essentially duplicate everything
