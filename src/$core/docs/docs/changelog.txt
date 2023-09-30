@@ -112,3 +112,11 @@ Beta 14:
 - Changed the way Enemy randomisers work, now the ratio of enemies can be specified on the randomisers themselves, similar to other randomisers, rather than using a big table. This should allow proper support for FMs.
 - Lite version is now much lighter, it no longer randomises weapons or eggs. There is now a lot more differentiation between Lite and Full, to hopefully give people more options.
 - Audio Log randomisation is now an addon
+
+1.2B
+- Added Secmod support. Support is currently in beta.
+  - Known issue: Various objects appear at 0,0,0 on some maps. This is purely visual and mostly only an issue in medsci1
+- Fixed a few locations that I missed on various maps
+- Randomised the ops4 armoury. It only randomises amongst itself, so this is not a significant gameplay change.
+- Fixed missing the captains quarters in command2, now that whole area is randomised properly
+- The hackable vault behind the athletics lobby desk in rec1 is now randomised.
