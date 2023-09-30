@@ -1,0 +1,18 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Cyber Modules
++Link 1996 "rndCrewObjects" "Target"
+{
+}
+
+//Hand Grenade
++MetaProp 1472 "Object Randomiser - Output Self Only"
++Link 1472 "rndCrewObjects" "Target"
+{
+}

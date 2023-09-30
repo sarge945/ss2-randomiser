@@ -1,0 +1,36 @@
+// ================================================================================
+// 								Handle Eggs
+// ================================================================================
+
+//Create a randomiser for the Eggs
+//For now, just put everything together.
+Create "rndHydroEggRandomiser" "rndHydro4EggsRandomiser"
+{
+}
+
+/////////////////=====	Eggs =====\\\\\\\\\\\\\\\\\
+
+////There are only 6 eggs in the map, all near the same section
+
++Link 1118 "rndHydro4EggsRandomiser" "Target"
+{
+}
++Link 1113 "rndHydro4EggsRandomiser" "Target"
+{
+}
++Link 1114 "rndHydro4EggsRandomiser" "Target"
+{
+}
++Link 1112 "rndHydro4EggsRandomiser" "Target"
+{
+}
+
+
+//Top of ladder
++Link 1153 "rndHydro4EggsRandomiser" "Target"
+{
+}
++Link 1156 "rndHydro4EggsRandomiser" "Target"
+{
+}
+

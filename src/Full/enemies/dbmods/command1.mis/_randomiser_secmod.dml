@@ -1,0 +1,5 @@
+//Remove spider from enemy randomiser as it's scripted
+//Spider
+-Link 792 "rndCommand1EnemyRandomiser" "Target"
+
+

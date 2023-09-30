@@ -1,0 +1,19 @@
+// ================================================================================
+// 								Randomise Security Crates
+// ================================================================================
+
+//Create a Randomiser for the Security Crates
+Create "rndCrateRandomiser" "rndSecurityCratesRandomiser"
+{
+}
+
+//Inputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndSecurityCrates" "rndSecurityCratesRandomiser" "~SwitchLink"
+{
+}
+

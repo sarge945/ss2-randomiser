@@ -1,0 +1,37 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Audio Log on boxes
++Link 67 "rndLobbyObjects" "Target"
+{
+}
+
+//Shotgun in hallway
++Link 947 "rndLobbyObjects" "Target"
+{
+}
+
+//Dead guy in the lobby near shotgun
++Link 1802 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Nanites upstairs
++Link 1826 "rndLoungeObjects" "Target"
+{
+}
+
+//Template Grenades
++MetaProp 1569 "Object Randomiser - Ammo Output"
++Link 1569 "rndCrewQuartersObjects" "Target"
+{
+}
++MetaProp 1568 "Object Randomiser - Ammo Output"
++Link 1568 "rndCrewQuartersObjects" "Target"
+{
+}

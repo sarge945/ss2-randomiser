@@ -1,0 +1,68 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Personal effects box in target range
++MetaProp 1358 "Object Randomiser - Ammo Output"
++Link 1358 "rndCrewQuartersObjects" "Target"
+{
+}
+
+//Link containers in the barracks
++Link 141 "rndBarracksObjects" "Target"
+{
+}
++Link 144 "rndBarracksObjects" "Target"
+{
+}
++Link 148 "rndBarracksObjects" "Target"
+{
+}
++Link 149 "rndBarracksObjects" "Target"
+{
+}
++Link 137 "rndBarracksObjects" "Target"
+{
+}
++Link 136 "rndBarracksObjects" "Target"
+{
+}
++Link 134 "rndBarracksObjects" "Target"
+{
++Link 132 "rndBarracksObjects" "Target"
+{
+}
+
+//Link containers in the other barracks
++Link 401 "rndBarracksObjects" "Target"
+{
+}
++Link 398 "rndBarracksObjects" "Target"
+{
+}
++Link 371 "rndBarracksObjects" "Target"
+{
+}
++Link 368 "rndBarracksObjects" "Target"
+{
+}
++Link 367 "rndBarracksObjects" "Target"
+{
+}
++Link 366 "rndBarracksObjects" "Target"
+{
+}
++Link 363 "rndBarracksObjects" "Target"
+{
+}
+
+////Brig
+
+//EMP Rifle
++Link 43 "rndBrigObjects" "Target"
+{
+}

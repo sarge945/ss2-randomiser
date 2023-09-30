@@ -1,0 +1,81 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Smartgun Ammo
++Link 2381 "rndVentilationObjects" "Target"
+{
+}
+
+/*
+//Template Grenades
+//Leaving these as-is, as they are obviously meant to be in the chemical area
++Link 2305 "rndNacelleAObjects" "Target"
+{
+}
++Link 2304 "rndNacelleAObjects" "Target"
+{
+}
+*/
+
+//Secret Area Stuff
+
+//ICE-Pick
++Link 1805 "rndNacelleBObjects" "Target"
+{
+}
+
+/*
+//Leave these as nothing else really fits here well, and these items are all unique/interesting
+//Ir Enhanced Endur-Boost
++Link 1935 "rndNacelleBObjects" "Target"
+{
+}
+
+//Beaker
++Link 1934 "rndNacelleBObjects" "Target"
+{
+}
+
+//Cheeseborger
++Link 1927 "rndNacelleBObjects" "Target"
+{
+}
+
+//Scrambler Grenade
++Link 1931 "rndNacelleBObjects" "Target"
+{
+}
+
+//Prisms
++Link 1937 "rndNacelleBObjects" "Target"
+{
+}
+
+//Cesium
++Link 1932 "rndNacelleBObjects" "Target"
+{
+}
+
+//Cyber Modules
++Link 1938 "rndNacelleBObjects" "Target"
+{
+}
+*/
+
+//Nanites in Morgue
++Link 2097 "rndNacelleAObjects" "Target"
+{
+}
+
+////Hallway to Nacelle B
+
+//Beaker
++Link 2302 "rndNacelleBHallwayObjects" "Target"
+{
+}
+

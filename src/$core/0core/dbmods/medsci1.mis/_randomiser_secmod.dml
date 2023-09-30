@@ -1,0 +1,32 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Empty Hypo in Cryo
++Link 2326 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
+
+//Cryo Tube Guy
++Link 2310 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
+
+//Pistol in the Recharger Room
++Link 2064 "rndScienceObjects" "Target"
+{
+}
+
+//Speed Booster in the Recharger Room
++Link 2235 "rndScienceObjects" "Target"
+{
+}
+
+//"Opened Security Crate" in medical annex
++Link 2349 "rndScienceObjects" "Target"
+{
+}

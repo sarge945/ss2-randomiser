@@ -1,0 +1,46 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Personal Effects Box
++Link 1392 "rndLobbyObjects" "Target"
+{
+}
+
+//Smartgun Ammo
++Link 1393 "rndLobbyObjects" "Target"
+{
+}
+
+////Sitting corpse ambushed by spider
+
+//Corpse
++Link 1347 "rndLobbyObjects" "Target"
+{
+}
+
+//Maint Tool
++Link 1348 "rndLobbyObjects" "Target"
+{
+}
+
+/*
+//Grenade Launcher and Templates.
+//Will leave them as they tell a story (ambushed while making grenades)
++Link 1346 "rndLobbyObjects" "Target"
+{
+}
+
++Link 1353 "rndLobbyObjects" "Target"
+{
+}
+
++Link 1354 "rndLobbyObjects" "Target"
+{
+}
+
+*/

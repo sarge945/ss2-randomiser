@@ -1,0 +1,32 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Smartgun Ammo
++Link 102 "rndElevatorLobbyObjects" "Target"
+{
+}
+
+//Wormskin
+//Will likely never ever get moved
++Link 142 "rndShaftObjects" "Target"
+{
+}
+
+//Locker
++Link 1046 "rndMedicalObjects" "Target"
+{
+}
+//Locker
++Link 1058 "rndMedicalObjects" "Target"
+{
+}
+
+//Empty Hypo
++Link 1047 "rndFinalAreaObjects" "Target"
+{
+}

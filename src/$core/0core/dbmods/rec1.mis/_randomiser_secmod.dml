@@ -1,0 +1,50 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Locker near Crew Annex
++Link 1585 "rndLobbyObjects" "Target"
+{
+}
+
+//Lockbox behind Desk
+//May remove this
+
+//Smartgun Ammo
++MetaProp 1563 "Object Randomiser - Secret"
++MetaProp 1563 "Object Randomiser - High Priority Output"
++Link 1563 "rndLobbyObjects" "Target"
+{
+}
+
+//Personal Effects box
++MetaProp 1587 "Object Randomiser - Secret"
++MetaProp 1587 "Object Randomiser - High Priority Output"
++Link 1587 "rndLobbyObjects" "Target"
+{
+}
+
+////Crew Quarters
+
+//Trapped Corpse
++MetaProp 1577 "Object Randomiser - High Priority Output"
++Link 1577 "rndCrewObjects" "Target"
+{
+}
+
+//Smartgun Guy
++Link 1547 "rndCrewObjects" "Target"
+{
+}
+
+/*
+//Smartgun
+//This is the first one we can find, so I am going to leave it special
++Link 1560 "rndCrewObjects" "Target"
+{
+}
+*/

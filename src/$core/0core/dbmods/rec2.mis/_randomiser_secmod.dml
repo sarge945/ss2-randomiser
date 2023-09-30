@@ -1,0 +1,18 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+
+//Corpse in locked Graveyard room
++Link 1096 "rndGardenObjectsLocked" "Target"
+{
+}
+
+//Template Grenade in locked Graveyard room
++Link 1469 "rndGardenObjectsLocked" "Target"
+{
+}

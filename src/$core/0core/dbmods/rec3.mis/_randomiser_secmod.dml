@@ -1,0 +1,18 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+
+//Scramble Grenade in Armoury
++Link 1320 "rndSecurityObjects" "Target"
+{
+}
+
+//Scramble Grenade in Cinema
++Link 209 "rndTheatreObjects" "Target"
+{
+}

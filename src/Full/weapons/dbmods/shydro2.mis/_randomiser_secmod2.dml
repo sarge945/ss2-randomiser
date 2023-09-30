@@ -1,0 +1,24 @@
+//Plasma Uzi
++Link 2264 "rndSectorCObjects" "Target"
+{
+}
+
+//Prisms
++Link 2238 "rndSectorCObjects" "Target"
+{
+}
+
+//Personal Effects Box
++Link 2278 "rndSectorBObjects" "Target"
+{
+}
+
+//Shotgun
++Link 755 "rndSectorBObjects" "Target"
+{
+}
+
+//Nanites
++Link 1384 "rndSectorBObjects" "Target"
+{
+}

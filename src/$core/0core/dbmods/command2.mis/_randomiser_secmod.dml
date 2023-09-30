@@ -1,0 +1,109 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Rad Prism
++Link 1980 "rndApartmentObjects" "Target"
+{
+}
+
+//Toxin Grenade
++Link 2284 "rndApartmentObjects" "Target"
+{
+}
+
+//Apartments Lockers
++MetaProp 1761 "Object Randomiser - High Priority Output"
++MetaProp 1761 "Object Randomiser - Secret"
++Link 1761 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 461 "Object Randomiser - High Priority Output"
++MetaProp 461 "Object Randomiser - Secret"
++Link 461 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 1785 "Object Randomiser - High Priority Output"
++MetaProp 1785 "Object Randomiser - Secret"
++Link 1785 "rndApartmentObjects" "Target"
+{
+}
+
++MetaProp 79 "Object Randomiser - High Priority Output"
++MetaProp 79 "Object Randomiser - Secret"
++Link 79 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 1493 "Object Randomiser - High Priority Output"
++MetaProp 1483 "Object Randomiser - Secret"
++Link 1493 "rndApartmentObjects" "Target"
+{
+}
+
++MetaProp 462 "Object Randomiser - High Priority Output"
++MetaProp 462 "Object Randomiser - Secret"
++Link 462 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 1865 "Object Randomiser - High Priority Output"
++MetaProp 1865 "Object Randomiser - Secret"
++Link 1865 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 1889 "Object Randomiser - High Priority Output"
++MetaProp 1889 "Object Randomiser - Secret"
++Link 1889 "rndApartmentObjects" "Target"
+{
+}
+
++MetaProp 1813 "Object Randomiser - High Priority Output"
++MetaProp 1813 "Object Randomiser - Secret"
++Link 1813 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 459 "Object Randomiser - High Priority Output"
++MetaProp 459 "Object Randomiser - Secret"
++Link 459 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 460 "Object Randomiser - High Priority Output"
++MetaProp 460 "Object Randomiser - Secret"
++Link 460 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 458 "Object Randomiser - High Priority Output"
++MetaProp 458 "Object Randomiser - Secret"
++Link 458 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 1837 "Object Randomiser - High Priority Output"
++MetaProp 1837 "Object Randomiser - Secret"
++Link 1837 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 456 "Object Randomiser - High Priority Output"
++MetaProp 456 "Object Randomiser - Secret"
++Link 456 "rndApartmentObjects" "Target"
+{
+}
++MetaProp 457 "Object Randomiser - High Priority Output"
++MetaProp 457 "Object Randomiser - Secret"
++Link 457 "rndApartmentObjects" "Target"
+{
+}
+
+////Bridge Weapons
+
+//Pistol
++Link 1839 "rndApartmentObjects" "Target"
+{
+}
+
+//Grenade Launcher
++Link 1836 "rndApartmentObjects" "Target"
+{
+}

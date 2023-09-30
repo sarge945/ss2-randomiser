@@ -1,0 +1,12 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Cargo Bay 2 Keycard
++Link 1359 "rndCargoBay1BObjects" "Target"
+{
+}

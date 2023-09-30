@@ -1,0 +1,6 @@
+//Load for SCP
+FINGERPRINT
+{
+   QVAR "scplevel" == 1
+}
+

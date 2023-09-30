@@ -1,0 +1,24 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Napalm
++Link 854 "rndHydro3Objects" "Target"
+{
+}
+
+//Add Security Crates
++Link 1201 "rndSecurityCrates" "Target"
+{
+}
++Link 1204 "rndSecurityCrates" "Target"
+{
+}
+//Prevent the CMs in the left security crate from moving
+//This way, we always have to take the health damage in order to get them
++MetaProp 875 "Object Randomiser - No Auto Input"
+

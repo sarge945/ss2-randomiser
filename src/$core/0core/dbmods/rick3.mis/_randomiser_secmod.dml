@@ -1,0 +1,36 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+
+//Grafter
++Link 863 "rndMainObjects" "Target"
+{
+}
+
+//Rick Room Stuff
+
+//CMs
++Link 1240 "rndDiegoObjects" "Target"
+{
+}
+
+//Nanites
++Link 669 "rndDiegoObjects" "Target"
+{
+}
+
+//Crate
++Link 1085 "rndDiegoObjects" "Target"
+{
+}
+
+//Worm Launcher
+//Going to leave this, it looks like it belongs here
++Link 764 "rndBridgeObjects" "Target"
+{
+}

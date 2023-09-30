@@ -1,0 +1,49 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Pistol Bullets
+//We use this same location for a marker, so don't output anything here
++MetaProp 2315 "Object Randomiser - No Auto Output"
++Link 2315 "rndTubeObjects" "Target"
+{
+}
+
+//EnergyShell Implant
++Link 1263 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Pistol Ammo
++Link 1635 "rndControlLobbyObjects" "Target"
+{
+}
+
+//Scrambler Grenade
++Link 2114 "rndArmouryObjects" "Target"
+{
+}
+
+//Hack Soft
++Link 1968 "rndControlObjects" "Target"
+{
+}
+
+//Pistol
++Link 1157 "rndEngineObjects" "Target"
+{
+}
+
+//Med Kit
++Link 1974 "rndEngineObjects" "Target"
+{
+}
+
+//Psi Hypo on cabin desk
++Link 1973 "rndEngineObjectsCabin" "Target"
+{
+}

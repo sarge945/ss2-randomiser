@@ -1,0 +1,70 @@
+//Load for Secmod
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+
+//Add in extras/differences that only exist in Secmod
+
+//Floor pistol
++Link 1680 "rndHydro1Objects" "Target"
+{
+}
+
+//Floor CMs
++Link 1672 "rndHydro1Objects" "Target"
+{
+}
+
+//Floor Wrench
++Link 1657 "rndHydro1Objects" "Target"
+{
+}
+
+//Floor Pistol
++Link 1240 "rndHydro1Objects" "Target"
+{
+}
+
+//Floor Ammo
++Link 1090 "rndHydro1Objects" "Target"
+{
+}
+
+//Nanites in pool
++Link 993 "rndHydro1Objects" "Target"
+{
+}
+
+////Main Section
+
+//Template Grenade
++MetaProp 1235 "Object Randomiser - Small Item Output"
++Link 1235 "rndHydro1Objects" "Target"
+{
+}
+
+/*
+//Flammenwerfer
+//Don't touch, this is the first one we find
++Link 1237 "rndHydro1Objects" "Target"
+{
+}
+//and its ammo
++Link 1725 "rndHydro1Objects" "Target"
+{
+}
+*/
+
+//Maint Tool
++Link 1232 "rndHydro1Objects" "Target"
+{
+}
+
+/*
+//Modded Shotgun
+//Might leave here as a reward for dealing with the rumbler
++Link 1688 "rndHydro1Objects" "Target"
+{
+}
+*/

@@ -1,0 +1,127 @@
+/*
+//Load for Secmod
+//WARNING: This is not set for this map!
+FINGERPRINT
+{
+   QVAR "secmod" == 1
+}
+*/
+
+//Load via fingerprint instead
+FINGERPRINT
+{
+   1049 [-64 -67 -3]
+   962 [-66 -144 -22]
+   1051 [-2 -301 -32]
+   1107 [34 -450 -32]
+   1235 [-50 -480 -41]
+   1263 [-52 -413 -33]
+   967 [-62 -9 -25]
+   966 [-70 -9 -25]
+}
+
+// ================================================================================
+// 								Object Collections
+// ================================================================================
+
+//Before the fall into water """puzzle"""
+Create "rndObjectCollection" "rndHydro4ObjectsBeforeWater"
+{
+}
+
+//After the fall into water """puzzle"""
+Create "rndObjectCollection" "rndHydro4ObjectsAfterWater"
+{
+}
+
+/////////////////=====	Before Water Fall Puzzle =====\\\\\\\\\\\\\\\\\
+
+//Trioptimum Crate near start of map
++MetaProp 1204 "Object Randomiser - High Priority Output"
++Link 1204 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Speed Boost at start of map
++MetaProp 1205 "Object Randomiser - High Priority Output"
++Link 1205 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Rad Hypo
++MetaProp 1073 "Object Randomiser - Small Item Output"
++Link 1073 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Beaker
++Link 1362 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Lockers in the broken turret room
++Link 1053 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
++Link 1054 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
++Link 1051 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
++Link 1048 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Nanites in pool
++Link 1059 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+//Ciggies
++Link 1199 "rndHydro4ObjectsBeforeWater" "Target"
+{
+}
+
+/////////////////=====	After Water Fall Puzzle =====\\\\\\\\\\\\\\\\\
+
+//Cyber Modules
++MetaProp 1101 "Object Randomiser - High Priority Output"
++Link 1101 "rndHydro4ObjectsAfterWater" "Target"
+{
+}
+
+//Assault Rifle
++Link 1353 "rndHydro4ObjectsAfterWater" "Target"
+{
+}
+
+/*
+//Aqualung
+//Disabled: It belongs here
++Link 1047 "rndHydro4ObjectsAfterWater" "Target"
+{
+}
+*/
+
+//Cyber Modules
++Link 1045 "rndHydro4ObjectsAfterWater" "Target"
+{
+}
+
+//// Extra Locations
+
+//Small nook in the room with the "fall into water" puzzle
+Create "rndOutputMarker" "rnd_marker_nook1"
+{
+    +ObjProp "Position"
+    {
+        "Location" "26.5068, -362.966, -17.0535"
+        "Heading" 1250
+        "Pitch" 0
+        "Bank" 0
+    }
+}
++Link "rnd_marker_nook1" "rndHydro4ObjectsBeforeWater" "Target"
+{
+}

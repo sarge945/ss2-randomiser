@@ -1,0 +1,25 @@
+// ================================================================================
+// 								Add Goodies to Randomisers
+// ================================================================================
+
+//Create a randomiser for Everywhere
+//For now, just put everything together.
+Create "rndComplexRandomiser" "rndHydro4Randomiser"
+{
+}
+
+//Inputs
++Link "rndHydro4ObjectsBeforeWater" "rndHydro4Randomiser" "SwitchLink"
+{
+}
++Link "rndHydro4ObjectsAfterWater" "rndHydro4Randomiser" "SwitchLink"
+{
+}
+
+//Outputs
++Link "rndHydro4ObjectsBeforeWater" "rndHydro4Randomiser" "~SwitchLink"
+{
+}
++Link "rndHydro4ObjectsAfterWater" "rndHydro4Randomiser" "~SwitchLink"
+{
+}
