@@ -6,6 +6,17 @@ FINGERPRINT
 
 //Add in extras/differences that only exist in Secmod
 
+//CM's in Cryo
++MetaProp 2324 "Object Randomiser - Small Item Output"
++Link 2324 "rndCryoObjects" "Target"
+{
+}
+
+//Unlocked Locker
++Link 2351 "rndCryoObjects" "Target"
+{
+}
+
 //Empty Hypo in Cryo
 +Link 2326 "rndCryoObjectsAfterAirlock" "Target"
 {

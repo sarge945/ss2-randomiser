@@ -62,7 +62,7 @@ class rndBaseRandomiser extends rndBase
             if (rndUtils.isArchetype(input,type))
                 return true;
         }
-        PrintDebug("Object " + input + " was not of allowed type (" + ShockGame.GetArchetypeName(input) + ")");
+        PrintDebug("Object " + input + " was not of allowed type (" + ShockGame.GetArchetypeName(input) + ")",2);
         return false;
     }
 
