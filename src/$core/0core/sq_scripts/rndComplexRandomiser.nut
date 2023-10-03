@@ -35,6 +35,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function Init(reloaded)
     {
+        PrintDebug("Initialising",99);
         base.Init(reloaded);
         delay = getParam("delay",0);
 
@@ -70,6 +71,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
     function Setup()
     {
+        PrintDebug("Running Setup()",99);
         local collection = GetCollection();
 
         local potentialInputs = rndUtils.DeDuplicateArray(collection.inputs);
@@ -107,8 +109,8 @@ class rndComplexRandomiser extends rndBaseRandomiser
 
         totalItems = inputs.len();
 
-        PrintDebug("[inputs: " + inputs.len() + ", outputs: " + outputs.len() + "]",4);
-
+        PrintDebug("Setup Finished: [inputs: " + inputs.len() + ", outputs: " + outputs.len() + ", allowedTypes: " + allowedTypes.len() + "]",4);
+        
         if (inputs.len() > 0 && outputs.len() > 0)
         {
             ShuffleBothArrays();
@@ -161,8 +163,8 @@ class rndComplexRandomiser extends rndBaseRandomiser
         PrintDebug("    Output Failed for output " + output,4);
 
         outputs.remove(pos);
-        Randomise();
         //ReplaceOutput(output,true);
+        Randomise();
     }
 
     static SUPER_DEBUG = 0;

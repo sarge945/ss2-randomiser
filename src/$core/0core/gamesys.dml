@@ -43,7 +43,7 @@ CreateArch "Misc Metaprops" "Object Randomiser - Body Bag Output"
 //Shorthand for a Hypo Only
 CreateArch "Misc Metaprops" "Object Randomiser - Hypo Output"
 {
-	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;"
+	+ObjProp "DesignNoteSS" = "allowedTypes0=-52;allowedTypes1=-53;allowedTypes2=-54;allowedTypes3=-56;allowedTypes4=-57;allowedTypes5=-58;allowedTypes6=-59;allowedTypes7=-61;allowedTypes8=WootimmedPatches"
 }
 
 //Shorthand for Ammo only
@@ -63,12 +63,16 @@ CreateArch "Marker" "rndObjectCollection"
 {
 }
 
+//Base archetype for Randomisers
+CreateArch "Marker" "rndRandomiser"
+{
+}
 
 //Super simple randomiser
 //Has NO checking, messages etc.
 //Simply moves all inputs to outputs.
 //Treats all Targets as inputs, and ~Targets as outputs
-CreateArch "Marker" "rndSimpleRandomiser"
+CreateArch "rndRandomiser" "rndSimpleRandomiser"
 {
 	+ObjProp "Scripts"
 	{
@@ -78,7 +82,7 @@ CreateArch "Marker" "rndSimpleRandomiser"
 }
 
 //Same as standard Randomiser, but uses SwitchLinks to add ObjectCollections as inputs and outputs
-CreateArch "Marker" "rndComplexRandomiser"
+CreateArch "rndRandomiser" "rndComplexRandomiser"
 {
 	+ObjProp "Scripts"
 	{
@@ -89,7 +93,7 @@ CreateArch "Marker" "rndComplexRandomiser"
 
 //"Replacer" Randomiser. Replaces each Output with a random one of it's allowed types
 //Has no inputs
-CreateArch "Marker" "rndReplacerRandomiser"
+CreateArch "rndRandomiser" "rndReplacerRandomiser"
 {
 	+ObjProp "Scripts"
 	{

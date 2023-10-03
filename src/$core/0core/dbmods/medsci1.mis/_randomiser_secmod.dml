@@ -13,11 +13,36 @@ FINGERPRINT
 }
 
 //Unlocked Locker
+//We need to change this to actually contain a detox patch,
+//rather than simply having a loot table with a 100% chance of a patch
+//so that we can randomise it
+-ObjProp 2351 "LootInfo"
 +Link 2351 "rndCryoObjects" "Target"
 {
 }
 
+Create "Detox Patch" "Locker Patch"
+{
+    +ObjProp "HasRefs"
+    {
+        "" TRUE
+    }
+}
++Link 2351 "Locker Patch" "Contains"
+{
+}
+
+//Unlink Wrench in recharger room from randomisation
+//Just in case someone gets down there without one, they won't be soft locked
+-Link 1707 "rndCryoObjects" "Target"
+
+//Psi Amp
++Link 1386 "rndCryoObjectsAfterAirlock" "Target"
+{
+}
+
 //Empty Hypo in Cryo
++MetaProp 2326 "Object Randomiser - Hypo Output"
 +Link 2326 "rndCryoObjectsAfterAirlock" "Target"
 {
 }

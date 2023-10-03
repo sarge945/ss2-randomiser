@@ -104,6 +104,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
     function Place(output,newObject)
     {
         rndUtils.CopyProperties(output,newObject);
+        FixProjectiles(newObject);
 
         //If we are the same type, copy our loot table and contained items
         if (rndUtils.isArchetype(output,newObject))

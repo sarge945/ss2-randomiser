@@ -11,7 +11,6 @@ class rndBase extends SqRootScript
 	{
 		debugLevel = getParam("debug",0);
 		name = rndUtils.GetObjectName(self);
-		//print (name + " (" + self + ") initialised");
 
 		if (!GetData("Started"))
 		{
@@ -19,7 +18,9 @@ class rndBase extends SqRootScript
 			Init(false);
 		}
 		else
+        {
 			Init(true);
+        }
 	}
 
 	function SetSeed(reloaded)
@@ -106,4 +107,17 @@ class rndBase extends SqRootScript
             //print("Creating new link " + linkType + " to " + dest);
 		}
 	}
+
+    //When creating a new projectile for our new enemies
+    //We need to deactivate it's particle group
+    //Otherwise the particles will show at 0,0,0
+    //Fixes SECMOD Issue
+    static function FixProjectiles(source)
+    {
+		foreach (projLink in Link.GetAll(linkkind("AIProjectile"),source))
+		{
+			local proj = sLink(projLink).dest;
+            Property.Set(proj,"ParticleGroup","Active",0);
+		}
+    }
 }

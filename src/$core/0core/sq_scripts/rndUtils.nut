@@ -11,7 +11,7 @@ class rndUtils
     //Items in this table will be considered the same archetype for the SameItemType function
     static similarArchetypes = [
         [-964, -965, -967], //Vodka, Champagne, Liquor
-        [-52, -53, -54, -57, -58, -59, -61], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster
+        [-52, -53, -54, -57, -58, -59, -61, "WootimmedPatches"], //Med Hypo, Toxin Hypo, Rad Hypo, Psi Hypo, Speed Hypo, Strength Booster, PSI Booster, Secmod Hypos
         [-1256, -1257, -1258, -1259, -1260, -1261], //This Month in Ping-Pong, Rolling Monthly, Cigar Lover, DJ Lover, Kangaroo Quarterly, Vita Men's Monthly
         [-1455, -1485], //Circuit Board, RadKey Card
         [-1277, -2936], //Art Terminal, Code Art
@@ -176,7 +176,12 @@ class rndUtils
 
     static function isMarker(obj)
     {
-        return ShockGame.GetArchetypeName(obj) == "rndOutputMarker" || ShockGame.GetArchetypeName(obj) == "Marker";
+        return isArchetype(obj,"Marker");
+    }
+
+    static function isRandomiser(obj)
+    {
+        return isArchetype(obj,"rndRandomiser");
     }
 
     static function isPlacer(obj)

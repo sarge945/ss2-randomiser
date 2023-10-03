@@ -1,5 +1,5 @@
 //Create an enemy randomiser
-CreateArch "Marker" "rndEnemyRandomiser"
+CreateArch "rndRandomiser" "rndEnemyRandomiser"
 {
 	+ObjProp "Scripts"
 	{

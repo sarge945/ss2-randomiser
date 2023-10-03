@@ -120,3 +120,10 @@ Beta 14:
 - Randomised the ops4 armoury. It only randomises amongst itself, so this is not a significant gameplay change.
 - Fixed missing the captains quarters in command2, now that whole area is randomised properly
 - The hackable vault behind the athletics lobby desk in rec1 is now randomised.
+
+1.2 Beta 2:
+- Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. (actually fixed in 1.2 Beta)
+- Fixed SecMod issue with particles (such as blue monkey cryokenesis balls) appearing at the origin in some maps (was visible on medsci1 and rick1)
+- Fixed issue where FakeNanites and other important items could be randomised, breaking the UI
+- Added some missed item locations from Secmod
+- Fixed some Secmod items not being randomised correctly (such as Empty Hypos)

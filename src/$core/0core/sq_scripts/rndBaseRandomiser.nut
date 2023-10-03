@@ -41,6 +41,13 @@ class rndBaseRandomiser extends rndBase
         //-69,  //Potted plants
     ];
 
+    static bannedTypes = [
+        "FakeNanites",
+        //"PDA",
+        "FakeCookie",
+        "FakeKeys",
+        "PDA Soft"
+    ];
 	
 	function Init(reloaded)
 	{	
@@ -52,6 +59,21 @@ class rndBaseRandomiser extends rndBase
 
     function CheckAllowedTypes(input)
     {
+
+        PrintDebug("CheckAllowedTypes: " + rndUtils.GetObjectName(input) + " (" + input + ")",99);
+        if (rndUtils.isRandomiser(input))
+        {
+            return false;
+        }
+
+        foreach(type in bannedTypes)
+        {
+            if (rndUtils.isArchetype(input,type))
+            {
+                PrintDebug("Tried to add bad archetype: " + type + " (input " + input + ")",1);
+                return false;
+            }
+        }
         foreach(type in allowedTypes)
         {
             if (rndUtils.isArchetype(input,type))
@@ -68,16 +90,15 @@ class rndBaseRandomiser extends rndBase
 
     function SetAllowedTypes()
     {
+        //PrintDebug("SetAllowedTypes: " + self);
         allowedTypes = getParamArray("allowedTypes",allowedTypesDefault);
         addedAllowedTypes = getParamArray("addAllowedTypes",[]);
 
-        /*
         PrintDebug("Allowed Types: ",99);
         foreach (allowedType in allowedTypes)
             PrintDebug("    " + allowedType,99);
         foreach (allowedType in addedAllowedTypes)
-            PrintDebug("    " + allowedType,99);
-        */
+            PrintDebug("   +" + allowedType,99);
     }
 	
 	function ShowWelcomeMessage(randomiserType)
