@@ -72,7 +72,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
         }
         local name = Object.GetName(output);
         local newObject = Object.BeginCreate(replacement);
-        PrintDebug("created object (" + ShockGame.GetArchetypeName(newObject) + ") " + newObject,1);
+        PrintDebug("created object of type " + Object.Archetype(newObject) + " (" + ShockGame.GetArchetypeName(newObject) + ") " + newObject,1);
 
         Object.Teleport(newObject,Object.Position(output),Object.Facing(output));
 

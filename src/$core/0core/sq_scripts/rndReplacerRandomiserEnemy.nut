@@ -55,17 +55,17 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         base.Init(reloaded);
 
         mainTypes = [
-            [-397,      getParam("pipeHybridWeight",0),], //OG-Pipe
-            [-175,      getParam("shotgunHybridWeight",0),], //OG-Shotgun
-            [-1431,     getParam("blueMonkeyWeight",0),], //Blue Monkey
-            [-174,      getParam("protocolDroidWeight",0),], //Protocol Droid
-            [-179,      getParam("midwifeWeight",0),], //Midwife
-            [-176,      getParam("grenadeHybridWeight",0),], //OG-Grenade
-            [-1432,     getParam("redMonkeyWeight",0),], //Red Monkey
-            [-189,      getParam("arachnightmareWeight",0),], //Spider
-            [-1541,     getParam("cyborgAssassinWeight",0),], //Cyborg Assassin
-            [-3398,     getParam("redAssassinWeight",0),], //Red Assassin
-            [-1439,     getParam("invisibleArachnidWeight",0),], //Invisible Arachnid
+            ["OG-Pipe",      getParam("pipeHybridWeight",0),], //OG-Pipe
+            ["OG-Shotgun",      getParam("shotgunHybridWeight",0),], //OG-Shotgun
+            ["Blue Monkey",     getParam("blueMonkeyWeight",0),], //Blue Monkey
+            ["Protocol Droid",      getParam("protocolDroidWeight",0),], //Protocol Droid
+            ["Midwife",      getParam("midwifeWeight",0),], //Midwife
+            ["OG-Grenade",      getParam("grenadeHybridWeight",0),], //OG-Grenade
+            ["Red-Monkey",     getParam("redMonkeyWeight",0),], //Red Monkey
+            ["Arachnightmare",      getParam("arachnightmareWeight",0),], //Spider
+            ["Assassin",     getParam("cyborgAssassinWeight",0),], //Cyborg Assassin
+            ["Red Assassin",     getParam("redAssassinWeight",0),], //Red Assassin
+            ["Invisible Arachnid",     getParam("invisibleArachnidWeight",0),], //Invisible Arachnid
         ];
         
         turretTypes = [
@@ -137,7 +137,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         }
         //This one's a doozy!
         //Hybrids, Monkeys, Spiders, Protocol Droids and Cyborgs can all become each other
-        else if (rndUtils.isArchetype(output,-174) || rndUtils.isArchetype(output,-396) || rndUtils.isArchetype(output,-1540) || rndUtils.isArchetype(output,-1539) || rndUtils.isArchetype(output,-2013))
+        else if (rndUtils.isArchetype(output,"Protocol Droid") || rndUtils.isArchetype(output,"Once-Grunts") || rndUtils.isArchetype(output,"Monkeys") || rndUtils.isArchetype(output,"Cyborgs") || rndUtils.isArchetype(output,"Arachnid"))
         {
             return RollForEnemy(output,mainTypes);
         }

@@ -117,7 +117,14 @@ class rndBase extends SqRootScript
 		foreach (projLink in Link.GetAll(linkkind("AIProjectile"),source))
 		{
 			local proj = sLink(projLink).dest;
-            Property.Set(proj,"ParticleGroup","Active",0);
+            if (Property.Get(proj,"RenderType") == 0) //Render Normally
+            {
+                Property.Set(proj,"ParticleGroup","Active",0);
+                //print("hiding " + proj + "( " + ShockGame.GetArchetypeName(proj) + ")");
+                //print("Property: " + Property.Get(proj,"RenderType"));
+            }
+            //else
+                //print("Not hiding " + proj + "( " + ShockGame.GetArchetypeName(proj) + ")");
 		}
     }
 }

@@ -122,8 +122,12 @@ Beta 14:
 - The hackable vault behind the athletics lobby desk in rec1 is now randomised.
 
 1.2 Beta 2:
-- Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. (actually fixed in 1.2 Beta)
+- Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. (actually fixed in 1.2 Beta) [Thanks Deu Sex]
 - Fixed SecMod issue with particles (such as blue monkey cryokenesis balls) appearing at the origin in some maps (was visible on medsci1 and rick1)
 - Fixed issue where FakeNanites and other important items could be randomised, breaking the UI
 - Added some missed item locations from Secmod
 - Fixed some Secmod items not being randomised correctly (such as Empty Hypos)
+
+1.2 Beta 3:
+- Fixed broken Shotgun Hybrids in Secmod
+- Added Missed Psi Hypo in medsci1 bulkhead

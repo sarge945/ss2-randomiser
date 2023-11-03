@@ -66,3 +66,9 @@ Create "Detox Patch" "Locker Patch"
 +Link 2349 "rndScienceObjects" "Target"
 {
 }
+
+//Psi Hypo on Floor
++MetaProp 2326 "Object Randomiser - Small Item Output"
++Link 2099 "rndScienceObjects" "Target"
+{
+}
