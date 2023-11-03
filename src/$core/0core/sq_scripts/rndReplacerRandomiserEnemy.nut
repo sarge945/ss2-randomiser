@@ -66,6 +66,8 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
             ["Assassin",     getParam("cyborgAssassinWeight",0),], //Cyborg Assassin
             ["Red Assassin",     getParam("redAssassinWeight",0),], //Red Assassin
             ["Invisible Arachnid",     getParam("invisibleArachnidWeight",0),], //Invisible Arachnid
+            //["OG-GL",     getParam("grenadeLauncherHybridWeight",0),], //Grenade Launcher Hybrid - doesn't work, grenades explode at 0,0,0 instantly
+            ["OG-Crystal",     getParam("crystalHybridWeight",0),], //Shart Hybrid
         ];
         
         turretTypes = [
@@ -151,7 +153,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         local rolls = 0;
         local validRoll = false;
         local total_chance = GetTotalChance(rollTable);
-        local enemy = rollTable[0];
+        local enemy = output;
 
         while (!validRoll && rolls < 30)
         {
@@ -163,6 +165,10 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
 
             //Ranged enemies only
             if (rndUtils.HasMetaProp(output,"Object Randomiser - Ranged Enemies Only") && IsMeleeEnemy(potentialEnemy))
+                continue;
+
+            //Reject "invalid" archetypes. Allows for mod-specific enemies to be spawned, and rerolled if those mods aren't installed
+            if (Object.Archetype(potentialEnemy) == 0)
                 continue;
             
             enemy = potentialEnemy;
