@@ -22,6 +22,23 @@ class rndUtils
         [-106, -762, -1334, -1660], //WormBlood, WormBlend, WormHeart, WormMind
     ];
 
+    //All Random rolls are based on our base seed + a seed mod
+    //Normally it's the obj ID, so that all objects have unique seeds.
+    //This allows objects to be grouped, and will always roll the same thing together
+    static function GetSeedMod(object)
+    {
+        if (HasMetaProp(object,"Object Randomiser - Spawn Group 1"))
+            //print(object + " has metaprop");
+            return 1;
+        else if (HasMetaProp(object,"Object Randomiser - Spawn Group 2"))
+            return 2;
+        else if (HasMetaProp(object,"Object Randomiser - Spawn Group 3"))
+            return 3;
+        else if (HasMetaProp(object,"Object Randomiser - Spawn Group 4"))
+            return 4;
+        return object;
+    }
+
     static function IsContained(object)
     {
         //return Property.PossessedSimple(object,"HasRefs") && !Property.Get(object,"HasRefs");
@@ -143,7 +160,7 @@ class rndUtils
     
     static function isArchetypeExact(obj,type)
     {
-        return obj == type || Object.Archetype(obj) == type;
+        return obj == type || Object.Archetype(obj) == type || ShockGame.GetArchetypeName(obj) == type;
     }
 
     static function isArchetype(obj,type)

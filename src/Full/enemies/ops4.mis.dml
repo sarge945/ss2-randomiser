@@ -85,23 +85,27 @@ Create "rndMonsterClosetRandomiser" "rndOps4TrapRandomiser"
 {
 }
 
-//Spider Ambush. Leave intact
+//Spider Ambush. Group
 //Spider
++MetaProp 285 "Object Randomiser - Spawn Group 1"
 +Link 285 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
++MetaProp 286 "Object Randomiser - Spawn Group 1"
 +Link 286 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
++MetaProp 601 "Object Randomiser - Spawn Group 1"
 +Link 601 "rndOps4TrapRandomiser" "Target"
 {
 }
 
 //Spider
++MetaProp 603 "Object Randomiser - Spawn Group 1"
 +Link 603 "rndOps4TrapRandomiser" "Target"
 {
 }

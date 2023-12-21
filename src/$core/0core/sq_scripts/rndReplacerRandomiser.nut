@@ -36,7 +36,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
     function GetReplaceObject(output)
     {
         local total = replaceObjects.len() - 1;
-        local obj = rndUtils.RandBetween(seed + output,0,total);
+        local obj = rndUtils.RandBetween(seed + rndUtils.GetSeedMod(output),0,total);
         return replaceObjects[obj];
     }
 
@@ -65,6 +65,7 @@ class rndReplacerRandomiser extends rndBaseRandomiser
     function CreateNewObject(output)
     {
         local replacement = GetReplaceObject(output);
+        PrintDebug("output: " + output + ", replacement: " + replacement,2);
         if (rndUtils.isArchetypeExact(output,replacement))
         {
             PrintDebug("Not replacing " + output + ", same archetype",1);

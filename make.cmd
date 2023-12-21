@@ -5,5 +5,5 @@
 ::Use -f for feature mode, -v for version mode
 ::Pass additional parameters to add DML headers as specified in the headers folder (feature mode only for now)
 call build/makedml.cmd -v "%~dp0\src" "%~dp0\out" "vanilla" "scp" "secmod"
-call build/makedml.cmd -z -v "%~dp0\out" "Randomiser 1.2B3" "Lite"
+call build/makedml.cmd -z -v "%~dp0\out" "Randomiser 1.2" "Lite"
 ::pause

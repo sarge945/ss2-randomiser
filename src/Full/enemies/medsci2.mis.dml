@@ -80,9 +80,11 @@ Create "rndMedSciEnemyRandomiser" "rndMedSci2EnemyRandomiser"
 //Only add special cases, not ecologies
 
 //Shotgunners that ambush you
++MetaProp 1238 "Object Randomiser - Spawn Group 1"
 +Link 1238 "rndMedSci2EnemyRandomiser" "Target"
 {
 }
++MetaProp 1248 "Object Randomiser - Spawn Group 1"
 +Link 1248 "rndMedSci2EnemyRandomiser" "Target"
 {
 }

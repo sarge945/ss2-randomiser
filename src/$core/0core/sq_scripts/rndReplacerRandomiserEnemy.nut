@@ -45,7 +45,6 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
     ];
     */
 
-    rollSeed = null;
     mainTypes = null;
     turretTypes = null;
     botTypes = null;
@@ -86,7 +85,6 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
 
     function CreateNewObject(output)
     {
-        rollSeed = output;
         if (rndUtils.isArchetype(output,"DirectMonsterGen")) //DirectMonsterGen
         {
             HandleMonsterGen(output);
@@ -108,6 +106,7 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         rndUtils.CopyProperties(output,newObject);
         FixProjectiles(newObject);
 
+        /*
         //If we are the same type, copy our loot table and contained items
         if (rndUtils.isArchetype(output,newObject))
         {
@@ -116,8 +115,10 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
             Property.CopyFrom(newObject,"LootInfo",output);
         }
         
+        */
         //Copy inventory if it's the same type, or we're forced to
-        if (rndUtils.isArchetype(output,newObject) || Object.HasMetaProperty(output,"Object Randomiser - Force Enemy Keep Inventory"))
+        //if (rndUtils.isArchetype(output,newObject) || Object.HasMetaProperty(output,"Object Randomiser - Force Enemy Keep Inventory"))
+        if (Object.HasMetaProperty(output,"Object Randomiser - Force Enemy Keep Inventory"))
         {
             copyLinks(output,newObject,"Contains");
         }
@@ -159,30 +160,43 @@ class rndEnemyRandomiser extends rndReplacerRandomiser
         {
             rolls++;
             PrintDebug("ROLLING: total chance " + total_chance,1);
-            local roll = rndUtils.RandBetween(seed + rollSeed + rolls,1,total_chance);
+            local roll = rndUtils.RandBetween(seed + rndUtils.GetSeedMod(output) + rolls,1,total_chance);
             local index = GetEnemyBasedOnRoll(roll,rollTable);
             local potentialEnemy = rollTable[index][0];
+                
+            /*
+            PrintDebug("potentialEnemy: " + potentialEnemy,2);
+            PrintDebug("output: " + output,2);
+            PrintDebug("force ranged: " + rndUtils.HasMetaProp(output,"Object Randomiser - Ranged Enemies Only"),2);
+            PrintDebug("is melee enemy: " + IsMeleeEnemy(potentialEnemy),2);
+            */
 
             //Ranged enemies only
             if (rndUtils.HasMetaProp(output,"Object Randomiser - Ranged Enemies Only") && IsMeleeEnemy(potentialEnemy))
+            {
+                PrintDebug("Melee enemy...rerolling",1);
                 continue;
+            }
 
             //Reject "invalid" archetypes. Allows for mod-specific enemies to be spawned, and rerolled if those mods aren't installed
             if (Object.Archetype(potentialEnemy) == 0)
+            {
+                PrintDebug("Invalid enemy...rerolling",1);
                 continue;
+            }
             
             enemy = potentialEnemy;
             validRoll = true;
             PrintDebug("Valid Roll...",1);
         }
 
-
+        PrintDebug("Enemy Rolled: " + enemy,2);
         return enemy;
     }
 
     function IsMeleeEnemy(enemy)
     {
-        return enemy == -180 || enemy == -397 || enemy == -174 || enemy == -189 || enemy == -1439;
+        return enemy == "Rumbler" || enemy == "OG-Pipe" || enemy == "Protocol Droid" || enemy == "Arachnightmare" || enemy == "Invisible Arachnid";
     }
 
     //Calculates a total chance value based on the combined weight of every enemy type on the deck

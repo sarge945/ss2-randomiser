@@ -306,7 +306,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
             local min = outputs.len() * 0.35;
             local max = outputs.len() - 1;
 
-            local insertIndex = rndUtils.RandBetween(seed + output,min,max);
+            local insertIndex = rndUtils.RandBetween(seed + rndUtils.GetSeedMod(output),min,max);
             outputs.remove(pos);
             outputs.insert(insertIndex,output);
         }

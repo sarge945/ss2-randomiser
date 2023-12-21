@@ -114,17 +114,22 @@ class rndBase extends SqRootScript
     //Fixes SECMOD Issue
     static function FixProjectiles(source)
     {
+        /*
+        //Only run for Secmod
+        if (!Quest.Exists("secmod"))
+            return;
+        */
+
 		foreach (projLink in Link.GetAll(linkkind("AIProjectile"),source))
 		{
 			local proj = sLink(projLink).dest;
-            if (Property.Get(proj,"RenderType") == 0) //Render Normally
-            {
+
+            //Only apply to monkey shots and assault bot shots, otherwise, stuff breaks
+            local pname = ShockGame.GetArchetypeName(proj);
+            local valid = pname == "Blue Monkey Shot" || pname == "Red Monkey Shot" || pname == "Droid Fusion Shot" || pname == "Big Fusion Shot";
+
+            if (valid)
                 Property.Set(proj,"ParticleGroup","Active",0);
-                //print("hiding " + proj + "( " + ShockGame.GetArchetypeName(proj) + ")");
-                //print("Property: " + Property.Get(proj,"RenderType"));
-            }
-            //else
-                //print("Not hiding " + proj + "( " + ShockGame.GetArchetypeName(proj) + ")");
 		}
     }
 }

@@ -246,3 +246,17 @@ CreateArch "Misc Metaprops" "Object Randomiser - No Position Fix"
 CreateArch "Misc Metaprops" "Object Randomiser - Freeze"
 {
 }
+
+//Ensure a group of objects always have the same type
+CreateArch "Misc Metaprops" "Object Randomiser - Spawn Group 1"
+{
+}
+CreateArch "Misc Metaprops" "Object Randomiser - Spawn Group 2"
+{
+}
+CreateArch "Misc Metaprops" "Object Randomiser - Spawn Group 3"
+{
+}
+CreateArch "Misc Metaprops" "Object Randomiser - Spawn Group 4"
+{
+}

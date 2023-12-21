@@ -197,12 +197,15 @@ Create "rndRickEnemyRandomiser" "rndRick1EnemyRandomiser"
 
 /*
 //Entry Turrets, leave as slug for now
++MetaProp 171 "Object Randomiser - Spawn Group 1"
 +Link 171 "rndRick1EnemyRandomiser" "Target"
 {
 }
++MetaProp 257 "Object Randomiser - Spawn Group 1"
 +Link 257 "rndRick1EnemyRandomiser" "Target"
 {
 }
++MetaProp 1079 "Object Randomiser - Spawn Group 1"
 +Link 1079 "rndRick1EnemyRandomiser" "Target"
 {
 }

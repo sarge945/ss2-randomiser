@@ -60,6 +60,22 @@ Create "rndMedSciEnemyRandomiser" "rndMedSci1EnemyRandomiser"
 }
 
 /*
+//Watts Ambushers
+//It's a bit strange getting ambushed by monkeys, so I will leave this out
++MetaProp 1632 "Object Randomiser - Spawn Group 1"
++MetaProp 1632 "Object Randomiser - Ranged Enemies Only"
++Link 1632 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+
++MetaProp 1624 "Object Randomiser - Spawn Group 1"
++MetaProp 1624 "Object Randomiser - Ranged Enemies Only"
++Link 1624 "rndMedSci1EnemyRandomiser" "Target"
+{
+}
+*/
+
+/*
 //Ramp Turret
 //Probably not needed since it will only ever be 1 type
 +Link 1015 "rndMedSci1EnemyRandomiser" "Target"

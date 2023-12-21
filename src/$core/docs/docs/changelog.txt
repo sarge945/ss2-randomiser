@@ -113,21 +113,11 @@ Beta 14:
 - Lite version is now much lighter, it no longer randomises weapons or eggs. There is now a lot more differentiation between Lite and Full, to hopefully give people more options.
 - Audio Log randomisation is now an addon
 
-1.2 Beta:
-- Added Secmod support. Support is currently in beta.
-  - Known issue: Various objects appear at 0,0,0 on some maps. This is purely visual and mostly only an issue in medsci1
-- Fixed a few locations that I missed on various maps
+1.2:
+- Added Secmod support.
+- Randomised a few items that I missed on various maps.
 - Randomised the ops4 armoury. It only randomises amongst itself, so this is not a significant gameplay change.
-- Fixed missing the captains quarters in command2, now that whole area is randomised properly
+- Fixed missing the captains quarters in command2, now that whole area is randomised properly.
+- Added "Spawn Groups", allowing groups of objects to be randomised to the same type of object. This is used in a few places for enemy spawns.
+- Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. [Thanks Deu Sex]
 - The hackable vault behind the athletics lobby desk in rec1 is now randomised.
-
-1.2 Beta 2:
-- Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. (actually fixed in 1.2 Beta) [Thanks Deu Sex]
-- Fixed SecMod issue with particles (such as blue monkey cryokenesis balls) appearing at the origin in some maps (was visible on medsci1 and rick1)
-- Fixed issue where FakeNanites and other important items could be randomised, breaking the UI
-- Added some missed item locations from Secmod
-- Fixed some Secmod items not being randomised correctly (such as Empty Hypos)
-
-1.2 Beta 3:
-- Fixed broken Shotgun Hybrids in Secmod
-- Added Missed Psi Hypo in medsci1 bulkhead
