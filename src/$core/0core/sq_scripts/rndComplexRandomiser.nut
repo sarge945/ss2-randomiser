@@ -152,6 +152,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
     function OnOutputFailed()
     {
         local output = message().from;
+        local reason = message().data;
         local pos = outputs.find(output);
 
         if (inputs.len() == 0 || outputs.len() == 0 || pos == null)
@@ -160,7 +161,7 @@ class rndComplexRandomiser extends rndBaseRandomiser
         failures++;
 
         //print("OnOutputFailed received");
-        PrintDebug("    Output Failed for output " + output,4);
+        PrintDebug("    Output Failed for output " + output + " (" + reason + ")",4);
 
         outputs.remove(pos);
         //ReplaceOutput(output,true);

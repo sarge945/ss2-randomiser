@@ -168,7 +168,7 @@ class rndOutput extends rndBase
 
         if (IsPlaced())
         {
-            PostMessage(source,"OutputFailed");
+            PostMessage(source,"OutputFailed",1);
             return;
         }
 
@@ -180,9 +180,10 @@ class rndOutput extends rndBase
 
         PrintDebug("OnRandomiseOutput received from " + source + " contains: [" + inputs + ", " + config + "]",4);
 
+        local valid = 0;
         foreach(input in inputArr)
         {
-            local valid = IsValid(input,configArr);
+            valid = IsValid(input,configArr);
             if (valid == 0)
             {
                 SetData("placed",true);
@@ -195,7 +196,7 @@ class rndOutput extends rndBase
             else
                 PrintDebug("    input " + input + " was not valid (error code " + valid + ")",4);
         }
-        PostMessage(source,"OutputFailed");
+        PostMessage(source,"OutputFailed",valid);
     }
 
     function Place(input,output)
