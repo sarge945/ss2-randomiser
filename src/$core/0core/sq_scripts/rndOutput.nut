@@ -253,8 +253,6 @@ class rndOutput extends rndBase
         local facing = GetData("facing");
         local physicsControls = GetData("physicsControls");
 
-        local position_up = vector(position.x, position.y, position.z + 0.35);
-
         //Make object render
         Property.SetSimple(input, "HasRefs", TRUE);
 
@@ -272,15 +270,14 @@ class rndOutput extends rndBase
         //Different objects, need to "jiggle" the object to fix physics issues
         else
         {
-            Object.Teleport(input, position_up, FixItemFacing(input,facing));
+            local height = GetJiggleHeight(input,output);
+            position = vector(position.x, position.y, position.z + height);
+            Object.Teleport(input, position, FixItemFacing(input,facing));
 
             //Fix up physics
             Property.Set(input, "PhysControl", "Controls Active", "");
-
             Physics.Activate(input);
-
-            if (!rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
-                Physics.SetVelocity(input,vector(0,0,10));
+            Physics.SetVelocity(input,vector(0,0,height + 5));
         }
 
         //Freeze objects
@@ -288,6 +285,29 @@ class rndOutput extends rndBase
         {
             Property.Set(input, "PhysControl", "Controls Active", PHYSCONTROL_LOC_ROT);
         }
+    }
+
+    function GetJiggleHeight(input,output)
+    {
+        if (rndUtils.HasMetaProp(output,"Object Randomiser - No Position Fix"))
+            return 0;
+        
+        //local physType = Property.Get(input, "PhysType","Type");
+        local physType = rndUtils.GetPropertyParent(input,"PhysType","Type");
+
+        if (physType == 1) //Sphere
+        {
+            local radius = rndUtils.GetPropertyParent(input,"PhysDims","Radius 1");
+            print (input + " radius: " + radius);
+            return radius;
+            //Physics.SetVelocity(input,vector(0,0,radius));
+        }
+        else
+        {
+            print (input + " has phystype of: " + physType);
+            return 10;
+        }
+
     }
 
     function OnTimer()

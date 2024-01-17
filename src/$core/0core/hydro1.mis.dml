@@ -144,7 +144,6 @@ Create "rndObjectCollection" "rndSecurityCrates"
 //Cyber Modules near the power recharger
 //Can't make this work in a way that's visible,
 //So we have to use a custom marker
-/*
 +MetaProp 969 "Object Randomiser - No Auto Output"
 //+MetaProp 969 "Object Randomiser - Small Item Output"
 //+MetaProp 969 "Object Randomiser - High Priority Output"
@@ -156,7 +155,7 @@ Create "rndOutputMarker" "rnd_marker_nook1"
 {
     +ObjProp "Position"
     {
-        "Location" "-59.8499, 140.623, 9.60623"
+        "Location" "-60.7499, 140.623, 9.60623"
         "Heading" 1800
         "Pitch" 4000
         "Bank" 0
@@ -167,9 +166,9 @@ Create "rndOutputMarker" "rnd_marker_nook1"
 +Link "rnd_marker_nook1" "rndHydro1Objects" "Target"
 {
 }
-*/
 
 //Floor mug near replicator
++MetaProp 1093 "Object Randomiser - Small Item Output"
 +Link 1093 "rndHydro1Objects" "Target"
 {
 }
@@ -196,6 +195,7 @@ Create "rndOutputMarker" "rnd_marker_nook1"
 }
 
 //Second Pistol in the plant hallway
++MetaProp 544 "Object Randomiser - Small Item Output"
 +Link 544 "rndHydro1Objects" "Target"
 {
 }
@@ -221,6 +221,8 @@ Create "rndOutputMarker" "rnd_marker_nook1"
 }
 
 //PSI Booster in the flooded cultivation cell
+//In the floor, don't replace it
++MetaProp 490 "Object Randomiser - No Auto Output"
 +Link 490 "rndHydro1Objects" "Target"
 {
 }

@@ -158,6 +158,19 @@ class rndUtils
             return hasMeta;
     }
     
+    //Check for property on an item or it's parent archetype
+    //Some properties like Physics are aparrently
+    static function GetPropertyParent(item,property,field)
+    {
+        local parent = Object.Archetype(item);
+        local hasProp = Property.Possessed(item,property);
+
+        if (!hasProp && parent != -1)
+            return GetPropertyParent(parent,property,field)
+        else
+            return Property.Get(item,property,field);
+    }
+    
     static function isArchetypeExact(obj,type)
     {
         return obj == type || Object.Archetype(obj) == type || ShockGame.GetArchetypeName(obj) == type;
