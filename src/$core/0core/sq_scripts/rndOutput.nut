@@ -298,13 +298,13 @@ class rndOutput extends rndBase
         if (physType == 1) //Sphere
         {
             local radius = rndUtils.GetPropertyParent(input,"PhysDims","Radius 1");
-            print (input + " radius: " + radius);
-            return radius;
+            //print (input + " radius: " + radius);
+            return radius + 1;
             //Physics.SetVelocity(input,vector(0,0,radius));
         }
         else
         {
-            print (input + " has phystype of: " + physType);
+            //print (input + " has phystype of: " + physType);
             return 3;
         }
 
