@@ -305,7 +305,7 @@ class rndOutput extends rndBase
         else
         {
             print (input + " has phystype of: " + physType);
-            return 10;
+            return 3;
         }
 
     }
