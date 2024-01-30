@@ -121,3 +121,8 @@ Beta 14:
 - Added "Spawn Groups", allowing groups of objects to be randomised to the same type of object. This is used in a few places for enemy spawns.
 - Moved Batteries from 2 enemies in Rick1 into containers, allowing them to randomise properly when the enemies are replaced. [Thanks Deu Sex]
 - The hackable vault behind the athletics lobby desk in rec1 is now randomised.
+
+1.21 Beta:
+- Attempted fix for objects falling through floor.
+- Objects now use radius instead of a fixed height for spawning, which should
+result in less objects "jumping" after being spawned
