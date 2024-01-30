@@ -1,0 +1,9 @@
+// ================================================================================
+// 						Less Medsci Shotgunners
+// ================================================================================
+
+//Less Shotgun Hybrids in MedSci
++ObjProp "rndMedSciEnemyRandomiser" "DesignNoteSS"
+{
+	"" "pipeHybridWeight=6;shotgunHybridWeight=1;blueMonkeyWeight=2"
+}

@@ -124,5 +124,5 @@ Beta 14:
 
 1.21 Beta:
 - Attempted fix for objects falling through floor.
-- Objects now use radius instead of a fixed height for spawning, which should
-result in less objects "jumping" after being spawned
+- Objects now use radius instead of a fixed height for spawning, which should result in less objects "jumping" after being spawned
+- Added a "Less Shotgunners in MedSci" addon (Less OG-S)
